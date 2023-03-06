@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Graph">
+      <UniqueIdentifier>{97FA430D-030F-6CBE-CC90-0F1E386468EF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptGraph">
+      <UniqueIdentifier>{4C464F40-B8FB-C735-41F0-C10CADA4BE39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptGraph\Nodes">
+      <UniqueIdentifier>{1451DAB9-8067-D84F-C9DE-63713534A9D7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptGraph\Nodes\Events">
+      <UniqueIdentifier>{787E8FF5-64A3-DE75-8DEE-C3057972DD93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptGraph\Nodes\Math">
+      <UniqueIdentifier>{6D821A16-597C-4368-42E9-D9782E82A9D4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Graph\NodeGraph.h">
+      <Filter>Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph\NodeGraphEdge.h">
+      <Filter>Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph\NodeGraphNode.h">
+      <Filter>Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph\NodeGraphPin.h">
+      <Filter>Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph\NodeGraphSchema.h">
+      <Filter>Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph\UUID.h">
+      <Filter>Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="MuninGraph.h" />
+    <ClInclude Include="MuninGraph.pch.h" />
+    <ClInclude Include="MuninScriptGraph.h" />
+    <ClInclude Include="ScriptGraph\Nodes\Events\SGNode_EventBeginPlay.h">
+      <Filter>ScriptGraph\Nodes\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptGraph\Nodes\Events\SGNode_EventTick.h">
+      <Filter>ScriptGraph\Nodes\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptGraph\Nodes\Math\SGNode_MathOps.h">
+      <Filter>ScriptGraph\Nodes\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptGraph\Nodes\SGNode_DebugText.h">
+      <Filter>ScriptGraph\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptGraph\Nodes\SGNode_FloatToString.h">
+      <Filter>ScriptGraph\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptGraph\Nodes\SGNode_Variable.h">
+      <Filter>ScriptGraph\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptGraph\SGNode_DebugText.h">
+      <Filter>ScriptGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptGraph\SGNode_EventBeginPlay.h">
+      <Filter>ScriptGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptGraph\SGNode_EventTick.h">
+      <Filter>ScriptGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptGraph\SGNode_Variable.h">
+      <Filter>ScriptGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptGraph\ScriptGraph.h">
+      <Filter>ScriptGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptGraph\ScriptGraphDataObject.h">
+      <Filter>ScriptGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptGraph\ScriptGraphNode.h">
+      <Filter>ScriptGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptGraph\ScriptGraphPin.h">
+      <Filter>ScriptGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptGraph\ScriptGraphSchema.h">
+      <Filter>ScriptGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptGraph\ScriptGraphTypes.h">
+      <Filter>ScriptGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptGraph\ScriptGraphVariable.h">
+      <Filter>ScriptGraph</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Graph\NodeGraph.cpp">
+      <Filter>Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="Graph\NodeGraphEdge.cpp">
+      <Filter>Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="Graph\NodeGraphNode.cpp">
+      <Filter>Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="Graph\NodeGraphPin.cpp">
+      <Filter>Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="Graph\NodeGraphSchema.cpp">
+      <Filter>Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="Graph\UUID.cpp">
+      <Filter>Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="MuninGraph.pch.cpp" />
+    <ClCompile Include="ScriptGraph\Nodes\Events\SGNode_EventBeginPlay.cpp">
+      <Filter>ScriptGraph\Nodes\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptGraph\Nodes\Events\SGNode_EventTick.cpp">
+      <Filter>ScriptGraph\Nodes\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptGraph\Nodes\Math\SGNode_MathOps.cpp">
+      <Filter>ScriptGraph\Nodes\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptGraph\Nodes\SGNode_DebugText.cpp">
+      <Filter>ScriptGraph\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptGraph\Nodes\SGNode_FloatToString.cpp">
+      <Filter>ScriptGraph\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptGraph\Nodes\SGNode_Variable.cpp">
+      <Filter>ScriptGraph\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptGraph\SGNode_DebugText.cpp">
+      <Filter>ScriptGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptGraph\SGNode_EventBeginPlay.cpp">
+      <Filter>ScriptGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptGraph\SGNode_EventTick.cpp">
+      <Filter>ScriptGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptGraph\SGNode_Variable.cpp">
+      <Filter>ScriptGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptGraph\ScriptGraph.cpp">
+      <Filter>ScriptGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptGraph\ScriptGraphDataObject.cpp">
+      <Filter>ScriptGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptGraph\ScriptGraphNode.cpp">
+      <Filter>ScriptGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptGraph\ScriptGraphPin.cpp">
+      <Filter>ScriptGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptGraph\ScriptGraphSchema.cpp">
+      <Filter>ScriptGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptGraph\ScriptGraphTypes.cpp">
+      <Filter>ScriptGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptGraph\ScriptGraphVariable.cpp">
+      <Filter>ScriptGraph</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

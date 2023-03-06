@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Launcher">
+      <UniqueIdentifier>{57ACF9E2-4379-54EE-6C92-429658BE897C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ExceptionHandler.h" />
+    <ClInclude Include="Launcher.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Launcher.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="favicon (1).ico">
+      <Filter>Launcher</Filter>
+    </None>
+    <None Include="favicon small.ico">
+      <Filter>Launcher</Filter>
+    </None>
+    <None Include="icon3.ico">
+      <Filter>Launcher</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Launcher.rc">
+      <Filter>Launcher</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

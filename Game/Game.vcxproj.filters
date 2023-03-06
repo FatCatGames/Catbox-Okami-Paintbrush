@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{B34CFEBD-9F19-59C9-C832-4771B45E8E57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Networking">
+      <UniqueIdentifier>{6D615D47-5919-9F94-C220-78F0AEF73985}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{724E55CA-5EF0-7FA0-47AB-93F433EC06F1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.pch.h" />
+    <ClInclude Include="LookAtCamera.h" />
+    <ClInclude Include="Managers\GameManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\NetMessageHandler.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkComponent.h" />
+    <ClInclude Include="NetworkGameManager.h" />
+    <ClInclude Include="Networking\NetworkGameCommands.h">
+      <Filter>Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\PlayerCamera.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\PlayerController.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Project.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game.pch.cpp" />
+    <ClCompile Include="LookAtCamera.cpp" />
+    <ClCompile Include="Managers\GameManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\NetMessageHandler.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkComponent.cpp" />
+    <ClCompile Include="NetworkGameManager.cpp" />
+    <ClCompile Include="Player\PlayerCamera.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\PlayerController.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Project.cpp" />
+  </ItemGroup>
+</Project>

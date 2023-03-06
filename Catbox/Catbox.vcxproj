@@ -1,0 +1,900 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Game|x64">
+      <Configuration>Game</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{663B45AB-52DD-6F81-3B98-83D527D9F6D1}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Catbox</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Game|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Game|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\Output\Debug\</OutDir>
+    <IntDir>obj\Debug\</IntDir>
+    <TargetName>Catbox</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\Bin\</OutDir>
+    <IntDir>obj\Release\</IntDir>
+    <TargetName>Catbox</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Game|x64'">
+    <OutDir>..\Bin\</OutDir>
+    <IntDir>obj\Game\</IntDir>
+    <TargetName>Catbox</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Components;CommonUtilities;..\External;..\External\ImGui;..\External\DDSImporter;..\External\FbxImporter;..\MuninGraph\ScriptGraph;..\MuninGraph;..\External\physX;.;..\External\Recast &amp; Detour\DebugUtils;..\External\Recast &amp; Detour\Detour;..\External\Recast &amp; Detour\Recast;..\External\Recast &amp; Detour\DetourCrowd;..\External\Recast &amp; Detour\DetourTileCache;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>External.lib;rpcrt4.lib;MuninGraph.lib;TGAFBX.lib;SoundEngine-FMod-Debug.lib;LowLevel_static_64.lib;LowLevelAABB_static_64.lib;LowLevelDynamics_static_64.lib;PhysX_64.lib;PhysXCharacterKinematic_static_64.lib;PhysXCommon_64.lib;PhysXCooking_64.lib;PhysXExtensions_static_64.lib;PhysXFoundation_64.lib;PhysXPvdSDK_static_64.lib;PhysXTask_static_64.lib;PhysXVehicle_static_64.lib;SceneQuery_static_64.lib;SimulationController_static_64.lib;Recast.lib;Detour.lib;DetourTileCache.lib;DebugUtils.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\External\Lib\Debug;..\MuninGraph\Lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_RELEASE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Components;CommonUtilities;..\External;..\External\ImGui;..\External\DDSImporter;..\External\FbxImporter;..\MuninGraph\ScriptGraph;..\MuninGraph;..\External\physX;.;..\External\Recast &amp; Detour\DebugUtils;..\External\Recast &amp; Detour\Detour;..\External\Recast &amp; Detour\Recast;..\External\Recast &amp; Detour\DetourCrowd;..\External\Recast &amp; Detour\DetourTileCache;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>External.lib;rpcrt4.lib;MuninGraph.lib;TGAFBX.lib;SoundEngine-FMod-Release.lib;LowLevel_static_64.lib;LowLevelAABB_static_64.lib;LowLevelDynamics_static_64.lib;PhysX_64.lib;PhysXCharacterKinematic_static_64.lib;PhysXCommon_64.lib;PhysXCooking_64.lib;PhysXExtensions_static_64.lib;PhysXFoundation_64.lib;PhysXPvdSDK_static_64.lib;PhysXTask_static_64.lib;PhysXVehicle_static_64.lib;SceneQuery_static_64.lib;SimulationController_static_64.lib;Recast.lib;Detour.lib;DetourTileCache.lib;DebugUtils.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\External\Lib\Release;..\MuninGraph\Lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Game|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_GAME;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Components;CommonUtilities;..\External;..\External\ImGui;..\External\DDSImporter;..\External\FbxImporter;..\MuninGraph\ScriptGraph;..\MuninGraph;..\External\physX;.;..\External\Recast &amp; Detour\DebugUtils;..\External\Recast &amp; Detour\Detour;..\External\Recast &amp; Detour\Recast;..\External\Recast &amp; Detour\DetourCrowd;..\External\Recast &amp; Detour\DetourTileCache;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>External.lib;rpcrt4.lib;MuninGraph.lib;TGAFBX.lib;SoundEngine-FMod-Release.lib;LowLevel_static_64.lib;LowLevelAABB_static_64.lib;LowLevelDynamics_static_64.lib;PhysX_64.lib;PhysXCharacterKinematic_static_64.lib;PhysXCommon_64.lib;PhysXCooking_64.lib;PhysXExtensions_static_64.lib;PhysXFoundation_64.lib;PhysXPvdSDK_static_64.lib;PhysXTask_static_64.lib;PhysXVehicle_static_64.lib;SceneQuery_static_64.lib;SimulationController_static_64.lib;Recast.lib;Detour.lib;DetourTileCache.lib;DebugUtils.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\External\Lib\Game;..\MuninGraph\Lib\Game;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="AliveTimer.h" />
+    <ClInclude Include="Assets\AnimationController.h" />
+    <ClInclude Include="Assets\Asset.h" />
+    <ClInclude Include="Assets\AssetLoader.h" />
+    <ClInclude Include="Assets\AssetRegistry.h" />
+    <ClInclude Include="Assets\Blueprint.h" />
+    <ClInclude Include="Assets\Material.h" />
+    <ClInclude Include="Assets\MeshData.h" />
+    <ClInclude Include="Assets\Model.h" />
+    <ClInclude Include="Assets\PostProcessingProfile.h" />
+    <ClInclude Include="Assets\Prefab.h" />
+    <ClInclude Include="Assets\Scene.h" />
+    <ClInclude Include="Assets\Shader.h" />
+    <ClInclude Include="Assets\Texture.h" />
+    <ClInclude Include="Assets\video_texture.h" />
+    <ClInclude Include="Audio\Audio3DComponent.h" />
+    <ClInclude Include="Audio\AudioManager.h" />
+    <ClInclude Include="Audio\AudioMonoComponent.h" />
+    <ClInclude Include="Audio\AudioUpdater.h" />
+    <ClInclude Include="Behaviour Tree\BehaviourTree.h" />
+    <ClInclude Include="Behaviour Tree\BrainTree.h" />
+    <ClInclude Include="Behaviour Tree\Builder.h" />
+    <ClInclude Include="Behaviour Tree\Controllers\Blackboard.h" />
+    <ClInclude Include="Behaviour Tree\Controllers\Composite.h" />
+    <ClInclude Include="Behaviour Tree\Controllers\Decorator.h" />
+    <ClInclude Include="Behaviour Tree\Controllers\Inverter_Decorator.h" />
+    <ClInclude Include="Behaviour Tree\Controllers\Repeater_Decorator.h" />
+    <ClInclude Include="Behaviour Tree\Controllers\Selector.h" />
+    <ClInclude Include="Behaviour Tree\Controllers\SelectorRandom.h" />
+    <ClInclude Include="Behaviour Tree\Controllers\Sequence.h" />
+    <ClInclude Include="Behaviour Tree\Leafes\Leaf.h" />
+    <ClInclude Include="Behaviour Tree\Node.h" />
+    <ClInclude Include="BufferManager.h" />
+    <ClInclude Include="CapsuleCollider.h" />
+    <ClInclude Include="CommonUtilities\AABB3D.hpp" />
+    <ClInclude Include="CommonUtilities\BSTSet.hpp" />
+    <ClInclude Include="CommonUtilities\Color.h" />
+    <ClInclude Include="CommonUtilities\Curve.h" />
+    <ClInclude Include="CommonUtilities\DoublyLinkedList.hpp" />
+    <ClInclude Include="CommonUtilities\DoublyLinkedListNode.h" />
+    <ClInclude Include="CommonUtilities\GUID.h" />
+    <ClInclude Include="CommonUtilities\Heap.hpp" />
+    <ClInclude Include="CommonUtilities\ImguiWrapper.h" />
+    <ClInclude Include="CommonUtilities\InputHandler.h" />
+    <ClInclude Include="CommonUtilities\Line.hpp" />
+    <ClInclude Include="CommonUtilities\LineVolume.hpp" />
+    <ClInclude Include="CommonUtilities\LinkedList.hpp" />
+    <ClInclude Include="CommonUtilities\Matrix3x3.hpp" />
+    <ClInclude Include="CommonUtilities\Matrix4x4.hpp" />
+    <ClInclude Include="CommonUtilities\ObjParser.h" />
+    <ClInclude Include="CommonUtilities\Plane.hpp" />
+    <ClInclude Include="CommonUtilities\PlaneVolume.hpp" />
+    <ClInclude Include="CommonUtilities\Queue.hpp" />
+    <ClInclude Include="CommonUtilities\RapidJsonWrapper.h" />
+    <ClInclude Include="CommonUtilities\Ray.hpp" />
+    <ClInclude Include="CommonUtilities\Sphere.hpp" />
+    <ClInclude Include="CommonUtilities\Stack.hpp" />
+    <ClInclude Include="CommonUtilities\Timer.h" />
+    <ClInclude Include="CommonUtilities\UtilityFunctions.hpp" />
+    <ClInclude Include="CommonUtilities\Vector.h" />
+    <ClInclude Include="CommonUtilities\Vector2.hpp" />
+    <ClInclude Include="CommonUtilities\Vector3.hpp" />
+    <ClInclude Include="CommonUtilities\Vector4.hpp" />
+    <ClInclude Include="CommonUtilities\VectorOnStack.hpp" />
+    <ClInclude Include="CommonUtilities\XboxControllerInput.h" />
+    <ClInclude Include="CommonUtilities\XboxInputCodes.h" />
+    <ClInclude Include="ComponentTools\Event.h" />
+    <ClInclude Include="ComponentTools\SceneManager.h" />
+    <ClInclude Include="ComponentTools\State.h" />
+    <ClInclude Include="ComponentTools\ThreadPool.h" />
+    <ClInclude Include="ComponentTools\UIEventHandler.h" />
+    <ClInclude Include="Components\3D\Camera.h" />
+    <ClInclude Include="Components\3D\CinematicCamera.h" />
+    <ClInclude Include="Components\3D\Light.h" />
+    <ClInclude Include="Components\3D\ModelInstance.h" />
+    <ClInclude Include="Components\Animator.h" />
+    <ClInclude Include="Components\BlueprintComponent.h" />
+    <ClInclude Include="Components\CameraController.h" />
+    <ClInclude Include="Components\CameraShake.h" />
+    <ClInclude Include="Components\ComponentHandler.h" />
+    <ClInclude Include="Components\ComponentTemplate.h" />
+    <ClInclude Include="Components\FollowTarget.h" />
+    <ClInclude Include="Components\ParticleSystem.h" />
+    <ClInclude Include="Components\Physics\CharacterController.h" />
+    <ClInclude Include="Components\Physics\Collisions\BoxCollider.h" />
+    <ClInclude Include="Components\Physics\Collisions\BoxCollider2D.h" />
+    <ClInclude Include="Components\Physics\Collisions\CircleCollider2D.h" />
+    <ClInclude Include="Components\Physics\Collisions\Collider.h" />
+    <ClInclude Include="Components\Physics\Collisions\CollisionData.h" />
+    <ClInclude Include="Components\Physics\Collisions\CollisionManager.h" />
+    <ClInclude Include="Components\Physics\Collisions\ConvexCollider.h" />
+    <ClInclude Include="Components\Physics\Collisions\MeshCollider.h" />
+    <ClInclude Include="Components\Physics\Collisions\SphereCollider.h" />
+    <ClInclude Include="Components\Physics\LiquidSimulation.h" />
+    <ClInclude Include="Components\Physics\RigidBody.h" />
+    <ClInclude Include="Components\SplashScreen.h" />
+    <ClInclude Include="Components\StateMachine.h" />
+    <ClInclude Include="Components\UI\UIElement.h" />
+    <ClInclude Include="Components\UI\UISprite.h" />
+    <ClInclude Include="Components\UI\VideoPlayer.h" />
+    <ClInclude Include="CrowdManager.h" />
+    <ClInclude Include="DataTypes.h" />
+    <ClInclude Include="Debugging\DebugDrawer.h" />
+    <ClInclude Include="Debugging\DebugShapes.h" />
+    <ClInclude Include="Editor\Commands\AddRemoveComponentCommand.h" />
+    <ClInclude Include="Editor\Commands\CreateDeleteObjectCommand.h" />
+    <ClInclude Include="Editor\Commands\EditorCommand.h" />
+    <ClInclude Include="Editor\Commands\EditorCommandHandler.h" />
+    <ClInclude Include="Editor\Commands\ImGuiValueCommand.h" />
+    <ClInclude Include="Editor\Commands\TransformCommand.h" />
+    <ClInclude Include="Editor\Commands\Vector3Command.h" />
+    <ClInclude Include="Editor\Commands\Vector4Command.h" />
+    <ClInclude Include="Editor\DataProperty.hpp" />
+    <ClInclude Include="Editor\Debugging\MessageHandler.h" />
+    <ClInclude Include="Editor\Editor.h" />
+    <ClInclude Include="Editor\EditorCamera.h" />
+    <ClInclude Include="Editor\Gizmos.h" />
+    <ClInclude Include="Editor\MainMenuBar.h" />
+    <ClInclude Include="Editor\ScriptGraph\AnimationController\AnimationControllerEditor.h" />
+    <ClInclude Include="Editor\ScriptGraph\AnimationController\AnimationEvent.h" />
+    <ClInclude Include="Editor\ScriptGraph\AnimationController\AnimationGraph.h" />
+    <ClInclude Include="Editor\ScriptGraph\AnimationController\AnimationGraphNode.h" />
+    <ClInclude Include="Editor\ScriptGraph\AnimationController\AnimationGraphPin.h" />
+    <ClInclude Include="Editor\ScriptGraph\AnimationController\AnimationGraphSchema.h" />
+    <ClInclude Include="Editor\ScriptGraph\AnimationController\AnimationTransition.h" />
+    <ClInclude Include="Editor\ScriptGraph\Audio\SGNode_PlayAudio.h" />
+    <ClInclude Include="Editor\ScriptGraph\BlueprintEditor.h" />
+    <ClInclude Include="Editor\ScriptGraph\Conversion\SGNode_Constructors.h" />
+    <ClInclude Include="Editor\ScriptGraph\Conversion\SGNode_Conversions.h" />
+    <ClInclude Include="Editor\ScriptGraph\Conversion\SGNode_Splitters.h" />
+    <ClInclude Include="Editor\ScriptGraph\FlowControl\SGNode_Branch.h" />
+    <ClInclude Include="Editor\ScriptGraph\FlowControl\SGNode_Delay.h" />
+    <ClInclude Include="Editor\ScriptGraph\GameObjects\SGNode_CreateGameObject.h" />
+    <ClInclude Include="Editor\ScriptGraph\GameObjects\SGNode_GetBlueprint.h" />
+    <ClInclude Include="Editor\ScriptGraph\GameObjects\SGNode_GetObjectIDByName.h" />
+    <ClInclude Include="Editor\ScriptGraph\GameObjects\SGNode_GetPosition.h" />
+    <ClInclude Include="Editor\ScriptGraph\GameObjects\SGNode_GetScale.h" />
+    <ClInclude Include="Editor\ScriptGraph\GameObjects\SGNode_GetVariables.h" />
+    <ClInclude Include="Editor\ScriptGraph\GameObjects\SGNode_OnCollisionEvents.h" />
+    <ClInclude Include="Editor\ScriptGraph\GameObjects\SGNode_SetActiveGameObject.h" />
+    <ClInclude Include="Editor\ScriptGraph\GameObjects\SGNode_SetPosition.h" />
+    <ClInclude Include="Editor\ScriptGraph\GameObjects\SGNode_SetScale.h" />
+    <ClInclude Include="Editor\ScriptGraph\GameObjects\SGNode_SetVariables.h" />
+    <ClInclude Include="Editor\ScriptGraph\Input\SGNode_GetKeyPress.h" />
+    <ClInclude Include="Editor\ScriptGraph\Input\SGNode_GetMousePos.h" />
+    <ClInclude Include="Editor\ScriptGraph\Input\SGNode_MouseToWorld.h" />
+    <ClInclude Include="Editor\ScriptGraph\Math\SGNode_MathOps.h" />
+    <ClInclude Include="Editor\ScriptGraph\Math\SGNode_Vec3MathOps.h" />
+    <ClInclude Include="Editor\ScriptGraph\RegisterExternalNodes.h" />
+    <ClInclude Include="Editor\ScriptGraph\RegisterExternalTypes.h" />
+    <ClInclude Include="Editor\ScriptGraph\RegisterSGNodes.h" />
+    <ClInclude Include="Editor\ScriptGraph\ScriptGraphEditorBase.h" />
+    <ClInclude Include="Editor\ScriptGraph\Utility\SGNode_Compare.h" />
+    <ClInclude Include="Editor\ScriptGraph\Utility\SGNode_GetOpposite.h" />
+    <ClInclude Include="Editor\ScriptGraph\Utility\SGNode_Print.h" />
+    <ClInclude Include="Editor\Windows\AnimationControllerWindow.h" />
+    <ClInclude Include="Editor\Windows\AssetBrowserWindow.h" />
+    <ClInclude Include="Editor\Windows\CatboxSettingsWindow.h" />
+    <ClInclude Include="Editor\Windows\ChatWindow.h" />
+    <ClInclude Include="Editor\Windows\ConsoleWindow.h" />
+    <ClInclude Include="Editor\Windows\DebuggingWindow.h" />
+    <ClInclude Include="Editor\Windows\EditorWindow.h" />
+    <ClInclude Include="Editor\Windows\EditorWindowHandler.h" />
+    <ClInclude Include="Editor\Windows\GeneralToolsWindow.h" />
+    <ClInclude Include="Editor\Windows\NavigationWindow.h" />
+    <ClInclude Include="Editor\Windows\PhysicsWindow.h" />
+    <ClInclude Include="Editor\Windows\PostProcessingWindow.h" />
+    <ClInclude Include="Editor\Windows\PropertiesWindow.h" />
+    <ClInclude Include="Editor\Windows\SceneHierarchyWindow.h" />
+    <ClInclude Include="Editor\Windows\SceneWindow.h" />
+    <ClInclude Include="Editor\Windows\ShaderWindow.h" />
+    <ClInclude Include="Editor\Windows\VisualScriptingWindow.h" />
+    <ClInclude Include="Editor\Windows\WindowTemplate.h" />
+    <ClInclude Include="Engine.h" />
+    <ClInclude Include="GameObjects\Component.h" />
+    <ClInclude Include="GameObjects\GameObject.h" />
+    <ClInclude Include="GameObjects\GameObjectFactory.h" />
+    <ClInclude Include="GameObjects\GameObjectSelection.h" />
+    <ClInclude Include="GameObjects\Transform.h" />
+    <ClInclude Include="Graphics\Animations\Animation.h" />
+    <ClInclude Include="Graphics\Animations\SkeletonData.h" />
+    <ClInclude Include="Graphics\ColorGradient.h" />
+    <ClInclude Include="Graphics\Particles\ParticleEmitter.h" />
+    <ClInclude Include="Graphics\Particles\ParticleEmitterSettings.h" />
+    <ClInclude Include="Graphics\Particles\ParticleProperty.hpp" />
+    <ClInclude Include="Graphics\Rendering\Buffers\Buffers.h" />
+    <ClInclude Include="Graphics\Rendering\Buffers\CBuffer.hpp" />
+    <ClInclude Include="Graphics\Rendering\Buffers\GBuffer.h" />
+    <ClInclude Include="Graphics\Rendering\Buffers\StructuredBuffer.hpp" />
+    <ClInclude Include="Graphics\Rendering\DX11\DX11.h" />
+    <ClInclude Include="Graphics\Rendering\DXDeviceStates.h" />
+    <ClInclude Include="Graphics\Rendering\DepthStencil.h" />
+    <ClInclude Include="Graphics\Rendering\GraphicsEngine.h" />
+    <ClInclude Include="Graphics\Rendering\GraphicsEngine.pch.h" />
+    <ClInclude Include="Graphics\Rendering\PostProcessingVolume.h" />
+    <ClInclude Include="Graphics\Rendering\Renderers\DebugRenderer.h" />
+    <ClInclude Include="Graphics\Rendering\Renderers\DeferredRenderer.h" />
+    <ClInclude Include="Graphics\Rendering\Renderers\ForwardRenderer.h" />
+    <ClInclude Include="Graphics\Rendering\Renderers\PostProcessRenderer.h" />
+    <ClInclude Include="Graphics\Rendering\Renderers\ShadowRenderer.h" />
+    <ClInclude Include="Graphics\Rendering\Renderers\UIRenderer.h" />
+    <ClInclude Include="Graphics\Rendering\SceneLightData.h" />
+    <ClInclude Include="HotKeyWindow.h" />
+    <ClInclude Include="LiquidSimulation.h" />
+    <ClInclude Include="Navigation\NavAgent.h" />
+    <ClInclude Include="Navigation\NavMesh.h" />
+    <ClInclude Include="Navigation\NavMeshExporter.h" />
+    <ClInclude Include="Navigation\Pathfinding.h" />
+    <ClInclude Include="Navigation\StringPulling.h" />
+    <ClInclude Include="Networking\Client.h" />
+    <ClInclude Include="Networking\NetMessagePayload.h" />
+    <ClInclude Include="Networking\NetworkManager.h" />
+    <ClInclude Include="PerformanceWindow.h" />
+    <ClInclude Include="PhysXWrapper.h" />
+    <ClInclude Include="Physics\Intersection.h" />
+    <ClInclude Include="Physics\PhysXUtilities.h" />
+    <ClInclude Include="Physics\PhysicsEngine.h" />
+    <ClInclude Include="Physics\Plane.h" />
+    <ClInclude Include="Physics\Ray.h" />
+    <ClInclude Include="PopupManager.h" />
+    <ClInclude Include="ProjectSettings.h" />
+    <ClInclude Include="Shaders\Environment\WaterDisplaceMentVS.h" />
+    <ClInclude Include="Shaders\Environment\WaterDisplacementPS.h" />
+    <ClInclude Include="Shaders\FadeoutShader.h" />
+    <ClInclude Include="Shaders\FlipbookShader.h" />
+    <ClInclude Include="Shaders\ParticleAtlasWalkShader.h" />
+    <ClInclude Include="Shaders\ScalingShader.h" />
+    <ClInclude Include="Shaders\UVPannerShader.h" />
+    <ClInclude Include="TimerManager.h" />
+    <ClInclude Include="UserPreferences.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AliveTimer.cpp" />
+    <ClCompile Include="Assets\AnimationController.cpp" />
+    <ClCompile Include="Assets\Asset.cpp" />
+    <ClCompile Include="Assets\AssetLoader.cpp" />
+    <ClCompile Include="Assets\AssetRegistry.cpp" />
+    <ClCompile Include="Assets\Blueprint.cpp" />
+    <ClCompile Include="Assets\Material.cpp" />
+    <ClCompile Include="Assets\MeshData.cpp" />
+    <ClCompile Include="Assets\Model.cpp" />
+    <ClCompile Include="Assets\PostProcessingProfile.cpp" />
+    <ClCompile Include="Assets\Prefab.cpp" />
+    <ClCompile Include="Assets\Scene.cpp" />
+    <ClCompile Include="Assets\Shader.cpp" />
+    <ClCompile Include="Assets\Texture.cpp" />
+    <ClCompile Include="Assets\video_texture.cpp" />
+    <ClCompile Include="Audio\Audio3DComponent.cpp" />
+    <ClCompile Include="Audio\AudioManager.cpp" />
+    <ClCompile Include="Audio\AudioMonoComponent.cpp" />
+    <ClCompile Include="Audio\AudioUpdater.cpp" />
+    <ClCompile Include="Behaviour Tree\BehaviourTree.cpp" />
+    <ClCompile Include="Behaviour Tree\Controllers\Blackboard.cpp" />
+    <ClCompile Include="Behaviour Tree\Controllers\Composite.cpp" />
+    <ClCompile Include="Behaviour Tree\Controllers\Decorator.cpp" />
+    <ClCompile Include="Behaviour Tree\Controllers\Inverter_Decorator.cpp" />
+    <ClCompile Include="Behaviour Tree\Controllers\Repeater_Decorator.cpp" />
+    <ClCompile Include="Behaviour Tree\Controllers\Selector.cpp" />
+    <ClCompile Include="Behaviour Tree\Controllers\SelectorRandom.cpp" />
+    <ClCompile Include="Behaviour Tree\Controllers\Sequence.cpp" />
+    <ClCompile Include="Behaviour Tree\Leafes\Leaf.cpp" />
+    <ClCompile Include="Behaviour Tree\Node.cpp" />
+    <ClCompile Include="BufferManager.cpp" />
+    <ClCompile Include="CapsuleCollider.cpp" />
+    <ClCompile Include="CommonUtilities\Color.cpp" />
+    <ClCompile Include="CommonUtilities\Curve.cpp" />
+    <ClCompile Include="CommonUtilities\GUID.cpp" />
+    <ClCompile Include="CommonUtilities\ImguiWrapper.cpp" />
+    <ClCompile Include="CommonUtilities\InputHandler.cpp" />
+    <ClCompile Include="CommonUtilities\RapidJsonWrapper.cpp" />
+    <ClCompile Include="CommonUtilities\Timer.cpp" />
+    <ClCompile Include="CommonUtilities\XboxControllerInput.cpp" />
+    <ClCompile Include="ComponentTools\Event.cpp" />
+    <ClCompile Include="ComponentTools\SceneManager.cpp" />
+    <ClCompile Include="ComponentTools\State.cpp" />
+    <ClCompile Include="ComponentTools\ThreadPool.cpp" />
+    <ClCompile Include="ComponentTools\UIEventHandler.cpp" />
+    <ClCompile Include="Components\3D\Camera.cpp" />
+    <ClCompile Include="Components\3D\CinematicCamera.cpp" />
+    <ClCompile Include="Components\3D\Light.cpp" />
+    <ClCompile Include="Components\3D\ModelInstance.cpp" />
+    <ClCompile Include="Components\Animator.cpp" />
+    <ClCompile Include="Components\BlueprintComponent.cpp" />
+    <ClCompile Include="Components\CameraController.cpp" />
+    <ClCompile Include="Components\CameraShake.cpp" />
+    <ClCompile Include="Components\ComponentHandler.cpp" />
+    <ClCompile Include="Components\ComponentTemplate.cpp" />
+    <ClCompile Include="Components\FollowTarget.cpp" />
+    <ClCompile Include="Components\ParticleSystem.cpp" />
+    <ClCompile Include="Components\Physics\CharacterController.cpp" />
+    <ClCompile Include="Components\Physics\Collisions\BoxCollider.cpp" />
+    <ClCompile Include="Components\Physics\Collisions\BoxCollider2D.cpp" />
+    <ClCompile Include="Components\Physics\Collisions\CircleCollider2D.cpp" />
+    <ClCompile Include="Components\Physics\Collisions\Collider.cpp" />
+    <ClCompile Include="Components\Physics\Collisions\CollisionManager.cpp" />
+    <ClCompile Include="Components\Physics\Collisions\ConvexCollider.cpp" />
+    <ClCompile Include="Components\Physics\Collisions\MeshCollider.cpp" />
+    <ClCompile Include="Components\Physics\Collisions\SphereCollider.cpp" />
+    <ClCompile Include="Components\Physics\LiquidSimulation.cpp" />
+    <ClCompile Include="Components\Physics\RigidBody.cpp" />
+    <ClCompile Include="Components\SplashScreen.cpp" />
+    <ClCompile Include="Components\StateMachine.cpp" />
+    <ClCompile Include="Components\UI\UIElement.cpp" />
+    <ClCompile Include="Components\UI\UISprite.cpp" />
+    <ClCompile Include="Components\UI\VideoPlayer.cpp" />
+    <ClCompile Include="CrowdManager.cpp" />
+    <ClCompile Include="Debugging\DebugDrawer.cpp" />
+    <ClCompile Include="Editor\Commands\AddRemoveComponentCommand.cpp" />
+    <ClCompile Include="Editor\Commands\CreateDeleteObjectCommand.cpp" />
+    <ClCompile Include="Editor\Commands\EditorCommandHandler.cpp" />
+    <ClCompile Include="Editor\Commands\TransformCommand.cpp" />
+    <ClCompile Include="Editor\Debugging\MessageHandler.cpp" />
+    <ClCompile Include="Editor\Editor.cpp" />
+    <ClCompile Include="Editor\EditorCamera.cpp" />
+    <ClCompile Include="Editor\Gizmos.cpp" />
+    <ClCompile Include="Editor\MainMenuBar.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\AnimationController\AnimationControllerEditor.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\AnimationController\AnimationEvent.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\AnimationController\AnimationGraph.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\AnimationController\AnimationGraphNode.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\AnimationController\AnimationGraphSchema.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\Audio\SGNode_PlayAudio.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\BlueprintEditor.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\Conversion\SGNode_Constructors.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\Conversion\SGNode_Conversions.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\Conversion\SGNode_Splitters.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\FlowControl\SGNode_Branch.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\FlowControl\SGNode_Delay.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\GameObjects\SGNode_CreateGameObject.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\GameObjects\SGNode_GetBlueprint.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\GameObjects\SGNode_GetObjectIDByName.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\GameObjects\SGNode_GetPosition.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\GameObjects\SGNode_GetScale.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\GameObjects\SGNode_GetVariables.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\GameObjects\SGNode_OnCollisionEvents.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\GameObjects\SGNode_SetActiveGameObject.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\GameObjects\SGNode_SetPosition.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\GameObjects\SGNode_SetScale.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\GameObjects\SGNode_SetVariables.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\Input\SGNode_GetKeyPress.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\Input\SGNode_GetMousePos.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\Input\SGNode_MouseToWorld.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\Math\SGNode_MathOps.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\Math\SGNode_Vec3MathOps.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\RegisterExternalNodes.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\RegisterSGNodes.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\ScriptGraphEditorBase.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\Utility\SGNode_Compare.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\Utility\SGNode_GetOpposite.cpp" />
+    <ClCompile Include="Editor\ScriptGraph\Utility\SGNode_Print.cpp" />
+    <ClCompile Include="Editor\Windows\AnimationControllerWindow.cpp" />
+    <ClCompile Include="Editor\Windows\AssetBrowserWindow.cpp" />
+    <ClCompile Include="Editor\Windows\CatboxSettingsWindow.cpp" />
+    <ClCompile Include="Editor\Windows\ChatWindow.cpp" />
+    <ClCompile Include="Editor\Windows\ConsoleWindow.cpp" />
+    <ClCompile Include="Editor\Windows\DebuggingWindow.cpp" />
+    <ClCompile Include="Editor\Windows\EditorWindow.cpp" />
+    <ClCompile Include="Editor\Windows\EditorWindowHandler.cpp" />
+    <ClCompile Include="Editor\Windows\GeneralToolsWindow.cpp" />
+    <ClCompile Include="Editor\Windows\NavigationWindow.cpp" />
+    <ClCompile Include="Editor\Windows\PhysicsWindow.cpp" />
+    <ClCompile Include="Editor\Windows\PostProcessingWindow.cpp" />
+    <ClCompile Include="Editor\Windows\PropertiesWindow.cpp" />
+    <ClCompile Include="Editor\Windows\SceneHierarchyWindow.cpp" />
+    <ClCompile Include="Editor\Windows\SceneWindow.cpp" />
+    <ClCompile Include="Editor\Windows\ShaderWindow.cpp" />
+    <ClCompile Include="Editor\Windows\VisualScriptingWindow.cpp" />
+    <ClCompile Include="Editor\Windows\WindowTemplate.cpp" />
+    <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="GameObjects\Component.cpp" />
+    <ClCompile Include="GameObjects\GameObject.cpp" />
+    <ClCompile Include="GameObjects\GameObjectFactory.cpp" />
+    <ClCompile Include="GameObjects\GameObjectSelection.cpp" />
+    <ClCompile Include="GameObjects\Transform.cpp" />
+    <ClCompile Include="Graphics\Animations\Animation.cpp" />
+    <ClCompile Include="Graphics\Animations\SkeletonData.cpp" />
+    <ClCompile Include="Graphics\ColorGradient.cpp" />
+    <ClCompile Include="Graphics\Particles\ParticleEmitter.cpp" />
+    <ClCompile Include="Graphics\Particles\ParticleEmitterSettings.cpp" />
+    <ClCompile Include="Graphics\Rendering\Buffers\Buffers.cpp" />
+    <ClCompile Include="Graphics\Rendering\Buffers\GBuffer.cpp" />
+    <ClCompile Include="Graphics\Rendering\DX11\DX11.cpp" />
+    <ClCompile Include="Graphics\Rendering\DXDeviceStates.cpp" />
+    <ClCompile Include="Graphics\Rendering\DepthStencil.cpp" />
+    <ClCompile Include="Graphics\Rendering\GraphicsEngine.cpp" />
+    <ClCompile Include="Graphics\Rendering\GraphicsEngine.pch.cpp" />
+    <ClCompile Include="Graphics\Rendering\PostProcessingVolume.cpp" />
+    <ClCompile Include="Graphics\Rendering\Renderers\DebugRenderer.cpp" />
+    <ClCompile Include="Graphics\Rendering\Renderers\DeferredRenderer.cpp" />
+    <ClCompile Include="Graphics\Rendering\Renderers\ForwardRenderer.cpp" />
+    <ClCompile Include="Graphics\Rendering\Renderers\PostProcessRenderer.cpp" />
+    <ClCompile Include="Graphics\Rendering\Renderers\ShadowRenderer.cpp" />
+    <ClCompile Include="Graphics\Rendering\Renderers\UIRenderer.cpp" />
+    <ClCompile Include="Graphics\Rendering\SceneLightData.cpp" />
+    <ClCompile Include="HotKeyWindow.cpp" />
+    <ClCompile Include="LiquidSimulation.cpp">
+      <ObjectFileName>$(IntDir)\LiquidSimulation1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="Navigation\NavAgent.cpp" />
+    <ClCompile Include="Navigation\NavMesh.cpp" />
+    <ClCompile Include="Navigation\NavMeshExporter.cpp" />
+    <ClCompile Include="Navigation\Pathfinding.cpp" />
+    <ClCompile Include="Networking\Client.cpp" />
+    <ClCompile Include="Networking\NetworkManager.cpp" />
+    <ClCompile Include="PerformanceWindow.cpp" />
+    <ClCompile Include="PhysXWrapper.cpp" />
+    <ClCompile Include="Physics\Intersection.cpp" />
+    <ClCompile Include="Physics\PhysXUtilities.cpp" />
+    <ClCompile Include="Physics\PhysicsEngine.cpp" />
+    <ClCompile Include="Physics\Plane.cpp" />
+    <ClCompile Include="Physics\Ray.cpp" />
+    <ClCompile Include="PopupManager.cpp" />
+    <ClCompile Include="ProjectSettings.cpp" />
+    <ClCompile Include="Shaders\Environment\WaterDisplacementPS.cpp" />
+    <ClCompile Include="Shaders\Environment\WaterDisplacementVS.cpp" />
+    <ClCompile Include="Shaders\FadeoutShader.cpp" />
+    <ClCompile Include="Shaders\FlipbookShader.cpp" />
+    <ClCompile Include="Shaders\ParticleAtlasWalkShader.cpp" />
+    <ClCompile Include="Shaders\ScalingShader.cpp" />
+    <ClCompile Include="Shaders\UVPannerShader.cpp" />
+    <ClCompile Include="SplashScreen.cpp">
+      <ObjectFileName>$(IntDir)\SplashScreen1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="TimerManager.cpp" />
+    <ClCompile Include="UserPreferences.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shaders\Billboard\BillboardGS.hlsl">
+      <ShaderType>Geometry</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/BillboardGS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\Billboard\BillboardPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/BillboardPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\Billboard\BillboardVS.hlsl">
+      <ShaderType>Vertex</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/BillboardVS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\CopyTexturePS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/CopyTexturePS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\DebugPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/DebugPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\DebugVS.hlsl">
+      <ShaderType>Vertex</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/DebugVS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\DefaultPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/DefaultPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\DefaultVS.hlsl">
+      <ShaderType>Vertex</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/DefaultVS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\DeferredPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/DeferredPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\Environment\WaterDisplacementVS.hlsl">
+      <ShaderType>Vertex</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/WaterDisplacementVS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\Environment\WaterTestPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/WaterTestPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\Environment\WindFoliageVS.hlsl">
+      <ShaderType>Vertex</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/WindFoliageVS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\FadeoutPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/FadeoutPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\FlipbookPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/FlipbookPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\FullscreenVS.hlsl">
+      <ShaderType>Vertex</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/FullscreenVS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\Functions\FlipBookBlendPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/FlipBookBlendPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\Functions\SubdivideSmoothGS.hlsl">
+      <ShaderType>Geometry</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/SubdivideSmoothGS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\GBufferPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/GBufferPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\GenericOrbPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/GenericOrbPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\HologramPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/HologramPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\HologramVS.hlsl">
+      <ShaderType>Vertex</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/HologramVS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\Particle\ParticleAtlaswalkPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/ParticleAtlaswalkPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\Particle\ParticleFlipbookPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/ParticleFlipbookPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\Particle\ParticleGS.hlsl">
+      <ShaderType>Geometry</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/ParticleGS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\Particle\ParticlePS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/ParticlePS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\Particle\ParticleVS.hlsl">
+      <ShaderType>Vertex</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/ParticleVS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\PostProcess\BloomPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/BloomPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\PostProcess\FogPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/FogPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\PostProcess\GammaCorrectionPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/GammaCorrectionPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\PostProcess\GaussianBlurPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/GaussianBlurPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\PostProcess\LuminancePS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/LuminancePS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\PostProcess\OutlineMaskPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/OutlineMaskPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\PostProcess\OutlinePS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/OutlinePS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\PostProcess\PostProcessPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/PostProcessPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\PostProcess\SSAOPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/SSAOPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\PostProcess\SSGIPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/SSGIPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\PostProcess\VignettePS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/VignettePS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\ScalingVS.hlsl">
+      <ShaderType>Vertex</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/ScalingVS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\SelectionBufferPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/SelectionBufferPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\SimplexPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/SimplexPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\SolidBackgroundPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/SolidBackgroundPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\Tiling\HexTilingPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/HexTilingPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\Tiling\TilingPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/TilingPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\UI\SignPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/SignPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\UI\UICoolDownPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/UICoolDownPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\UI\UISpritePS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/UISpritePS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\UI\UISpriteVS.hlsl">
+      <ShaderType>Vertex</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/UISpriteVS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\UI\UIXPBarPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/UIXPBarPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\UVPannerPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/UVPannerPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\UnlitPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/UnlitPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\VideoPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/VideoPS.cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shaders\VideoVS.hlsl">
+      <ShaderType>Vertex</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/VideoVS.cso</ObjectFileOutput>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\Color\ColorConversion.hlsli" />
+    <None Include="Shaders\Common.hlsli" />
+    <None Include="Shaders\Functions\Ease.hlsli" />
+    <None Include="Shaders\Noise\Noise.hlsli" />
+    <None Include="Shaders\PBRFunctions.hlsli" />
+    <None Include="Shaders\Particle\ParticleShaderStructs.hlsli" />
+    <None Include="Shaders\PostProcess\Tonemaps.hlsli" />
+    <None Include="Shaders\ShaderFunctions.hlsli" />
+    <None Include="Shaders\Struct\PostProcessingShaderStructs.hlsli" />
+    <None Include="Shaders\Struct\ShaderStructs.hlsli" />
+    <None Include="Shaders\Struct\VideoShaderStructs.hlsli" />
+    <None Include="Shaders\UI\UIShaderStructs.hlsli" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
