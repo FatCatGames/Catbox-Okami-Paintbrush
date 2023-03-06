@@ -16,7 +16,7 @@
 
 #include "Player\PlayerCamera.h"
 #include "Player\PlayerController.h"
-
+#include "LookAtCamera.h"
 
 //Not too fond of settings not loading correctly
 #include "ProjectSettings.h"
@@ -29,6 +29,7 @@ void Project::Setup()
 
 	ComponentHandler::RegisterComponent<PlayerCamera>();
 	ComponentHandler::RegisterComponent<PlayerController>();
+	ComponentHandler::RegisterComponent<LookAtCamera>();
 
 #pragma endregion
 

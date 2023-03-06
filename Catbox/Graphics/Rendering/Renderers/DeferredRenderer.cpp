@@ -170,7 +170,7 @@ void DeferredRenderer::GenerateGBuffer(std::vector<ModelInstance*>& aModelList)
 			{
 				if (skeleton->sharedData)
 				{
-					memcpy_s(myBuffers->mySkeletonBufferData.BoneData, sizeof(Matrix4x4<float>) * 128, skeleton->boneMatrices.data(), sizeof(Matrix4x4<float>) * 128);
+					memcpy_s(myBuffers->mySkeletonBufferData.BoneData, sizeof(Matrix4x4<float>) * BONE_LIMIT, skeleton->boneMatrices.data(), sizeof(Matrix4x4<float>) * BONE_LIMIT);
 					myBuffers->mySkeletonBuffer.SetData(&myBuffers->mySkeletonBufferData);
 					myBuffers->myObjectBufferData.isStatic = false;
 				}

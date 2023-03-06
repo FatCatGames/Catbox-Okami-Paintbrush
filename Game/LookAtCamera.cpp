@@ -3,10 +3,10 @@
 
 void LookAtCamera::Update()
 {
-	myTransform->LookAt(Engine::GetInstance()->GetGraphicsEngine()->GetMainCamera()->GetTransform()->worldPos());
+	myTransform->LookAtHorizontal(GraphicsEngine::GetInstance()->GetMainCamera()->GetTransform()->worldPos());
 }
 
 void LookAtCamera::RunInEditor()
 {
-	Update();
+	myTransform->LookAtHorizontal(Editor::GetInstance()->GetEditorCamera().GetTransform().worldPos());
 }

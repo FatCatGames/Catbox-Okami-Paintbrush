@@ -65,7 +65,7 @@ private:
 
 	struct SkeletonBufferData
 	{
-		Matrix4x4<float> BoneData[128]; //8192 bytes
+		Matrix4x4<float> BoneData[256]; //8192 bytes
 	} mySkeletonBufferData;
 
 	struct SceneLightsBufferData

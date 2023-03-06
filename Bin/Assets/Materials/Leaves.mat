@@ -1,0 +1,33 @@
+{
+    "Version": 6,
+    "Emissive": 1.0,
+    "Color": {
+        "r": 0.936274528503418,
+        "g": 0.7389225363731384,
+        "b": 0.8259896636009216,
+        "a": 1.0
+    },
+    "Albedo": "sakura",
+    "PBR": "",
+    "Normal": "",
+    "PixelShader": {
+        "Name": "UnlitPS"
+    },
+    "VertexShader": {
+        "Name": "DefaultVS"
+    },
+    "GeometryShader": {
+        "Name": ""
+    },
+    "TilingMultiplier": 1,
+    "IsTiling": false,
+    "c1": 0.0,
+    "c2": 0.0,
+    "c3": 0.0,
+    "c4": 0.0,
+    "c5": 0.0,
+    "c6": 0.0,
+    "c7": 0.0,
+    "BlendState": 0,
+    "RasterizerState": 0
+}

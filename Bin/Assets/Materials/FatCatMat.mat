@@ -1,0 +1,33 @@
+{
+    "Version": 5,
+    "Emissive": 1.0,
+    "Color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+    },
+    "Albedo": "FatCatTex",
+    "PBR": "",
+    "Normal": "",
+    "PixelShader": {
+        "Name": "DefaultPS"
+    },
+    "VertexShader": {
+        "Name": "DefaultVS"
+    },
+    "GeometryShader": {
+        "Name": ""
+    },
+    "TilingMultiplier": 1,
+    "IsTiling": false,
+    "c1": 0.0,
+    "c2": 0.0,
+    "c3": 0.0,
+    "c4": 0.0,
+    "c5": 0.0,
+    "c6": 0.0,
+    "c7": 0.0,
+    "BlendState": 1,
+    "RasterizerState": 0
+}

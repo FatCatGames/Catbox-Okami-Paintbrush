@@ -1,0 +1,97 @@
+{
+    "Data": {
+        "Name": "Player",
+        "Active": true,
+        "Opened": true,
+        "Transform": {
+            "Version": 2,
+            "BoneParentID": -1,
+            "Pos": [
+                3.003108501434326,
+                1.3089890480041504,
+                8.99896240234375
+            ],
+            "Rot": [
+                180.0,
+                -0.0197906494140625,
+                180.0
+            ],
+            "Size": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "Children": []
+        },
+        "Components": [
+            {
+                "ComponentType": "Model Instance",
+                "Version": 6,
+                "Model": "Player_sk",
+                "Materials": [
+                    "player_mat",
+                    "weapon_mat"
+                ],
+                "UsedForNav": false,
+                "Renderer": 0,
+                "Material Instance": false,
+                "CastShadows": true,
+                "InstanceCount": 0
+            },
+            {
+                "ComponentType": "Audio Mono Component",
+                "Active": false,
+                "AmountOfSounds": 7,
+                "Effects": [
+                    "event:/SFX/Enemies/Jotunn/Attack 1 Hit",
+                    "event:/SFX/UI/Button Press",
+                    "event:/SFX/Player/Dash Attack",
+                    "event:/SFX/Player/Melee Attack 2",
+                    "event:/SFX/UI/Button Hover",
+                    "event:/SFX/Player/Whirlwind",
+                    "event:/Music/Village Music"
+                ]
+            },
+            {
+                "ComponentType": "Box Collider",
+                "Version": 1,
+                "Layer": 2,
+                "Trigger": false,
+                "Size": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "Offset": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            },
+            {
+                "ComponentType": "Animator",
+                "Version": 1,
+                "AnimationIndex": 0,
+                "Controller": "PlayerController"
+            },
+            {
+                "ComponentType": "Player Controller"
+            },
+            {
+                "ComponentType": "Character Controller",
+                "Movement Speed": 1.0,
+                "Step Height": 0.30000001192092896,
+                "Gravity": 20.0,
+                "Contact Offset": 1.0,
+                "Slope Offset": 1.0,
+                "Density": 1.0,
+                "FootPosX": 0.0,
+                "FootPosY": 0.0,
+                "FootPosZ": 0.0,
+                "UpDirX": 0.0,
+                "UpDirY": 1.0,
+                "UpDirZ": 0.0
+            }
+        ]
+    }
+}

@@ -340,12 +340,12 @@ void ModelInstance::Load(rapidjson::Value& aComponentData)
 				myMaterials[i] = AssetRegistry::GetInstance()->GetAsset<Material>(matName);
 				if (!myMaterials[i])
 				{
-					myMaterials[i] = AssetRegistry::GetInstance()->GetAsset<Material>("DefaultMat");
+					myMaterials[i] = nullptr;
 				}
 			}
 			else
 			{
-				myMaterials[i] = AssetRegistry::GetInstance()->GetAsset<Material>("DefaultMat");
+				myMaterials[i] = nullptr;
 			}
 		}
 	}

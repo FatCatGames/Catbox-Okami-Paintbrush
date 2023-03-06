@@ -1,0 +1,42 @@
+{
+    "Data": {
+        "Name": "Player Camera",
+        "Active": true,
+        "Opened": true,
+        "Transform": {
+            "Version": 2,
+            "BoneParentID": -1,
+            "Pos": [
+                -9.327515602111816,
+                1.092540621757507,
+                15.323409080505373
+            ],
+            "Rot": [
+                31.113515853881836,
+                0.0,
+                0.0
+            ],
+            "Size": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "Children": []
+        },
+        "Components": [
+            {
+                "ComponentType": "Player Camera",
+                "Version": 4,
+                "FoV": 90.0,
+                "NearPlane": 0.10000000149011612,
+                "FarPlane": 1000.0,
+                "Speed": 7.0,
+                "AngleMax": 1.399999976158142,
+                "AngleMin": -1.399999976158142,
+                "OffsetX": 0.0,
+                "OffsetY": 3.0,
+                "OffsetZ": 4.0
+            }
+        ]
+    }
+}

@@ -10,12 +10,11 @@
 
 void PlayerController::OnObjectFinishedLoading()
 {
-	myAnimator = myGameObject->GetComponent<Animator>();
+	myAnimator = myGameObject->GetTransform()->GetChildren()[0]->GetGameObject()->GetComponent<Animator>();
 
 	myCharacterController = myGameObject->GetComponent<CharacterController>();
 	myCharacterController->SetMovementSpeed(myMoveSpeed);
 
-	
 
 	myAudioMonoComponent = myTransform->GetGameObject()->GetComponent<AudioMonoComponent>();
 	if (myAudioMonoComponent)
@@ -52,12 +51,11 @@ void PlayerController::RunKeyboardInput()
 		bool back = Input::GetKeyHeld(KeyCode::S);
 		bool givingInput = left || right || forward || back;
 
-		if (givingInput)
+		/*if (givingInput)
 		{
-			rotInDegrees = Engine::GetInstance()->GetMainCamera()->GetTransform()->worldRot().y;
 		}
 
-		rotInDegrees += (left * -90) + (right * 90) + (back * 180);
+		rotInDegrees += (left * -90) + (right * 90) + (back * 180);*/
 
 
 		if (Input::GetKeyHeld(KeyCode::W))
@@ -77,20 +75,24 @@ void PlayerController::RunKeyboardInput()
 			toTarget += Engine::GetInstance()->GetMainCamera()->GetTransform()->right();
 		}
 
+		rotInDegrees = (std::atan2(toTarget.x, toTarget.z) * 57.3f);
+
 		HandleCameraMouseMovement();
 		HandleJump();
 
-		myCharacterController->Slerp({ 0, rotInDegrees, 0 }, 10.0f);
+
+		myAnimator->SetFloat("Speed", givingInput ? myMoveSpeed : 0);
 
 		if (givingInput)
 		{
 			toTarget.y = 0;
 			toTarget.Normalize();
 			myCharacterController->Move(toTarget);
+			myCharacterController->Slerp({ 0, rotInDegrees, 0 }, 10.0f);
 		}
 		else
 		{
-			myCharacterController->Move({0,0,0});
+			myCharacterController->Move({ 0,0,0 });
 		}
 	}
 }

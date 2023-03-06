@@ -63,7 +63,7 @@ public:
 	float myTimeSinceFrame = 0;
 	float myFramePercent = 0;
 	bool isActive = false;
-	std::array<bool, 128> myBoneMask;
+	std::array<bool, 256> myBoneMask;
 	std::vector<int> myBoneMaskRootIDs;
 
 	const std::vector<size_t>& GetLastExecutedPath() const { return myLastExecutedPath; }

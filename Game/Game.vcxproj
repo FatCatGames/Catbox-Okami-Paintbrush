@@ -143,6 +143,7 @@
     <ClInclude Include="NetworkComponent.h" />
     <ClInclude Include="NetworkGameManager.h" />
     <ClInclude Include="Networking\NetworkGameCommands.h" />
+    <ClInclude Include="Paintbrush.h" />
     <ClInclude Include="Player\PlayerCamera.h" />
     <ClInclude Include="Player\PlayerController.h" />
     <ClInclude Include="Project.h" />
@@ -156,6 +157,7 @@
     <ClCompile Include="Managers\NetMessageHandler.cpp" />
     <ClCompile Include="NetworkComponent.cpp" />
     <ClCompile Include="NetworkGameManager.cpp" />
+    <ClCompile Include="Paintbrush.cpp" />
     <ClCompile Include="Player\PlayerCamera.cpp" />
     <ClCompile Include="Player\PlayerController.cpp" />
     <ClCompile Include="Project.cpp" />

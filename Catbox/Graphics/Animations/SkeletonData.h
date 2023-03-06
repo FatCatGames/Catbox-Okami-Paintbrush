@@ -2,6 +2,7 @@
 #include <unordered_map>
 #include "Animation.h"
 
+#define BONE_LIMIT 256
 namespace QuatFunctions
 {
 	//Zoe code, ask Zoe for Info
@@ -149,7 +150,7 @@ struct Skeleton : public Asset
 struct SkeletonInstance
 {
 	std::shared_ptr<Skeleton> sharedData;
-	std::array<Catbox::Matrix4x4<float>, 128> boneMatrices;
+	std::array<Catbox::Matrix4x4<float>, BONE_LIMIT> boneMatrices;
 	std::vector<Transform> boneTransforms;
 
 	//void UpdateAnimationHierarchy(Animation::Frame& aFrame, Animation::Frame& aNextFrame, std::vector<bool>& aBoneMask, float aFramePercentage);
@@ -180,7 +181,7 @@ struct SkeletonInstance
 	}
 
 
-	void UpdateAnimationHierarchyNoBlend(int aBoneID, Animation::Frame& aFrame, const Catbox::Matrix4x4<float>& aParentTransform, std::array<bool, 128>& aBoneList)
+	void UpdateAnimationHierarchyNoBlend(int aBoneID, Animation::Frame& aFrame, const Catbox::Matrix4x4<float>& aParentTransform, std::array<bool, BONE_LIMIT>& aBoneList)
 	{
 		//Is bone masked? Proceed with calculation, otherwise don't override the animation result from the previous layer.
 		if (aBoneList[aBoneID])
@@ -217,7 +218,7 @@ struct SkeletonInstance
 		}
 	}
 
-	void UpdateAnimationHierarchy(int aBoneID, Animation::Frame& aFrame, Animation::Frame& aNextFrame, const Catbox::Matrix4x4<float>& aParentTransform, float t, std::array<bool, 128>& aBoneList)
+	void UpdateAnimationHierarchy(int aBoneID, Animation::Frame& aFrame, Animation::Frame& aNextFrame, const Catbox::Matrix4x4<float>& aParentTransform, float t, std::array<bool, BONE_LIMIT>& aBoneList)
 	{
 		//Is bone masked? Proceed with calculation, otherwise don't override the animation result from the previous layer.
 		if (aBoneList[aBoneID])

@@ -36,7 +36,6 @@ void Animator::Load(rapidjson::Value& aComponentData)
 			if (myController)
 			{
 				myController = myController->MakeInstance();
-				myCurrentAnimation = myController->GetCurrentAnimation();
 			}
 		}
 	}
@@ -94,10 +93,6 @@ void Animator::Init()
 void Animator::Awake()
 {
 	myShouldCull = true;
-	if (myController)
-	{
-		myCurrentAnimation = myController->GetCurrentAnimation();
-	}
 }
 
 void Animator::Update()
@@ -215,7 +210,6 @@ void Animator::RenderInProperties(std::vector<Component*>& aComponentList)
 			for (auto& animator : animatorList)
 			{
 				animator->myController = sharedController->MakeInstance();
-				animator->myCurrentAnimation = sharedController->GetCurrentAnimation();
 			}
 		}
 	}

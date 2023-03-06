@@ -153,7 +153,7 @@ cbuffer MaterialBuffer : register(b2)
 
 cbuffer SkeletonBuffer : register(b3)
 {
-	float4x4 SB_BoneData[128];
+	float4x4 SB_BoneData[256];
 }
 
 cbuffer SceneLightsBuffer : register(b4)

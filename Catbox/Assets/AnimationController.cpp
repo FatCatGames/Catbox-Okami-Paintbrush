@@ -83,8 +83,11 @@ std::shared_ptr<Animation> AnimationController::UpdateAnimations(Animator* anAct
 	const std::scoped_lock<std::mutex> lock(myGuardLock);
 
 	auto& skeleton = anActor->GetSkeleton();
-	std::array<Catbox::Matrix4x4<float>, 128> boneMatrices;
-
+	std::array<Catbox::Matrix4x4<float>, BONE_LIMIT> boneMatrices;
+	skeleton->Reset();
+	
+	bool checkBaseLayer = true;
+	bool animate = true;
 	for (auto& [id, layer] : myLayers)
 	{
 		//animationResults.emplace_back();
@@ -112,6 +115,10 @@ std::shared_ptr<Animation> AnimationController::UpdateAnimations(Animator* anAct
 		bool shouldBlend = true;
 		auto currentNode = layer->GetCurrentNode();
 		auto currentAnimation = currentNode->GetAnimation();
+		
+		if (checkBaseLayer && !currentAnimation) animate = false;
+		checkBaseLayer = false;
+
 		if (currentAnimation && layer->myCurrentState == AnimationState::Playing)
 		{
 			float timePerFrame = 1 / currentAnimation->framesPerSecond;
@@ -156,7 +163,6 @@ std::shared_ptr<Animation> AnimationController::UpdateAnimations(Animator* anAct
 					layer->myNextFrameIndex = layer->myFrameIndex;
 				}
 			}
-
 		}
 
 		
@@ -191,18 +197,15 @@ std::shared_ptr<Animation> AnimationController::UpdateAnimations(Animator* anAct
 		skeleton->boneTransforms[i].SetWorldTransform(pos, rot, scale);
 	}
 
-	for (size_t i = 0; i < skeleton->sharedData->bones.size(); i++)
+	if (animate) 
 	{
-		skeleton->boneMatrices[i] *= skeleton->sharedData->bones[i].bindPoseInverse;
+		for (size_t i = 0; i < skeleton->sharedData->bones.size(); i++)
+		{
+			skeleton->boneMatrices[i] *= skeleton->sharedData->bones[i].bindPoseInverse;
+		}
 	}
 
 	return nullptr;
-}
-
-std::shared_ptr<Animation> AnimationController::GetCurrentAnimation()
-{
-	auto currentNode = myCurrentLayer->GetCurrentNode();
-	return currentNode->GetAnimation();
 }
 
 bool AnimationController::GetShouldLoop()

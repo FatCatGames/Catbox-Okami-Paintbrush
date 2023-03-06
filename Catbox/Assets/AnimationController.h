@@ -14,7 +14,6 @@ public:
 
 	void Reset();
 	std::shared_ptr<Animation> UpdateAnimations(Animator* anActor);
-	std::shared_ptr<Animation> GetCurrentAnimation();
 	//int GetCurrentFrame() { return myCurrentLayer->myFrameIndex; }
 	//int GetNextFrame() { return myCurrentLayer->myNextFrameIndex; }
 	//float GetFramePercent() { return myCurrentLayer->myFramePercent; }

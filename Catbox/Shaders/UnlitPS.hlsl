@@ -10,5 +10,6 @@ PixelOutput main(VertexToPixel input)
 	if (albedo.a < 0.05f) discard;
 
 	result.Color.rgba = albedo * MB_Color;
+	result.id = OB_id;
     return result;
 }

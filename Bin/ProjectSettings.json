@@ -1,0 +1,23 @@
+{
+    "Version": 2,
+    "GammaCorrection": false,
+    "Collision Matrix": [
+        [
+            true,
+            true
+        ],
+        [
+            true
+        ]
+    ],
+    "Physics Layers": [
+        [
+            true,
+            true
+        ],
+        [
+            true,
+            true
+        ]
+    ]
+}

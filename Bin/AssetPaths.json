@@ -1,0 +1,31 @@
+{
+    "Paths": {
+        "FullscreenVS": "Resources/BuiltIn/Shaders/FullscreenVS.sh",
+        "UISpriteVS": "Assets/Shaders/UISpriteVS.sh",
+        "DefaultVS": "Resources/BuiltIn/Shaders/DefaultVS.sh",
+        "ParticleVS": "Resources/BuiltIn/Shaders/ParticleVS.sh",
+        "Cube": "Resources/BuiltIn/Meshes/Cube.fbx",
+        "Plane": "Resources/BuiltIn/Meshes/Plane.fbx",
+        "CopyTexturePS": "Resources/BuiltIn/Shaders/CopyTexturePS.sh",
+        "FullscreenPS": "Assets/Shaders/FullscreenPS.sh",
+        "DeferredPS": "Assets/Shaders/DeferredPS.sh",
+        "SelectionBufferPS": "Assets/Shaders/SelectionBufferPS.sh",
+        "PostProcessPS": "Assets/Shaders/PostProcessPS.sh",
+        "LuminancePS": "Assets/Shaders/LuminancePS.sh",
+        "GaussianBlurPS": "Assets/Shaders/GaussianBlurPS.sh",
+        "BloomPS": "Assets/Shaders/BloomPS.sh",
+        "UISpritePS": "Assets/Shaders/UISpritePS.sh",
+        "DefaultPS": "Resources/BuiltIn/Shaders/DefaultPS.sh",
+        "ParticlePS": "Resources/BuiltIn/Shaders/ParticlePS.sh",
+        "DefaultMat": "Resources/BuiltIn/Materials/DefaultMat.mat",
+        "ParticleGS": "Resources/BuiltIn/Shaders/ParticleGS.sh",
+        "Cube": "Assets/BuiltIn/Models/Cube.mdl",
+        "Plane": "Assets/BuiltIn/Models/Plane.mdl",
+        "T_default_C": "Resources/Textures/T_default_C.dds",
+        "T_default_N": "Resources/Textures/T_default_N.dds",
+        "T_default_M": "Resources/Textures/T_default_M.dds",
+        "Particle-Default": "Resources/Textures/Particle-Default.dds",
+        "Circle-Solid": "Resources/Textures/Circle-Solid.dds",
+        "Square-Default": "Resources/Textures/Square-Default.dds"
+    }
+}

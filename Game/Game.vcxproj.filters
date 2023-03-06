@@ -32,6 +32,7 @@
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="Project.h" />
+    <ClInclude Include="Paintbrush.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.pch.cpp" />
@@ -51,5 +52,6 @@
       <Filter>Player</Filter>
     </ClCompile>
     <ClCompile Include="Project.cpp" />
+    <ClCompile Include="Paintbrush.cpp" />
   </ItemGroup>
 </Project>

@@ -12,7 +12,6 @@ public:
 	void OnCollisionStay(Collider* aCollider) override;
 
 	void RunKeyboardInput();
-
 	void HandleJump();
 	void HandleCameraMouseMovement();
 
@@ -22,7 +21,7 @@ private:
 	AudioMonoComponent* myAudioMonoComponent = nullptr;
 	PlayerCamera* myCamera = nullptr;
 	Vector3f myVelocity = { 0,0,0 };
-	float myMoveSpeed = 5;
+	float myMoveSpeed = 3;
 
 	const float myCameraYOffset = 1.5f;
 	const float myCameraSensitivity = 3;
@@ -30,10 +29,10 @@ private:
 	float myZoomStartTime = 0.0f;
 	float myInvertedCameraFactor = -1.0f;
 
-	const float myDefaultGravity = 40.0f;
-	const float myMaxJumpDuration = 0.2f;
+	const float myDefaultGravity = 30;
+	const float myMaxJumpDuration = 0.25f;
 	float myJumpTime = 0.0f;
-	float myJumpStrength = 10;
+	float myJumpStrength = 8;
 
 	const float myRespawnCooldown = 3.0f;
 	float myRespawnTimer = 0.0f;
