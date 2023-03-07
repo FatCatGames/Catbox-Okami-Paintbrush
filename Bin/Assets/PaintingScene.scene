@@ -67,7 +67,7 @@
                         "Canvas"
                     ],
                     "UsedForNav": false,
-                    "Renderer": 0,
+                    "Renderer": 1,
                     "Material Instance": false,
                     "CastShadows": true,
                     "InstanceCount": 0
@@ -147,6 +147,49 @@
                     "Model": "Cube",
                     "Materials": [
                         "DefaultMat"
+                    ],
+                    "UsedForNav": false,
+                    "Renderer": 0,
+                    "Material Instance": false,
+                    "CastShadows": true,
+                    "InstanceCount": 0
+                },
+                {
+                    "ComponentType": "Paintbrush"
+                }
+            ]
+        },
+        {
+            "Name": "CanvasPaper",
+            "Active": true,
+            "Opened": true,
+            "Transform": {
+                "Version": 2,
+                "BoneParentID": -1,
+                "Pos": [
+                    0.0,
+                    -0.0029337704181671143,
+                    0.0
+                ],
+                "Rot": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Size": [
+                    1.5,
+                    1.0,
+                    0.8999999761581421
+                ],
+                "Children": []
+            },
+            "Components": [
+                {
+                    "ComponentType": "Model Instance",
+                    "Version": 6,
+                    "Model": "Plane",
+                    "Materials": [
+                        "CanvasPaper"
                     ],
                     "UsedForNav": false,
                     "Renderer": 0,

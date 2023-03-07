@@ -17,6 +17,8 @@
 #include "Player\PlayerCamera.h"
 #include "Player\PlayerController.h"
 #include "LookAtCamera.h"
+#include "Paintbrush.h"
+#include "CanvasPS.h"
 
 //Not too fond of settings not loading correctly
 #include "ProjectSettings.h"
@@ -30,8 +32,12 @@ void Project::Setup()
 	ComponentHandler::RegisterComponent<PlayerCamera>();
 	ComponentHandler::RegisterComponent<PlayerController>();
 	ComponentHandler::RegisterComponent<LookAtCamera>();
+	ComponentHandler::RegisterComponent<Paintbrush>();
 
 #pragma endregion
+
+	shared_ptr<CanvasPS> brushPS = std::make_shared<CanvasPS>();
+	CreateAsset<PixelShader>("Resources/BuiltIn/Shaders/CanvasPS.sh", brushPS);
 
 	gameManager = std::make_shared<GameManager>();
 

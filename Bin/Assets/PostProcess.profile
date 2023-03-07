@@ -4,13 +4,13 @@
         "Enabled": true,
         "Tint": {
             "r": 1.0,
-            "g": 0.9333909749984741,
-            "b": 0.8970588445663452,
+            "g": 1.0,
+            "b": 1.0,
             "a": 1.0
         },
         "Brightness": 1.0700000524520874,
         "Contrast": 1.0,
-        "Saturation": 1.0
+        "Saturation": 1.350000023841858
     },
     "Bloom": {
         "Enabled": false,
