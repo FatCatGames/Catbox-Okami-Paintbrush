@@ -7,7 +7,7 @@ public:
 	static Canvas* GetInstance() { return Instance; }
 	Canvas();
 	void Awake() override;
-	void Paint(int anXPos, int anYPos, int aRadius);
+	void Paint(int anXPos, int anYPos, int aRadius, const Color& aColor);
 	void Clear();
 
 private:

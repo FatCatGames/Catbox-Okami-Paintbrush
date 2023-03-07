@@ -17,9 +17,9 @@ void Canvas::Awake()
 	myShader = dynamic_cast<CanvasPS*>(myGameObject->GetComponent<ModelInstance>()->GetMaterial(0)->GetPixelShader().get());
 }
 
-void Canvas::Paint(int anXPos, int anYPos, int aRadius)
+void Canvas::Paint(int anXPos, int anYPos, int aRadius, const Color& aColor)
 {
-	myShader->Paint(anXPos, anYPos, aRadius);
+	myShader->Paint(anXPos, anYPos, aRadius, aColor);
 }
 
 void Canvas::Clear()

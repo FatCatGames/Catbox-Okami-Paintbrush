@@ -252,6 +252,7 @@ public:
 	static KeyCode GetCurrentKeyPressed();
 
 	static Vector2i GetMousePosition();
+	static Vector2i GetPreviousMousePosition();
 	static Vector2i GetMouseDelta();
 	static Vector2i GetRawMouseDelta();
 	static float GetMouseScroll();

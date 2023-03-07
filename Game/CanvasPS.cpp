@@ -11,6 +11,7 @@ CanvasPS::CanvasPS()
 	myPainting.CreateEmptyTexture(DXGI_FORMAT_R8G8B8A8_UNORM, 1024, 1024, 1, D3D11_BIND_SHADER_RESOURCE, D3D11_CPU_ACCESS_WRITE, D3D11_USAGE_DYNAMIC);
 	Clear();
 	psFile.close();
+
 }
 
 
@@ -19,7 +20,7 @@ void CanvasPS::SetResource()
 	myPainting.SetAsResource(0);
 }
 
-void CanvasPS::Paint(int aPosX, int aPosY, int aRadius)
+void CanvasPS::Paint(int aPosX, int aPosY, int aRadius, const Color& aColor)
 {
 	D3D11_MAPPED_SUBRESOURCE mappedResource;
 	HRESULT hr = DX11::Context->Map(myPainting.GetTex().Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
@@ -31,7 +32,6 @@ void CanvasPS::Paint(int aPosX, int aPosY, int aRadius)
 	const int startX = Catbox::Clamp(aPosX - aRadius, 0, 1024);
 	const int endX = Catbox::Clamp(aPosX + aRadius, 0, 1024);
 	const int radiusSquared = aRadius * aRadius;
-
 
 	for (int y = startY; y < endY; ++y)
 	{
@@ -48,14 +48,13 @@ void CanvasPS::Paint(int aPosX, int aPosY, int aRadius)
 				const UINT pixelIndex = y * rowPitch + x * 4;
 
 				// Set the color of the current pixel to black
-				pData[pixelIndex] = 255;   // R
-				pData[pixelIndex + 1] = 0; // G
-				pData[pixelIndex + 2] = 0; // B
-				pData[pixelIndex + 3] = 255; // B
+				pData[pixelIndex] = aColor.r * 255;   // R
+				pData[pixelIndex + 1] = aColor.g * 255; // G
+				pData[pixelIndex + 2] = aColor.b * 255; // B
+				pData[pixelIndex + 3] = 255; // A
 			}
 		}
 	}
-
 
 	DX11::Context->Unmap(myPainting.GetTex().Get(), 0);
 }

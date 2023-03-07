@@ -288,6 +288,11 @@ Vector2i Input::GetMousePosition()
 	return myCurrentMousePos;
 }
 
+Vector2i Input::GetPreviousMousePosition()
+{
+	return myPreviousMousePos;
+}
+
 Vector2i Input::GetMouseDelta()
 {
 	return { myCurrentMousePos.x - myPreviousMousePos.x, myCurrentMousePos.y - myPreviousMousePos.y };
