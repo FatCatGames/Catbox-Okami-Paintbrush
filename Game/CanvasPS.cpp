@@ -16,7 +16,7 @@ CanvasPS::CanvasPS()
 
 void CanvasPS::SetResource()
 {
-	myPainting.SetAsResource(1);
+	myPainting.SetAsResource(0);
 }
 
 void CanvasPS::Paint(int aPosX, int aPosY, int aRadius)
@@ -30,12 +30,19 @@ void CanvasPS::Paint(int aPosX, int aPosY, int aRadius)
 	const int endY = Catbox::Clamp(aPosY + aRadius, 0, 1024);
 	const int startX = Catbox::Clamp(aPosX - aRadius, 0, 1024);
 	const int endX = Catbox::Clamp(aPosX + aRadius, 0, 1024);
+	const int radiusSquared = aRadius * aRadius;
 
-	if (pData)
+
+	for (int y = startY; y < endY; ++y)
 	{
-		for (int y = startY; y < endY; ++y)
+		for (int x = startX; x < endX; ++x)
 		{
-			for (int x = startX; x < endX; ++x)
+			const int distanceX = x - aPosX;
+			const int distanceY = y - aPosY;
+			const int distanceSquared = distanceX * distanceX + distanceY * distanceY;
+
+			// Check if the current pixel is inside the circle
+			if (distanceSquared <= radiusSquared)
 			{
 				// Calculate the index of the current pixel in the texture data array
 				const UINT pixelIndex = y * rowPitch + x * 4;
@@ -44,7 +51,7 @@ void CanvasPS::Paint(int aPosX, int aPosY, int aRadius)
 				pData[pixelIndex] = 255;   // R
 				pData[pixelIndex + 1] = 0; // G
 				pData[pixelIndex + 2] = 0; // B
-				pData[pixelIndex + 3] = 255; // A
+				pData[pixelIndex + 3] = 255; // B
 			}
 		}
 	}

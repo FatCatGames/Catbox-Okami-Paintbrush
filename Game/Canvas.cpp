@@ -14,7 +14,7 @@ Canvas::Canvas()
 
 void Canvas::Awake()
 {
-	myShader = static_cast<CanvasPS*>(myGameObject->GetComponent<ModelInstance>()->GetMaterial(0)->GetPixelShader().get());
+	myShader = dynamic_cast<CanvasPS*>(myGameObject->GetComponent<ModelInstance>()->GetMaterial(0)->GetPixelShader().get());
 }
 
 void Canvas::Paint(int anXPos, int anYPos, int aRadius)

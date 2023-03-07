@@ -15,6 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Canvas.h" />
     <ClInclude Include="CanvasPS.h" />
     <ClInclude Include="Game.pch.h" />
     <ClInclude Include="LookAtCamera.h" />
@@ -37,9 +38,9 @@
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="Project.h" />
-    <ClInclude Include="Canvas.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="CanvasPS.cpp" />
     <ClCompile Include="Game.pch.cpp" />
     <ClCompile Include="LookAtCamera.cpp" />
@@ -59,13 +60,9 @@
       <Filter>Player</Filter>
     </ClCompile>
     <ClCompile Include="Project.cpp" />
-    <ClCompile Include="Canvas.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\CanvasPS.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="Shaders\PaintingPS.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

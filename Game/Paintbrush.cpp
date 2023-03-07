@@ -8,9 +8,9 @@ void Paintbrush::Update()
 	auto screenPos = Engine::GetInstance()->ViewportToScreenPos(mousePos.x, mousePos.y);
 	myTransform->SetWorldPos(Engine::GetInstance()->GetActiveCamera()->MouseToWorldPos(screenPos, 0.3f));
 
-	//if (Input::GetKeyHeld(KeyCode::MOUSELEFT))
+	if (Input::GetKeyHeld(KeyCode::MOUSELEFT))
 	{
-		Canvas::GetInstance()->Paint(screenPos.x, screenPos.y, Input::GetKeyHeld(KeyCode::MOUSELEFT));
+		Canvas::GetInstance()->Paint(screenPos.x, screenPos.y, Catbox::GetRandom(12,20) * Input::GetKeyHeld(KeyCode::MOUSELEFT));	
 	}
 
 	if (Input::GetKeyReleased(KeyCode::CTRL))

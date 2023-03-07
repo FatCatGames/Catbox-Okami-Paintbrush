@@ -1,8 +1,8 @@
 #include "../../Catbox/Shaders/Struct/ShaderStructs.hlsli"
 
 
-Texture2D screenTexture: register(t0);
-Texture2D paintingTexture: register(t1);
+Texture2D paintingTexture: register(t0);
+Texture2D screenTexture: register(t1);
 
 PixelOutput main(VertexToPixel input)
 {
