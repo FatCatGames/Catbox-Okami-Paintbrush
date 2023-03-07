@@ -585,6 +585,7 @@ void AssetRegistry::CreateTextures()
 	AssetLoader::LoadTexture("Resources/Textures/Square-Default.dds");
 	AssetLoader::LoadTexture("Resources/Textures/BlueNoise.dds");
 	AssetLoader::LoadTexture("Resources/Textures/studio_cubemap.dds");
+	AssetLoader::LoadTexture("Resources/Textures/WhiteCubeMap.dds");
 
 	auto defMat = GetAsset<Material>("DefaultMat");
 	defMat->SetAlbedoTexture(defC);

@@ -11,7 +11,7 @@
     "PBR": "",
     "Normal": "",
     "PixelShader": {
-        "Name": "DefaultPS"
+        "Name": "CanvasPS"
     },
     "VertexShader": {
         "Name": "DefaultVS"

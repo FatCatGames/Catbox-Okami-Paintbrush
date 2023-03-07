@@ -3,11 +3,11 @@
     "Emissive": 1.0,
     "Color": {
         "r": 1.0,
-        "g": 0.8829296231269836,
-        "b": 0.7156862616539001,
+        "g": 1.0,
+        "b": 1.0,
         "a": 1.0
     },
-    "Albedo": "",
+    "Albedo": "FatCatTex",
     "PBR": "",
     "Normal": "",
     "PixelShader": {

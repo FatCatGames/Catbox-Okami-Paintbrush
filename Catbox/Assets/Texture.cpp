@@ -9,7 +9,7 @@ Texture::~Texture()
 	mySRV.Reset();
 }
 
-void Texture::CreateEmptyTexture(DXGI_FORMAT aFormat, int aWidth, int aHeight, int aMipLevel)
+void Texture::CreateEmptyTexture(DXGI_FORMAT aFormat, int aWidth, int aHeight, int aMipLevel, UINT aBindFlags, UINT aCPUAccessFlags, D3D11_USAGE usage)
 {
 	myFormat = aFormat;
 	D3D11_TEXTURE2D_DESC texDesc = { 0 };
@@ -18,8 +18,10 @@ void Texture::CreateEmptyTexture(DXGI_FORMAT aFormat, int aWidth, int aHeight, i
 	texDesc.ArraySize = 1;
 	texDesc.SampleDesc.Count = 1;
 	texDesc.Format = aFormat;
-	texDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+	texDesc.BindFlags = aBindFlags;
+	texDesc.CPUAccessFlags = aCPUAccessFlags;
 	texDesc.MipLevels = aMipLevel;
+	texDesc.Usage = usage;
 
 	HRESULT result = DX11::Device->CreateTexture2D(&texDesc, nullptr, tex.GetAddressOf());
 	if (FAILED(result)) assert(true && "Failed to create new empty texture.");

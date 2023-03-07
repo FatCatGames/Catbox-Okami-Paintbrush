@@ -56,12 +56,6 @@ PixelOutput main(VertexToPixel input)
 	result.id = OB_id;
 
 
-	float4 clouds = SimplexNoise(input.WorldPosition.xz * 0.051 + (FB_TotalTime * 0.12));
-	float4 clouds2 = SimplexNoise(input.WorldPosition.xz * 0.07 - (FB_TotalTime * 0.083));
-	float4 cloudsX = lerp(clouds, clouds2, 0.5);
-
-	albedo.rgb = lerp((albedo.rgb * MB_Color.rgb), (albedo.rgb * (clouds * 0.5)), 0.3);
-
 	if (FB_DebugMode != 0)
 	{
 		result.Color.a = 1;

@@ -19,6 +19,7 @@
 #include "LookAtCamera.h"
 #include "Paintbrush.h"
 #include "CanvasPS.h"
+#include "Canvas.h"
 
 //Not too fond of settings not loading correctly
 #include "ProjectSettings.h"
@@ -33,6 +34,7 @@ void Project::Setup()
 	ComponentHandler::RegisterComponent<PlayerController>();
 	ComponentHandler::RegisterComponent<LookAtCamera>();
 	ComponentHandler::RegisterComponent<Paintbrush>();
+	ComponentHandler::RegisterComponent<Canvas>();
 
 #pragma endregion
 

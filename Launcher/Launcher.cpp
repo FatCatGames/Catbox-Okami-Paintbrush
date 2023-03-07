@@ -25,7 +25,7 @@ void Run(HINSTANCE hInstance)
 	std::shared_ptr<GraphicsEngine> graphicsEngine = main->GetGraphicsEngine();
 	bool enableOutPutMessages = false;
 #ifdef _DEBUG
-	//enableOutPutMessages = true;
+	enableOutPutMessages = true;
 #endif // DEBUG
 
 

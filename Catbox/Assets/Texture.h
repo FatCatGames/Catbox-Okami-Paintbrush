@@ -12,7 +12,7 @@ public:
 	Texture() = default;
 	virtual ~Texture();
 
-	void CreateEmptyTexture(DXGI_FORMAT aFormat, int aWidth, int aHeight, int aMipLevel = 1);
+	void CreateEmptyTexture(DXGI_FORMAT aFormat, int aWidth, int aHeight, int aMipLevel = 1, UINT aBindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE, UINT aCPUAccessFlags = 0, D3D11_USAGE usage = D3D11_USAGE_DEFAULT);
 	void CreateScreenSizeTexture(DXGI_FORMAT aFormat, int aWidthDivider = 1, int aHeightDivider = 1);
 	void CreateVideoTexture(DXGI_FORMAT aFormat, int aWidth, int aHeight, int aMipLevel = 1, bool aDynamic = false);
 	void CreateRenderTargetView();
@@ -20,7 +20,7 @@ public:
 	void Resize(int newWidth, int newHeight);
 	inline Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> GetShaderResourceView() const { return mySRV; }
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> GetRenderTargetView() const;
-	inline Microsoft::WRL::ComPtr<ID3D11Resource> GetTexture() const { return myTexture; }
+	//inline Microsoft::WRL::ComPtr<ID3D11Resource> GetTexture() const { return myTexture; }
 	inline Microsoft::WRL::ComPtr<ID3D11Resource> GetTex() const { return tex; }
 
 protected:

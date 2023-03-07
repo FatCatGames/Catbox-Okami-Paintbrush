@@ -649,7 +649,7 @@
                 ],
                 "Children": [
                     {
-                        "Name": "tree1_mesh",
+                        "Name": "tree3_mesh",
                         "Active": true,
                         "Opened": true,
                         "Transform": {
@@ -685,6 +685,11 @@
                                 "Material Instance": false,
                                 "CastShadows": true,
                                 "InstanceCount": 0
+                            },
+                            {
+                                "ComponentType": "Mesh Collider",
+                                "Version": 1,
+                                "Collider Model": "tree3_mesh"
                             }
                         ]
                     }
@@ -907,6 +912,90 @@
                 ]
             },
             "Prefab": "Sakura"
+        },
+        {
+            "Name": "Unnamed asset",
+            "Active": true,
+            "Opened": true,
+            "Transform": {
+                "Version": 2,
+                "BoneParentID": -1,
+                "Pos": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Rot": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Size": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "Children": []
+            },
+            "Components": [
+                {
+                    "ComponentType": "Light",
+                    "Version": 2,
+                    "Type": 0,
+                    "Shadows": 1,
+                    "Intensity": 20.0,
+                    "Range": 10.0,
+                    "Tex": "studio_cubemap",
+                    "Color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0,
+                        "a": 1.0
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Unnamed asset",
+            "Active": true,
+            "Opened": true,
+            "Transform": {
+                "Version": 2,
+                "BoneParentID": -1,
+                "Pos": [
+                    0.0,
+                    0.0,
+                    -18.200000762939453
+                ],
+                "Rot": [
+                    56.29999923706055,
+                    9.300000190734863,
+                    0.0
+                ],
+                "Size": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "Children": []
+            },
+            "Components": [
+                {
+                    "ComponentType": "Light",
+                    "Version": 2,
+                    "Type": 0,
+                    "Shadows": 1,
+                    "Intensity": 0.03999999910593033,
+                    "Range": 10.0,
+                    "Tex": "studio_cubemap",
+                    "Color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0,
+                        "a": 1.0
+                    }
+                }
+            ]
         }
     ]
 }

@@ -42,7 +42,7 @@
                 "Version": 2,
                 "BoneParentID": -1,
                 "Pos": [
-                    0.0,
+                    0.12124261260032654,
                     0.0,
                     0.0
                 ],
@@ -52,7 +52,7 @@
                     0.0
                 ],
                 "Size": [
-                    1.5,
+                    1.0,
                     1.0,
                     0.8999999761581421
                 ],
@@ -71,6 +71,9 @@
                     "Material Instance": false,
                     "CastShadows": true,
                     "InstanceCount": 0
+                },
+                {
+                    "ComponentType": "Canvas"
                 }
             ]
         },
@@ -103,8 +106,8 @@
                     "ComponentType": "Light",
                     "Version": 2,
                     "Type": 0,
-                    "Shadows": 0,
-                    "Intensity": 1.0,
+                    "Shadows": 1,
+                    "Intensity": 3.1500000953674316,
                     "Range": 10.0,
                     "Tex": "studio_cubemap",
                     "Color": {
@@ -156,46 +159,6 @@
                 },
                 {
                     "ComponentType": "Paintbrush"
-                }
-            ]
-        },
-        {
-            "Name": "CanvasPaper",
-            "Active": true,
-            "Opened": true,
-            "Transform": {
-                "Version": 2,
-                "BoneParentID": -1,
-                "Pos": [
-                    0.0,
-                    -0.0029337704181671143,
-                    0.0
-                ],
-                "Rot": [
-                    0.0,
-                    0.0,
-                    0.0
-                ],
-                "Size": [
-                    1.5,
-                    1.0,
-                    0.8999999761581421
-                ],
-                "Children": []
-            },
-            "Components": [
-                {
-                    "ComponentType": "Model Instance",
-                    "Version": 6,
-                    "Model": "Plane",
-                    "Materials": [
-                        "CanvasPaper"
-                    ],
-                    "UsedForNav": false,
-                    "Renderer": 0,
-                    "Material Instance": false,
-                    "CastShadows": true,
-                    "InstanceCount": 0
                 }
             ]
         }
