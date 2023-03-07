@@ -3,15 +3,15 @@
     "Emissive": 1.0,
     "Color": {
         "r": 1.0,
-        "g": 0.8829296231269836,
-        "b": 0.7156862616539001,
+        "g": 0.9077277779579163,
+        "b": 0.8039215803146362,
         "a": 1.0
     },
-    "Albedo": "",
+    "Albedo": "Square-Default",
     "PBR": "",
     "Normal": "",
     "PixelShader": {
-        "Name": "CanvasPS"
+        "Name": "DefaultPS"
     },
     "VertexShader": {
         "Name": "DefaultVS"

@@ -3,5 +3,6 @@
 
 void Paintbrush::Update()
 {
-	Engine::GetInstance()->GetActiveCamera()->MouseToWorldPos(Input::GetMousePosition(), 0.5f);
+	auto mousePos = Input::GetMousePosition();
+	myTransform->SetWorldPos(Engine::GetInstance()->GetActiveCamera()->MouseToWorldPos(Engine::GetInstance()->ViewportToScreenPos(mousePos.x, mousePos.y), 0.3f));
 }

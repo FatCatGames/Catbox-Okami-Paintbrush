@@ -10,8 +10,12 @@
     <Filter Include="Player">
       <UniqueIdentifier>{724E55CA-5EF0-7FA0-47AB-93F433EC06F1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{EFAC8DF2-5B8C-0C8E-64A4-9764D00273EF}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CanvasPS.h" />
     <ClInclude Include="Game.pch.h" />
     <ClInclude Include="LookAtCamera.h" />
     <ClInclude Include="Managers\GameManager.h">
@@ -25,6 +29,7 @@
     <ClInclude Include="Networking\NetworkGameCommands.h">
       <Filter>Networking</Filter>
     </ClInclude>
+    <ClInclude Include="Paintbrush.h" />
     <ClInclude Include="Player\PlayerCamera.h">
       <Filter>Player</Filter>
     </ClInclude>
@@ -32,9 +37,9 @@
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="Project.h" />
-    <ClInclude Include="Paintbrush.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CanvasPS.cpp" />
     <ClCompile Include="Game.pch.cpp" />
     <ClCompile Include="LookAtCamera.cpp" />
     <ClCompile Include="Managers\GameManager.cpp">
@@ -45,6 +50,7 @@
     </ClCompile>
     <ClCompile Include="NetworkComponent.cpp" />
     <ClCompile Include="NetworkGameManager.cpp" />
+    <ClCompile Include="Paintbrush.cpp" />
     <ClCompile Include="Player\PlayerCamera.cpp">
       <Filter>Player</Filter>
     </ClCompile>
@@ -52,6 +58,10 @@
       <Filter>Player</Filter>
     </ClCompile>
     <ClCompile Include="Project.cpp" />
-    <ClCompile Include="Paintbrush.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shaders\CanvasPS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

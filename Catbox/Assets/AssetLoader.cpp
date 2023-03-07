@@ -225,10 +225,13 @@ std::shared_ptr<Model> AssetLoader::LoadFBX(const std::string& aPath)
 	float maxDistSqr = 0;
 	for (auto& mesh : tgaModel.Meshes)
 	{
-		std::shared_ptr<Material> material = AssetRegistry::GetInstance()->GetAsset<Material>(tgaModel.Materials[mesh.MaterialIndex].MaterialName);
-		if (material == nullptr)
+		if (tgaModel.Materials.size() > 0) 
 		{
-			material = AssetRegistry::GetInstance()->GetAsset<Material>("DefaultMat");
+			std::shared_ptr<Material> material = AssetRegistry::GetInstance()->GetAsset<Material>(tgaModel.Materials[mesh.MaterialIndex].MaterialName);
+			if (material == nullptr)
+			{
+				material = AssetRegistry::GetInstance()->GetAsset<Material>("DefaultMat");
+			}
 		}
 
 		std::shared_ptr<MeshData> meshData = std::make_shared<MeshData>();
