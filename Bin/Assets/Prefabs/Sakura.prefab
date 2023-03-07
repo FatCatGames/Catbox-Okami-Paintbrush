@@ -1,19 +1,19 @@
 {
     "Data": {
-        "Name": "Sakura",
+        "Name": "Tree",
         "Active": true,
-        "Opened": false,
+        "Opened": true,
         "Transform": {
             "Version": 2,
             "BoneParentID": -1,
             "Pos": [
-                8.217201232910156,
-                -0.07268000394105911,
-                -6.245697498321533
+                6.568151950836182,
+                -4.792831873601244e-7,
+                -0.21500778198242188
             ],
             "Rot": [
                 0.0,
-                -35.790077209472656,
+                -49.67837905883789,
                 0.0
             ],
             "Size": [
@@ -23,26 +23,26 @@
             ],
             "Children": [
                 {
-                    "Name": "tree",
+                    "Name": "tree1_mesh",
                     "Active": true,
                     "Opened": true,
                     "Transform": {
                         "Version": 2,
                         "BoneParentID": -1,
                         "Pos": [
-                            0.0,
-                            0.0,
-                            0.0
+                            -31.47699928283691,
+                            -8.0,
+                            5.927000045776367
                         ],
                         "Rot": [
-                            -90.0,
+                            0.0,
                             0.0,
                             0.0
                         ],
                         "Size": [
-                            20.0,
-                            20.0,
-                            20.0
+                            1.0,
+                            1.0,
+                            1.0
                         ],
                         "Children": []
                     },
@@ -50,26 +50,25 @@
                         {
                             "ComponentType": "Model Instance",
                             "Version": 6,
-                            "Model": "tree",
+                            "Model": "tree1_mesh",
                             "Materials": [
-                                "Bark",
-                                "Leaves",
-                                "Leaves"
+                                "Spring"
                             ],
                             "UsedForNav": false,
                             "Renderer": 1,
                             "Material Instance": false,
                             "CastShadows": true,
                             "InstanceCount": 0
+                        },
+                        {
+                            "ComponentType": "Mesh Collider",
+                            "Version": 1,
+                            "Collider Model": ""
                         }
                     ]
                 }
             ]
         },
-        "Components": [
-            {
-                "ComponentType": "Look At Camera"
-            }
-        ]
+        "Components": []
     }
 }

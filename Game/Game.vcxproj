@@ -171,6 +171,12 @@
       <EntryPointName>main</EntryPointName>
       <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/CanvasPS.cso</ObjectFileOutput>
     </FxCompile>
+    <FxCompile Include="Shaders\PaintingPS.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/PaintingPS.cso</ObjectFileOutput>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Catbox\Catbox.vcxproj">

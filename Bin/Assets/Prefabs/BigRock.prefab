@@ -1,0 +1,42 @@
+{
+    "Data": {
+        "Name": "rock3_mesh",
+        "Active": true,
+        "Opened": true,
+        "Transform": {
+            "Version": 2,
+            "BoneParentID": -1,
+            "Pos": [
+                -5.87426233291626,
+                0.5745987892150879,
+                3.6119651794433594
+            ],
+            "Rot": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "Size": [
+                100.0,
+                100.0,
+                100.0
+            ],
+            "Children": []
+        },
+        "Components": [
+            {
+                "ComponentType": "Model Instance",
+                "Version": 6,
+                "Model": "rock5_mesh",
+                "Materials": [
+                    "Spring"
+                ],
+                "UsedForNav": false,
+                "Renderer": 1,
+                "Material Instance": false,
+                "CastShadows": true,
+                "InstanceCount": 0
+            }
+        ]
+    }
+}

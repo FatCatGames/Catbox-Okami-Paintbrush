@@ -1,0 +1,74 @@
+{
+    "Data": {
+        "Name": "SmallTree",
+        "Active": true,
+        "Opened": true,
+        "Transform": {
+            "Version": 2,
+            "BoneParentID": -1,
+            "Pos": [
+                2.512728452682495,
+                0.00005620957017526962,
+                -0.5983623266220093
+            ],
+            "Rot": [
+                -179.9998321533203,
+                -23.130216598510746,
+                -179.9998321533203
+            ],
+            "Size": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "Children": [
+                {
+                    "Name": "tree3_mesh",
+                    "Active": true,
+                    "Opened": true,
+                    "Transform": {
+                        "Version": 2,
+                        "BoneParentID": -1,
+                        "Pos": [
+                            -31.47699928283691,
+                            -8.0,
+                            5.927000045776367
+                        ],
+                        "Rot": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "Children": []
+                    },
+                    "Components": [
+                        {
+                            "ComponentType": "Model Instance",
+                            "Version": 6,
+                            "Model": "tree3_mesh",
+                            "Materials": [
+                                "Spring"
+                            ],
+                            "UsedForNav": false,
+                            "Renderer": 1,
+                            "Material Instance": false,
+                            "CastShadows": true,
+                            "InstanceCount": 0
+                        },
+                        {
+                            "ComponentType": "Mesh Collider",
+                            "Version": 1,
+                            "Collider Model": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        "Components": []
+    }
+}
