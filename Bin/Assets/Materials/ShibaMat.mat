@@ -2,12 +2,12 @@
     "Version": 6,
     "Emissive": 1.0,
     "Color": {
-        "r": 0.7941176295280457,
-        "g": 0.6289054155349731,
-        "b": 0.3620242178440094,
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
         "a": 1.0
     },
-    "Albedo": "Square-Default",
+    "Albedo": "whiteshiba",
     "PBR": "",
     "Normal": "",
     "PixelShader": {
