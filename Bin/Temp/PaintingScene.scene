@@ -9,12 +9,12 @@
                 "BoneParentID": -1,
                 "Pos": [
                     0.0,
-                    0.75,
-                    -0.25
+                    1.0,
+                    0.0
                 ],
                 "Rot": [
-                    75.9000015258789,
-                    0.20000000298023224,
+                    90.0,
+                    0.0,
                     0.0
                 ],
                 "Size": [
@@ -42,7 +42,7 @@
                 "Version": 2,
                 "BoneParentID": -1,
                 "Pos": [
-                    0.12124261260032654,
+                    0.0,
                     0.0,
                     0.0
                 ],
@@ -52,9 +52,9 @@
                     0.0
                 ],
                 "Size": [
+                    1.9199999570846558,
                     1.0,
-                    1.0,
-                    0.8999999761581421
+                    1.0800000429153442
                 ],
                 "Children": []
             },
@@ -137,26 +137,94 @@
                     0.0
                 ],
                 "Size": [
-                    0.05000000074505806,
-                    0.20000000298023224,
-                    0.05000000074505806
+                    1.0,
+                    1.0,
+                    1.0
                 ],
-                "Children": []
+                "Children": [
+                    {
+                        "Name": "BrushModel",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                -4.76837158203125e-7,
+                                0.15000000596046448,
+                                0.15000000596046448
+                            ],
+                            "Rot": [
+                                45.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                0.03999999910593033,
+                                0.30000001192092896,
+                                0.03999999910593033
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "Cube",
+                                "Materials": [
+                                    "BrushMat"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": true,
+                                "InstanceCount": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "PaintDot",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                -4.76837158203125e-7,
+                                -0.001993805170059204,
+                                -0.0017699631862342358
+                            ],
+                            "Rot": [
+                                3645.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                0.014999999664723873,
+                                0.014999999664723873,
+                                0.014999999664723873
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "Cube",
+                                "Materials": [
+                                    "Black"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": true,
+                                "InstanceCount": 0
+                            }
+                        ]
+                    }
+                ]
             },
             "Components": [
-                {
-                    "ComponentType": "Model Instance",
-                    "Version": 6,
-                    "Model": "Cube",
-                    "Materials": [
-                        "DefaultMat"
-                    ],
-                    "UsedForNav": false,
-                    "Renderer": 0,
-                    "Material Instance": false,
-                    "CastShadows": true,
-                    "InstanceCount": 0
-                },
                 {
                     "ComponentType": "Paintbrush"
                 }

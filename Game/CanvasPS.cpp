@@ -11,14 +11,14 @@ CanvasPS::CanvasPS()
 	string psData = { std::istreambuf_iterator<char>(psFile), istreambuf_iterator<char>() };
 	HRESULT result = DX11::Device->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader);
 	assert(!FAILED(result) && "Loading canvas pixel shader failed!");
-	myPaintingTex.CreateEmptyTexture(DXGI_FORMAT_R8G8B8A8_UNORM, 1024, 1024, 1, D3D11_BIND_SHADER_RESOURCE, D3D11_CPU_ACCESS_WRITE, D3D11_USAGE_DYNAMIC);
-	myStagingTex.CreateEmptyTexture(DXGI_FORMAT_R8G8B8A8_UNORM, 1024, 1024, 1, 0, D3D11_CPU_ACCESS_WRITE, D3D11_USAGE_STAGING);
+	myPaintingTex.CreateEmptyTexture(DXGI_FORMAT_R8G8B8A8_UNORM, myWidth, myHeight, 1, D3D11_BIND_SHADER_RESOURCE, D3D11_CPU_ACCESS_WRITE, D3D11_USAGE_DYNAMIC);
+	myStagingTex.CreateEmptyTexture(DXGI_FORMAT_R8G8B8A8_UNORM, myWidth, myHeight, 1, 0, D3D11_CPU_ACCESS_WRITE, D3D11_USAGE_STAGING);
 	psFile.close();
 
     // Create a staging texture with default usage and copy the painting texture to it
     D3D11_TEXTURE2D_DESC stagingDesc = {};
-    stagingDesc.Width = 1024;
-    stagingDesc.Height = 1024;
+    stagingDesc.Width = myWidth;
+    stagingDesc.Height = myHeight;
     stagingDesc.MipLevels = 1;
     stagingDesc.ArraySize = 1;
     stagingDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
@@ -34,7 +34,6 @@ CanvasPS::CanvasPS()
 
 void CanvasPS::SetResource()
 {
-	//DX11::Context->CopyResource(myStagingTex.GetTex().Get(), myPaintingTex.GetTex().Get());
 	myPaintingTex.SetAsResource(0);
 }
 
@@ -49,10 +48,10 @@ void CanvasPS::Paint(int aPosX, int aPosY, int aRadius, const Color& aColor)
     const UINT rowPitch = mappedResource.RowPitch;
 
     // Paint on the staging texture
-    const int startY = Catbox::Clamp(aPosY - aRadius, 0, 1024);
-    const int endY = Catbox::Clamp(aPosY + aRadius, 0, 1024);
-    const int startX = Catbox::Clamp(aPosX - aRadius, 0, 1024);
-    const int endX = Catbox::Clamp(aPosX + aRadius, 0, 1024);
+    const int startY = Catbox::Clamp(aPosY - aRadius, 0, myHeight);
+    const int endY = Catbox::Clamp(aPosY + aRadius, 0, myHeight);
+    const int startX = Catbox::Clamp(aPosX - aRadius, 0, myWidth);
+    const int endX = Catbox::Clamp(aPosX + aRadius, 0, myWidth);
     const int radiusSquared = aRadius * aRadius;
 
     for (int y = startY; y < endY; ++y)
@@ -83,12 +82,8 @@ void CanvasPS::Paint(int aPosX, int aPosY, int aRadius, const Color& aColor)
     DX11::Context->CopyResource(myPaintingTex.GetTex().Get(), stagingTexture.Get());
 }
 
-void CanvasPS::SetTexture(Texture& aTexture)
-{
-
-}
 
 void CanvasPS::Clear()
 {
-    Paint(512, 512, 1024, Color::White());
+    Paint(myWidth/2, myHeight/2, myWidth, Color::White());
 }

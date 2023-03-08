@@ -8,8 +8,7 @@ Canvas* Canvas::Instance;
 
 Canvas::Canvas()
 {
-	if (!Instance) Instance = this;
-	else printerror("2 canvases in scene");
+	Instance = this;
 }
 
 void Canvas::Awake()

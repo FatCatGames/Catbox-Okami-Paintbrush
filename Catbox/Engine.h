@@ -63,6 +63,7 @@ public:
 	Vector2i GetWindowSize() { return myWindowSize; }
 	Vector2i ViewportToScreenPos(int anX, int anY);
 	Vector2i ViewportToScreenPos(Vector2i aScreenPos);
+	Vector2i ScreenToViewportPos(Vector2i aScreenPos);
 	bool IsViewportHovered();
 	float GetWindowRatio() { return myWindowSize.x / (float)myWindowSize.y; }
 

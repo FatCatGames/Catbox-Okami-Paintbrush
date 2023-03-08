@@ -15,14 +15,25 @@ void Paintbrush::Awake()
 
 void Paintbrush::Update()
 {
-	if (Input::GetKeyPress(KeyCode::SPACE))
+	if (Input::GetKeyPress(KeyCode::N1))
 	{
-		myIsGay = !myIsGay;
+		myColorMode = ColorMode::Black;
+	}
+	else if (Input::GetKeyPress(KeyCode::N2))
+	{
+		myColorMode = ColorMode::Red;
+	}
+	else if (Input::GetKeyPress(KeyCode::N3))
+	{
+		myColorMode = ColorMode::Rainbow;
 	}
 
 	auto mousePos = Input::GetMousePosition();
 	auto screenPos = Engine::GetInstance()->ViewportToScreenPos(mousePos.x, mousePos.y);
-	myTransform->SetWorldPos(Engine::GetInstance()->GetActiveCamera()->MouseToWorldPos(screenPos, 0.3f));
+	//int convertedPosX = (screenPos.x / static_cast<float>(DX11::GetResolution().x) ) * 1920;
+	//int convertedPosY = (screenPos.y / static_cast<float>(DX11::GetResolution().y) ) * 1080;
+
+	myTransform->SetWorldPos(Engine::GetInstance()->GetActiveCamera()->MouseToWorldPos(mousePos, 0));
 
 
 	if (Input::GetKeyPress(KeyCode::MOUSELEFT))
@@ -36,6 +47,7 @@ void Paintbrush::Update()
 	if ((isPainting || isErasing) && myRemainingPaint > 0)
 	{
 		auto mouseDelta = Input::GetMouseDelta();
+
 		int length = mouseDelta.Length();
 		if (length > myMaxMouseDelta)
 		{
@@ -46,11 +58,24 @@ void Paintbrush::Update()
 		float speedMultiplier = speedBonus * mySpeedScale;
 		float remainingPaintMultiplier = 1;
 		auto previousMousePos = Input::GetPreviousMousePosition();
+		auto previousScreenPos = Engine::GetInstance()->ViewportToScreenPos(previousMousePos.x, previousMousePos.y);
+		Vector2i convertedPreviousPos;
+		convertedPreviousPos.x = (previousScreenPos.x / static_cast<float>(DX11::GetResolution().x)) * 1920;
+		convertedPreviousPos.y = (previousScreenPos.y / static_cast<float>(DX11::GetResolution().y)) * 1080;
+
+		Vector2i convertedCurrentPos;
+		convertedCurrentPos.x = (screenPos.x / static_cast<float>(DX11::GetResolution().x)) * 1920;
+		convertedCurrentPos.y = (screenPos.y / static_cast<float>(DX11::GetResolution().y)) * 1080;
+
+		print("Speed mult " + std::to_string(speedMultiplier));
+
+		Vector2i convertedMouseDelta = convertedCurrentPos - convertedPreviousPos;
+		//print("X: " + std::to_string(convertedCurrentPos.x) + ", Y: " + std::to_string(convertedCurrentPos.y));
 
 		for (float i = 0; i <= length;)
 		{
 			Color col;
-
+			 
 			if (!isErasing)
 			{
 				myPaintTimer += myGradientSpeed;
@@ -67,14 +92,24 @@ void Paintbrush::Update()
 					remainingPaintMultiplier = myRemainingPaint / 15.f;
 				}
 
-				col = myIsGay ? myGradient.Evaluate(myPaintTimer) : Color::Black();
+				if (myColorMode == ColorMode::Black) col = Color::Black();
+				else if (myColorMode == ColorMode::Red) col = Color::Red();
+				else if (myColorMode == ColorMode::Rainbow) col = myGradient.Evaluate(myPaintTimer);
 			}
 
-			float percent = i / static_cast<float>(length);
+			float percent = 0;
+			if (length != 0)
+			{
+				percent = i / static_cast<float>(length);
+			}
+
 			float size = myRadius * speedMultiplier * remainingPaintMultiplier;
 			//size = Catbox::Clamp(size, myMinSize, myMaxSize);
-			auto pos = Engine::GetInstance()->ViewportToScreenPos(previousMousePos.x + mouseDelta.x * percent, previousMousePos.y + mouseDelta.y * percent);
-			Canvas::GetInstance()->Paint(pos.x, pos.y, size, col);
+			int newX = std::round(convertedPreviousPos.x + convertedMouseDelta.x * percent);
+			int newY = std::round(convertedPreviousPos.y + convertedMouseDelta.y * percent);
+
+			//auto pos = Engine::GetInstance()->ViewportToScreenPos(newX, newY);
+			Canvas::GetInstance()->Paint(newX, newY, size, col);
 			i += Catbox::Clamp(size * myDensity, myMinSize, myRadius);
 		}
 	}

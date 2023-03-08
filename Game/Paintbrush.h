@@ -8,7 +8,12 @@ public:
 	void Update() override;
 
 private:
-	bool myIsGay = false;
+	enum ColorMode
+	{
+		Black,
+		Red,
+		Rainbow
+	} myColorMode;
 
 	//Paint
 	ColorGradient myGradient;
