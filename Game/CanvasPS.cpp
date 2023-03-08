@@ -1,6 +1,9 @@
 #include "Game.pch.h"
 #include "CanvasPS.h"
 
+Microsoft::WRL::ComPtr<ID3D11Texture2D> stagingTexture;
+
+
 CanvasPS::CanvasPS()
 {
 	ifstream psFile;
@@ -8,75 +11,84 @@ CanvasPS::CanvasPS()
 	string psData = { std::istreambuf_iterator<char>(psFile), istreambuf_iterator<char>() };
 	HRESULT result = DX11::Device->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader);
 	assert(!FAILED(result) && "Loading canvas pixel shader failed!");
-	myPainting.CreateEmptyTexture(DXGI_FORMAT_R8G8B8A8_UNORM, 1024, 1024, 1, D3D11_BIND_SHADER_RESOURCE, D3D11_CPU_ACCESS_WRITE, D3D11_USAGE_DYNAMIC);
-	Clear();
+	myPaintingTex.CreateEmptyTexture(DXGI_FORMAT_R8G8B8A8_UNORM, 1024, 1024, 1, D3D11_BIND_SHADER_RESOURCE, D3D11_CPU_ACCESS_WRITE, D3D11_USAGE_DYNAMIC);
+	myStagingTex.CreateEmptyTexture(DXGI_FORMAT_R8G8B8A8_UNORM, 1024, 1024, 1, 0, D3D11_CPU_ACCESS_WRITE, D3D11_USAGE_STAGING);
 	psFile.close();
 
+    // Create a staging texture with default usage and copy the painting texture to it
+    D3D11_TEXTURE2D_DESC stagingDesc = {};
+    stagingDesc.Width = 1024;
+    stagingDesc.Height = 1024;
+    stagingDesc.MipLevels = 1;
+    stagingDesc.ArraySize = 1;
+    stagingDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+    stagingDesc.SampleDesc.Count = 1;
+    stagingDesc.Usage = D3D11_USAGE_STAGING;
+    stagingDesc.BindFlags = 0;
+    stagingDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+    DX11::Device->CreateTexture2D(&stagingDesc, nullptr, stagingTexture.GetAddressOf());
+
+	Clear();
 }
 
 
 void CanvasPS::SetResource()
 {
-	myPainting.SetAsResource(0);
+	//DX11::Context->CopyResource(myStagingTex.GetTex().Get(), myPaintingTex.GetTex().Get());
+	myPaintingTex.SetAsResource(0);
 }
 
 void CanvasPS::Paint(int aPosX, int aPosY, int aRadius, const Color& aColor)
 {
-	D3D11_MAPPED_SUBRESOURCE mappedResource;
-	HRESULT hr = DX11::Context->Map(myPainting.GetTex().Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
-	BYTE* pData = reinterpret_cast<BYTE*>(mappedResource.pData);
-	const UINT rowPitch = mappedResource.RowPitch;
+    DX11::Context->CopyResource(stagingTexture.Get(), myPaintingTex.GetTex().Get());
 
-	const int startY = Catbox::Clamp(aPosY - aRadius, 0, 1024);
-	const int endY = Catbox::Clamp(aPosY + aRadius, 0, 1024);
-	const int startX = Catbox::Clamp(aPosX - aRadius, 0, 1024);
-	const int endX = Catbox::Clamp(aPosX + aRadius, 0, 1024);
-	const int radiusSquared = aRadius * aRadius;
+    // Map the staging texture
+    D3D11_MAPPED_SUBRESOURCE mappedResource;
+    HRESULT hr = DX11::Context->Map(stagingTexture.Get(), 0, D3D11_MAP_WRITE, 0, &mappedResource);
+    BYTE* pData = reinterpret_cast<BYTE*>(mappedResource.pData);
+    const UINT rowPitch = mappedResource.RowPitch;
 
-	for (int y = startY; y < endY; ++y)
-	{
-		for (int x = startX; x < endX; ++x)
-		{
-			const int distanceX = x - aPosX;
-			const int distanceY = y - aPosY;
-			const int distanceSquared = distanceX * distanceX + distanceY * distanceY;
+    // Paint on the staging texture
+    const int startY = Catbox::Clamp(aPosY - aRadius, 0, 1024);
+    const int endY = Catbox::Clamp(aPosY + aRadius, 0, 1024);
+    const int startX = Catbox::Clamp(aPosX - aRadius, 0, 1024);
+    const int endX = Catbox::Clamp(aPosX + aRadius, 0, 1024);
+    const int radiusSquared = aRadius * aRadius;
 
-			// Check if the current pixel is inside the circle
-			if (distanceSquared <= radiusSquared)
-			{
-				// Calculate the index of the current pixel in the texture data array
-				const UINT pixelIndex = y * rowPitch + x * 4;
+    for (int y = startY; y < endY; ++y)
+    {
+        for (int x = startX; x < endX; ++x)
+        {
+            // Calculate the distance from the center of the circle
+            const int distanceX = x - aPosX;
+            const int distanceY = y - aPosY;
+            const int distanceSquared = distanceX * distanceX + distanceY * distanceY;
 
-				// Set the color of the current pixel to black
-				pData[pixelIndex] = aColor.r * 255;   // R
-				pData[pixelIndex + 1] = aColor.g * 255; // G
-				pData[pixelIndex + 2] = aColor.b * 255; // B
-				pData[pixelIndex + 3] = 255; // A
-			}
-		}
-	}
+            // Check if the current pixel is inside the circle
+            if (distanceSquared <= radiusSquared)
+            {
+                // Calculate the index of the current pixel in the texture data array
+                const UINT pixelIndex = y * rowPitch + x * 4;
 
-	DX11::Context->Unmap(myPainting.GetTex().Get(), 0);
+                // Set the color of the current pixel to white
+                pData[pixelIndex] = aColor.r * 255;   // R
+                pData[pixelIndex + 1] = aColor.g * 255; // G
+                pData[pixelIndex + 2] = aColor.b * 255; // B
+            }
+        }
+    }
+
+    // Unmap the staging texture and copy it back to the painting texture
+    DX11::Context->Unmap(stagingTexture.Get(), 0);
+    DX11::Context->CopyResource(myPaintingTex.GetTex().Get(), stagingTexture.Get());
+}
+
+void CanvasPS::SetTexture(Texture& aTexture)
+{
+
 }
 
 void CanvasPS::Clear()
 {
-	D3D11_MAPPED_SUBRESOURCE mappedResource;
-	HRESULT hr = DX11::Context->Map(myPainting.GetTex().Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
-	BYTE* pData = reinterpret_cast<BYTE*>(mappedResource.pData);
-	const UINT rowPitch = mappedResource.RowPitch;
-	for (int y = 0; y < 1024; ++y)
-	{
-		for (int x = 0; x < 1024; ++x)
-		{
-			//Make all pixels white again
-			const UINT pixelIndex = y * rowPitch + x * 4;
-			pData[pixelIndex] = 255;     // R
-			pData[pixelIndex + 1] = 255; // G
-			pData[pixelIndex + 2] = 255; // B
-			pData[pixelIndex + 3] = 255; // A
-
-		}
-	}
-	DX11::Context->Unmap(myPainting.GetTex().Get(), 0);
+    Paint(512, 512, 1024, Color::White());
 }

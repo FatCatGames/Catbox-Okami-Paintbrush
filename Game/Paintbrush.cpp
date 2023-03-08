@@ -15,61 +15,68 @@ void Paintbrush::Awake()
 
 void Paintbrush::Update()
 {
+	if (Input::GetKeyPress(KeyCode::SPACE))
+	{
+		myIsGay = !myIsGay;
+	}
 
 	auto mousePos = Input::GetMousePosition();
 	auto screenPos = Engine::GetInstance()->ViewportToScreenPos(mousePos.x, mousePos.y);
 	myTransform->SetWorldPos(Engine::GetInstance()->GetActiveCamera()->MouseToWorldPos(screenPos, 0.3f));
 
-	const float density = 0.3f;
-	const float radius = 30;
 
 	if (Input::GetKeyPress(KeyCode::MOUSELEFT))
 	{
 		myRemainingPaint = 100;
 	}
 
+	bool isPainting = Input::GetKeyHeld(KeyCode::MOUSELEFT);
+	bool isErasing = Input::GetKeyHeld(KeyCode::MOUSERIGHT);
 
-	if (Input::GetKeyHeld(KeyCode::MOUSELEFT) && myRemainingPaint > 0)
+	if ((isPainting || isErasing) && myRemainingPaint > 0)
 	{
 		auto mouseDelta = Input::GetMouseDelta();
 		int length = mouseDelta.Length();
-		int dots = 0;
-		myPaintTimer += length / 500.f;
-
-		if (myPaintTimer > 1)
+		if (length > myMaxMouseDelta)
 		{
-			float diff = myPaintTimer - std::floor(myPaintTimer);
-			myPaintTimer = diff;
+			length = myMaxMouseDelta;
 		}
-		
-		const float sensitivity = 10;
-		const float speedScale = 0.5f;
-		float speedBonus = Catbox::Clamp(length / sensitivity, 0.f, 1.f);
-		float speedMultiplier = speedBonus * speedScale;
+
+		float speedBonus = Catbox::Clamp(length / mySensitivity, 0.f, 1.5f);
+		float speedMultiplier = speedBonus * mySpeedScale;
 		float remainingPaintMultiplier = 1;
-		if (myRemainingPaint < 30)
+		auto previousMousePos = Input::GetPreviousMousePosition();
+
+		for (float i = 0; i <= length;)
 		{
-			remainingPaintMultiplier = myRemainingPaint / 33.f;
+			Color col;
+
+			if (!isErasing)
+			{
+				myPaintTimer += myGradientSpeed;
+
+				if (myPaintTimer > 1)
+				{
+					float diff = myPaintTimer - std::floor(myPaintTimer);
+					myPaintTimer = diff;
+				}
+
+				myRemainingPaint -= myRadius * speedMultiplier * remainingPaintMultiplier * myPaintDecreaseSpeed;
+				if (myRemainingPaint < 15)
+				{
+					remainingPaintMultiplier = myRemainingPaint / 15.f;
+				}
+
+				col = myIsGay ? myGradient.Evaluate(myPaintTimer) : Color::Black();
+			}
+
+			float percent = i / static_cast<float>(length);
+			float size = myRadius * speedMultiplier * remainingPaintMultiplier;
+			//size = Catbox::Clamp(size, myMinSize, myMaxSize);
+			auto pos = Engine::GetInstance()->ViewportToScreenPos(previousMousePos.x + mouseDelta.x * percent, previousMousePos.y + mouseDelta.y * percent);
+			Canvas::GetInstance()->Paint(pos.x, pos.y, size, col);
+			i += Catbox::Clamp(size * myDensity, myMinSize, myRadius);
 		}
-
-		myRemainingPaint -= length * speedMultiplier * 0.1f;
-
-		Color col = myGradient.Evaluate(myPaintTimer);
-		col = Catbox::Lerp(Color::Black(), col, remainingPaintMultiplier);
-		Canvas::GetInstance()->Paint(screenPos.x, screenPos.y, radius * speedMultiplier * remainingPaintMultiplier, col);
-
-		//for (float i = 0; i < length;)
-		//{
-		//	//int radius *= Catbox::GetRandom(0.75f, 1.25f);
-		//	float percent = i / static_cast<float>(length);
-		//	Canvas::GetInstance()->Paint(screenPos.x - (percent * mouseDelta.x), screenPos.y - (percent * mouseDelta.y), radius, col);
-		//	i += radius * density;
-		//	++dots;
-		//}
-		//if (length > 30)
-		//{
-		//	print("Delta was: " + std::to_string(length) + ". Painted " + std::to_string(dots) + " dots.");
-		//}
 	}
 
 
