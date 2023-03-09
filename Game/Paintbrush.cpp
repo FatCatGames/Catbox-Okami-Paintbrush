@@ -104,13 +104,14 @@ void Paintbrush::Update()
 			}
 
 			float size = myRadius * speedMultiplier * remainingPaintMultiplier;
+			size = Catbox::Clamp(size, myMinSize, myMaxSize);
 			//size = Catbox::Clamp(size, myMinSize, myMaxSize);
 			int newX = std::round(convertedPreviousPos.x + convertedMouseDelta.x * percent);
 			int newY = std::round(convertedPreviousPos.y + convertedMouseDelta.y * percent);
 
 			//auto pos = Engine::GetInstance()->ViewportToScreenPos(newX, newY);
 			Canvas::GetInstance()->Paint(newX, newY, size, col);
-			i += Catbox::Clamp(size * myDensity, myMinSize, myRadius);
+			i += size * myDensity;
 		}
 	}
 
