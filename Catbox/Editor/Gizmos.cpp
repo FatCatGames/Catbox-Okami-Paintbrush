@@ -223,7 +223,7 @@ void Gizmos::DrawTransformGizmos(SceneWindow* /*aViewport*/)
 	{
 		EditorCommandHandler::AddCommand(std::make_shared<TransformCommand>(mySelectedObjects, currentOperation, currentMode, endValue - startValue));
 		myEditLastFrame = false;
-		print(std::to_string(endValue.x - startValue.x));
+		printmsg(std::to_string(endValue.x - startValue.x));
 	}
 
 	for (size_t i = 0; i < mySelectedObjects.size(); i++)

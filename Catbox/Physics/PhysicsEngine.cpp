@@ -502,15 +502,15 @@ physx::PxConvexMesh* PhysicsEngine::CookConvexMesh(MeshData& aMeshData, Vector3f
 	switch (result)
 	{
 	case physx::PxConvexMeshCookingResult::eSUCCESS:
-		print("Mesh cooked!");
+		printmsg("Mesh cooked!");
 		break;
 	case physx::PxConvexMeshCookingResult::eZERO_AREA_TEST_FAILED:
-		print("Mesh has no area! Failed!");
+		printmsg("Mesh has no area! Failed!");
 		break;
 	case physx::PxConvexMeshCookingResult::ePOLYGONS_LIMIT_REACHED:
 		break;
 	case physx::PxConvexMeshCookingResult::eFAILURE:
-		print("Mesh failed!");
+		printmsg("Mesh failed!");
 		break;
 	default:
 		break;
@@ -543,15 +543,15 @@ physx::PxConvexMesh* PhysicsEngine::CookConvexMesh(std::vector<Vertex>& aMeshDat
 	switch (result)
 	{
 	case physx::PxConvexMeshCookingResult::eSUCCESS:
-		print("Mesh cooked!");
+		printmsg("Mesh cooked!");
 		break;
 	case physx::PxConvexMeshCookingResult::eZERO_AREA_TEST_FAILED:
-		print("Mesh has no area! Failed!");
+		printmsg("Mesh has no area! Failed!");
 		break;
 	case physx::PxConvexMeshCookingResult::ePOLYGONS_LIMIT_REACHED:
 		break;
 	case physx::PxConvexMeshCookingResult::eFAILURE:
-		print("Mesh failed!");
+		printmsg("Mesh failed!");
 		break;
 	default:
 		break;
@@ -592,10 +592,10 @@ physx::PxTriangleMesh* PhysicsEngine::CookTriangleMesh(const MeshData& aMeshData
 	switch (result)
 	{
 	case physx::PxTriangleMeshCookingResult::eSUCCESS:
-		print("Mesh cooked!");
+		printmsg("Mesh cooked!");
 		break;
 	case physx::PxTriangleMeshCookingResult::eFAILURE:
-		print("Mesh failed!");
+		printmsg("Mesh failed!");
 		break;
 	default:
 		break;
@@ -742,7 +742,7 @@ void DefaultSimulationCallback::onTrigger(physx::PxTriggerPair* pairs, physx::Px
 
 void DefaultSimulationCallback::onAdvance(const physx::PxRigidBody* const* bodyBuffer, const physx::PxTransform* poseBuffer, const physx::PxU32 count)
 {
-	print("sdsdsdsds");
+	printmsg("sdsdsdsds");
 }
 
 
@@ -779,7 +779,7 @@ void DefaultCharacterControllerCallback::onShapeHit(const physx::PxControllerSha
 
 void DefaultCharacterControllerCallback::onControllerHit(const physx::PxControllersHit& hit)
 {
-	print("Controller hit");
+	printmsg("Controller hit");
 }
 
 void DefaultCharacterControllerCallback::onObstacleHit(const physx::PxControllerObstacleHit& hit)

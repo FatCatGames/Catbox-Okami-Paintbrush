@@ -54,5 +54,5 @@ bool CircleCollider2D::IsInside(const Vector3f& aPoint) const
 
 void CircleCollider2D::Save(rapidjson::Value& /*aComponentData*/)
 {
-	print("CircleCollider2D component saving not implemented.");
+	printmsg("CircleCollider2D component saving not implemented.");
 }

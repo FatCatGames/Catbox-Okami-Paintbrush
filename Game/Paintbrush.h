@@ -24,9 +24,9 @@ private:
 	
 	//Shape
 	const float mySensitivity = 10;
-	const float mySpeedScale = 0.5f;
+	const float mySpeedScale = 1;
 	const float myDensity = 0.35f;
-	const float myRadius = 30;
+	const float myRadius = 25;
 	float myMaxSize = 40;
 	float myMinSize = 2;
 	int myMaxMouseDelta = 100;

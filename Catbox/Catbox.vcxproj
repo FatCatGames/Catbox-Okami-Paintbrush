@@ -89,7 +89,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>External.lib;rpcrt4.lib;MuninGraph.lib;TGAFBX.lib;SoundEngine-FMod-Debug.lib;LowLevel_static_64.lib;LowLevelAABB_static_64.lib;LowLevelDynamics_static_64.lib;PhysX_64.lib;PhysXCharacterKinematic_static_64.lib;PhysXCommon_64.lib;PhysXCooking_64.lib;PhysXExtensions_static_64.lib;PhysXFoundation_64.lib;PhysXPvdSDK_static_64.lib;PhysXTask_static_64.lib;PhysXVehicle_static_64.lib;SceneQuery_static_64.lib;SimulationController_static_64.lib;Recast.lib;Detour.lib;DetourTileCache.lib;DebugUtils.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>External.lib;rpcrt4.lib;MuninGraph.lib;TGAFBX.lib;SoundEngine-FMod-Debug.lib;LowLevel_static_64.lib;LowLevelAABB_static_64.lib;LowLevelDynamics_static_64.lib;PhysX_64.lib;PhysXCharacterKinematic_static_64.lib;PhysXCommon_64.lib;PhysXCooking_64.lib;PhysXExtensions_static_64.lib;PhysXFoundation_64.lib;PhysXPvdSDK_static_64.lib;PhysXTask_static_64.lib;PhysXVehicle_static_64.lib;SceneQuery_static_64.lib;SimulationController_static_64.lib;Recast.lib;Detour.lib;DetourTileCache.lib;DebugUtils.lib;opencv_world470d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\External\Lib\Debug;..\MuninGraph\Lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -110,7 +110,7 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <Lib>
-      <AdditionalDependencies>External.lib;rpcrt4.lib;MuninGraph.lib;TGAFBX.lib;SoundEngine-FMod-Release.lib;LowLevel_static_64.lib;LowLevelAABB_static_64.lib;LowLevelDynamics_static_64.lib;PhysX_64.lib;PhysXCharacterKinematic_static_64.lib;PhysXCommon_64.lib;PhysXCooking_64.lib;PhysXExtensions_static_64.lib;PhysXFoundation_64.lib;PhysXPvdSDK_static_64.lib;PhysXTask_static_64.lib;PhysXVehicle_static_64.lib;SceneQuery_static_64.lib;SimulationController_static_64.lib;Recast.lib;Detour.lib;DetourTileCache.lib;DebugUtils.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>External.lib;rpcrt4.lib;MuninGraph.lib;TGAFBX.lib;SoundEngine-FMod-Release.lib;LowLevel_static_64.lib;LowLevelAABB_static_64.lib;LowLevelDynamics_static_64.lib;PhysX_64.lib;PhysXCharacterKinematic_static_64.lib;PhysXCommon_64.lib;PhysXCooking_64.lib;PhysXExtensions_static_64.lib;PhysXFoundation_64.lib;PhysXPvdSDK_static_64.lib;PhysXTask_static_64.lib;PhysXVehicle_static_64.lib;SceneQuery_static_64.lib;SimulationController_static_64.lib;Recast.lib;Detour.lib;DetourTileCache.lib;DebugUtils.lib;opencv_world470.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\External\Lib\Release;..\MuninGraph\Lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -131,7 +131,7 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <Lib>
-      <AdditionalDependencies>External.lib;rpcrt4.lib;MuninGraph.lib;TGAFBX.lib;SoundEngine-FMod-Release.lib;LowLevel_static_64.lib;LowLevelAABB_static_64.lib;LowLevelDynamics_static_64.lib;PhysX_64.lib;PhysXCharacterKinematic_static_64.lib;PhysXCommon_64.lib;PhysXCooking_64.lib;PhysXExtensions_static_64.lib;PhysXFoundation_64.lib;PhysXPvdSDK_static_64.lib;PhysXTask_static_64.lib;PhysXVehicle_static_64.lib;SceneQuery_static_64.lib;SimulationController_static_64.lib;Recast.lib;Detour.lib;DetourTileCache.lib;DebugUtils.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>External.lib;rpcrt4.lib;MuninGraph.lib;TGAFBX.lib;SoundEngine-FMod-Release.lib;LowLevel_static_64.lib;LowLevelAABB_static_64.lib;LowLevelDynamics_static_64.lib;PhysX_64.lib;PhysXCharacterKinematic_static_64.lib;PhysXCommon_64.lib;PhysXCooking_64.lib;PhysXExtensions_static_64.lib;PhysXFoundation_64.lib;PhysXPvdSDK_static_64.lib;PhysXTask_static_64.lib;PhysXVehicle_static_64.lib;SceneQuery_static_64.lib;SimulationController_static_64.lib;Recast.lib;Detour.lib;DetourTileCache.lib;DebugUtils.lib;opencv_world470.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\External\Lib\Game;..\MuninGraph\Lib\Game;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>

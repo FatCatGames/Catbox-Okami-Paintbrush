@@ -22,6 +22,8 @@ public:
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> GetRenderTargetView() const;
 	//inline Microsoft::WRL::ComPtr<ID3D11Resource> GetTexture() const { return myTexture; }
 	inline Microsoft::WRL::ComPtr<ID3D11Resource> GetTex() const { return tex; }
+	int GetWidth() { return myWidth; }
+	int GetHeight() { return myHeight; }
 
 protected:
 
@@ -38,4 +40,6 @@ protected:
 	DXGI_FORMAT myFormat;
 	int myWidthDivider = 1;
 	int myHeightDivider = 1;
+	int myWidth = 0;
+	int myHeight = 0;
 };

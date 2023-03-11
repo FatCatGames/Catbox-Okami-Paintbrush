@@ -7,15 +7,15 @@ void NetworkComponent::DummyAwake()
 {
 	myListeners[(int)GameCommand::MoveCommand].action = [this](void* aPos, unsigned short aID) { if (myGameNetworkID == aID) { Move(*reinterpret_cast<Vector3f*>(aPos)); } };
 	myListeners[(int)GameCommand::RotateCommand].action = [this](void* aRot, unsigned short aID) {if (myGameNetworkID == aID) { Rotate(*reinterpret_cast<Vector4f*>(aRot)); } };
-	myListeners[(int)GameCommand::FireCommand].action = [this](void* aValue, unsigned short aID) { if (myGameNetworkID == aID) { print("Fire"); } };
-	myListeners[(int)GameCommand::InteractCommand].action = [this](void* aValue, unsigned short aID) {if (myGameNetworkID == aID) { print("Interact"); } };
+	myListeners[(int)GameCommand::FireCommand].action = [this](void* aValue, unsigned short aID) { if (myGameNetworkID == aID) { printmsg("Fire"); } };
+	myListeners[(int)GameCommand::InteractCommand].action = [this](void* aValue, unsigned short aID) {if (myGameNetworkID == aID) { printmsg("Interact"); } };
 	myListeners[(int)GameCommand::DestroyObject].action = [this](void* aValue, unsigned short aID) {if (myGameNetworkID == aID) { myGameObject->Destroy(); }};
 
 	for (int i = 0; i < (int)GameCommand::Count; i++)
 	{
 		if (!myListeners[i].action)
 		{
-			myListeners[i].action = [this](void* aValue, unsigned short aID) { if (myGameNetworkID == aID) { print("Game Command"); }};
+			myListeners[i].action = [this](void* aValue, unsigned short aID) { if (myGameNetworkID == aID) { printmsg("Game Command"); }};
 		}
 	}
 	for (int i = 0; i < (int)GameCommand::Count; i++)

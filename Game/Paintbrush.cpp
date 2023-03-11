@@ -67,7 +67,6 @@ void Paintbrush::Update()
 		convertedCurrentPos.x = (screenPos.x / static_cast<float>(DX11::GetResolution().x)) * 1920;
 		convertedCurrentPos.y = (screenPos.y / static_cast<float>(DX11::GetResolution().y)) * 1080;
 
-		print("Speed mult " + std::to_string(speedMultiplier));
 
 		Vector2i convertedMouseDelta = convertedCurrentPos - convertedPreviousPos;
 		//print("X: " + std::to_string(convertedCurrentPos.x) + ", Y: " + std::to_string(convertedCurrentPos.y));
@@ -103,7 +102,8 @@ void Paintbrush::Update()
 				percent = i / static_cast<float>(length);
 			}
 
-			float size = myRadius * speedMultiplier * remainingPaintMultiplier;
+			//float size = myRadius * speedMultiplier * remainingPaintMultiplier;
+			float size = myRadius * remainingPaintMultiplier;
 			size = Catbox::Clamp(size, myMinSize, myMaxSize);
 			//size = Catbox::Clamp(size, myMinSize, myMaxSize);
 			int newX = std::round(convertedPreviousPos.x + convertedMouseDelta.x * percent);
@@ -119,5 +119,13 @@ void Paintbrush::Update()
 	if (Input::GetKeyReleased(KeyCode::CTRL))
 	{
 		Canvas::GetInstance()->Clear();
+	}
+	if (Input::GetKeyReleased(KeyCode::S))
+	{
+		Canvas::GetInstance()->Save();
+	}
+	if (Input::GetKeyReleased(KeyCode::G))
+	{
+		Canvas::GetInstance()->Generate();
 	}
 }

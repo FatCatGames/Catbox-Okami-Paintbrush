@@ -56,7 +56,7 @@ void PhysicsWindow::Render()
 			{
 				int layer2Index = static_cast<int>(matrix[lay1].size()) - 1 - lay2;
 				matrix[lay1][layer2Index] = b;
-				print(layers[lay1] + "," + layers[matrix[lay1].size() - 1 - lay2]);
+				printmsg(layers[lay1] + "," + layers[matrix[lay1].size() - 1 - lay2]);
 
 				physicsLayers[lay1][physicsLayers[lay1].size() - 1 - lay2] = b;
 				physicsLayers[physicsLayers[lay1].size() - 1 - lay2][lay1] = b;

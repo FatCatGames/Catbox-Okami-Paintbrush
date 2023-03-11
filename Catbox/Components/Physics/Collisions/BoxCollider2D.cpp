@@ -71,5 +71,5 @@ void BoxCollider2D::DebugDraw()
 
 void BoxCollider2D::Save(rapidjson::Value& /*aComponentData*/)
 {
-	print("BoxCollider2D component saving not implemented.");
+	printmsg("BoxCollider2D component saving not implemented.");
 }

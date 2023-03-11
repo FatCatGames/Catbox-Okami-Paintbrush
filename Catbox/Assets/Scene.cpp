@@ -99,7 +99,7 @@ void Scene::RemoveRootObject(GameObject* anObject)
 
 void Scene::SaveAsset(const char* aPath)
 {
-	print("Saved scene!");
+	printmsg("Saved scene!");
 	Editor::GetInstance()->ResetTimeSinceSave();
 	EditorCommandHandler::ClearCommandSinceSaveCount();
 

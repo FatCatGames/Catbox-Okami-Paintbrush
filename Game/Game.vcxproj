@@ -76,7 +76,7 @@
       <PrecompiledHeaderFile>Game.pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Catbox;..\External\physX;..\External;.;..\External\Recast &amp; Detour\DebugUtils;..\External\Recast &amp; Detour\Detour;..\External\Recast &amp; Detour\Recast;..\External\Recast &amp; Detour\DetourCrowd;..\External\Recast &amp; Detour\DetourTileCache;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Catbox;..\External\physX;..\External;.;..\External\Recast &amp; Detour\DebugUtils;..\External\Recast &amp; Detour\Detour;..\External\Recast &amp; Detour\Recast;..\External\Recast &amp; Detour\DetourCrowd;..\External\Recast &amp; Detour\DetourTileCache;..\External\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -89,8 +89,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>d3d11.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\Lib\Debug;$(projectdir)lib;..\External\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d11.lib;dxguid.lib;opencv_world470d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\Lib\Debug;$(projectdir)lib;..\External\Lib;..\External\Lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -99,7 +99,7 @@
       <PrecompiledHeaderFile>Game.pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_RELEASE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Catbox;..\External\physX;..\External;.;..\External\Recast &amp; Detour\DebugUtils;..\External\Recast &amp; Detour\Detour;..\External\Recast &amp; Detour\Recast;..\External\Recast &amp; Detour\DetourCrowd;..\External\Recast &amp; Detour\DetourTileCache;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Catbox;..\External\physX;..\External;.;..\External\Recast &amp; Detour\DebugUtils;..\External\Recast &amp; Detour\Detour;..\External\Recast &amp; Detour\Recast;..\External\Recast &amp; Detour\DetourCrowd;..\External\Recast &amp; Detour\DetourTileCache;..\External\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <SDLCheck>true</SDLCheck>
@@ -110,8 +110,8 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <Lib>
-      <AdditionalDependencies>d3d11.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\Lib\Debug;$(projectdir)lib;..\External\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d11.lib;dxguid.lib;opencv_world470.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\Lib\Debug;$(projectdir)lib;..\External\Lib;..\External\Lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Game|x64'">
@@ -120,7 +120,7 @@
       <PrecompiledHeaderFile>Game.pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_GAME;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Catbox;..\External\physX;..\External;.;..\External\Recast &amp; Detour\DebugUtils;..\External\Recast &amp; Detour\Detour;..\External\Recast &amp; Detour\Recast;..\External\Recast &amp; Detour\DetourCrowd;..\External\Recast &amp; Detour\DetourTileCache;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Catbox;..\External\physX;..\External;.;..\External\Recast &amp; Detour\DebugUtils;..\External\Recast &amp; Detour\Detour;..\External\Recast &amp; Detour\Recast;..\External\Recast &amp; Detour\DetourCrowd;..\External\Recast &amp; Detour\DetourTileCache;..\External\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <SDLCheck>true</SDLCheck>
@@ -131,8 +131,8 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <Lib>
-      <AdditionalDependencies>d3d11.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\Lib\Debug;$(projectdir)lib;..\External\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d11.lib;dxguid.lib;opencv_world470.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\Lib\Debug;$(projectdir)lib;..\External\Lib;..\External\Lib\Game;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -145,6 +145,7 @@
     <ClInclude Include="NetworkComponent.h" />
     <ClInclude Include="NetworkGameManager.h" />
     <ClInclude Include="Networking\NetworkGameCommands.h" />
+    <ClInclude Include="OpenCV\GenData.h" />
     <ClInclude Include="Paintbrush.h" />
     <ClInclude Include="Player\PlayerCamera.h" />
     <ClInclude Include="Player\PlayerController.h" />
@@ -161,6 +162,8 @@
     <ClCompile Include="Managers\NetMessageHandler.cpp" />
     <ClCompile Include="NetworkComponent.cpp" />
     <ClCompile Include="NetworkGameManager.cpp" />
+    <ClCompile Include="OpenCV\GenData.cpp" />
+    <ClCompile Include="OpenCV\TrainAndTest.cpp" />
     <ClCompile Include="Paintbrush.cpp" />
     <ClCompile Include="Player\PlayerCamera.cpp" />
     <ClCompile Include="Player\PlayerController.cpp" />

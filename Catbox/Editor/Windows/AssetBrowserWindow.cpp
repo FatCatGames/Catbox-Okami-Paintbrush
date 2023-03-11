@@ -227,7 +227,7 @@ void AssetBrowserWindow::Render()
 					{
 						if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None))
 						{
-							print("start drag " + asset->myName);
+							printmsg("start drag " + asset->myName);
 							myDragDropPath = asset->myPath;
 							std::string tag = "DRAG_ASSET" + myDragDropPath.extension().string();
 							ImGui::SetDragDropPayload(tag.c_str(), &myDragDropPath, sizeof(std::filesystem::path));

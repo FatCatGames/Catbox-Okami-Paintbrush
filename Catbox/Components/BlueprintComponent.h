@@ -7,7 +7,7 @@ class BlueprintComponent : public Component
 public:
 	void Awake() override;
 	void RenderInProperties(std::vector<Component*>& aComponentList) override;
-	std::shared_ptr<Blueprint> GetBlueprint() { return myBlueprint; }
+	std::shared_ptr<Blueprint> GetBlueprintmsg() { return myBlueprint; }
 
 private:
 	void Update() override;

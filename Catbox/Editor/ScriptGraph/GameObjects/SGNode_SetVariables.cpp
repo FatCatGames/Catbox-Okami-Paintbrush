@@ -32,7 +32,7 @@ if (object)\
 BlueprintComponent* bc = object->GetComponent<BlueprintComponent>(); \
 if (bc)\
 {\
-auto blueprint = bc->GetBlueprint(); \
+auto blueprint = bc->GetBlueprintmsg(); \
 if (blueprint)\
 {\
 string varName;\
@@ -85,7 +85,7 @@ return 0; \
 //		BlueprintComponent* bc = object->GetComponent<BlueprintComponent>();
 //		if (bc)
 //		{
-//			auto blueprint = bc->GetBlueprint();
+//			auto blueprint = bc->GetBlueprintmsg();
 //			if (blueprint)
 //			{
 //				string varName;

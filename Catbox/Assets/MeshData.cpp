@@ -90,5 +90,5 @@ bool MeshData::SetIndices(const std::vector<unsigned int>& someIndices)
 
 void MeshData::SaveAsset(const char* /*aPath*/)
 {
-	print("MeshData saving not implemented.");
+	printmsg("MeshData saving not implemented.");
 }

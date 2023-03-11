@@ -5,7 +5,7 @@
 void Catbox::GUID::GenerateNew()
 {
 	HRESULT result = CoCreateGuid(&myWin32Guid);
-	if(FAILED(result)) print("Failed to generate GUID.");
+	if(FAILED(result)) printmsg("Failed to generate GUID.");
 }
 
 Catbox::GUID::GUID(const GUID& aOther)
@@ -23,7 +23,7 @@ void Catbox::GUID::SetFromString(const char* aString)
 
 	if (status != RPC_S_OK)
 	{
-		print("Failed to set GUID from string.");
+		printmsg("Failed to set GUID from string.");
 		myWin32Guid = GUID_NULL;
 	}
 }
@@ -43,7 +43,7 @@ std::string Catbox::GUID::GetAsString() const
 	}
 	else
 	{
-		print("Failed to convert GUID to string. RPC Status: " + status);
+		printmsg("Failed to convert GUID to string. RPC Status: " + status);
 	}
 	return guidString;
 }

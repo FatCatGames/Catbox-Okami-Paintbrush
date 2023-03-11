@@ -120,7 +120,7 @@ void Engine::StartPlayMode()
 
 	if (EDITORMODE)
 	{
-		print("Play mode!");
+		printmsg("Play mode!");
 		mySceneManager->GetCurrentScene()->TempSave();
 	}
 	Project::Start();
@@ -131,7 +131,7 @@ void Engine::StartPlayMode()
 
 void Engine::StopPlayMode()
 {
-	print("Stop play mode!");
+	printmsg("Stop play mode!");
 	myGameObjectFactory->ClearAllObjects();
 	myPhysicsEngine->ResetScene();
 	myGraphicsEngine->EmptyVectors();

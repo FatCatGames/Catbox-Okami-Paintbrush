@@ -43,7 +43,7 @@ void PixelShader::RenderInProperties()
 }
 void PixelShader::LoadDefaultValues()
 {
-	print("2323");
+	printmsg("2323");
 }
 PixelShader::PixelShader()
 {

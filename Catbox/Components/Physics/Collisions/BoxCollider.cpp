@@ -222,17 +222,17 @@ void BoxCollider::RenderInProperties(std::vector<Component*>& aComponentList)
 
 void BoxCollider::OnCollisionEnter(Collider* aCollider)
 {
-	//print("Enter");
+	//printmsg("Enter");
 }
 
 void BoxCollider::OnTriggerEnter(Collider* aCollider)
 {
-	//print(aCollider->GetGameObject().GetName());
+	//printmsg(aCollider->GetGameObject().GetName());
 }
 
 void BoxCollider::OnCollisionExit(Collider* aCollider)
 {
-	//print("Exit");
+	//printmsg("Exit");
 }
 
 void BoxCollider::Save(rapidjson::Value& /*aComponentData*/)

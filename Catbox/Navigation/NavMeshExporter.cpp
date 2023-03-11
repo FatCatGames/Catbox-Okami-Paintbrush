@@ -122,7 +122,7 @@ MeshData NavMeshExporter::ExportScene(NavmeshBakingSettings aNavmeshSettings)
 				}
 			}
 		}
-		print("Done");
+		printmsg("Done");
 	}
 	MeshData tempMeshdata;
 	tempMeshdata.SetVertices(navMeshVertices);
@@ -654,7 +654,7 @@ std::shared_ptr<NavMesh> NavMeshExporter::BakeNavMesh(NavmeshBakingSettings aNav
 				}
 			}
 		}
-		print("Done");
+		printmsg("Done");
 	}
 	MeshData tempMeshdata;
 	tempMeshdata.SetVertices(navMeshVertices);

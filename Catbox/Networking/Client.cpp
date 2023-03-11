@@ -119,7 +119,7 @@ void Client::SendMessageLoop()
 		}
 		else if (myNetMessages[i]->GetMessageType() == MessageType::RecivedGuaranteedMessage)
 		{
-			//print("Sent validation message id: " + std::to_string(myNetMessages[i]->GetGuaranteedId()));
+			//printmsg("Sent validation message id: " + std::to_string(myNetMessages[i]->GetGuaranteedId()));
 			GuarateedMessageValidate* aGameMessage = reinterpret_cast<GuarateedMessageValidate*>(myNetMessages[i]);
 
 			memcpy_s(messageBuffer, CatNet::MessageBuffer, aGameMessage, sizeof(NetMessage));

@@ -18,5 +18,5 @@ void Animation::RenderInProperties()
 
 void Animation::SaveAsset(const char* /*aPath*/)
 {
-	print("Animation saving not implemented.");
+	printmsg("Animation saving not implemented.");
 }

@@ -15,6 +15,6 @@ size_t SGNode_Print::DoOperation()
 {
 	std::string msg;
 	GetPinData("Text", msg);
-	print(msg);
+	printmsg(msg);
 	return ExitViaPin("Out");
 }

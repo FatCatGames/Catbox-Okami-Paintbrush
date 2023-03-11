@@ -91,7 +91,8 @@ filter "configurations:Debug"
 		"Recast.lib",
 		"Detour.lib",
 		"DetourTileCache.lib",
-		"DebugUtils.lib"
+		"DebugUtils.lib",
+		"opencv_world470d.lib"
 	}
 	libdirs
 	{
@@ -127,7 +128,8 @@ filter "configurations:Release"
 		"Recast.lib",
 		"Detour.lib",
 		"DetourTileCache.lib",
-		"DebugUtils.lib"
+		"DebugUtils.lib",
+		"opencv_world470.lib"
 	}
 	libdirs
 	{
@@ -162,7 +164,8 @@ filter "configurations:Game"
 		"Recast.lib",
 		"Detour.lib",
 		"DetourTileCache.lib",
-		"DebugUtils.lib"
+		"DebugUtils.lib",
+		"opencv_world470.lib"
 	}
 	libdirs
 	{

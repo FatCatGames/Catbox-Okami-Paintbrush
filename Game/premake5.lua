@@ -34,7 +34,8 @@ libdirs {
 		"../External/Recast & Detour/Detour",
 		"../External/Recast & Detour/Recast",
 		"../External/Recast & Detour/DetourCrowd",
-		"../External/Recast & Detour/DetourTileCache"
+		"../External/Recast & Detour/DetourTileCache",
+		"../External/opencv/build/include"
 	}
 
 	pchheader "Game.pch.h"
@@ -64,6 +65,14 @@ filter "configurations:Debug"
 	staticruntime "off"
 	runtime "Debug"
 	symbols "on"
+	links
+	{
+		"opencv_world470d.lib"
+	}
+	libdirs
+	{
+		"../External/Lib/Debug"
+	}
 
 filter "configurations:Release"
 	targetdir "../Bin"
@@ -71,6 +80,14 @@ filter "configurations:Release"
 	defines {"NDEBUG"}
 	staticruntime "off"
 	runtime "Release"
+	links
+	{
+		"opencv_world470.lib"
+	}
+	libdirs
+	{
+		"../External/Lib/Release"
+	}
 
 filter "configurations:Game"
 	targetdir "../Bin"
@@ -78,4 +95,11 @@ filter "configurations:Game"
 	defines {"NDEBUG"}
 	staticruntime "off"
 	runtime "Release"
-
+	links
+	{
+		"opencv_world470.lib"
+	}
+	libdirs
+	{
+		"../External/Lib/Game"
+	}

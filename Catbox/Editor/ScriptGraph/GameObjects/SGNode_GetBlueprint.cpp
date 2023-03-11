@@ -27,7 +27,7 @@ size_t SGNode_GetBlueprint::DoOperation()
 		BlueprintComponent* bc = object->GetComponent<BlueprintComponent>();
 		if (bc)
 		{
-			auto blueprint = bc->GetBlueprint();
+			auto blueprint = bc->GetBlueprintmsg();
 			if (blueprint)
 			{
 				SetPinData("Blueprint", blueprint.get());

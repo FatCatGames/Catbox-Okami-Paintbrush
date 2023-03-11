@@ -24,7 +24,7 @@ inline ImGuiValueCommand<T>::ImGuiValueCommand(T* aProperty, T aTranslation)
 {
 	myCommand.property = aProperty;
 	myCommand.translation = aTranslation;
-	print("Changed value from " + std::to_string(*aProperty - aTranslation) + " to " + std::to_string(*aProperty));
+	printmsg("Changed value from " + std::to_string(*aProperty - aTranslation) + " to " + std::to_string(*aProperty));
 }
 
 template<typename T>

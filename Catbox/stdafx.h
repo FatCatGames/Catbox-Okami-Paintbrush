@@ -30,7 +30,7 @@
 #define deltaTime Engine::GetInstance()->GetDeltaTime()
 #define EDITORMODE Engine::GetInstance()->IsEditorMode()
 #define PLAYMODE Engine::GetInstance()->IsGameRunning()
-#define print(msg) MessageHandler::debugMessages.AddMessage(msg)
+#define printmsg(msg) MessageHandler::debugMessages.AddMessage(msg)
 #define printerror(msg) MessageHandler::debugMessages.errors.push_back(msg)
 
 #endif

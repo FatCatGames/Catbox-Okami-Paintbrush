@@ -30,7 +30,7 @@ std::vector<std::shared_ptr<MeshData>>& Model::GetModelParts()
 
 void Model::SaveAsset(const char* /*aPath*/)
 {
-	print("Model saving not implemented.");
+	printmsg("Model saving not implemented.");
 }
 void Model::CreateBoundingUnits()
 {

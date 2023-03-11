@@ -56,7 +56,7 @@ public:
 	void ShutDown();
 	
 	//This is for when we have a console window
-	//static void Print(std::string aMsg);
+	//static void printmsg(std::string aMsg);
 	//static void PrintError(std::string aMsg);
 
 	void SetWindowSize(const int& aWidth, const int& aHeight) { myWindowSize = { aWidth, aHeight }; }

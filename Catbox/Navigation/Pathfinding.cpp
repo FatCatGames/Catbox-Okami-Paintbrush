@@ -89,7 +89,7 @@ std::vector<Vector3f> Navigation::FindPath(const Vector3f& aStart, const Vector3
 	std::vector<Vector3f> waypoints;
 	if (pathSuccess)
 	{
-		print("Path found!");
+		printmsg("Path found!");
 		if (startPoint != targetPoint)
 		{
 			path = RetracePath(startPoint, targetPoint);
@@ -102,7 +102,7 @@ std::vector<Vector3f> Navigation::FindPath(const Vector3f& aStart, const Vector3
 	{
 		std::string start = "(" + std::to_string(aStart.x) + ", " + std::to_string(aStart.z) + ")";
 		std::string end = "(" + std::to_string(aTarget.x) + ", " + std::to_string(aTarget.z) + ")";
-		print("Failed to find path from " + start + " to " + end);
+		printmsg("Failed to find path from " + start + " to " + end);
 	}
 
 	return waypoints;

@@ -3,9 +3,11 @@
 #include "CanvasPS.h"
 #include "Components\3D\ModelInstance.h"
 #include "Assets\Material.h"
+#include "OpenCV\GenData.h"
 
 Canvas* Canvas::Instance;
 Microsoft::WRL::ComPtr<ID3D11Texture2D> stagingTexture;
+Texture tempTex;
 
 Canvas::Canvas()
 {
@@ -13,7 +15,8 @@ Canvas::Canvas()
 
 
 	myPaintingTex.CreateEmptyTexture(DXGI_FORMAT_R8G8B8A8_UNORM, myWidth, myHeight, 1, D3D11_BIND_SHADER_RESOURCE, D3D11_CPU_ACCESS_WRITE, D3D11_USAGE_DYNAMIC);
-	myStagingTex.CreateEmptyTexture(DXGI_FORMAT_R8G8B8A8_UNORM, myWidth, myHeight, 1, 0, D3D11_CPU_ACCESS_WRITE, D3D11_USAGE_STAGING);
+	tempTex.CreateEmptyTexture(DXGI_FORMAT_R8G8B8A8_UNORM, myWidth, myHeight, 1, D3D11_BIND_SHADER_RESOURCE, D3D11_CPU_ACCESS_WRITE, D3D11_USAGE_DYNAMIC);
+	//myStagingTex.CreateEmptyTexture(DXGI_FORMAT_R8G8B8A8_UNORM, myWidth, myHeight, 1, 0, D3D11_CPU_ACCESS_WRITE, D3D11_USAGE_STAGING);
 
 	// Create a staging texture with default usage and copy the painting texture to it
 	D3D11_TEXTURE2D_DESC stagingDesc = {};
@@ -85,4 +88,14 @@ void Canvas::Paint(int anXPos, int anYPos, int aRadius, const Color& aColor)
 void Canvas::Clear()
 {
 	Paint(myWidth / 2, myHeight / 2, myWidth, Color::White());
+}
+
+void Canvas::Save()
+{
+	GenData::GetSymbol(stagingTexture.Get(), myWidth, myHeight);
+}
+
+void Canvas::Generate()
+{
+	GenData::GenerateData();
 }

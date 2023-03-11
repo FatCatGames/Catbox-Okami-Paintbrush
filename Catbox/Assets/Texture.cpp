@@ -22,6 +22,8 @@ void Texture::CreateEmptyTexture(DXGI_FORMAT aFormat, int aWidth, int aHeight, i
 	texDesc.CPUAccessFlags = aCPUAccessFlags;
 	texDesc.MipLevels = aMipLevel;
 	texDesc.Usage = usage;
+	myWidth = aWidth / myWidthDivider;
+	myHeight = aHeight / myHeightDivider;
 
 	HRESULT result = DX11::Device->CreateTexture2D(&texDesc, nullptr, tex.GetAddressOf());
 	if (FAILED(result)) assert(true && "Failed to create new empty texture.");
@@ -47,6 +49,8 @@ void Texture::CreateVideoTexture(DXGI_FORMAT aFormat, int aWidth, int aHeight, i
 	D3D11_TEXTURE2D_DESC texDesc = { 0 };
 	texDesc.Width = aWidth;
 	texDesc.Height = aHeight;
+	myWidth = aWidth;
+	myHeight = aHeight;
 	texDesc.ArraySize = 1;
 	texDesc.SampleDesc.Count = 1;
 	texDesc.Format = aFormat;
@@ -101,5 +105,5 @@ Microsoft::WRL::ComPtr<ID3D11RenderTargetView> Texture::GetRenderTargetView() co
 
 void Texture::SaveAsset(const char* /*aPath*/)
 {
-	print("Texture saving not implemented.");
+	printmsg("Texture saving not implemented.");
 }

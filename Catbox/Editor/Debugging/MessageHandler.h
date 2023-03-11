@@ -39,7 +39,7 @@ public:
 private:
 };
 //
-//static void print(const char* aMessage)
+//static void printmsg(const char* aMessage)
 //{
 //	MessageHandler::debugMessages.messages.push_back(aMessage);
 //}

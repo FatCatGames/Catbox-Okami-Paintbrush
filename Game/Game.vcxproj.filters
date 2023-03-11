@@ -7,6 +7,9 @@
     <Filter Include="Networking">
       <UniqueIdentifier>{6D615D47-5919-9F94-C220-78F0AEF73985}</UniqueIdentifier>
     </Filter>
+    <Filter Include="OpenCV">
+      <UniqueIdentifier>{10864AC8-FC27-759E-E5E2-88F2D123FCEE}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Player">
       <UniqueIdentifier>{724E55CA-5EF0-7FA0-47AB-93F433EC06F1}</UniqueIdentifier>
     </Filter>
@@ -38,6 +41,9 @@
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="Project.h" />
+    <ClInclude Include="OpenCV\GenData.h">
+      <Filter>OpenCV</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Canvas.cpp" />
@@ -52,6 +58,12 @@
     </ClCompile>
     <ClCompile Include="NetworkComponent.cpp" />
     <ClCompile Include="NetworkGameManager.cpp" />
+    <ClCompile Include="OpenCV\GenData.cpp">
+      <Filter>OpenCV</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenCV\TrainAndTest.cpp">
+      <Filter>OpenCV</Filter>
+    </ClCompile>
     <ClCompile Include="Paintbrush.cpp" />
     <ClCompile Include="Player\PlayerCamera.cpp">
       <Filter>Player</Filter>

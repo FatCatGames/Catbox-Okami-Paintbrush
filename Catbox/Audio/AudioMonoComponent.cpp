@@ -139,11 +139,11 @@ void AudioMonoComponent::RenderInProperties(std::vector<Component*>& aComponentL
 	// //This is just to test parameters. Leave it for now in case I need to test again.
 	//	if (ImGui::Button("Press here"))
 	//	{
-	//		print(std::to_string(Engine::GetInstance()->GetAudioManager()->GetAmountOfParameters(mySoundEffects[0])));
-	//		print(Engine::GetInstance()->GetAudioManager()->GetParameterNameByIndex(mySoundEffects[0], -1));
-	//		print(Engine::GetInstance()->GetAudioManager()->GetParameterNameByIndex(mySoundEffects[0], 0));
-	//		print(Engine::GetInstance()->GetAudioManager()->GetParameterNameByIndex(mySoundEffects[0], 1));
-	//		print(Engine::GetInstance()->GetAudioManager()->GetParameterNameByIndex(mySoundEffects[0], 2));
+	//		printmsg(std::to_string(Engine::GetInstance()->GetAudioManager()->GetAmountOfParameters(mySoundEffects[0])));
+	//		printmsg(Engine::GetInstance()->GetAudioManager()->GetParameterNameByIndex(mySoundEffects[0], -1));
+	//		printmsg(Engine::GetInstance()->GetAudioManager()->GetParameterNameByIndex(mySoundEffects[0], 0));
+	//		printmsg(Engine::GetInstance()->GetAudioManager()->GetParameterNameByIndex(mySoundEffects[0], 1));
+	//		printmsg(Engine::GetInstance()->GetAudioManager()->GetParameterNameByIndex(mySoundEffects[0], 2));
 
 	//		//Engine::GetInstance()->GetAudioManager()->SetParameterByIndex(mySoundEffects[0], 0, 100000);
 	//		//Engine::GetInstance()->GetAudioManager()->SetParameterByIndex(mySoundEffects[0], 0, 1);
