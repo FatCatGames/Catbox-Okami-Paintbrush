@@ -4,6 +4,7 @@
 #include "Components\3D\ModelInstance.h"
 #include "Assets\Material.h"
 #include "OpenCV\GenData.h"
+#include "PopupManager.h"
 
 Canvas* Canvas::Instance;
 Microsoft::WRL::ComPtr<ID3D11Texture2D> stagingTexture;
@@ -92,7 +93,21 @@ void Canvas::Clear()
 
 void Canvas::Save()
 {
-	GenData::GetSymbol(stagingTexture.Get(), myWidth, myHeight);
+	std::string symbol = GenData::GetSymbol(stagingTexture.Get(), myWidth, myHeight);
+	std::string symbolName = "";
+	if (symbol == "o") symbolName = "Sun";
+	else if (symbol == "b") symbolName = "Bomb";
+	else if (symbol == "c") symbolName = "Moon";
+	else if (symbol == "-") symbolName = "Slash";
+
+	if (!symbolName.empty())
+	{
+		PopupManager::CreatePopup("Symbol", 2, { 200,75 }, symbolName, { Engine::GetInstance()->GetWindowSize().x * 0.5f, 400 });
+	}
+	else
+	{
+		printmsg("Failed");
+	}
 }
 
 void Canvas::Generate()

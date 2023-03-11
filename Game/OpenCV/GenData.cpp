@@ -34,7 +34,7 @@ void GenData::GenerateData()
 
     std::vector<int> intValidSymbols = { 'o', '-', 'b', 'c'};
 
-    imgTrainingSymbols = cv::imread("Assets/Resources/training_symbols2.png");          // read in training numbers image
+    imgTrainingSymbols = cv::imread("Assets/Resources/training_symbols3.png");          // read in training numbers image
 
     if (imgTrainingSymbols.empty()) {                               // if unable to open image
         printerror("error: image not read from file");         // show error message on command line
@@ -151,7 +151,7 @@ public:
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void ReadImage(cv::Mat anImage)
+bool ReadImage(cv::Mat anImage, std::string& outSymbol)
 {
     std::vector<ContourWithData> allContoursWithData;           // declare empty vectors,
     std::vector<ContourWithData> validContoursWithData;         // we will fill these shortly
@@ -164,7 +164,7 @@ void ReadImage(cv::Mat anImage)
 
     if (fsClassifications.isOpened() == false) {                                                    // if the file was not opened successfully
         printerror("error, unable to open training classifications file, exiting program");    // show error message
-        return;                                                                                  // and exit program
+        return false;                                                                                  // and exit program
     }
 
     fsClassifications["classifications"] >> matClassificationInts;      // read classifications section into Mat classifications variable
@@ -178,7 +178,7 @@ void ReadImage(cv::Mat anImage)
 
     if (fsTrainingImages.isOpened() == false) {                                                 // if the file was not opened successfully
         printerror("error, unable to open training images file, exiting program");         // show error message
-        return;                                                                              // and exit program
+        return false;                                                                              // and exit program
     }
 
     fsTrainingImages["images"] >> matTrainingImagesAsFlattenedFloats;           // read images section into Mat training images variable
@@ -197,7 +197,7 @@ void ReadImage(cv::Mat anImage)
 
     if (matTestingNumbers.empty()) {                                // if unable to open image
        printerror("error: image not read from file");         // show error message on command line
-       return;                                                  // and exit program
+       return false;                                                  // and exit program
     }
 
     cv::Mat matGrayscale;           //
@@ -278,18 +278,25 @@ void ReadImage(cv::Mat anImage)
         strFinalString = strFinalString + char(int(fltCurrentChar));        // append current char to full string
     }
 
-   printmsg("numbers read = " + strFinalString);       // show the full string
+   // printmsg("numbers read = " + strFinalString);       // show the full string
 
-    cv::imshow("matTestingNumbers", matTestingNumbers);     // show input image with green boxes drawn around found digits
+    //cv::imshow("matTestingNumbers", matTestingNumbers);     // show input image with green boxes drawn around found digits
+    outSymbol = strFinalString;
+    return true;
 }
 
 
 
-void GenData::GetSymbol(ID3D11Texture2D* aTexture, int width, int height)
+std::string GenData::GetSymbol(ID3D11Texture2D* aTexture, int width, int height)
 {
     D3D11_MAPPED_SUBRESOURCE mapped_resource = {};
     HRESULT result = DX11::Context->Map(aTexture, 0, D3D11_MAP_WRITE, 0, &mapped_resource);
     cv::Mat mat(height, width, CV_8UC4, mapped_resource.pData, mapped_resource.RowPitch);
-    ReadImage(mat);
     DX11::Context->Unmap(aTexture, 0);
+    std::string outString;
+    if (ReadImage(mat, outString))
+    {
+        return outString;
+    }
+    return "";
 }
