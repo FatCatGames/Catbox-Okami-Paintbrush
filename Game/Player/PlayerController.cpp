@@ -97,6 +97,18 @@ void PlayerController::RunKeyboardInput()
 	}
 }
 
+void PlayerController::HandlePainting()
+{
+	if (Input::GetKeyPress(KeyCode::CTRL))
+	{
+		myIsPainting = true;
+	}
+	else if (Input::GetKeyReleased(KeyCode::CTRL))
+	{
+		myIsPainting = false;
+	}
+}
+
 
 void PlayerController::HandleCameraMouseMovement()
 {

@@ -12,6 +12,7 @@ public:
 	void OnCollisionStay(Collider* aCollider) override;
 
 	void RunKeyboardInput();
+	void HandlePainting();
 	void HandleJump();
 	void HandleCameraMouseMovement();
 
@@ -40,4 +41,5 @@ private:
 	bool myIsGrounded = true;
 	bool myIsJumping = false;
 	bool myHasSetup = false;
+	bool myIsPainting = false;
 };

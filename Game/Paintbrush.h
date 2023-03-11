@@ -19,7 +19,7 @@ private:
 	ColorGradient myGradient;
 	float myPaintTimer = 0;
 	float myRemainingPaint = 0;
-	float myPaintDecreaseSpeed = 0.03f;
+	float myPaintDecreaseSpeed = 0.02f;
 	const float myGradientSpeed = 0.01f;
 	
 	//Shape

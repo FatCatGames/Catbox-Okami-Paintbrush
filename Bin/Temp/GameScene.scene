@@ -943,7 +943,7 @@
                     "Version": 2,
                     "Type": 0,
                     "Shadows": 1,
-                    "Intensity": 20.0,
+                    "Intensity": 26.799999237060547,
                     "Range": 10.0,
                     "Tex": "studio_cubemap",
                     "Color": {
@@ -985,7 +985,7 @@
                     "Version": 2,
                     "Type": 0,
                     "Shadows": 1,
-                    "Intensity": 0.03999999910593033,
+                    "Intensity": 0.10000000149011612,
                     "Range": 10.0,
                     "Tex": "studio_cubemap",
                     "Color": {

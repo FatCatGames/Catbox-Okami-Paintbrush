@@ -84,18 +84,14 @@ std::shared_ptr<Animation> AnimationController::UpdateAnimations(Animator* anAct
 
 	auto& skeleton = anActor->GetSkeleton();
 	std::array<Catbox::Matrix4x4<float>, BONE_LIMIT> boneMatrices;
-	skeleton->Reset();
 	
 	bool checkBaseLayer = true;
 	bool animate = true;
 	for (auto& [id, layer] : myLayers)
 	{
-		//animationResults.emplace_back();
 		if (!layer->isActive) continue;
-		bool printName = false;
 		if (layer->Animate())
 		{
-			printName = true;
 			layer->Reset();
 			auto& events = layer->GetCurrentNode()->GetEvents();
 			for (size_t i = 0; i < events.size(); i++)
@@ -108,7 +104,7 @@ std::shared_ptr<Animation> AnimationController::UpdateAnimations(Animator* anAct
 
 			if (!layer->GetCurrentNode()->GetAnimation())
 			{
-				continue;
+				skeleton->Reset();
 			}
 		}
 

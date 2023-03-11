@@ -9,8 +9,13 @@ public:
 	void Awake() override;
 	void Paint(int anXPos, int anYPos, int aRadius, const Color& aColor);
 	void Clear();
+	Texture& GetTexture() { return myPaintingTex; }
 
 private:
 	static Canvas* Instance;
 	CanvasPS* myShader;
+	Texture myPaintingTex;
+	Texture myStagingTex;
+	const int myWidth = 1920;
+	const int myHeight = 1080;
 };
