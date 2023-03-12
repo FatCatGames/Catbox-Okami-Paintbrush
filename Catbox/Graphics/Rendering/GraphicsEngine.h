@@ -1,6 +1,7 @@
 #pragma once
 #include "Debugging\DebugShapes.h"
 #include "Graphics\Rendering\DX11\DX11.h"
+#include "ComponentTools\Event.h"
 
 class Camera;
 class DeferredRenderer;
@@ -70,10 +71,12 @@ public:
 	void SetDebugDrawerToggle(bool aFlag) { myDebugDrawerToggle = aFlag; }
 	bool GetDebugDrawerToggle() { return myDebugDrawerToggle; }
 	std::shared_ptr<Texture> GetPreviousDepth() { return myPreviousDepthTexture; }
+	std::shared_ptr<Texture> GetPreviousScreenTex() { return myPreviousScreenTexture; }
 	std::shared_ptr<Texture> GetLightMap() { return myLightMap; }
 
 	std::shared_ptr<Buffers> GetBuffers() { return myBuffers; }
-
+	void AddPostRenderListener(Listener& aListener) { myRenderingDoneEvent.AddListener(aListener); };
+	Event& GetRenderingDoneEvent() { return myRenderingDoneEvent; };
 
 	[[nodiscard]] HWND FORCEINLINE GetWindowHandle() const { return myWindowHandle; }
 	[[nodiscard]] SIZE FORCEINLINE GetWindowSize() const { return myWindowSize; }
@@ -83,11 +86,12 @@ public:
 	inline void SetGammaCorrectionEnabled(bool aValue) { myGammaCorrectEnabled = aValue; }
 	inline bool GetGammaCorrectionEnabled() { return myGammaCorrectEnabled; }
 	static std::shared_ptr<VertexShader> FullscreenVS;
+	std::shared_ptr<PixelShader> myCopyPS;
 
 private:
 	static GraphicsEngine* Instance;
 	void CreateShaders();
-
+	Event myRenderingDoneEvent;
 	std::shared_ptr<Buffers> myBuffers;
 	SceneLightData* mySceneLightData{ nullptr };
 	std::vector<ModelInstance*> myMeshesToRenderDeferred;
@@ -101,6 +105,7 @@ private:
 	std::vector<DebugCube> myDebugCubesToRender;
 	std::vector<NavMesh*> myNavmeshesToRender;
 	std::shared_ptr<Texture> myPreviousDepthTexture;
+	std::shared_ptr<Texture> myPreviousScreenTexture;
 	std::shared_ptr<Texture> myLightMap;
 
 	Camera* myCamera{ nullptr };
@@ -111,7 +116,6 @@ private:
 	std::shared_ptr<DebugRenderer> myDebugRenderer;
 	std::shared_ptr<ShadowRenderer> myShadowRenderer;
 	bool myIsEditorMode;
-	std::shared_ptr<PixelShader> myCopyPS;
 	std::shared_ptr<PixelShader> myBackgroundPS;
 	std::shared_ptr<PixelShader> myGammaCorrectionPS;
 	std::shared_ptr<PixelShader> myOutlinePS;

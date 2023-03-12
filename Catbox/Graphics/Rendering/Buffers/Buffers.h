@@ -18,7 +18,7 @@ public:
 	bool Initialize();
 	void CreateFrameBuffer(Camera* aCamera);
 	void CreateLightsBuffer(SceneLightData* aSceneLightData);
-	inline const GBuffer& GetGbuffer() { return myGBuffer; }
+	inline GBuffer& GetGbuffer() { return myGBuffer; }
 
 private:
 

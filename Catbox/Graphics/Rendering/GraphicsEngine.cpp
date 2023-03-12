@@ -123,6 +123,10 @@ bool GraphicsEngine::Initialize(unsigned someX, unsigned someY,
 	myPreviousDepthTexture->CreateScreenSizeTexture(DXGI_FORMAT_R32_FLOAT);
 	myPreviousDepthTexture->CreateRenderTargetView();
 
+	myPreviousScreenTexture = std::make_shared<Texture>();
+	myPreviousScreenTexture->CreateScreenSizeTexture(DXGI_FORMAT_R32G32B32A32_FLOAT);
+	myPreviousScreenTexture->CreateRenderTargetView();
+
 	myLightMap = std::make_shared<Texture>();
 	myLightMap->CreateScreenSizeTexture(DXGI_FORMAT_R32G32B32A32_FLOAT);
 	myLightMap->CreateRenderTargetView();
@@ -476,6 +480,9 @@ void GraphicsEngine::RenderFrame()
 		myUIRenderer->Render(mySpritesToRender, resourceToUse->GetRenderTargetView());
 		DX11::Context->OMSetBlendState(BlendStates::GetBlendStates()[static_cast<int>(BlendState::BS_None)].Get(), nullptr, 0xffffffff);
 	}
+
+	RunFullScreenShader(resourceToUse->GetShaderResourceView().GetAddressOf(), myPreviousScreenTexture->GetRenderTargetView().GetAddressOf(), myCopyPS);
+	myRenderingDoneEvent.Invoke();
 
 	if (EDITORMODE)
 	{

@@ -40,6 +40,7 @@ public:
 	std::shared_ptr<CameraController> GetCameraController() const { return myCameraController; }
 	std::shared_ptr<PhysicsEngine> GetPhysicsEngine() const { return myPhysicsEngine; }
 	std::shared_ptr<CatNet::NetworkManager> GetNetworkManager();
+	Catbox::Timer& GetTimer() { return myTimer; }
 	static GameObject* GetGameObject(int id);
 	static void RemoveGameObject(int id);
 	void SetMainCamera(Camera* aCamera);

@@ -6,7 +6,7 @@
 #include "Physics\PhysXUtilities.h"
 #include "..\Catbox\ComponentTools\UIEventHandler.h"
 #include "Components\Animator.h"
-
+#include "Canvas.h"
 
 void PlayerController::OnObjectFinishedLoading()
 {
@@ -79,7 +79,7 @@ void PlayerController::RunKeyboardInput()
 
 		HandleCameraMouseMovement();
 		HandleJump();
-
+		HandlePainting();
 
 		myAnimator->SetFloat("Speed", givingInput ? myMoveSpeed : 0);
 
@@ -102,10 +102,13 @@ void PlayerController::HandlePainting()
 	if (Input::GetKeyPress(KeyCode::CTRL))
 	{
 		myIsPainting = true;
+		Canvas::GetInstance()->StartPainting();
+		Engine::GetInstance()->SetGamePaused(true);
 	}
 	else if (Input::GetKeyReleased(KeyCode::CTRL))
 	{
 		myIsPainting = false;
+		Engine::GetInstance()->SetGamePaused(false);
 	}
 }
 

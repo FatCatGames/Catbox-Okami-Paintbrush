@@ -5,6 +5,7 @@
 #include "Assets\Material.h"
 #include "OpenCV\GenData.h"
 #include "PopupManager.h"
+#include "Graphics\Rendering\Buffers\Buffers.h"
 
 Canvas* Canvas::Instance;
 Microsoft::WRL::ComPtr<ID3D11Texture2D> stagingTexture;
@@ -14,9 +15,19 @@ Canvas::Canvas()
 {
 	Instance = this;
 
+	myCanvasPS = CreateAsset<PixelShader>("Resources/BuiltIn/Shaders/ScreenCanvasPS.sh");
+	ifstream psFile;
+	psFile.open("Resources/BuiltIn/Shaders/ScreenCanvasPS.cso", ios::binary);
+	string psData = { std::istreambuf_iterator<char>(psFile), istreambuf_iterator<char>() };
+	HRESULT result = DX11::Device->CreatePixelShader(psData.data(), psData.size(), nullptr, &myCanvasPS->pixelShader);
+	psFile.close();
+	assert(!FAILED(result) && "Loading canvas pixel shader failed!");
 
 	myPaintingTex.CreateEmptyTexture(DXGI_FORMAT_R8G8B8A8_UNORM, myWidth, myHeight, 1, D3D11_BIND_SHADER_RESOURCE, D3D11_CPU_ACCESS_WRITE, D3D11_USAGE_DYNAMIC);
 	tempTex.CreateEmptyTexture(DXGI_FORMAT_R8G8B8A8_UNORM, myWidth, myHeight, 1, D3D11_BIND_SHADER_RESOURCE, D3D11_CPU_ACCESS_WRITE, D3D11_USAGE_DYNAMIC);
+
+	myScreenTex.CreateScreenSizeTexture(DXGI_FORMAT_R32G32B32A32_FLOAT);
+	myScreenTex.CreateRenderTargetView();
 	//myStagingTex.CreateEmptyTexture(DXGI_FORMAT_R8G8B8A8_UNORM, myWidth, myHeight, 1, 0, D3D11_CPU_ACCESS_WRITE, D3D11_USAGE_STAGING);
 
 	// Create a staging texture with default usage and copy the painting texture to it
@@ -33,11 +44,20 @@ Canvas::Canvas()
 	DX11::Device->CreateTexture2D(&stagingDesc, nullptr, stagingTexture.GetAddressOf());
 
 	Clear();
+
+	myPostRenderListener.action = [this] {Render(); };
+	GraphicsEngine::GetInstance()->AddPostRenderListener(myPostRenderListener);
+}
+
+Canvas::~Canvas()
+{
+	GraphicsEngine::GetInstance()->GetRenderingDoneEvent().RemoveListener(myPostRenderListener);
 }
 
 void Canvas::Awake()
 {
-	myShader = dynamic_cast<CanvasPS*>(myGameObject->GetComponent<ModelInstance>()->GetMaterial(0)->GetPixelShader().get());
+	myPaperTex = AssetRegistry::GetInstance()->GetAsset<Texture>("PaperTex");
+	//myShader = dynamic_cast<CanvasPS*>(myGameObject->GetComponent<ModelInstance>()->GetMaterial(0)->GetPixelShader().get());
 }
 
 
@@ -108,9 +128,32 @@ void Canvas::Save()
 	{
 		printmsg("Failed");
 	}
+
+	myIsPainting = false;
 }
 
 void Canvas::Generate()
 {
 	GenData::GenerateData();
+}
+
+void Canvas::StartPainting()
+{
+	myIsPainting = true;
+	//GraphicsEngine::GetInstance()->RunFullScreenShader(
+	//	GraphicsEngine::GetInstance()->GetPreviousScreenTex()->GetShaderResourceView().GetAddressOf(),
+	//	myScreenTex.GetRenderTargetView().GetAddressOf(),
+	//	GraphicsEngine::GetInstance()->myCopyPS);
+}
+
+void Canvas::Render()
+{
+	if (!myIsPainting) return;
+
+	myPaperTex->SetAsResource(2);
+
+	GraphicsEngine::GetInstance()->RunFullScreenShader(
+		GraphicsEngine::GetInstance()->GetPreviousScreenTex()->GetShaderResourceView().GetAddressOf(),
+		GraphicsEngine::GetInstance()->GetMainCamera()->GetRenderTexture().GetRenderTargetView().GetAddressOf(),
+		myCanvasPS);
 }
