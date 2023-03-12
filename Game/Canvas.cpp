@@ -102,7 +102,7 @@ void Canvas::Save()
 
 	if (!symbolName.empty())
 	{
-		PopupManager::CreatePopup("Symbol", 2, { 200,75 }, symbolName, { Engine::GetInstance()->GetWindowSize().x * 0.5f, 400 });
+		PopupManager::CreatePopup("Symbol", 3, { 400,150 }, symbolName, { Engine::GetInstance()->GetWindowSize().x * 0.5f, 400 });
 	}
 	else
 	{

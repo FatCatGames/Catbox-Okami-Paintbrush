@@ -144,7 +144,7 @@
                 "Children": [
                     {
                         "Name": "BrushModel",
-                        "Active": true,
+                        "Active": false,
                         "Opened": true,
                         "Transform": {
                             "Version": 2,
@@ -184,7 +184,7 @@
                     },
                     {
                         "Name": "PaintDot",
-                        "Active": true,
+                        "Active": false,
                         "Opened": true,
                         "Transform": {
                             "Version": 2,
@@ -192,7 +192,7 @@
                             "Pos": [
                                 -4.76837158203125e-7,
                                 -0.001993805170059204,
-                                -0.0017699631862342358
+                                -0.001769963651895523
                             ],
                             "Rot": [
                                 3645.0,
@@ -218,6 +218,46 @@
                                 "Renderer": 1,
                                 "Material Instance": false,
                                 "CastShadows": true,
+                                "InstanceCount": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Brush",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Rot": [
+                                130.39999389648438,
+                                -175.89999389648438,
+                                1.7000000476837158
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "Brush",
+                                "Materials": [
+                                    "BrushMat"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": false,
                                 "InstanceCount": 0
                             }
                         ]
