@@ -11,40 +11,41 @@
 // global variables ///////////////////////////////////////////////////////////////////////////////
 const int MIN_CONTOUR_AREA = 100;
 
-const int RESIZED_IMAGE_WIDTH = 20;
-const int RESIZED_IMAGE_HEIGHT = 30;
+const int RESIZED_IMAGE_WIDTH = 50;
+const int RESIZED_IMAGE_HEIGHT = 50;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void GenData::GenerateData()
 {
-    cv::Mat imgTrainingSymbols;         // input image
-    cv::Mat imgGrayscale;               // 
-    cv::Mat imgBlurred;                 // declare various images
-    cv::Mat imgThresh;                  //
-    cv::Mat imgThreshCopy;              //
+    cv::Mat imgTrainingSymbols;
+    cv::Mat imgGrayscale;
+    cv::Mat imgBlurred;
+    cv::Mat imgThresh;
+    cv::Mat imgThreshCopy;
 
-    std::vector<std::vector<cv::Point> > ptContours;        // declare contours vector
-    std::vector<cv::Vec4i> v4iHierarchy;                    // declare contours hierarchy
+    std::vector<std::vector<cv::Point> > ptContours;
+    std::vector<cv::Vec4i> v4iHierarchy;
 
     cv::Mat matClassificationInts;      // these are our training classifications, note we will have to perform some conversions before writing to file later
 
-                                        // these are our training images, due to the data types that the KNN object KNearest requires, we have to declare a single Mat,
-                                        // then append to it as though it's a vector, also we will have to perform some conversions before writing to file later
+    // these are our training images, due to the data types that the KNN object KNearest requires, we have to declare a single Mat,
+    // then append to it as though it's a vector, also we will have to perform some conversions before writing to file later
     cv::Mat matTrainingImagesAsFlattenedFloats;
 
     std::vector<int> intValidSymbols = { 'o', '-', 'b', 'c'};
 
-    imgTrainingSymbols = cv::imread("Assets/Resources/training_symbols3.png");          // read in training numbers image
+    imgTrainingSymbols = cv::imread("Assets/Resources/training_symbols3.png");
 
-    if (imgTrainingSymbols.empty()) {                               // if unable to open image
-        printerror("error: image not read from file");         // show error message on command line
-        return;                                                  // and exit program
+    if (imgTrainingSymbols.empty()) 
+    {
+        printerror("error: image not read from file");
+        return;
     }
 
-    cv::cvtColor(imgTrainingSymbols, imgGrayscale, cv::COLOR_BGR2GRAY);        // convert to grayscale
+    cv::cvtColor(imgTrainingSymbols, imgGrayscale, cv::COLOR_BGR2GRAY); // convert to grayscale
 
-    cv::GaussianBlur(imgGrayscale,              // input image
-        imgBlurred,                             // output image
+    cv::GaussianBlur(imgGrayscale,
+        imgBlurred,
         cv::Size(5, 5),                         // smoothing window width and height in pixels
         0);                                     // sigma value, determines how much the image will be blurred, zero makes function choose the sigma value
 
@@ -82,12 +83,9 @@ void GenData::GenerateData()
             cv::imshow("matROIResized", matROIResized);                 // show resized ROI image for reference
             cv::imshow("imgTrainingNumbers", imgTrainingSymbols);       // show training numbers image, this will now have red rectangles drawn on it
 
-            int intChar = cv::waitKey(0);           // get key press
+            int intChar = cv::waitKey(0);
 
-            if (intChar == 27) {        // if esc key was pressed
-                return;              // exit program
-            }
-            else if (std::find(intValidSymbols.begin(), intValidSymbols.end(), intChar) != intValidSymbols.end()) {     // else if the char is in the list of chars we are looking for . . .
+            if (std::find(intValidSymbols.begin(), intValidSymbols.end(), intChar) != intValidSymbols.end()) {     // else if the char is in the list of chars we are looking for . . .
 
                 matClassificationInts.push_back(intChar);       // append classification char to integer list of chars
 
@@ -98,11 +96,11 @@ void GenData::GenerateData()
 
                 matTrainingImagesAsFlattenedFloats.push_back(matImageFlattenedFloat);       // add to Mat as though it was a vector, this is necessary due to the
                                                                                             // data types that KNearest.train accepts
-            }   // end if
-        }   // end if
-    }   // end for
+            }
+        }
+    }
 
-    printmsg("training complete\n\n");
+    printmsg("training complete");
 
     // save classifications to file ///////////////////////////////////////////////////////
 
@@ -116,7 +114,7 @@ void GenData::GenerateData()
     fsClassifications << "classifications" << matClassificationInts;        // write classifications into classifications section of classifications file
     fsClassifications.release();                                            // close the classifications file
 
-                                                                            // save training images to file ///////////////////////////////////////////////////////
+    // save training images to file ///////////////////////////////////////////////////////
 
     cv::FileStorage fsTrainingImages("Assets/Resources/images.xml", cv::FileStorage::WRITE);         // open the training images file
 

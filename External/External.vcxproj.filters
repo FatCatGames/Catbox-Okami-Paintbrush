@@ -271,9 +271,6 @@
     <Filter Include="opencv\sources\3rdparty\libjpeg-turbo\src\simd">
       <UniqueIdentifier>{23B344EA-0F31-9583-F828-531BE445D7AB}</UniqueIdentifier>
     </Filter>
-    <Filter Include="opencv\sources\3rdparty\libjpeg-turbo\src\simd\arm">
-      <UniqueIdentifier>{32FEFA15-1E92-F0BD-8756-4A7273092BB0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="opencv\sources\3rdparty\libjpeg-turbo\src\simd\mips">
       <UniqueIdentifier>{8B3361D5-F744-097C-8096-9BBBECA692B5}</UniqueIdentifier>
     </Filter>
@@ -3425,12 +3422,6 @@
     </ClInclude>
     <ClInclude Include="opencv\sources\3rdparty\libjpeg-turbo\src\jversion.h">
       <Filter>opencv\sources\3rdparty\libjpeg-turbo\src</Filter>
-    </ClInclude>
-    <ClInclude Include="opencv\sources\3rdparty\libjpeg-turbo\src\simd\arm\align.h">
-      <Filter>opencv\sources\3rdparty\libjpeg-turbo\src\simd\arm</Filter>
-    </ClInclude>
-    <ClInclude Include="opencv\sources\3rdparty\libjpeg-turbo\src\simd\arm\jchuff.h">
-      <Filter>opencv\sources\3rdparty\libjpeg-turbo\src\simd\arm</Filter>
     </ClInclude>
     <ClInclude Include="opencv\sources\3rdparty\libjpeg-turbo\src\simd\jsimd.h">
       <Filter>opencv\sources\3rdparty\libjpeg-turbo\src\simd</Filter>

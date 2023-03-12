@@ -646,8 +646,6 @@
     <ClInclude Include="opencv\sources\3rdparty\libjpeg-turbo\src\jsimd.h" />
     <ClInclude Include="opencv\sources\3rdparty\libjpeg-turbo\src\jsimddct.h" />
     <ClInclude Include="opencv\sources\3rdparty\libjpeg-turbo\src\jversion.h" />
-    <ClInclude Include="opencv\sources\3rdparty\libjpeg-turbo\src\simd\arm\align.h" />
-    <ClInclude Include="opencv\sources\3rdparty\libjpeg-turbo\src\simd\arm\jchuff.h" />
     <ClInclude Include="opencv\sources\3rdparty\libjpeg-turbo\src\simd\jsimd.h" />
     <ClInclude Include="opencv\sources\3rdparty\libjpeg-turbo\src\simd\mips\jsimd_dspr2_asm.h" />
     <ClInclude Include="opencv\sources\3rdparty\libjpeg-turbo\src\simd\mips64\jcsample.h" />

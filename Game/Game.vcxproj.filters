@@ -33,6 +33,9 @@
     <ClInclude Include="Networking\NetworkGameCommands.h">
       <Filter>Networking</Filter>
     </ClInclude>
+    <ClInclude Include="OpenCV\GenData.h">
+      <Filter>OpenCV</Filter>
+    </ClInclude>
     <ClInclude Include="Paintbrush.h" />
     <ClInclude Include="Player\PlayerCamera.h">
       <Filter>Player</Filter>
@@ -41,9 +44,6 @@
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="Project.h" />
-    <ClInclude Include="OpenCV\GenData.h">
-      <Filter>OpenCV</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Canvas.cpp" />
