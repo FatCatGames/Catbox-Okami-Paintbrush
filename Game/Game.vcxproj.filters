@@ -44,6 +44,8 @@
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="Project.h" />
+    <ClInclude Include="PaintingScene.h" />
+    <ClInclude Include="GameScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Canvas.cpp" />
@@ -69,6 +71,8 @@
       <Filter>Player</Filter>
     </ClCompile>
     <ClCompile Include="Project.cpp" />
+    <ClCompile Include="PaintingScene.cpp" />
+    <ClCompile Include="GameScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\CanvasPS.hlsl">

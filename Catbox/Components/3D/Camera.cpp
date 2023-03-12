@@ -83,6 +83,19 @@ void Camera::Awake()
 	Engine::GetInstance()->GetCameraController()->AddCamera(this);
 }
 
+void Camera::OnEnable()
+{
+	if (!Engine::GetInstance()->GetMainCamera() || !Engine::GetInstance()->GetMainCamera()->GetGameObject().IsActive())
+	{
+		Engine::GetInstance()->SetMainCamera(this);
+	}
+
+	if (!Engine::GetInstance()->GetActiveCamera() || !Engine::GetInstance()->GetActiveCamera()->GetGameObject().IsActive())
+	{
+		Engine::GetInstance()->SetActiveCamera(this);
+	}
+}
+
 void Camera::Init()
 {
 	//Engine::GetInstance()->GetCameraController()->AddCamera(this);

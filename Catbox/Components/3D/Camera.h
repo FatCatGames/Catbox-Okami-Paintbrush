@@ -35,6 +35,7 @@ public:
 	Camera(const Camera& aCamera);
 	~Camera();
 	void Awake() override;
+	void OnEnable() override;
 	void Init() override;
 	void OnTransformChanged() override;
 	Catbox::Matrix4x4<float>& GetProjectionMatrix();

@@ -139,6 +139,7 @@
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="CanvasPS.h" />
     <ClInclude Include="Game.pch.h" />
+    <ClInclude Include="GameScene.h" />
     <ClInclude Include="LookAtCamera.h" />
     <ClInclude Include="Managers\GameManager.h" />
     <ClInclude Include="Managers\NetMessageHandler.h" />
@@ -147,6 +148,7 @@
     <ClInclude Include="Networking\NetworkGameCommands.h" />
     <ClInclude Include="OpenCV\GenData.h" />
     <ClInclude Include="Paintbrush.h" />
+    <ClInclude Include="PaintingScene.h" />
     <ClInclude Include="Player\PlayerCamera.h" />
     <ClInclude Include="Player\PlayerController.h" />
     <ClInclude Include="Project.h" />
@@ -157,6 +159,7 @@
     <ClCompile Include="Game.pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="LookAtCamera.cpp" />
     <ClCompile Include="Managers\GameManager.cpp" />
     <ClCompile Include="Managers\NetMessageHandler.cpp" />
@@ -164,6 +167,7 @@
     <ClCompile Include="NetworkGameManager.cpp" />
     <ClCompile Include="OpenCV\GenData.cpp" />
     <ClCompile Include="Paintbrush.cpp" />
+    <ClCompile Include="PaintingScene.cpp" />
     <ClCompile Include="Player\PlayerCamera.cpp" />
     <ClCompile Include="Player\PlayerController.cpp" />
     <ClCompile Include="Project.cpp" />

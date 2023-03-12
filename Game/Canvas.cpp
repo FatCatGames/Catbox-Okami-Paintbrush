@@ -6,6 +6,8 @@
 #include "OpenCV\GenData.h"
 #include "PopupManager.h"
 #include "Graphics\Rendering\Buffers\Buffers.h"
+#include "GameScene.h"
+#include "PaintingScene.h"
 
 Canvas* Canvas::Instance;
 Microsoft::WRL::ComPtr<ID3D11Texture2D> stagingTexture;
@@ -47,6 +49,7 @@ Canvas::Canvas()
 
 	myPostRenderListener.action = [this] {Render(); };
 	GraphicsEngine::GetInstance()->AddPostRenderListener(myPostRenderListener);
+	myPaperTex = AssetRegistry::GetInstance()->GetAsset<Texture>("PaperTex");
 }
 
 Canvas::~Canvas()
@@ -56,8 +59,7 @@ Canvas::~Canvas()
 
 void Canvas::Awake()
 {
-	myPaperTex = AssetRegistry::GetInstance()->GetAsset<Texture>("PaperTex");
-	//myShader = dynamic_cast<CanvasPS*>(myGameObject->GetComponent<ModelInstance>()->GetMaterial(0)->GetPixelShader().get());
+	myShader = dynamic_cast<CanvasPS*>(myGameObject->GetComponent<ModelInstance>()->GetMaterial(0)->GetPixelShader().get());
 }
 
 
@@ -130,6 +132,10 @@ void Canvas::Save()
 	}
 
 	myIsPainting = false;
+
+	PaintingScene::GetInstance()->GetGameObject().SetActive(false);
+	GameScene::GetInstance()->GetGameObject().SetActive(true);
+	Engine::GetInstance()->SetGamePaused(false);
 }
 
 void Canvas::Generate()
@@ -140,20 +146,24 @@ void Canvas::Generate()
 void Canvas::StartPainting()
 {
 	myIsPainting = true;
-	//GraphicsEngine::GetInstance()->RunFullScreenShader(
-	//	GraphicsEngine::GetInstance()->GetPreviousScreenTex()->GetShaderResourceView().GetAddressOf(),
-	//	myScreenTex.GetRenderTargetView().GetAddressOf(),
-	//	GraphicsEngine::GetInstance()->myCopyPS);
+	GraphicsEngine::GetInstance()->RunFullScreenShader(
+		GraphicsEngine::GetInstance()->GetPreviousScreenTex()->GetShaderResourceView().GetAddressOf(),
+		myScreenTex.GetRenderTargetView().GetAddressOf(),
+		GraphicsEngine::GetInstance()->myCopyPS);
+
+	GameScene::GetInstance()->GetGameObject().SetActive(false);
+	PaintingScene::GetInstance()->GetGameObject().SetActive(true);
+	Engine::GetInstance()->SetGamePaused(true);
 }
 
 void Canvas::Render()
 {
 	if (!myIsPainting) return;
 
-	myPaperTex->SetAsResource(2);
+	//myPaperTex->SetAsResource(2);
 
-	GraphicsEngine::GetInstance()->RunFullScreenShader(
-		GraphicsEngine::GetInstance()->GetPreviousScreenTex()->GetShaderResourceView().GetAddressOf(),
+	/*GraphicsEngine::GetInstance()->RunFullScreenShader(
+		myScreenTex.GetShaderResourceView().GetAddressOf(),
 		GraphicsEngine::GetInstance()->GetMainCamera()->GetRenderTexture().GetRenderTargetView().GetAddressOf(),
-		myCanvasPS);
+		myCanvasPS);*/
 }

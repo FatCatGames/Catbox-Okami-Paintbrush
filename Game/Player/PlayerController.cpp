@@ -101,14 +101,7 @@ void PlayerController::HandlePainting()
 {
 	if (Input::GetKeyPress(KeyCode::CTRL))
 	{
-		myIsPainting = true;
 		Canvas::GetInstance()->StartPainting();
-		Engine::GetInstance()->SetGamePaused(true);
-	}
-	else if (Input::GetKeyReleased(KeyCode::CTRL))
-	{
-		myIsPainting = false;
-		Engine::GetInstance()->SetGamePaused(false);
 	}
 }
 

@@ -11,7 +11,9 @@ public:
 	void Awake() override;
 	void Paint(int anXPos, int anYPos, int aRadius, const Color& aColor);
 	void Clear();
-	Texture& GetTexture() { return myPaintingTex; }
+	Texture& GetPaintingTex() { return myPaintingTex; }
+	Texture& GetScreenTex() { return myScreenTex; }
+	Texture& GetPaperTex() { return *myPaperTex; }
 	void Save();
 	void Generate();
 	void StartPainting();
@@ -21,7 +23,7 @@ private:
 	static Canvas* Instance;
 	std::shared_ptr<PixelShader> myCanvasPS;
 
-	//CanvasPS* myShader;
+	CanvasPS* myShader;
 	bool myIsPainting = false;
 	std::shared_ptr<Texture> myPaperTex;
 	Texture myPaintingTex;

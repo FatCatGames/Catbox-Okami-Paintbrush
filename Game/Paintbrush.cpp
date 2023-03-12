@@ -30,11 +30,9 @@ void Paintbrush::Update()
 
 	auto mousePos = Input::GetMousePosition();
 	auto screenPos = Engine::GetInstance()->ViewportToScreenPos(mousePos.x, mousePos.y);
-	//int convertedPosX = (screenPos.x / static_cast<float>(DX11::GetResolution().x) ) * 1920;
-	//int convertedPosY = (screenPos.y / static_cast<float>(DX11::GetResolution().y) ) * 1080;
+
 
 	myTransform->SetWorldPos(Engine::GetInstance()->GetActiveCamera()->MouseToWorldPos(mousePos, 0));
-
 
 	if (Input::GetKeyPress(KeyCode::MOUSELEFT))
 	{
@@ -118,12 +116,10 @@ void Paintbrush::Update()
 
 	if (Input::GetKeyReleased(KeyCode::CTRL))
 	{
+		Canvas::GetInstance()->Save();
 		Canvas::GetInstance()->Clear();
 	}
-	if (Input::GetKeyReleased(KeyCode::S))
-	{
-		Canvas::GetInstance()->Save();
-	}
+
 	if (Input::GetKeyReleased(KeyCode::G))
 	{
 		Canvas::GetInstance()->Generate();

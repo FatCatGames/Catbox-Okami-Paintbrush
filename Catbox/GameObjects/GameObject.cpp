@@ -108,6 +108,7 @@ bool GameObject::IsActive()
 void GameObject::SetActive(bool aIsActiveFlag)
 {
 	myIsActive = aIsActiveFlag;
+	if (!myHasStarted) Start();
 	SetComponentsEnabled(aIsActiveFlag);
 }
 
@@ -610,7 +611,7 @@ void GameObject::Update()
 
 void GameObject::Start()
 {
-	if (myHasStarted) return;
+	if (myHasStarted || !myIsActive) return;
 	for (size_t i = 0; i < myTransform.myChildren.size(); i++)
 	{
 		myTransform.myChildren[i]->myGameObject->Start();

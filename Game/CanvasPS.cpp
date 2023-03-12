@@ -16,5 +16,7 @@ CanvasPS::CanvasPS()
 
 void CanvasPS::SetResource()
 {
-	Canvas::GetInstance()->GetTexture().SetAsResource(0);
+	Canvas::GetInstance()->GetPaintingTex().SetAsResource(0);
+	Canvas::GetInstance()->GetScreenTex().SetAsResource(1);
+	Canvas::GetInstance()->GetPaperTex().SetAsResource(2);
 }

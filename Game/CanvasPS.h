@@ -8,5 +8,4 @@ public:
 	void SetResource() override;
 
 private:
-
 };
