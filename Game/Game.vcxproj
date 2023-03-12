@@ -163,7 +163,6 @@
     <ClCompile Include="NetworkComponent.cpp" />
     <ClCompile Include="NetworkGameManager.cpp" />
     <ClCompile Include="OpenCV\GenData.cpp" />
-    <ClCompile Include="OpenCV\TrainAndTest.cpp" />
     <ClCompile Include="Paintbrush.cpp" />
     <ClCompile Include="Player\PlayerCamera.cpp" />
     <ClCompile Include="Player\PlayerController.cpp" />

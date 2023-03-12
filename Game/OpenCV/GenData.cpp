@@ -58,7 +58,7 @@ void GenData::GenerateData()
         11,                                     // size of a pixel neighborhood used to calculate threshold value
         2);                                     // constant subtracted from the mean or weighted mean
 
-    cv::imshow("imgThresh", imgThresh);         // show threshold image for reference
+   //cv::imshow("imgThresh", imgThresh);         // show threshold image for reference
 
     imgThreshCopy = imgThresh.clone();          // make a copy of the thresh image, this in necessary b/c findContours modifies the image
 
@@ -81,7 +81,7 @@ void GenData::GenerateData()
 
             cv::imshow("matROI", matROI);                               // show ROI image for reference
             cv::imshow("matROIResized", matROIResized);                 // show resized ROI image for reference
-            cv::imshow("imgTrainingNumbers", imgTrainingSymbols);       // show training numbers image, this will now have red rectangles drawn on it
+            //cv::imshow("imgTrainingNumbers", imgTrainingSymbols);       // show training numbers image, this will now have red rectangles drawn on it
 
             int intChar = cv::waitKey(0);
 

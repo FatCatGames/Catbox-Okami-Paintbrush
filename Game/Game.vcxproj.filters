@@ -61,9 +61,6 @@
     <ClCompile Include="OpenCV\GenData.cpp">
       <Filter>OpenCV</Filter>
     </ClCompile>
-    <ClCompile Include="OpenCV\TrainAndTest.cpp">
-      <Filter>OpenCV</Filter>
-    </ClCompile>
     <ClCompile Include="Paintbrush.cpp" />
     <ClCompile Include="Player\PlayerCamera.cpp">
       <Filter>Player</Filter>

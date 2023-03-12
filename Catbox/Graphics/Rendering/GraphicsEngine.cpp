@@ -425,8 +425,8 @@ void GraphicsEngine::RenderFrame()
 		DX11::Context->OMSetDepthStencilState(DepthStencilStates::GetDepthStencilStates()[DepthStencilState::DSS_ReadWrite].Get(), 0xffffffff);
 
 		myForwardRenderer->Render(myMeshesToRenderForward, myParticleSystemsToRender, targetToUse->GetRenderTargetView());
-		RunFullScreenShader(myCamera->GetDepthStencil().GetShaderResourceView().GetAddressOf(), myPreviousDepthTexture->GetRenderTargetView().GetAddressOf(), myCopyPS);
-		DX11::Context->OMSetDepthStencilState(DepthStencilStates::GetDepthStencilStates()[DepthStencilState::DSS_Off].Get(), 0xffffffff);
+		//RunFullScreenShader(myCamera->GetDepthStencil().GetShaderResourceView().GetAddressOf(), myPreviousDepthTexture->GetRenderTargetView().GetAddressOf(), myCopyPS);
+		//DX11::Context->OMSetDepthStencilState(DepthStencilStates::GetDepthStencilStates()[DepthStencilState::DSS_Off].Get(), 0xffffffff);
 		std::swap(targetToUse, resourceToUse);
 
 		myBuffers->CreateFrameBuffer(myCamera);

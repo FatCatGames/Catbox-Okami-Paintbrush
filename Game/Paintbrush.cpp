@@ -38,7 +38,7 @@ void Paintbrush::Update()
 
 	if (Input::GetKeyPress(KeyCode::MOUSELEFT))
 	{
-		myRemainingPaint = 100;
+		myRemainingPaint = 1000;
 	}
 
 	bool isPainting = Input::GetKeyHeld(KeyCode::MOUSELEFT);

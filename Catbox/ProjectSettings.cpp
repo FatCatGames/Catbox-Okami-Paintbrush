@@ -108,6 +108,8 @@ void ProjectSettings::LoadProjectSettings()
 					physicsLayers[lay1][lay2] = physicsMatrix[lay1][lay2].GetBool();
 				}
 			}
+
+			Engine::GetInstance()->GetGraphicsEngine()->SetGammaCorrectionEnabled(document["GammaCorrection"].GetBool());
 		}
 	}
 }
