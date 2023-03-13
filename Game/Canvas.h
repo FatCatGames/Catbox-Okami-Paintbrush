@@ -9,9 +9,9 @@ public:
 	Canvas();
 	~Canvas();
 	void Awake() override;
-	void Paint(int anXPos, int anYPos, int aRadius, const Color& aColor);
+	void Paint(int anXPos, int anYPos, int aRadius, float aRadiusModifier, const Color& aColor);
 	void Clear();
-	Texture& GetPaintingTex() { return myPaintingTex; }
+	Texture& GetPaintingTex();
 	Texture& GetScreenTex() { return myScreenTex; }
 	Texture& GetPaperTex() { return *myPaperTex; }
 	void Save();
@@ -27,6 +27,7 @@ private:
 	bool myIsPainting = false;
 	std::shared_ptr<Texture> myPaperTex;
 	Texture myPaintingTex;
+	Texture myPaintingDisplayTex;
 	Texture myScreenTex;
 	//Texture myStagingTex;
 	const int myWidth = 1920;

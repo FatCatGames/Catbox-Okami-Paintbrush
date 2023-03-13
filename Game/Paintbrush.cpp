@@ -100,16 +100,13 @@ void Paintbrush::Update()
 				percent = i / static_cast<float>(length);
 			}
 
-			//float size = myRadius * speedMultiplier * remainingPaintMultiplier;
-			float size = myRadius * remainingPaintMultiplier;
-			size = Catbox::Clamp(size, myMinSize, myMaxSize);
-			//size = Catbox::Clamp(size, myMinSize, myMaxSize);
 			int newX = std::round(convertedPreviousPos.x + convertedMouseDelta.x * percent);
 			int newY = std::round(convertedPreviousPos.y + convertedMouseDelta.y * percent);
 
-			//auto pos = Engine::GetInstance()->ViewportToScreenPos(newX, newY);
-			Canvas::GetInstance()->Paint(newX, newY, size, col);
-			i += size * myDensity;
+			float multiplier = speedMultiplier * remainingPaintMultiplier;
+			//size = Catbox::Clamp(myRadius * multiplier, myMinSize, myMaxSize);
+			Canvas::GetInstance()->Paint(newX, newY, myRadius, multiplier, col);
+			i += myRadius;
 		}
 	}
 
