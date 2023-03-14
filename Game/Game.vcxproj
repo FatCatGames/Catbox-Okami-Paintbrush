@@ -136,6 +136,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BrushActions.h" />
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="CanvasPS.h" />
     <ClInclude Include="Game.pch.h" />
@@ -154,6 +155,7 @@
     <ClInclude Include="Project.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BrushActions.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="CanvasPS.cpp" />
     <ClCompile Include="Game.pch.cpp">

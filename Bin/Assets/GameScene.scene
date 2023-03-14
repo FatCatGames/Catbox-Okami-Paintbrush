@@ -262,7 +262,7 @@
         {
             "Name": "GameScene",
             "Active": true,
-            "Opened": false,
+            "Opened": true,
             "Transform": {
                 "Version": 2,
                 "BoneParentID": -1,
@@ -487,9 +487,19 @@
                                 "AngleMax": 1.399999976158142,
                                 "AngleMin": -1.399999976158142,
                                 "Post Processing Volume": {
-                                    "Blend": 0.5,
+                                    "Blend": 0.0,
                                     "Enabled": true,
-                                    "BlendingEnabled": false,
+                                    "BlendingEnabled": true,
+                                    "BlendPoints": [
+                                        {
+                                            "Profile": "PostProcess",
+                                            "Pos": 0.0
+                                        },
+                                        {
+                                            "Profile": "Night",
+                                            "Pos": 1.0
+                                        }
+                                    ],
                                     "Profile": "PostProcess"
                                 },
                                 "OffsetX": 0.0,

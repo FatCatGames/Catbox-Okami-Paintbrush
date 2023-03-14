@@ -46,6 +46,7 @@
     <ClInclude Include="Project.h" />
     <ClInclude Include="PaintingScene.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="BrushActions.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Canvas.cpp" />
@@ -73,6 +74,7 @@
     <ClCompile Include="Project.cpp" />
     <ClCompile Include="PaintingScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="BrushActions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\CanvasPS.hlsl">

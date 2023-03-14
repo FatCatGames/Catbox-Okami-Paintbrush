@@ -143,26 +143,14 @@ Texture& Canvas::GetPaintingTex()
 void Canvas::Save()
 {
 	std::string symbol = GenData::GetSymbol(stagingDataTexture.Get(), myWidth, myHeight);
-	std::string symbolName = "";
-	if (symbol == "o") symbolName = "Sun";
-	else if (symbol == "b") symbolName = "Bomb";
-	else if (symbol == "c") symbolName = "Moon";
-	else if (symbol == "-") symbolName = "Slash";
-
-	if (!symbolName.empty())
-	{
-		PopupManager::CreatePopup("Symbol", 3, { 400,150 }, symbolName, { Engine::GetInstance()->GetWindowSize().x * 0.5f, 400 });
-	}
-	else
-	{
-		printmsg("Failed");
-	}
 
 	myIsPainting = false;
 
 	PaintingScene::GetInstance()->GetGameObject().SetActive(false);
 	GameScene::GetInstance()->GetGameObject().SetActive(true);
 	Engine::GetInstance()->SetGamePaused(false);
+
+	if (!symbol.empty()) GameScene::GetInstance()->PerformAction(symbol, Input::GetMousePosition());
 }
 
 void Canvas::Generate()

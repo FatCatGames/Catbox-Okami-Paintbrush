@@ -17,6 +17,7 @@ public:
 	const VignetteData* GetVignetteSettings();
 	void Save(rapidjson::Value& aVolumeData);
 	void Load(rapidjson::Value& aVolumeData);
+	void SetBlendValue(float aValue) { myBlendValue = aValue; CalculateBlendResult(); }
 
 private:
 	struct BlendVolumePoint
