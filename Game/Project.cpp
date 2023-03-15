@@ -22,6 +22,7 @@
 #include "Canvas.h"
 #include "GameScene.h"
 #include "PaintingScene.h"
+#include "Bomb.h"
 
 //Not too fond of settings not loading correctly
 #include "ProjectSettings.h"
@@ -39,6 +40,7 @@ void Project::Setup()
 	ComponentHandler::RegisterComponent<Canvas>();
 	ComponentHandler::RegisterComponent<GameScene>();
 	ComponentHandler::RegisterComponent<PaintingScene>();
+	ComponentHandler::RegisterComponent<Bomb>();
 
 #pragma endregion
 

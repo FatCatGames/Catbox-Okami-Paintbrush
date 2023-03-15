@@ -136,9 +136,11 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Bomb.h" />
     <ClInclude Include="BrushActions.h" />
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="CanvasPS.h" />
+    <ClInclude Include="DayNightCycle.h" />
     <ClInclude Include="Game.pch.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="LookAtCamera.h" />
@@ -155,9 +157,11 @@
     <ClInclude Include="Project.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="BrushActions.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="CanvasPS.cpp" />
+    <ClCompile Include="DayNightCycle.cpp" />
     <ClCompile Include="Game.pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

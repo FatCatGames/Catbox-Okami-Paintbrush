@@ -1,4 +1,5 @@
 #pragma once
+#include "DayNightCycle.h"
 
 class GameScene : public Component
 {
@@ -10,12 +11,5 @@ public:
 
 private:
 	static GameScene* Instance;
-
-	//Actions
-	float myLerpTimer = 2;
-	float myLerpTarget = 2;
-	bool myIsDay = true;
-	Color myDaytimeColor;
-	Color myNighttimeColor;
-	Color myCurrentColor;
+	DayNightCycle myDayNightCycle;
 };

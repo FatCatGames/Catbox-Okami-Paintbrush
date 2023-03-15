@@ -47,6 +47,8 @@
     <ClInclude Include="PaintingScene.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="BrushActions.h" />
+    <ClInclude Include="DayNightCycle.h" />
+    <ClInclude Include="Bomb.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Canvas.cpp" />
@@ -75,6 +77,8 @@
     <ClCompile Include="PaintingScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="BrushActions.cpp" />
+    <ClCompile Include="DayNightCycle.cpp" />
+    <ClCompile Include="Bomb.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\CanvasPS.hlsl">

@@ -9,34 +9,11 @@ GameScene* GameScene::Instance;
 GameScene::GameScene()
 {
 	Instance = this;
-	myDaytimeColor = Color(0.58f, 0.8f, 1, 1);
-	myNighttimeColor = Color(0.06f, 0.06f, 0.27f, 1);
 }
 
 void GameScene::Update()
 {
-	if (myLerpTimer < myLerpTarget)
-	{
-		myLerpTimer += deltaTime;
-		float percent = myLerpTimer / myLerpTarget;
-		if (!myIsDay)
-		{
-			myCurrentColor = Catbox::Lerp(myNighttimeColor, myDaytimeColor, percent);
-			Engine::GetInstance()->GetMainCamera()->GetPostProcessingVolume()->SetBlendValue(1 - percent);
-		}
-		else
-		{
-			myCurrentColor = Catbox::Lerp(myDaytimeColor, myNighttimeColor, percent);
-			Engine::GetInstance()->GetMainCamera()->GetPostProcessingVolume()->SetBlendValue(percent);
-		}
-
-		GraphicsEngine::GetInstance()->SetClearColor(myCurrentColor);
-
-		if (myLerpTimer >= myLerpTarget)
-		{
-			myIsDay = !myIsDay;
-		}
-	}
+	myDayNightCycle.Update();
 }
 
 void GameScene::PerformAction(const std::string& anAction, Vector2i& aPosition)
@@ -47,13 +24,13 @@ void GameScene::PerformAction(const std::string& anAction, Vector2i& aPosition)
 	if (anAction == "o")
 	{
 		symbolName = "Sun";
-		myLerpTimer = 0;
+		myDayNightCycle.SetTime(true);
 	}
 	//MOON
 	else if (anAction == "c")
 	{
 		symbolName = "Moon";
-		myLerpTimer = 0;
+		myDayNightCycle.SetTime(false);
 	}
 	//BOMB
 	else if (anAction == "b")
@@ -92,7 +69,7 @@ void GameScene::PerformAction(const std::string& anAction, Vector2i& aPosition)
 	else if (anAction == "-")
 	{
 		symbolName = "Slash";
-		
+
 	}
 
 	if (!symbolName.empty())

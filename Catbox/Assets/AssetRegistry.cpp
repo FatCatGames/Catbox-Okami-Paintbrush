@@ -581,6 +581,7 @@ void AssetRegistry::CreateTextures()
 	auto defN = AssetLoader::LoadTexture("Resources/Textures/T_default_N.dds");
 	auto defM = AssetLoader::LoadTexture("Resources/Textures/T_default_M.dds");
 	AssetLoader::LoadTexture("Resources/Textures/Particle-Default.dds");
+	AssetLoader::LoadTexture("Resources/Textures/ParticleStar.dds");
 	AssetLoader::LoadTexture("Resources/Textures/Circle-Solid.dds");
 	AssetLoader::LoadTexture("Resources/Textures/Square-Default.dds");
 	AssetLoader::LoadTexture("Resources/Textures/BlueNoise.dds");

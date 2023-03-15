@@ -17,17 +17,131 @@
                 0.0
             ],
             "Size": [
-                1.0,
-                1.0,
-                1.0
+                2.0,
+                2.0,
+                2.0
             ],
-            "Children": []
+            "Children": [
+                {
+                    "Name": "Unnamed asset",
+                    "Active": true,
+                    "Opened": true,
+                    "Transform": {
+                        "Version": 2,
+                        "BoneParentID": -1,
+                        "Pos": [
+                            0.0,
+                            0.3124532103538513,
+                            0.0
+                        ],
+                        "Rot": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Size": [
+                            0.5,
+                            0.5,
+                            0.5
+                        ],
+                        "Children": []
+                    },
+                    "Components": [
+                        {
+                            "ComponentType": "Particle System",
+                            "Emitters": [
+                                "BombFuse"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Name": "Unnamed asset",
+                    "Active": true,
+                    "Opened": true,
+                    "Transform": {
+                        "Version": 2,
+                        "BoneParentID": -1,
+                        "Pos": [
+                            0.0,
+                            0.14238721132278442,
+                            0.0
+                        ],
+                        "Rot": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Size": [
+                            0.014999999664723871,
+                            0.3100000023841858,
+                            0.014999999664723871
+                        ],
+                        "Children": []
+                    },
+                    "Components": [
+                        {
+                            "ComponentType": "Model Instance",
+                            "Version": 6,
+                            "Model": "Cube",
+                            "Materials": [
+                                "Black"
+                            ],
+                            "UsedForNav": false,
+                            "Renderer": 1,
+                            "Material Instance": false,
+                            "CastShadows": true,
+                            "InstanceCount": 0
+                        }
+                    ]
+                },
+                {
+                    "Name": "Unnamed asset",
+                    "Active": true,
+                    "Opened": true,
+                    "Transform": {
+                        "Version": 2,
+                        "BoneParentID": -1,
+                        "Pos": [
+                            0.0,
+                            0.16409039497375488,
+                            0.0
+                        ],
+                        "Rot": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Size": [
+                            0.014000000432133676,
+                            0.3100000023841858,
+                            0.014000000432133676
+                        ],
+                        "Children": []
+                    },
+                    "Components": [
+                        {
+                            "ComponentType": "Model Instance",
+                            "Version": 6,
+                            "Model": "Cube",
+                            "Materials": [
+                                "Red"
+                            ],
+                            "UsedForNav": false,
+                            "Renderer": 1,
+                            "Material Instance": false,
+                            "CastShadows": true,
+                            "InstanceCount": 0
+                        }
+                    ]
+                }
+            ]
         },
         "Components": [
             {
                 "ComponentType": "Model Instance",
                 "Version": 6,
-                "Model": "Cube",
+                "Model": "grenade_bullet",
                 "Materials": [
                     "Red"
                 ],
@@ -47,6 +161,20 @@
                     0.0,
                     0.0
                 ]
+            },
+            {
+                "ComponentType": "Rigid Body",
+                "Use Gravity": true,
+                "Mass": 1.0,
+                "Lock Translation X": false,
+                "Lock Translation Y": false,
+                "Lock Translation Z": false,
+                "Lock Rotation X": false,
+                "Lock Rotation Y": false,
+                "Lock Rotation Z": false
+            },
+            {
+                "ComponentType": "Bomb"
             }
         ]
     }

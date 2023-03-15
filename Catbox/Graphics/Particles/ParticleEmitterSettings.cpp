@@ -253,7 +253,7 @@ void ParticleEmitterSettings::SaveAsset(const char* /*aPath*/)
 		graphics.AddMember("Loop", value, alloc);
 	}
 
-	value.SetString(myTexture->GetName().c_str(), alloc);
+	value.SetString(myTexture ? myTexture->GetName().c_str() : "", alloc);
 	graphics.AddMember("Texture", value, alloc);
 	output.AddMember("Graphics", graphics, alloc);
 
@@ -572,7 +572,10 @@ void ParticleEmitterSettings::RenderGraphicsSettings()
 		}
 		ImGui::Spacing();
 
-		ImGui::Image(static_cast<ImTextureID>(myTexture->GetShaderResourceView().Get()), { 64, 64 });
+		if (myTexture) 
+		{
+			ImGui::Image(static_cast<ImTextureID>(myTexture->GetShaderResourceView().Get()), { 64, 64 });
+		}
 		ImGui::SameLine();
 		ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 45);
 		ImGui::SetNextItemWidth(100);
