@@ -7,7 +7,7 @@ public:
 	static GameScene* GetInstance() { return Instance; }
 	GameScene();
 	void Update() override;
-	void PerformAction(const std::string& anAction, Vector2i& aPosition);
+	void PerformAction(BrushSymbol& anAction);
 
 private:
 	static GameScene* Instance;

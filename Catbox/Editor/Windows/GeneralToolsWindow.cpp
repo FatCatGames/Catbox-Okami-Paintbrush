@@ -70,7 +70,7 @@ void GeneralToolsWindow::Render()
 	if (brushModeActive)
 	{
 		auto& editorCam = Editor::GetInstance()->GetEditorCamera();
-		Vector3f pos = editorCam.GetCamera()->MouseToWorldPos(Input::GetMousePosition());
+		Vector3f pos = editorCam.GetCamera()->MouseToWorldPos(Input::GetMousePosition(), 1);
 		pos.y = myYPos;
 
 		mySelectedPrefabModel->Render();

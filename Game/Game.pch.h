@@ -6,5 +6,6 @@
 
 #include "stdafx.h"
 #include "Managers/GameManager.h"
+#include "BrushSymbol.h"
 
 #endif

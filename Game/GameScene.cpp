@@ -16,60 +16,49 @@ void GameScene::Update()
 	myDayNightCycle.Update();
 }
 
-void GameScene::PerformAction(const std::string& anAction, Vector2i& aPosition)
+void GameScene::PerformAction(BrushSymbol& anAction)
 {
 	std::string symbolName = "";
 
 	//SUN
-	if (anAction == "o")
+	if (anAction.name == "o")
 	{
 		symbolName = "Sun";
 		myDayNightCycle.SetTime(true);
 	}
 	//MOON
-	else if (anAction == "c")
+	else if (anAction.name == "c")
 	{
 		symbolName = "Moon";
 		myDayNightCycle.SetTime(false);
 	}
 	//BOMB
-	else if (anAction == "b")
+	else if (anAction.name == "b")
 	{
 		Ray ray;
 		auto cam = Engine::GetInstance()->GetActiveCamera();
 
+		Vector2i center = Vector2i((anAction.minX + anAction.maxX) / 2, (anAction.minY + anAction.maxY) / 2);
 
-		Vector2i mousePos = Engine::GetInstance()->ViewportToScreenPos(aPosition);
-		float mouseX = mousePos.x / static_cast<float>(DX11::GetResolution().x);
-		float mouseY = mousePos.y / static_cast<float>(DX11::GetResolution().y);
-
-		auto matInv = Catbox::Matrix4x4<float>::GetFastInverse(Catbox::Matrix4x4<float>::GetFastInverse(cam->GetTransform()->GetWorldTransformMatrix()) * cam->GetProjectionMatrix());
-		Vector4f rayOrigin = Vector4f(mouseX * 2 - 1, 1 - mouseY * 2, 0, 1) * matInv;
-		Vector4f rayEnd = Vector4f(mouseX * 2 - 1, 1 - mouseY * 2, 1, 1) * matInv;
-
-		rayOrigin /= rayOrigin.w;
-		rayEnd /= rayEnd.w;
-
-		Vector3f rayEnd2 = cam->MouseToWorldPos(Input::GetMousePosition());
-
-		Vector4f rayDir4 = (rayEnd - rayOrigin).GetNormalized();
+		Vector4f rayEnd2 = cam->MouseToWorld(center, 1);
+		Vector4f rayOrigin2 = cam->MouseToWorld(center, 0);
+		Vector4f rayDir4 = (rayEnd2 - rayOrigin2).GetNormalized();
 		Vector3f rayDir = Vector3f(rayDir4.x, rayDir4.y, rayDir4.z);
 
 
 		ray.InitWithOriginAndDirection(cam->GetTransform()->worldPos(), rayDir);
-		Vector3f intersectionOut = cam->GetTransform()->worldPos() + rayDir * 5.f;
-		Collider* colliderHit = Engine::GetInstance()->GetCollisionManager()->RayIntersect(ray, 100, { 0 }, intersectionOut, true);
+		Vector3f intersectionOut;
+		Collider* colliderHit = Engine::GetInstance()->GetCollisionManager()->RayIntersect(ray, 5, { 0 }, intersectionOut, true);
 		if (colliderHit)
 		{
-			intersectionOut += Vector3f::up();
 			printmsg(colliderHit->GetGameObject().GetName());
 		}
 
 		auto bomb = InstantiatePrefab("Bomb");
-		bomb->GetTransform()->SetWorldPos(intersectionOut);
+		bomb->GetTransform()->SetWorldPos(Vector3f::up () + (cam->GetTransform()->worldPos() + rayDir * 5.f));
 	}
 	//SLASH
-	else if (anAction == "-")
+	else if (anAction.name == "-")
 	{
 		symbolName = "Slash";
 	}

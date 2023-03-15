@@ -410,18 +410,18 @@ Camera::Frustum Camera::CreateFrustum()
 	return frustum;
 }
 
-Vector3f Camera::MouseToWorldPos(Vector2i aMousePos)
+Vector4f Camera::MouseToWorld(Vector2i aMousePos, int aDepth)
 {
 	Vector2i mousePos = Engine::GetInstance()->ViewportToScreenPos(aMousePos);
 	float mouseX = mousePos.x / static_cast<float>(DX11::GetResolution().x);
 	float mouseY = mousePos.y / static_cast<float>(DX11::GetResolution().y);
 
 	auto matInv = Catbox::Matrix4x4<float>::GetFastInverse(Catbox::Matrix4x4<float>::GetFastInverse(myTransform->GetWorldTransformMatrix()) * myProjectionMatrix);
-	Vector4f pos = Vector4f(mouseX * 2 - 1, 1 - mouseY * 2, 1, 1) * matInv;
+	Vector4f pos = Vector4f(mouseX * 2 - 1, 1 - mouseY * 2, aDepth, 1) * matInv;
 
 	pos /= pos.w;
 
-	return Vector3f(pos.x, pos.y, pos.w);
+	return pos;
 }
 
 Vector3f Camera::MouseToWorldPos(Vector2i aMousePos, float anYPos)

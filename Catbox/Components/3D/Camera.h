@@ -62,7 +62,7 @@ public:
 	Frustum CreateFrustum();
 
 	Vector3f MouseToWorldPos(Vector2i aMousePos, float anYPos);
-	Vector3f MouseToWorldPos(Vector2i aMousePos);
+	Vector4f MouseToWorld(Vector2i aMousePos, int aDepth = 1);
 	Vector3f GetMouseClickDirection(Vector2i aMousePos);
 
 protected:

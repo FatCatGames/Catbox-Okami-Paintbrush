@@ -49,6 +49,7 @@
     <ClInclude Include="BrushActions.h" />
     <ClInclude Include="DayNightCycle.h" />
     <ClInclude Include="Bomb.h" />
+    <ClInclude Include="BrushSymbol.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Canvas.cpp" />

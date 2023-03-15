@@ -142,7 +142,7 @@ Texture& Canvas::GetPaintingTex()
 
 void Canvas::Save()
 {
-	std::string symbol = GenData::GetSymbol(stagingDataTexture.Get(), myWidth, myHeight);
+	BrushSymbol symbol = GenData::GetSymbol(stagingDataTexture.Get(), myWidth, myHeight);
 
 	myIsPainting = false;
 
@@ -150,7 +150,7 @@ void Canvas::Save()
 	GameScene::GetInstance()->GetGameObject().SetActive(true);
 	Engine::GetInstance()->SetGamePaused(false);
 
-	if (!symbol.empty()) GameScene::GetInstance()->PerformAction(symbol, Input::GetMousePosition());
+	if (!symbol.name.empty()) GameScene::GetInstance()->PerformAction(symbol);
 }
 
 void Canvas::Generate()
