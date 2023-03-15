@@ -505,6 +505,11 @@
                                 "OffsetX": 0.0,
                                 "OffsetY": 2.0,
                                 "OffsetZ": 3.0
+                            },
+                            {
+                                "ComponentType": "Camera Shake",
+                                "Intensity": 0.5,
+                                "Duration": 0.5
                             }
                         ]
                     },

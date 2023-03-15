@@ -1,7 +1,7 @@
 #include "Game.pch.h"
 #include "Bomb.h"
 #include "Components\Physics\RigidBody.h"
-
+#include "Components\CameraShake.h"
 void Bomb::OnTransformChanged()
 {
 	if (!myHasSavedPos)
@@ -22,6 +22,7 @@ void Bomb::Update()
 	myAliveTime += deltaTime;
 	if (myAliveTime > 2)
 	{
+		Engine::GetInstance()->GetActiveCamera()->GetGameObject().GetComponent<CameraShake>()->Start();
 		auto explosion = InstantiatePrefab("BombExplosion");
 		explosion->GetTransform()->SetWorldPos(myTransform->worldPos());
 		myGameObject->Destroy();

@@ -50,6 +50,10 @@ void GameScene::PerformAction(const std::string& anAction, Vector2i& aPosition)
 		rayOrigin /= rayOrigin.w;
 		rayEnd /= rayEnd.w;
 
+		Vector3f rayEnd2 = cam->MouseToWorldPos(Input::GetMousePosition());
+
+
+
 		Vector4f rayDir4 = (rayEnd - rayOrigin).GetNormalized();
 		Vector3f rayDir = Vector3f(rayDir4.x, rayDir4.y, rayDir4.z);
 
@@ -69,7 +73,6 @@ void GameScene::PerformAction(const std::string& anAction, Vector2i& aPosition)
 	else if (anAction == "-")
 	{
 		symbolName = "Slash";
-
 	}
 
 	if (!symbolName.empty())

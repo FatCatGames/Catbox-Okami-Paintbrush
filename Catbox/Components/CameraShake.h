@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObjects/Component.h"
-
+#include "CommonUtilities\Curve.h"
 class CameraShake : public Component
 {
 public:
@@ -25,14 +25,16 @@ public:
 	void SetShakeDuration(float aDuration) { myTempShakeDuration = aDuration; };
 
 private:
-	float myShakeTime;
+	float myTotalShakeTime;
 	Camera::CameraSettingsTemplate myCameraOrigin;
 	GameObject* myTemporaryCamera = nullptr;
-
+	Curve myShakeIntensityMultiplier;
 	bool myCameraShakeActive;
 	float myCameraShakeIntensity;
 	float myShakeDuration;
 	float myTempShakeIntensity;
 	float myTempShakeDuration;
+	float myTimeBetweenShakes = 0.02f;
+	float myTimeSinceShake;
 };
 

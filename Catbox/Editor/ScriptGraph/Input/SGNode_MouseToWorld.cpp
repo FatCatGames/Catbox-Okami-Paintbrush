@@ -16,8 +16,7 @@ size_t SGNode_MouseToWorld::DoOperation()
 {
 	float y = 0;
 	GetPinData("Y-Position", y);
-	Vector2i screenPos = Engine::GetInstance()->ViewportToScreenPos(Input::GetMousePosition());
-	Vector3f worldPos = GraphicsEngine::GetInstance()->GetMainCamera()->MouseToWorldPos(screenPos, y);
+	Vector3f worldPos = GraphicsEngine::GetInstance()->GetMainCamera()->MouseToWorldPos(Input::GetMousePosition());
 	SetPinData("World Pos", worldPos);
 
 	return Exit();

@@ -14,6 +14,11 @@ void CameraShake::Awake()
 
 void CameraShake::Init()
 {
+	myShakeIntensityMultiplier.AddCoord({ 0, 0 });
+	myShakeIntensityMultiplier.AddCoord({ 0.25f, 0.15f });
+	myShakeIntensityMultiplier.AddCoord({ 0.5f, 1 });
+	myShakeIntensityMultiplier.AddCoord({ 0.75f, 0.15f });
+	myShakeIntensityMultiplier.AddCoord({ 1, 0 });
 	myCameraShakeActive = false;
 }
 
@@ -27,23 +32,32 @@ void CameraShake::Update()
 
 	if (myCameraShakeActive == true)
 	{
-		myShakeTime += deltaTime;
-		if (myShakeTime >= myTempShakeDuration)
+		myTotalShakeTime += deltaTime;
+
+		//float myIntensityMultiplier = (0.5f - (abs((myTotalShakeTime / myTempShakeDuration) - 0.5f))) * 2.f;
+
+		myTimeSinceShake += deltaTime;
+
+		if (myTotalShakeTime >= myTempShakeDuration)
 		{
 			Stop();
 			return;
 		}
+		if (myTimeSinceShake > myTimeBetweenShakes)
+		{
+			myTimeSinceShake = 0;
 
-		myCameraOrigin.offset = myGameObject->GetTransform()->worldPos();
-		myCameraOrigin.rotation = myGameObject->GetTransform()->worldRot();
-		myCameraOrigin.fov = myGameObject->GetComponent<Camera>()->GetFoV();
+			myCameraOrigin.offset = myGameObject->GetTransform()->worldPos();
+			myCameraOrigin.rotation = myGameObject->GetTransform()->worldRot();
+			myCameraOrigin.fov = myGameObject->GetComponent<Camera>()->GetFoV();
 
-		Vector3f dir = { Catbox::GetRandom(-1.0f, 1.0f), 0, Catbox::GetRandom(-1.0f, 1.0f) };
-		Vector3f shakeDistance = myTempShakeIntensity * dir * deltaTime;
+			Vector3f dir = { Catbox::GetRandom(-1.0f, 1.0f), 0, Catbox::GetRandom(-1.0f, 1.0f) };
+			Vector3f shakeDistance = myShakeIntensityMultiplier.Evaluate(myTotalShakeTime / myTempShakeDuration) * myTempShakeIntensity * dir;
 
-		myTemporaryCamera->GetTransform()->SetWorldPos(myCameraOrigin.offset + shakeDistance);
-		myTemporaryCamera->GetTransform()->SetWorldRot(myCameraOrigin.rotation);
-		myTemporaryCamera->GetComponent<Camera>()->SetFoV(myCameraOrigin.fov);
+			myTemporaryCamera->GetTransform()->SetWorldPos(myCameraOrigin.offset + shakeDistance);
+			myTemporaryCamera->GetTransform()->SetWorldRot(myCameraOrigin.rotation);
+			myTemporaryCamera->GetComponent<Camera>()->SetFoV(myCameraOrigin.fov);
+		}
 	}
 }
 
@@ -73,11 +87,11 @@ void CameraShake::Stop()
 	if (myTemporaryCamera != nullptr)
 	{
 		Engine::GetInstance()->SetActiveCamera(myGameObject->GetComponent<Camera>());
-		Engine::GetInstance()->GetCameraController()->RemoveCamera(myTemporaryCamera->GetComponent<Camera>());
+		//Engine::GetInstance()->GetCameraController()->RemoveCamera(myTemporaryCamera->GetComponent<Camera>());
 		myTemporaryCamera->Destroy();
 	}
 
-	myShakeTime = 0.0f;
+	myTotalShakeTime = 0.0f;
 	myTempShakeDuration = myShakeDuration;
 	myTempShakeIntensity = myCameraShakeIntensity;
 	myCameraShakeActive = false;
