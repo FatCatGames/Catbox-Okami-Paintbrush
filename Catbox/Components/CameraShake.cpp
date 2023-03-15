@@ -15,9 +15,9 @@ void CameraShake::Awake()
 void CameraShake::Init()
 {
 	myShakeIntensityMultiplier.AddCoord({ 0, 0 });
-	myShakeIntensityMultiplier.AddCoord({ 0.25f, 0.15f });
+	myShakeIntensityMultiplier.AddCoord({ 0.25f, 0.35f });
 	myShakeIntensityMultiplier.AddCoord({ 0.5f, 1 });
-	myShakeIntensityMultiplier.AddCoord({ 0.75f, 0.15f });
+	myShakeIntensityMultiplier.AddCoord({ 0.75f, 0.35f });
 	myShakeIntensityMultiplier.AddCoord({ 1, 0 });
 	myCameraShakeActive = false;
 }

@@ -50,6 +50,8 @@ void SphereCollider::Awake()
 			Engine::GetInstance()->GetPhysicsEngine()->AddActor(myStatic, myGameObject->GetObjectInstanceID(), myLayer);
 		}
 	}
+
+	Collider::Awake();
 }
 
 bool SphereCollider::IsInside(const Vector3f& aPoint) const

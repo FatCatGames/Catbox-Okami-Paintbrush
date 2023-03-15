@@ -422,7 +422,7 @@
                             {
                                 "ComponentType": "Character Controller",
                                 "Movement Speed": 3.0,
-                                "Step Height": 1.0,
+                                "Step Height": 0.0,
                                 "Gravity": 9.8100004196167,
                                 "Contact Offset": 1.0,
                                 "Slope Offset": 1.0,
@@ -437,12 +437,12 @@
                             {
                                 "ComponentType": "Box Collider",
                                 "Version": 1,
-                                "Layer": 0,
+                                "Layer": 1,
                                 "Trigger": false,
                                 "Size": [
+                                    0.30000001192092896,
                                     1.0,
-                                    1.0,
-                                    1.0
+                                    0.30000001192092896
                                 ],
                                 "Offset": [
                                     0.0,
@@ -505,6 +505,11 @@
                                 "OffsetX": 0.0,
                                 "OffsetY": 2.0,
                                 "OffsetZ": 3.0
+                            },
+                            {
+                                "ComponentType": "Camera Shake",
+                                "Intensity": 0.5,
+                                "Duration": 0.5
                             }
                         ]
                     },

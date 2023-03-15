@@ -2,16 +2,16 @@
     "Version": 6,
     "Emissive": 1.0,
     "Color": {
-        "r": 0.6274509429931641,
-        "g": 1.0,
-        "b": 0.8137253522872925,
+        "r": 1.0,
+        "g": 0.28431373834609985,
+        "b": 0.28431373834609985,
         "a": 1.0
     },
     "Albedo": "Square-Default",
     "PBR": "",
     "Normal": "",
     "PixelShader": {
-        "Name": "DefaultPS"
+        "Name": "UnlitPS"
     },
     "VertexShader": {
         "Name": "DefaultVS"
@@ -30,7 +30,7 @@
     "c7": 0.0,
     "BlendState": 0,
     "RasterizerState": 0,
-    "Dynamic Friction": 1.0,
-    "Static Friction": 1.0,
-    "Restitution": 0.0
+    "Dynamic Friction": 0.0,
+    "Static Friction": 0.0,
+    "Restitution": 1.0
 }

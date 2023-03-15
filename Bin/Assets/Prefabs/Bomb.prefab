@@ -7,9 +7,9 @@
             "Version": 2,
             "BoneParentID": -1,
             "Pos": [
-                0.0,
-                0.9671422243118286,
-                0.0
+                -3.227182149887085,
+                1.5600254535675049,
+                4.425435543060303
             ],
             "Rot": [
                 0.0,
@@ -143,7 +143,7 @@
                 "Version": 6,
                 "Model": "grenade_bullet",
                 "Materials": [
-                    "Red"
+                    "BombMat"
                 ],
                 "UsedForNav": false,
                 "Renderer": 1,
@@ -154,7 +154,7 @@
             {
                 "ComponentType": "Sphere Collider",
                 "Version": 0,
-                "Layer": 0,
+                "Layer": 2,
                 "Radius": 0.5,
                 "Offset": [
                     0.0,
@@ -165,7 +165,7 @@
             {
                 "ComponentType": "Rigid Body",
                 "Use Gravity": true,
-                "Mass": 1.0,
+                "Mass": 10.0,
                 "Lock Translation X": false,
                 "Lock Translation Y": false,
                 "Lock Translation Z": false,

@@ -50,6 +50,7 @@ void Project::Setup()
 	gameManager = std::make_shared<GameManager>();
 
 	Engine::GetInstance()->GetCollisionManager()->AddLayer("Player");
+	Engine::GetInstance()->GetCollisionManager()->AddLayer("Interactable");
 	ProjectSettings::LoadProjectSettings();
 
 

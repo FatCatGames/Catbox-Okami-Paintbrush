@@ -52,22 +52,21 @@ void GameScene::PerformAction(const std::string& anAction, Vector2i& aPosition)
 
 		Vector3f rayEnd2 = cam->MouseToWorldPos(Input::GetMousePosition());
 
-
-
 		Vector4f rayDir4 = (rayEnd - rayOrigin).GetNormalized();
 		Vector3f rayDir = Vector3f(rayDir4.x, rayDir4.y, rayDir4.z);
 
 
 		ray.InitWithOriginAndDirection(cam->GetTransform()->worldPos(), rayDir);
-		Vector3f intersectionOut;
+		Vector3f intersectionOut = cam->GetTransform()->worldPos() + rayDir * 5.f;
 		Collider* colliderHit = Engine::GetInstance()->GetCollisionManager()->RayIntersect(ray, 100, { 0 }, intersectionOut, true);
 		if (colliderHit)
 		{
+			intersectionOut += Vector3f::up();
 			printmsg(colliderHit->GetGameObject().GetName());
 		}
 
 		auto bomb = InstantiatePrefab("Bomb");
-		bomb->GetTransform()->SetWorldPos(cam->GetTransform()->worldPos() + rayDir * 3.f);
+		bomb->GetTransform()->SetWorldPos(intersectionOut);
 	}
 	//SLASH
 	else if (anAction == "-")

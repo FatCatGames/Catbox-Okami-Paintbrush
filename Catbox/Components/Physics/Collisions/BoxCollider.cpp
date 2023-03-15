@@ -78,7 +78,7 @@ void BoxCollider::Awake()
 		}
 	}
 	
-	//Collider::Awake();
+	Collider::Awake();
 }
 
 void BoxCollider::SetSize(const Vector3f& aSize)

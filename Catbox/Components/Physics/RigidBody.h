@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "physX/PxRigidActor.h"
+#include "physX/PxRigidDynamic.h"
 
 enum Shape;
 
@@ -48,6 +49,8 @@ public:
 	void SetRotationAxisLock(bool x, bool y, bool z, bool shouldWakeUp = true);
 	bool GetTranslationAxisLock(Axis anAxis);
 	bool GetRotationAxisLock(Axis anAxis);
+	physx::PxRigidDynamic* GetActor() { return static_cast<physx::PxRigidDynamic*>(myActor); }
+
 private:
 	void Save(rapidjson::Value& aComponentData) override;
 	void Load(rapidjson::Value& aComponentData) override;

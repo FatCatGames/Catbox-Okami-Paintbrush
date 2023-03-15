@@ -78,7 +78,7 @@ void RigidBody::Awake()
 		castedActor->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_X, myLockRotations[0]);
 		castedActor->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_Y, myLockRotations[1]);
 		castedActor->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_Z, myLockRotations[2]);
-
+		castedActor->setMass(myMass);
 		Engine::GetInstance()->GetPhysicsEngine()->AddActor(myActor, myGameObject->GetObjectInstanceID(), myLayer);
 	}
 }
@@ -318,7 +318,7 @@ void RigidBody::SetAngularVelocity(Vector3f aDirection, float aForce)
 
 Vector3f RigidBody::AddForce(Vector3f aDirection, float aForce)
 {
-	static_cast<physx::PxRigidDynamic*>(myActor)->addForce(physx::PxVec3(aDirection.x, aDirection.y, aDirection.z) * aForce);
+	static_cast<physx::PxRigidDynamic*>(myActor)->addForce(physx::PxVec3(aDirection.x, aDirection.y, aDirection.z) * aForce, physx::PxForceMode::eIMPULSE);
 	return { aDirection.x * aForce, aDirection.y * aForce, aDirection.z * aForce };
 }
 
