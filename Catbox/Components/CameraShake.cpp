@@ -65,11 +65,7 @@ void CameraShake::Start()
 {
 	Stop();
 
-	myTemporaryCamera = Instantiate();
-	myTemporaryCamera->AddComponent<Camera>();
-	myTemporaryCamera->GetComponent<Camera>()->SetFoV(myGameObject->GetComponent<Camera>()->GetFoV());
-	myTemporaryCamera->GetTransform()->SetWorldPos(myGameObject->GetComponent<Camera>()->GetTransform()->worldPos());
-	myTemporaryCamera->GetTransform()->SetWorldRot(myGameObject->GetComponent<Camera>()->GetTransform()->worldRot());
+	myTemporaryCamera = myGameObject->Duplicate();
 	myTemporaryCamera->SetName("Temporary camera (DON'T CLICK)");
 
 	Engine::GetInstance()->SetActiveCamera(myTemporaryCamera->GetComponent<Camera>());
