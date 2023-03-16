@@ -212,7 +212,12 @@ void GameObject::RenderInProperties(std::vector<Asset*>& anAssetList)
 
 	Transform::RenderInProperties(transformList);
 
+	GameObject* prefabHolder = GetPrefab() ? this : nullptr;
 	if (myTransform.GetRootParent()->GetGameObject()->GetPrefab())
+	{
+		prefabHolder = myTransform.GetRootParent()->GetGameObject();
+	}
+	if (prefabHolder)
 	{
 		ImGui::Spacing();
 		ImGui::Separator();
@@ -220,7 +225,7 @@ void GameObject::RenderInProperties(std::vector<Asset*>& anAssetList)
 		ImGui::Text("Cannot edit components of prefab-linked object.");
 		if (ImGui::Button("Unlink prefab"))
 		{
-			myTransform.GetRootParent()->GetGameObject()->SetPrefab(nullptr);
+			prefabHolder->SetPrefab(nullptr);
 		}
 	}
 	else

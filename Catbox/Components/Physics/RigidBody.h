@@ -1,14 +1,15 @@
 #pragma once
 #include "stdafx.h"
 #include "physX/PxRigidActor.h"
-#include "physX/PxRigidDynamic.h"
+#include "physX/PxForceMode.h"
+#include "physX\PxRigidDynamic.h"
 
 enum Shape;
 
-class RigidBody: public Component
+class RigidBody : public Component
 {
 public:
-	struct RigidBodyData 
+	struct RigidBodyData
 	{
 		float mass = 5;
 		float gravity = 9.81f;
@@ -40,11 +41,12 @@ public:
 	void SetActorRotation(const Vector3f& aRot);
 	void SetVelocity(Vector3f aDirection, float aForce);
 	void SetAngularVelocity(Vector3f aDirection, float aForce);
-	Vector3f AddForce(Vector3f aDirection, float aForce);
-	Vector3f AddForceAtPos(const float aForce, const Vector3f aPosition);
-	void ScheduleForce(const Vector3f aPosition);
+	Vector3f AddForce(Vector3f aDirection, float aForce, physx::PxForceMode::Enum aMode = physx::PxForceMode::eFORCE);
+	Vector3f AddForceAtPos(const float aForce, const Vector3f aPosition, physx::PxForceMode::Enum aMode = physx::PxForceMode::eFORCE);
+	void ScheduleForce(const Vector3f aPosition, physx::PxForceMode::Enum aMode = physx::PxForceMode::eFORCE);
 	void ChangeGravityScale(bool aGravityScale);
 	void ChangeMass(float aMass);
+	void SetUseGravity(bool useGravity);
 	void SetTranslationAxisLock(bool x, bool y, bool z, bool shouldWakeUp = true);
 	void SetRotationAxisLock(bool x, bool y, bool z, bool shouldWakeUp = true);
 	bool GetTranslationAxisLock(Axis anAxis);
@@ -58,6 +60,7 @@ private:
 	RigidBodyData myRbData;
 	Vector3f myVelocity;
 	Vector3f myScheduledForce;
+	physx::PxForceMode::Enum myScheduledForceMode;
 	bool myDebugMode = false;
 	float myMass = 1;
 	bool myGravity = true;

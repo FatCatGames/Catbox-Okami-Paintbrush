@@ -156,6 +156,7 @@
     <ClInclude Include="Player\PlayerCamera.h" />
     <ClInclude Include="Player\PlayerController.h" />
     <ClInclude Include="Project.h" />
+    <ClInclude Include="Tree.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bomb.cpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="Player\PlayerCamera.cpp" />
     <ClCompile Include="Player\PlayerController.cpp" />
     <ClCompile Include="Project.cpp" />
+    <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\CanvasPS.hlsl">

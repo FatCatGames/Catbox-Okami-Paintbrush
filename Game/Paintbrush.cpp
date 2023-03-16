@@ -110,22 +110,22 @@ void Paintbrush::Update()
 		}
 	}
 
-	if (Input::GetKeyReleased(KeyCode::S))
-	{
-		Canvas::GetInstance()->Save();
-	}
-
-	if (Input::GetKeyReleased(KeyCode::C))
-	{
-		Canvas::GetInstance()->Clear();
-	}
-
-
-	//if (Input::GetKeyReleased(KeyCode::CTRL))
+	//if (Input::GetKeyReleased(KeyCode::S))
 	//{
 	//	Canvas::GetInstance()->Save();
+	//}
+
+	//if (Input::GetKeyReleased(KeyCode::C))
+	//{
 	//	Canvas::GetInstance()->Clear();
 	//}
+
+
+	if (Input::GetKeyReleased(KeyCode::CTRL))
+	{
+		Canvas::GetInstance()->Save();
+		Canvas::GetInstance()->Clear();
+	}
 
 	if (Input::GetKeyReleased(KeyCode::G))
 	{

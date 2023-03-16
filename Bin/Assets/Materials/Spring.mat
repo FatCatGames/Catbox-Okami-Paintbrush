@@ -29,5 +29,8 @@
     "c6": 0.0,
     "c7": 0.0,
     "BlendState": 0,
-    "RasterizerState": 0
+    "RasterizerState": 0,
+    "Dynamic Friction": 1.0,
+    "Static Friction": 1.0,
+    "Restitution": 1.0
 }

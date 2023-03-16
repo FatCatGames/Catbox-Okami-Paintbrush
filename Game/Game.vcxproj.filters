@@ -50,6 +50,7 @@
     <ClInclude Include="DayNightCycle.h" />
     <ClInclude Include="Bomb.h" />
     <ClInclude Include="BrushSymbol.h" />
+    <ClInclude Include="Tree.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Canvas.cpp" />
@@ -80,6 +81,7 @@
     <ClCompile Include="BrushActions.cpp" />
     <ClCompile Include="DayNightCycle.cpp" />
     <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\CanvasPS.hlsl">

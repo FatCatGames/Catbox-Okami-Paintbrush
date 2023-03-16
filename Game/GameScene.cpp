@@ -3,6 +3,7 @@
 #include <PopupManager.h>
 #include "Components/Physics/Collisions/CollisionManager.h"
 #include "Components/Physics/Collisions/Collider.h"
+#include "Tree.h"
 
 GameScene* GameScene::Instance;
 
@@ -35,6 +36,8 @@ void GameScene::PerformAction(BrushSymbol& anAction)
 	//BOMB
 	else if (anAction.name == "b")
 	{
+		symbolName = "Bomb";
+
 		Ray ray;
 		auto cam = Engine::GetInstance()->GetActiveCamera();
 
@@ -55,12 +58,42 @@ void GameScene::PerformAction(BrushSymbol& anAction)
 		}
 
 		auto bomb = InstantiatePrefab("Bomb");
-		bomb->GetTransform()->SetWorldPos(Vector3f::up () + (cam->GetTransform()->worldPos() + rayDir * 5.f));
+		bomb->GetTransform()->SetWorldPos(Vector3f::up() + (cam->GetTransform()->worldPos() + rayDir * 5.f));
 	}
 	//SLASH
 	else if (anAction.name == "-")
 	{
 		symbolName = "Slash";
+
+		const int yCenter = (anAction.maxY + anAction.minY) / 2.f;
+		Ray ray;
+		auto cam = Engine::GetInstance()->GetActiveCamera();
+
+		const unsigned int treeLayer = Engine::GetInstance()->GetCollisionManager()->GetLayerByName("Tree");
+
+		std::unordered_map<int, GameObject*> hitObjects;
+
+		for (size_t x = anAction.minX; x < anAction.maxX; x += 10)
+		{
+			Vector4f rayEnd2 = cam->MouseToWorld(Vector2i(x, yCenter), 1);
+			Vector4f rayOrigin2 = cam->MouseToWorld(Vector2i(x, yCenter), 0);
+			Vector4f rayDir4 = (rayEnd2 - rayOrigin2).GetNormalized();
+			Vector3f rayDir = Vector3f(rayDir4.x, rayDir4.y, rayDir4.z);
+
+
+			ray.InitWithOriginAndDirection(cam->GetTransform()->worldPos(), rayDir);
+			Vector3f intersectionOut;
+			Collider* colliderHit = Engine::GetInstance()->GetCollisionManager()->RayIntersect(ray, 10, { treeLayer }, intersectionOut, true);
+			if (colliderHit)
+			{
+				auto& gObj = colliderHit->GetGameObject();
+				if (hitObjects.find(gObj.GetObjectInstanceID()) == hitObjects.end()) 
+				{
+					hitObjects.insert({ gObj.GetObjectInstanceID(), &gObj });
+					colliderHit->GetGameObject().GetComponent<Tree>()->Slash(intersectionOut, rayDir);
+				}
+			}
+		}
 	}
 
 	if (!symbolName.empty())

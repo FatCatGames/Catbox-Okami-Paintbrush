@@ -1,0 +1,167 @@
+{
+    "Data": {
+        "Name": "Tree",
+        "Active": true,
+        "Opened": false,
+        "Transform": {
+            "Version": 2,
+            "BoneParentID": -1,
+            "Pos": [
+                4.2962141036987305,
+                0.00007769333751639351,
+                4.3474225997924805
+            ],
+            "Rot": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "Size": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "Children": [
+                {
+                    "Name": "Trunk",
+                    "Active": true,
+                    "Opened": true,
+                    "Transform": {
+                        "Version": 2,
+                        "BoneParentID": -1,
+                        "Pos": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Rot": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "Children": []
+                    },
+                    "Components": [
+                        {
+                            "ComponentType": "Model Instance",
+                            "Version": 6,
+                            "Model": "tree3_trunk",
+                            "Materials": [
+                                "Spring"
+                            ],
+                            "UsedForNav": false,
+                            "Renderer": 1,
+                            "Material Instance": false,
+                            "CastShadows": true,
+                            "InstanceCount": 0
+                        },
+                        {
+                            "ComponentType": "Box Collider",
+                            "Version": 1,
+                            "Layer": 0,
+                            "Trigger": false,
+                            "Size": [
+                                0.4900000095367432,
+                                1.399999976158142,
+                                0.8500000238418579
+                            ],
+                            "Offset": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Name": "Top",
+                    "Active": true,
+                    "Opened": true,
+                    "Transform": {
+                        "Version": 2,
+                        "BoneParentID": -1,
+                        "Pos": [
+                            0.0,
+                            2.097476681228727e-8,
+                            0.0
+                        ],
+                        "Rot": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "Children": []
+                    },
+                    "Components": [
+                        {
+                            "ComponentType": "Model Instance",
+                            "Version": 6,
+                            "Model": "tree3_top",
+                            "Materials": [
+                                "Spring"
+                            ],
+                            "UsedForNav": false,
+                            "Renderer": 1,
+                            "Material Instance": false,
+                            "CastShadows": true,
+                            "InstanceCount": 0
+                        },
+                        {
+                            "ComponentType": "Rigid Body",
+                            "Use Gravity": false,
+                            "Mass": 1.0,
+                            "Lock Translation X": false,
+                            "Lock Translation Y": false,
+                            "Lock Translation Z": false,
+                            "Lock Rotation X": true,
+                            "Lock Rotation Y": true,
+                            "Lock Rotation Z": true
+                        },
+                        {
+                            "ComponentType": "Sphere Collider",
+                            "Version": 0,
+                            "Layer": 0,
+                            "Radius": 1.340000033378601,
+                            "Offset": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "Components": [
+            {
+                "ComponentType": "Box Collider",
+                "Version": 1,
+                "Layer": 3,
+                "Trigger": false,
+                "Size": [
+                    1.659999966621399,
+                    3.4200000762939453,
+                    1.5099999904632568
+                ],
+                "Offset": [
+                    0.0,
+                    1.649999976158142,
+                    0.0
+                ]
+            },
+            {
+                "ComponentType": "Tree"
+            }
+        ]
+    }
+}
