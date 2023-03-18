@@ -1,14 +1,14 @@
 {
     "Data": {
         "Name": "BigRock",
-        "Active": false,
+        "Active": true,
         "Opened": true,
         "Transform": {
             "Version": 2,
             "BoneParentID": -1,
             "Pos": [
                 -5.87426233291626,
-                0.5745987892150879,
+                0.43660134077072144,
                 3.6119651794433594
             ],
             "Rot": [

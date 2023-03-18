@@ -193,6 +193,9 @@ void DeferredRenderer::GenerateGBuffer(std::vector<ModelInstance*>& aModelList)
 				SetRastertizerState(material->GetRastertizerState());
 			}
 			
+			DX11::Context->VSSetConstantBuffers(5, 1, myBuffers->myGameBuffer.GetAddress());
+			DX11::Context->PSSetConstantBuffers(5, 1, myBuffers->myGameBuffer.GetAddress());
+			DX11::Context->GSSetConstantBuffers(5, 1, myBuffers->myGameBuffer.GetAddress());
 
 			DX11::Context->IASetVertexBuffers(0, 1, meshData->myVertexBuffer.GetAddressOf(), &meshData->myStride, &meshData->myOffset);
 			DX11::Context->IASetIndexBuffer(meshData->myIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);

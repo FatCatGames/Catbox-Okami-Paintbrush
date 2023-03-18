@@ -55,6 +55,14 @@ void Project::Setup()
 	shared_ptr<BrushVS> brushVS = std::make_shared<BrushVS>();
 	CreateAsset<VertexShader>("Resources/BuiltIn/Shaders/BrushVS.sh", brushVS);
 
+	shared_ptr<GeometryShader> flowerGS = CreateAsset<GeometryShader>("Resources/BuiltIn/Shaders/FlowerGS.sh");
+	std::ifstream gsFile;
+	gsFile.open("Resources/BuiltIn/Shaders/ParticleGS.cso", ios::binary);
+	std::string shaderData = { std::istreambuf_iterator<char>(gsFile), istreambuf_iterator<char>() };
+	HRESULT result = DX11::Device->CreateGeometryShader(shaderData.data(), shaderData.size(), nullptr, &flowerGS->geometryShader);
+	gsFile.close();
+	assert(!FAILED(result) && "Loading flower geometry shader failed!");
+
 	gameManager = std::make_shared<GameManager>();
 
 	Engine::GetInstance()->GetCollisionManager()->AddLayer("Player");

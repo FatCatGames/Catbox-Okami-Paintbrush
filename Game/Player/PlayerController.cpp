@@ -7,6 +7,7 @@
 #include "..\Catbox\ComponentTools\UIEventHandler.h"
 #include "Components\Animator.h"
 #include "Canvas.h"
+#include "Graphics\Rendering\Buffers\Buffers.h"
 
 void PlayerController::OnObjectFinishedLoading()
 {
@@ -37,6 +38,8 @@ void PlayerController::Update()
 	}
 
 	RunKeyboardInput();
+
+	GraphicsEngine::GetInstance()->GetBuffers()->CreateGameBuffer(myTransform->worldPos());
 }
 
 void PlayerController::RunKeyboardInput()

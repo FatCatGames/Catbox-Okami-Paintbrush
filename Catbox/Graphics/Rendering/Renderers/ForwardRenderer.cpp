@@ -31,6 +31,10 @@ void ForwardRenderer::Render(const std::vector<ModelInstance*>& aModelList, cons
 	DX11::Context->PSSetConstantBuffers(0, 1, myBuffers->myFrameBuffer.GetAddress());
 	DX11::Context->GSSetConstantBuffers(0, 1, myBuffers->myFrameBuffer.GetAddress());
 
+	DX11::Context->VSSetConstantBuffers(5, 1, myBuffers->myGameBuffer.GetAddress());
+	DX11::Context->PSSetConstantBuffers(5, 1, myBuffers->myGameBuffer.GetAddress());
+	DX11::Context->GSSetConstantBuffers(5, 1, myBuffers->myGameBuffer.GetAddress());
+
 	ID3D11ShaderResourceView* srv = { nullptr };
 
 	DX11::Context->PSSetShaderResources(GBuffer::GBufferTexture::Position, 1, &srv);

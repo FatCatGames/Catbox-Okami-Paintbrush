@@ -18,6 +18,7 @@ public:
 	bool Initialize();
 	void CreateFrameBuffer(Camera* aCamera);
 	void CreateLightsBuffer(SceneLightData* aSceneLightData);
+	void CreateGameBuffer(const Vector3f& aPlayerPos);
 	inline GBuffer& GetGbuffer() { return myGBuffer; }
 
 private:
@@ -75,12 +76,19 @@ private:
 		int IBLStartIndex;//4 bytes
 		int lightsCount;//4 bytes
 	} mySceneLightsBufferData;
+
+	struct GameBufferData
+	{
+		Vector3f playerPos;
+		float playerPosW = 1;
+	} myGameBufferData;
 	
 	Light* myEnvironmentLight;
 	GBuffer myGBuffer;
 	StructuredBuffer<LightData> myLightBuffer;
 	CBuffer<SceneLightsBufferData> mySceneLightsBuffer;
 	CBuffer<FrameBufferData> myFrameBuffer;
+	CBuffer<GameBufferData> myGameBuffer;
 	CBuffer<ObjectBufferData> myObjectBuffer;
 	CBuffer<SkeletonBufferData> mySkeletonBuffer;
 	CBuffer<Material::MaterialBufferData> myMaterialBuffer;

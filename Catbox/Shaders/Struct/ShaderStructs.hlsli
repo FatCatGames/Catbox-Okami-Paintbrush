@@ -164,6 +164,11 @@ cbuffer SceneLightsBuffer : register(b4)
 	int SLB_LightsCount;
 }
 
+cbuffer GameBuffer : register(b5)
+{
+	float4 PlayerPos;
+}
+
 //registers b10-b20 are reserved for post processing
 
 Texture2D AlbedoTex : register(t0);

@@ -13,6 +13,7 @@ bool Buffers::Initialize()
 	if (!mySceneLightsBuffer.Initialize()) return false;
 	if (!myLightBuffer.Initialize()) return false;
 	if (!myColorBuffer.Initialize()) return false;
+	if (!myGameBuffer.Initialize()) return false;
 	return true;
 }
 
@@ -65,4 +66,10 @@ void Buffers::CreateLightsBuffer(SceneLightData* aSceneLightData)
 
 	myLightBuffer.SetData(Lights);
 	mySceneLightsBuffer.SetData(&mySceneLightsBufferData);
+}
+
+void Buffers::CreateGameBuffer(const Vector3f& aPlayerPos)
+{
+	myGameBufferData.playerPos = aPlayerPos;
+	myGameBuffer.SetData(&myGameBufferData);
 }

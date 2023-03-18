@@ -21,6 +21,7 @@
     <ClInclude Include="Bomb.h" />
     <ClInclude Include="BrushActions.h" />
     <ClInclude Include="BrushSymbol.h" />
+    <ClInclude Include="BrushVS.h" />
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="CanvasPS.h" />
     <ClInclude Include="DayNightCycle.h" />
@@ -52,11 +53,11 @@
     <ClInclude Include="Project.h" />
     <ClInclude Include="SelfDestroy.h" />
     <ClInclude Include="Tree.h" />
-    <ClInclude Include="BrushVS.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="BrushActions.cpp" />
+    <ClCompile Include="BrushVS.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="CanvasPS.cpp" />
     <ClCompile Include="DayNightCycle.cpp" />
@@ -85,13 +86,15 @@
     <ClCompile Include="Project.cpp" />
     <ClCompile Include="SelfDestroy.cpp" />
     <ClCompile Include="Tree.cpp" />
-    <ClCompile Include="BrushVS.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\BrushVS.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="Shaders\CanvasPS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Shaders\FlowerGS.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="Shaders\ScreenCanvasPS.hlsl">
