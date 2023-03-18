@@ -1,6 +1,7 @@
 #pragma once
 #include "Graphics\ColorGradient.h"
 
+class BrushVS;
 class Paintbrush : public Component
 {
 public:
@@ -30,4 +31,5 @@ private:
 	float myMaxSize = 40;
 	float myMinSize = 2;
 	int myMaxMouseDelta = 100;
+	BrushVS* myShader;
 };

@@ -1,6 +1,9 @@
 #include "Game.pch.h"
 #include "Paintbrush.h"
 #include "Canvas.h"
+#include "BrushVS.h"
+#include "Components\3D\ModelInstance.h"
+#include "Assets\Material.h"
 
 void Paintbrush::Awake()
 {
@@ -11,6 +14,14 @@ void Paintbrush::Awake()
 	myGradient.AddColor(Color::Blue(), 0.5f);
 	myGradient.AddColor(Color::Purple(), 0.8f);
 	myGradient.AddColor(Color::Red(), 1);
+
+	for (auto& child : myTransform->GetChildren())
+	{
+		if (child->GetGameObject()->GetName() == "BrushModel")
+		{
+			myShader = dynamic_cast<BrushVS*>(child->GetGameObject()->GetComponent<ModelInstance>()->GetMaterial(0)->GetVertexShader().get());
+		}
+	}
 }
 
 void Paintbrush::Update()
@@ -31,8 +42,10 @@ void Paintbrush::Update()
 	auto mousePos = Input::GetMousePosition();
 	auto screenPos = Engine::GetInstance()->ViewportToScreenPos(mousePos.x, mousePos.y);
 
-
-	myTransform->SetWorldPos(Engine::GetInstance()->GetActiveCamera()->MouseToWorldPos(mousePos, 0));
+	Vector3f newPos = Engine::GetInstance()->GetActiveCamera()->MouseToWorldPos(mousePos, 0);
+	Vector3f diff = myTransform->worldPos() - newPos;
+	myShader->UpdateShaderData(diff.GetNormalized(), diff.Length());
+	myTransform->SetWorldPos(newPos);
 
 	if (Input::GetKeyPress(KeyCode::MOUSELEFT))
 	{
@@ -72,7 +85,7 @@ void Paintbrush::Update()
 		for (float i = 0; i <= length;)
 		{
 			Color col;
-			 
+
 			if (!isErasing)
 			{
 				myPaintTimer += myGradientSpeed;

@@ -18,6 +18,7 @@
 #include "Player\PlayerController.h"
 #include "LookAtCamera.h"
 #include "Paintbrush.h"
+#include "BrushVS.h"
 #include "CanvasPS.h"
 #include "Canvas.h"
 #include "GameScene.h"
@@ -48,8 +49,11 @@ void Project::Setup()
 
 #pragma endregion
 
-	shared_ptr<CanvasPS> brushPS = std::make_shared<CanvasPS>();
-	CreateAsset<PixelShader>("Resources/BuiltIn/Shaders/CanvasPS.sh", brushPS);
+	shared_ptr<CanvasPS> canvasPS = std::make_shared<CanvasPS>();
+	CreateAsset<PixelShader>("Resources/BuiltIn/Shaders/CanvasPS.sh", canvasPS);
+
+	shared_ptr<BrushVS> brushVS = std::make_shared<BrushVS>();
+	CreateAsset<VertexShader>("Resources/BuiltIn/Shaders/BrushVS.sh", brushVS);
 
 	gameManager = std::make_shared<GameManager>();
 

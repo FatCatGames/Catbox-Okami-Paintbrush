@@ -14,7 +14,7 @@
         "Name": "UnlitPS"
     },
     "VertexShader": {
-        "Name": "DefaultVS"
+        "Name": "BrushVS"
     },
     "GeometryShader": {
         "Name": ""

@@ -139,6 +139,7 @@
     <ClInclude Include="Bomb.h" />
     <ClInclude Include="BrushActions.h" />
     <ClInclude Include="BrushSymbol.h" />
+    <ClInclude Include="BrushVS.h" />
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="CanvasPS.h" />
     <ClInclude Include="DayNightCycle.h" />
@@ -162,6 +163,7 @@
   <ItemGroup>
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="BrushActions.cpp" />
+    <ClCompile Include="BrushVS.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="CanvasPS.cpp" />
     <ClCompile Include="DayNightCycle.cpp" />
@@ -184,6 +186,12 @@
     <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="Shaders\BrushVS.hlsl">
+      <ShaderType>Vertex</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/BrushVS.cso</ObjectFileOutput>
+    </FxCompile>
     <FxCompile Include="Shaders\CanvasPS.hlsl">
       <ShaderType>Pixel</ShaderType>
       <ShaderModel>5.0</ShaderModel>
