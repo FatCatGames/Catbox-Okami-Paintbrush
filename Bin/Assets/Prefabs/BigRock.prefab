@@ -1,7 +1,7 @@
 {
     "Data": {
-        "Name": "rock3_mesh",
-        "Active": true,
+        "Name": "BigRock",
+        "Active": false,
         "Opened": true,
         "Transform": {
             "Version": 2,
@@ -36,6 +36,11 @@
                 "Material Instance": false,
                 "CastShadows": true,
                 "InstanceCount": 0
+            },
+            {
+                "ComponentType": "Mesh Collider",
+                "Version": 1,
+                "Collider Model": ""
             }
         ]
     }

@@ -156,6 +156,7 @@
     <ClInclude Include="Player\PlayerCamera.h" />
     <ClInclude Include="Player\PlayerController.h" />
     <ClInclude Include="Project.h" />
+    <ClInclude Include="SelfDestroy.h" />
     <ClInclude Include="Tree.h" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +180,7 @@
     <ClCompile Include="Player\PlayerCamera.cpp" />
     <ClCompile Include="Player\PlayerController.cpp" />
     <ClCompile Include="Project.cpp" />
+    <ClCompile Include="SelfDestroy.cpp" />
     <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -189,15 +191,10 @@
       <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/CanvasPS.cso</ObjectFileOutput>
     </FxCompile>
     <FxCompile Include="Shaders\ScreenCanvasPS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Game|x64'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Game|x64'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../Bin/Resources/BuiltIn/Shaders/ScreenCanvasPS.cso</ObjectFileOutput>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Game|x64'">../Bin/Resources/BuiltIn/Shaders/ScreenCanvasPS.cso</ObjectFileOutput>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">../Bin/Resources/BuiltIn/Shaders/ScreenCanvasPS.cso</ObjectFileOutput>
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <EntryPointName>main</EntryPointName>
+      <ObjectFileOutput>../Bin/Resources/BuiltIn/Shaders/ScreenCanvasPS.cso</ObjectFileOutput>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

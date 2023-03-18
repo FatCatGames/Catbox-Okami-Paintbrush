@@ -1,15 +1,15 @@
 {
     "Data": {
-        "Name": "rock2_mesh",
+        "Name": "MediumRock",
         "Active": true,
         "Opened": true,
         "Transform": {
             "Version": 2,
             "BoneParentID": -1,
             "Pos": [
-                2.388188123703003,
-                0.32408443093299866,
-                2.444791793823242
+                2.861856698989868,
+                0.5146622657775879,
+                1.57351815700531
             ],
             "Rot": [
                 0.0,
@@ -36,6 +36,11 @@
                 "Material Instance": false,
                 "CastShadows": true,
                 "InstanceCount": 0
+            },
+            {
+                "ComponentType": "Mesh Collider",
+                "Version": 1,
+                "Collider Model": ""
             }
         ]
     }

@@ -7,14 +7,14 @@
             "Version": 2,
             "BoneParentID": -1,
             "Pos": [
-                -7.531809329986572,
-                0.0000096014819064294,
-                0.32159337401390076
+                5.515549182891846,
+                0.00000959998487815028,
+                -3.624246597290039
             ],
             "Rot": [
-                179.9999237060547,
-                50.59916305541992,
-                179.9997100830078
+                0.0,
+                0.0,
+                0.0
             ],
             "Size": [
                 1.0,
@@ -61,9 +61,20 @@
                             "InstanceCount": 0
                         },
                         {
-                            "ComponentType": "Mesh Collider",
+                            "ComponentType": "Box Collider",
                             "Version": 1,
-                            "Collider Model": ""
+                            "Layer": 0,
+                            "Trigger": false,
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Offset": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
                         }
                     ]
                 },
@@ -115,6 +126,17 @@
                                 0.0,
                                 -0.4900000095367432
                             ]
+                        },
+                        {
+                            "ComponentType": "Rigid Body",
+                            "Use Gravity": false,
+                            "Mass": 1.0,
+                            "Lock Translation X": true,
+                            "Lock Translation Y": true,
+                            "Lock Translation Z": true,
+                            "Lock Rotation X": true,
+                            "Lock Rotation Y": true,
+                            "Lock Rotation Z": true
                         }
                     ]
                 }
@@ -136,6 +158,9 @@
                     1.6200000047683716,
                     0.0
                 ]
+            },
+            {
+                "ComponentType": "Tree"
             }
         ]
     }

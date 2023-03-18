@@ -24,6 +24,7 @@
 #include "PaintingScene.h"
 #include "Bomb.h"
 #include "Tree.h"
+#include "SelfDestroy.h"
 
 //Not too fond of settings not loading correctly
 #include "ProjectSettings.h"
@@ -43,6 +44,7 @@ void Project::Setup()
 	ComponentHandler::RegisterComponent<PaintingScene>();
 	ComponentHandler::RegisterComponent<Bomb>();
 	ComponentHandler::RegisterComponent<Tree>();
+	ComponentHandler::RegisterComponent<SelfDestroy>();
 
 #pragma endregion
 

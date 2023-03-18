@@ -91,6 +91,9 @@ void GameScene::PerformAction(BrushSymbol& anAction)
 				{
 					hitObjects.insert({ gObj.GetObjectInstanceID(), &gObj });
 					colliderHit->GetGameObject().GetComponent<Tree>()->Slash(intersectionOut, rayDir);
+
+					auto slash = InstantiatePrefab("Slash");
+					slash->GetTransform()->SetWorldPos(colliderHit->GetTransform()->worldPos() + Vector3f::up() * 1.5f - rayDir * 0.5f);
 				}
 			}
 		}

@@ -2,7 +2,7 @@
     "Data": {
         "Name": "Tree",
         "Active": true,
-        "Opened": false,
+        "Opened": true,
         "Transform": {
             "Version": 2,
             "BoneParentID": -1,
@@ -120,9 +120,9 @@
                             "ComponentType": "Rigid Body",
                             "Use Gravity": false,
                             "Mass": 1.0,
-                            "Lock Translation X": false,
-                            "Lock Translation Y": false,
-                            "Lock Translation Z": false,
+                            "Lock Translation X": true,
+                            "Lock Translation Y": true,
+                            "Lock Translation Z": true,
                             "Lock Rotation X": true,
                             "Lock Rotation Y": true,
                             "Lock Rotation Z": true

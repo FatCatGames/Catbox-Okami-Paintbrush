@@ -9,10 +9,10 @@
 #include<vector>
 
 // global variables ///////////////////////////////////////////////////////////////////////////////
-const int MIN_CONTOUR_AREA = 100;
+const int MIN_CONTOUR_AREA = 1000;
 
-const int RESIZED_IMAGE_WIDTH = 50;
-const int RESIZED_IMAGE_HEIGHT = 30;
+const int RESIZED_IMAGE_WIDTH = 100;
+const int RESIZED_IMAGE_HEIGHT = 100;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void GenData::GenerateData()

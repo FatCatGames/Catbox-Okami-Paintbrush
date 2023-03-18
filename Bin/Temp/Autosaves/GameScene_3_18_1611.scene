@@ -1,0 +1,1821 @@
+{
+    "GameObjects": [
+        {
+            "Name": "PaintingScene",
+            "Active": false,
+            "Opened": false,
+            "Transform": {
+                "Version": 2,
+                "BoneParentID": -1,
+                "Pos": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Rot": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Size": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "Children": [
+                    {
+                        "Name": "Camera",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                0.0,
+                                1.0,
+                                0.0
+                            ],
+                            "Rot": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Camera",
+                                "Version": 3,
+                                "FoV": 90.0,
+                                "NearPlane": 0.10000000149011612,
+                                "FarPlane": 1000.0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Canvas",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                1.9199999570846558,
+                                1.0,
+                                1.0800000429153442
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "Plane",
+                                "Materials": [
+                                    "Canvas"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": true,
+                                "InstanceCount": 0
+                            },
+                            {
+                                "ComponentType": "Canvas"
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Brush",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                0.2501961290836334,
+                                0.28635451197624207,
+                                0.0
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": [
+                                {
+                                    "Name": "BrushModel",
+                                    "Active": false,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            -4.76837158203125e-7,
+                                            0.15000000596046448,
+                                            0.15000000596046448
+                                        ],
+                                        "Rot": [
+                                            45.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Size": [
+                                            0.03999999910593033,
+                                            0.30000001192092896,
+                                            0.03999999910593033
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Model Instance",
+                                            "Version": 6,
+                                            "Model": "Cube",
+                                            "Materials": [
+                                                "BrushMat"
+                                            ],
+                                            "UsedForNav": false,
+                                            "Renderer": 1,
+                                            "Material Instance": false,
+                                            "CastShadows": true,
+                                            "InstanceCount": 0
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Name": "PaintDot",
+                                    "Active": false,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            -4.76837158203125e-7,
+                                            -0.001993805170059204,
+                                            -0.001769963651895523
+                                        ],
+                                        "Rot": [
+                                            3645.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Size": [
+                                            0.014999999664723873,
+                                            0.014999999664723873,
+                                            0.014999999664723873
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Model Instance",
+                                            "Version": 6,
+                                            "Model": "Cube",
+                                            "Materials": [
+                                                "Black"
+                                            ],
+                                            "UsedForNav": false,
+                                            "Renderer": 1,
+                                            "Material Instance": false,
+                                            "CastShadows": true,
+                                            "InstanceCount": 0
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Name": "Brush",
+                                    "Active": true,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Rot": [
+                                            130.39999389648438,
+                                            -175.89999389648438,
+                                            1.7000000476837158
+                                        ],
+                                        "Size": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Model Instance",
+                                            "Version": 6,
+                                            "Model": "Brush",
+                                            "Materials": [
+                                                "BrushMat"
+                                            ],
+                                            "UsedForNav": false,
+                                            "Renderer": 1,
+                                            "Material Instance": false,
+                                            "CastShadows": false,
+                                            "InstanceCount": 0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Paintbrush"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "Components": [
+                {
+                    "ComponentType": "Painting Scene"
+                }
+            ]
+        },
+        {
+            "Name": "GameScene",
+            "Active": true,
+            "Opened": true,
+            "Transform": {
+                "Version": 2,
+                "BoneParentID": -1,
+                "Pos": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Rot": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Size": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "Children": [
+                    {
+                        "Name": "Plane",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                0.0,
+                                0.02201986312866211,
+                                0.0
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                100.0,
+                                1.0,
+                                100.0
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "Plane",
+                                "Materials": [
+                                    "Grass"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": true,
+                                "InstanceCount": 0
+                            },
+                            {
+                                "ComponentType": "Box Collider",
+                                "Version": 1,
+                                "Layer": 0,
+                                "Trigger": false,
+                                "Size": [
+                                    1.0,
+                                    0.009999999776482582,
+                                    1.0
+                                ],
+                                "Offset": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Player",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                -0.8125177621841431,
+                                0.5,
+                                5.013193130493164
+                            ],
+                            "Rot": [
+                                -180.0,
+                                -0.00000762939453125,
+                                -180.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": [
+                                {
+                                    "Name": "Dog_sk",
+                                    "Active": true,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Rot": [
+                                            -14760.0,
+                                            -0.0006256103515625,
+                                            -14760.0
+                                        ],
+                                        "Size": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Model Instance",
+                                            "Version": 6,
+                                            "Model": "Dog_sk",
+                                            "Materials": [
+                                                "",
+                                                "",
+                                                "",
+                                                "",
+                                                "",
+                                                "",
+                                                "ShibaMat"
+                                            ],
+                                            "UsedForNav": false,
+                                            "Renderer": 1,
+                                            "Material Instance": false,
+                                            "CastShadows": true,
+                                            "InstanceCount": 0
+                                        },
+                                        {
+                                            "ComponentType": "Animator",
+                                            "Version": 1,
+                                            "AnimationIndex": 0,
+                                            "Controller": "Shibe"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Player Controller"
+                            },
+                            {
+                                "ComponentType": "Character Controller",
+                                "Movement Speed": 3.0,
+                                "Step Height": 0.0,
+                                "Gravity": 9.8100004196167,
+                                "Contact Offset": 1.0,
+                                "Slope Offset": 1.0,
+                                "Density": 1.0,
+                                "FootPosX": 0.0,
+                                "FootPosY": 0.0,
+                                "FootPosZ": 0.0,
+                                "UpDirX": 0.0,
+                                "UpDirY": 1.0,
+                                "UpDirZ": 0.0
+                            },
+                            {
+                                "ComponentType": "Box Collider",
+                                "Version": 1,
+                                "Layer": 1,
+                                "Trigger": false,
+                                "Size": [
+                                    0.30000001192092896,
+                                    1.0,
+                                    0.30000001192092896
+                                ],
+                                "Offset": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Player Camera",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                0.0,
+                                0.8121170401573181,
+                                -1.3905049562454224
+                            ],
+                            "Rot": [
+                                31.113515853881836,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Player Camera",
+                                "Version": 4,
+                                "FoV": 90.0,
+                                "NearPlane": 0.10000000149011612,
+                                "FarPlane": 1000.0,
+                                "Speed": 7.0,
+                                "AngleMax": 1.399999976158142,
+                                "AngleMin": -1.399999976158142,
+                                "Post Processing Volume": {
+                                    "Blend": 0.0,
+                                    "Enabled": true,
+                                    "BlendingEnabled": true,
+                                    "BlendPoints": [
+                                        {
+                                            "Profile": "PostProcess",
+                                            "Pos": 0.0
+                                        },
+                                        {
+                                            "Profile": "Night",
+                                            "Pos": 1.0
+                                        }
+                                    ],
+                                    "Profile": "PostProcess"
+                                },
+                                "OffsetX": 0.0,
+                                "OffsetY": 2.0,
+                                "OffsetZ": 3.0
+                            },
+                            {
+                                "ComponentType": "Camera Shake",
+                                "Intensity": 0.5,
+                                "Duration": 0.5
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "torii",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                -0.6730741262435913,
+                                0.021475255489349365,
+                                2.0068368911743164
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                0.5,
+                                0.5,
+                                0.5
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "Gate_Checkpoint_Spring",
+                                "Materials": [
+                                    "Spring"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": true,
+                                "InstanceCount": 0
+                            },
+                            {
+                                "ComponentType": "Mesh Collider",
+                                "Version": 1,
+                                "Collider Model": "Gate_Checkpoint_Spring"
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "rock2_mesh",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                2.861856698989868,
+                                0.5146622657775879,
+                                1.57351815700531
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                100.0,
+                                100.0,
+                                100.0
+                            ],
+                            "Children": []
+                        },
+                        "Prefab": "MediumRock"
+                    },
+                    {
+                        "Name": "rock3_mesh",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                -5.87426233291626,
+                                0.5745987892150879,
+                                3.6119651794433594
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                100.0,
+                                100.0,
+                                100.0
+                            ],
+                            "Children": []
+                        },
+                        "Prefab": "BigRock"
+                    },
+                    {
+                        "Name": "grass_mesh",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                5.32628059387207,
+                                0.0,
+                                0.2608916759490967
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "Grass",
+                                "Materials": [
+                                    "Spring"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": true,
+                                "InstanceCount": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "grass_mesh",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                3.7000069618225098,
+                                0.0,
+                                -1.687272071838379
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "Grass",
+                                "Materials": [
+                                    "Spring"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": true,
+                                "InstanceCount": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "grass_mesh",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                1.31602144241333,
+                                0.0,
+                                1.3518656492233276
+                            ],
+                            "Rot": [
+                                0.0,
+                                -43.25048065185547,
+                                0.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "Grass",
+                                "Materials": [
+                                    "Spring"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": true,
+                                "InstanceCount": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "grass_mesh",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                -3.947211980819702,
+                                0.0,
+                                -0.6921934485435486
+                            ],
+                            "Rot": [
+                                0.0,
+                                -1.7628130912780762,
+                                0.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "Grass",
+                                "Materials": [
+                                    "Spring"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": true,
+                                "InstanceCount": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "grass_mesh",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                -6.712634563446045,
+                                0.0,
+                                -3.6182689666748047
+                            ],
+                            "Rot": [
+                                0.0,
+                                -1.7628130912780762,
+                                0.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "Grass",
+                                "Materials": [
+                                    "Spring"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": true,
+                                "InstanceCount": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "grass_mesh",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                -5.058777809143066,
+                                0.0,
+                                1.898728609085083
+                            ],
+                            "Rot": [
+                                0.0,
+                                83.5416488647461,
+                                0.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "Grass",
+                                "Materials": [
+                                    "Spring"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": true,
+                                "InstanceCount": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Unnamed asset",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Light",
+                                "Version": 2,
+                                "Type": 0,
+                                "Shadows": 1,
+                                "Intensity": 26.799999237060547,
+                                "Range": 10.0,
+                                "Tex": "studio_cubemap",
+                                "Color": {
+                                    "r": 1.0,
+                                    "g": 1.0,
+                                    "b": 1.0,
+                                    "a": 1.0
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Unnamed asset",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                0.0,
+                                0.0,
+                                -18.200000762939453
+                            ],
+                            "Rot": [
+                                56.29999923706055,
+                                9.300000190734863,
+                                0.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Light",
+                                "Version": 2,
+                                "Type": 0,
+                                "Shadows": 1,
+                                "Intensity": 0.10000000149011612,
+                                "Range": 10.0,
+                                "Tex": "studio_cubemap",
+                                "Color": {
+                                    "r": 1.0,
+                                    "g": 1.0,
+                                    "b": 1.0,
+                                    "a": 1.0
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "BigTree",
+                        "Active": false,
+                        "Opened": false,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                4.139987945556641,
+                                0.000009604937986296136,
+                                -5.181869029998779
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": [
+                                {
+                                    "Name": "Trunk",
+                                    "Active": true,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Rot": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Size": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Model Instance",
+                                            "Version": 6,
+                                            "Model": "tree1_trunk",
+                                            "Materials": [
+                                                "Spring"
+                                            ],
+                                            "UsedForNav": false,
+                                            "Renderer": 1,
+                                            "Material Instance": false,
+                                            "CastShadows": true,
+                                            "InstanceCount": 0
+                                        },
+                                        {
+                                            "ComponentType": "Mesh Collider",
+                                            "Version": 1,
+                                            "Collider Model": "tree1_trunk"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Name": "Top",
+                                    "Active": true,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Rot": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Size": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Model Instance",
+                                            "Version": 6,
+                                            "Model": "tree1_top",
+                                            "Materials": [
+                                                "Spring"
+                                            ],
+                                            "UsedForNav": false,
+                                            "Renderer": 1,
+                                            "Material Instance": false,
+                                            "CastShadows": true,
+                                            "InstanceCount": 0
+                                        },
+                                        {
+                                            "ComponentType": "Sphere Collider",
+                                            "Version": 0,
+                                            "Layer": 0,
+                                            "Radius": 2.25,
+                                            "Offset": [
+                                                0.41999998688697815,
+                                                0.0,
+                                                -0.49000000953674316
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "Prefab": "BigTree"
+                    },
+                    {
+                        "Name": "BigTree",
+                        "Active": false,
+                        "Opened": false,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                -5.298964500427246,
+                                0.000024349463274120353,
+                                -2.236887216567993
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": [
+                                {
+                                    "Name": "Trunk",
+                                    "Active": true,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Rot": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Size": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Model Instance",
+                                            "Version": 6,
+                                            "Model": "tree1_trunk",
+                                            "Materials": [
+                                                "Spring"
+                                            ],
+                                            "UsedForNav": false,
+                                            "Renderer": 1,
+                                            "Material Instance": false,
+                                            "CastShadows": true,
+                                            "InstanceCount": 0
+                                        },
+                                        {
+                                            "ComponentType": "Mesh Collider",
+                                            "Version": 1,
+                                            "Collider Model": "tree1_trunk"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Name": "Top",
+                                    "Active": true,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Rot": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Size": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Model Instance",
+                                            "Version": 6,
+                                            "Model": "tree1_top",
+                                            "Materials": [
+                                                "Spring"
+                                            ],
+                                            "UsedForNav": false,
+                                            "Renderer": 1,
+                                            "Material Instance": false,
+                                            "CastShadows": true,
+                                            "InstanceCount": 0
+                                        },
+                                        {
+                                            "ComponentType": "Sphere Collider",
+                                            "Version": 0,
+                                            "Layer": 0,
+                                            "Radius": 2.25,
+                                            "Offset": [
+                                                0.41999998688697815,
+                                                0.0,
+                                                -0.49000000953674316
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "Prefab": "BigTree"
+                    },
+                    {
+                        "Name": "Tree",
+                        "Active": true,
+                        "Opened": false,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                4.2962141036987305,
+                                0.00007769333751639351,
+                                4.3474225997924805
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": [
+                                {
+                                    "Name": "Trunk",
+                                    "Active": true,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Rot": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Size": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Model Instance",
+                                            "Version": 6,
+                                            "Model": "tree3_trunk",
+                                            "Materials": [
+                                                "Spring"
+                                            ],
+                                            "UsedForNav": false,
+                                            "Renderer": 1,
+                                            "Material Instance": false,
+                                            "CastShadows": true,
+                                            "InstanceCount": 0
+                                        },
+                                        {
+                                            "ComponentType": "Box Collider",
+                                            "Version": 1,
+                                            "Layer": 0,
+                                            "Trigger": false,
+                                            "Size": [
+                                                0.49000000953674316,
+                                                1.399999976158142,
+                                                0.8500000238418579
+                                            ],
+                                            "Offset": [
+                                                0.0,
+                                                0.0,
+                                                0.0
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Name": "Top",
+                                    "Active": true,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            0.0,
+                                            2.097476681228727e-8,
+                                            0.0
+                                        ],
+                                        "Rot": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Size": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Model Instance",
+                                            "Version": 6,
+                                            "Model": "tree3_top",
+                                            "Materials": [
+                                                "Spring"
+                                            ],
+                                            "UsedForNav": false,
+                                            "Renderer": 1,
+                                            "Material Instance": false,
+                                            "CastShadows": true,
+                                            "InstanceCount": 0
+                                        },
+                                        {
+                                            "ComponentType": "Rigid Body",
+                                            "Use Gravity": false,
+                                            "Mass": 1.0,
+                                            "Lock Translation X": false,
+                                            "Lock Translation Y": false,
+                                            "Lock Translation Z": false,
+                                            "Lock Rotation X": true,
+                                            "Lock Rotation Y": true,
+                                            "Lock Rotation Z": true
+                                        },
+                                        {
+                                            "ComponentType": "Sphere Collider",
+                                            "Version": 0,
+                                            "Layer": 0,
+                                            "Radius": 1.340000033378601,
+                                            "Offset": [
+                                                0.0,
+                                                0.0,
+                                                0.0
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "Prefab": "Tree"
+                    },
+                    {
+                        "Name": "Tree",
+                        "Active": true,
+                        "Opened": false,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                -9.255765914916992,
+                                0.00002641387254698202,
+                                6.555840969085693
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": [
+                                {
+                                    "Name": "Trunk",
+                                    "Active": true,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Rot": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Size": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Model Instance",
+                                            "Version": 6,
+                                            "Model": "tree3_trunk",
+                                            "Materials": [
+                                                "Spring"
+                                            ],
+                                            "UsedForNav": false,
+                                            "Renderer": 1,
+                                            "Material Instance": false,
+                                            "CastShadows": true,
+                                            "InstanceCount": 0
+                                        },
+                                        {
+                                            "ComponentType": "Box Collider",
+                                            "Version": 1,
+                                            "Layer": 0,
+                                            "Trigger": false,
+                                            "Size": [
+                                                0.49000000953674316,
+                                                1.399999976158142,
+                                                0.8500000238418579
+                                            ],
+                                            "Offset": [
+                                                0.0,
+                                                0.0,
+                                                0.0
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Name": "Top",
+                                    "Active": true,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            0.0,
+                                            2.097476681228727e-8,
+                                            0.0
+                                        ],
+                                        "Rot": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Size": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Model Instance",
+                                            "Version": 6,
+                                            "Model": "tree3_top",
+                                            "Materials": [
+                                                "Spring"
+                                            ],
+                                            "UsedForNav": false,
+                                            "Renderer": 1,
+                                            "Material Instance": false,
+                                            "CastShadows": true,
+                                            "InstanceCount": 0
+                                        },
+                                        {
+                                            "ComponentType": "Rigid Body",
+                                            "Use Gravity": false,
+                                            "Mass": 1.0,
+                                            "Lock Translation X": false,
+                                            "Lock Translation Y": false,
+                                            "Lock Translation Z": false,
+                                            "Lock Rotation X": true,
+                                            "Lock Rotation Y": true,
+                                            "Lock Rotation Z": true
+                                        },
+                                        {
+                                            "ComponentType": "Sphere Collider",
+                                            "Version": 0,
+                                            "Layer": 0,
+                                            "Radius": 1.340000033378601,
+                                            "Offset": [
+                                                0.0,
+                                                0.0,
+                                                0.0
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "Prefab": "Tree"
+                    },
+                    {
+                        "Name": "Tree",
+                        "Active": true,
+                        "Opened": false,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                -0.9172639846801758,
+                                0.000028525275411084294,
+                                -5.244436740875244
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": [
+                                {
+                                    "Name": "Trunk",
+                                    "Active": true,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Rot": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Size": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Model Instance",
+                                            "Version": 6,
+                                            "Model": "tree3_trunk",
+                                            "Materials": [
+                                                "Spring"
+                                            ],
+                                            "UsedForNav": false,
+                                            "Renderer": 1,
+                                            "Material Instance": false,
+                                            "CastShadows": true,
+                                            "InstanceCount": 0
+                                        },
+                                        {
+                                            "ComponentType": "Box Collider",
+                                            "Version": 1,
+                                            "Layer": 0,
+                                            "Trigger": false,
+                                            "Size": [
+                                                0.49000000953674316,
+                                                1.399999976158142,
+                                                0.8500000238418579
+                                            ],
+                                            "Offset": [
+                                                0.0,
+                                                0.0,
+                                                0.0
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Name": "Top",
+                                    "Active": true,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            0.0,
+                                            2.097476681228727e-8,
+                                            0.0
+                                        ],
+                                        "Rot": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Size": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Model Instance",
+                                            "Version": 6,
+                                            "Model": "tree3_top",
+                                            "Materials": [
+                                                "Spring"
+                                            ],
+                                            "UsedForNav": false,
+                                            "Renderer": 1,
+                                            "Material Instance": false,
+                                            "CastShadows": true,
+                                            "InstanceCount": 0
+                                        },
+                                        {
+                                            "ComponentType": "Rigid Body",
+                                            "Use Gravity": false,
+                                            "Mass": 1.0,
+                                            "Lock Translation X": false,
+                                            "Lock Translation Y": false,
+                                            "Lock Translation Z": false,
+                                            "Lock Rotation X": true,
+                                            "Lock Rotation Y": true,
+                                            "Lock Rotation Z": true
+                                        },
+                                        {
+                                            "ComponentType": "Sphere Collider",
+                                            "Version": 0,
+                                            "Layer": 0,
+                                            "Radius": 1.340000033378601,
+                                            "Offset": [
+                                                0.0,
+                                                0.0,
+                                                0.0
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "Prefab": "Tree"
+                    },
+                    {
+                        "Name": "BigTree",
+                        "Active": false,
+                        "Opened": false,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                -7.531809329986572,
+                                0.000009601481906429399,
+                                0.32159337401390076
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": [
+                                {
+                                    "Name": "Trunk",
+                                    "Active": true,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Rot": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Size": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Model Instance",
+                                            "Version": 6,
+                                            "Model": "tree1_trunk",
+                                            "Materials": [
+                                                "Spring"
+                                            ],
+                                            "UsedForNav": false,
+                                            "Renderer": 1,
+                                            "Material Instance": false,
+                                            "CastShadows": true,
+                                            "InstanceCount": 0
+                                        },
+                                        {
+                                            "ComponentType": "Mesh Collider",
+                                            "Version": 1,
+                                            "Collider Model": "tree1_trunk"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Name": "Top",
+                                    "Active": true,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Rot": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Size": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Model Instance",
+                                            "Version": 6,
+                                            "Model": "tree1_top",
+                                            "Materials": [
+                                                "Spring"
+                                            ],
+                                            "UsedForNav": false,
+                                            "Renderer": 1,
+                                            "Material Instance": false,
+                                            "CastShadows": true,
+                                            "InstanceCount": 0
+                                        },
+                                        {
+                                            "ComponentType": "Sphere Collider",
+                                            "Version": 0,
+                                            "Layer": 0,
+                                            "Radius": 2.25,
+                                            "Offset": [
+                                                0.41999998688697815,
+                                                0.0,
+                                                -0.49000000953674316
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "Prefab": "BigTree"
+                    }
+                ]
+            },
+            "Components": [
+                {
+                    "ComponentType": "Game Scene"
+                }
+            ]
+        },
+        {
+            "Name": "Slash",
+            "Active": true,
+            "Opened": true,
+            "Transform": {
+                "Version": 2,
+                "BoneParentID": -1,
+                "Pos": [
+                    2.495954751968384,
+                    1.7475008964538574,
+                    5.01375675201416
+                ],
+                "Rot": [
+                    0.0,
+                    -73.92185974121094,
+                    0.0
+                ],
+                "Size": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "Children": [
+                    {
+                        "Name": "Slash",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Rot": [
+                                90.0,
+                                0.0,
+                                19.700000762939453
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "Plane",
+                                "Materials": [
+                                    "SlashMat"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": false,
+                                "InstanceCount": 0
+                            }
+                        ]
+                    }
+                ]
+            },
+            "Components": [
+                {
+                    "ComponentType": "Look At Camera"
+                }
+            ]
+        }
+    ]
+}

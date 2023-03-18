@@ -10,6 +10,7 @@ void Tree::Slash(const Vector3f& anIntersectionPos, const Vector3f& anIntersecti
 		{
 			auto rb = child->GetGameObject()->GetComponent<RigidBody>();
 			rb->SetRotationAxisLock(false, false, false);
+			rb->SetTranslationAxisLock(false, false, false);
 			rb->AddForceAtPos(1, anIntersectionPos, physx::PxForceMode::eIMPULSE);
 			rb->SetUseGravity(true);
 		}

@@ -18,9 +18,14 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bomb.h" />
+    <ClInclude Include="BrushActions.h" />
+    <ClInclude Include="BrushSymbol.h" />
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="CanvasPS.h" />
+    <ClInclude Include="DayNightCycle.h" />
     <ClInclude Include="Game.pch.h" />
+    <ClInclude Include="GameScene.h" />
     <ClInclude Include="LookAtCamera.h" />
     <ClInclude Include="Managers\GameManager.h">
       <Filter>Managers</Filter>
@@ -37,6 +42,7 @@
       <Filter>OpenCV</Filter>
     </ClInclude>
     <ClInclude Include="Paintbrush.h" />
+    <ClInclude Include="PaintingScene.h" />
     <ClInclude Include="Player\PlayerCamera.h">
       <Filter>Player</Filter>
     </ClInclude>
@@ -44,18 +50,17 @@
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="Project.h" />
-    <ClInclude Include="PaintingScene.h" />
-    <ClInclude Include="GameScene.h" />
-    <ClInclude Include="BrushActions.h" />
-    <ClInclude Include="DayNightCycle.h" />
-    <ClInclude Include="Bomb.h" />
-    <ClInclude Include="BrushSymbol.h" />
+    <ClInclude Include="SelfDestroy.h" />
     <ClInclude Include="Tree.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="BrushActions.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="CanvasPS.cpp" />
+    <ClCompile Include="DayNightCycle.cpp" />
     <ClCompile Include="Game.pch.cpp" />
+    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="LookAtCamera.cpp" />
     <ClCompile Include="Managers\GameManager.cpp">
       <Filter>Managers</Filter>
@@ -69,6 +74,7 @@
       <Filter>OpenCV</Filter>
     </ClCompile>
     <ClCompile Include="Paintbrush.cpp" />
+    <ClCompile Include="PaintingScene.cpp" />
     <ClCompile Include="Player\PlayerCamera.cpp">
       <Filter>Player</Filter>
     </ClCompile>
@@ -76,11 +82,7 @@
       <Filter>Player</Filter>
     </ClCompile>
     <ClCompile Include="Project.cpp" />
-    <ClCompile Include="PaintingScene.cpp" />
-    <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="BrushActions.cpp" />
-    <ClCompile Include="DayNightCycle.cpp" />
-    <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="SelfDestroy.cpp" />
     <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
