@@ -40,10 +40,10 @@ void PhysicsEngine::Update()
 		if (myPxScene) 
 		{
 			float delta = 1.0f / 60.0f;
-			if (deltaTime > (1.0f / 60.0f))
+			/*if (deltaTime > (1.0f / 60.0f))
 			{
 				delta = deltaTime;
-			}
+			}*/
 			myPxScene->simulate(delta);
 			if (myPxScene->checkResults(true))
 			{

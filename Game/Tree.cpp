@@ -2,6 +2,8 @@
 #include "Tree.h"
 #include "Components\Physics\RigidBody.h"
 #include "Physics\PhysicsEngine.h"
+#include "Components\3D\ModelInstance.h"
+#include "Assets\Material.h"
 
 void Tree::Slash(const Vector3f& anIntersectionPos, const Vector3f& anIntersectionDir)
 {
@@ -13,32 +15,74 @@ void Tree::Slash(const Vector3f& anIntersectionPos, const Vector3f& anIntersecti
 		if (child->GetGameObject()->GetName() == "Top")
 		{
 			myTreeTop = child;
-			/*auto rb = child->GetGameObject()->GetComponent<RigidBody>();
-			physx::PxTransform tempTransfrom;
-			tempTransfrom.p.x = 0;
-			tempTransfrom.p.y = 3;
-			tempTransfrom.p.z = 0;
-			rb->GetActor()->setCMassLocalPose(tempTransfrom);
-			rb->SetRotationAxisLock(false, false, false);
-			rb->SetTranslationAxisLock(false, false, false);
-			rb->AddForceAtPos(5, anIntersectionPos, physx::PxForceMode::eIMPULSE);
-			rb->SetUseGravity(true);*/
-			myStartRot = child->worldRot();
 
-			myTargetAngleX = Catbox::Rad2Deg(atan2(1, sqrt(pow(mySlashDir.x, 2) + pow(mySlashDir.z, 2))));
-			myTargetAngleZ = Catbox::Rad2Deg(atan2(mySlashDir.x, mySlashDir.z));
-			printmsg("Angle: " + std::to_string(myTargetAngleZ));
-			return;
+			myTargetAngleZ = -Catbox::Rad2Deg(atan2(anIntersectionDir.x, anIntersectionDir.z));
+			if (myTargetAngleZ < -90) myTargetAngleZ = -180 - myTargetAngleZ;
+			else if (myTargetAngleZ > 90) myTargetAngleZ = 180 - myTargetAngleZ;
+
+			myTargetAngleX = Catbox::Rad2Deg(atan2(anIntersectionDir.z, anIntersectionDir.x));
+			if (myTargetAngleX < -90) myTargetAngleX = -180 - myTargetAngleX;
+			else if (myTargetAngleX > 90) myTargetAngleX = 180 - myTargetAngleX;
+
+			myTreeTopMat = child->GetGameObject()->GetComponent<ModelInstance>()->GetMaterial(0).get();
 		}
+		else myTreeTrunkMat = child->GetGameObject()->GetComponent<ModelInstance>()->GetMaterial(0).get();
 	}
 }
 
 void Tree::Update()
 {
-	if (myIsLerping && myLerpTimer < myLerpTarget)
+	if (Input::GetKeyPress(KeyCode::R))
+	{
+		Vector3f dir = GameManager::GetInstance()->GetPlayer()->worldPos() - myTransform->worldPos();
+		dir.y = 0;
+		dir.Normalize();
+		myIsLerping = true;
+		myLerpTimer = 0;
+
+
+		for (auto& child : myTransform->GetChildren())
+		{
+			if (child->GetGameObject()->GetName() == "Top")
+			{
+				myTreeTop = child;
+
+				myTargetAngleZ = Catbox::Rad2Deg(atan2(dir.x, dir.z));
+				if (myTargetAngleZ < -90) myTargetAngleZ = -180 - myTargetAngleZ;
+				else if (myTargetAngleZ > 90) myTargetAngleZ = 180 - myTargetAngleZ;
+
+				myTargetAngleX = -Catbox::Rad2Deg(atan2(dir.z, dir.x));
+				if (myTargetAngleX < -90) myTargetAngleX = -180 - myTargetAngleX;
+				else if (myTargetAngleX > 90) myTargetAngleX = 180 - myTargetAngleX;
+
+				printmsg("Angle X: " + std::to_string(myTargetAngleX) + ", Angle Z: " + std::to_string(myTargetAngleZ));
+
+				myTreeTopMat = child->GetGameObject()->GetComponent<ModelInstance>()->GetMaterial(0).get();
+			}
+			else myTreeTrunkMat = child->GetGameObject()->GetComponent<ModelInstance>()->GetMaterial(0).get();
+		}
+	}
+
+	if (myIsLerping)
 	{
 		myLerpTimer += deltaTime;
-		float t = myLerpTimer / myLerpTarget;
-		myTreeTop->SetWorldRot(Catbox::Lerp(myStartRot.x, myTargetAngleX, t), myStartRot.y, Catbox::Lerp(myStartRot.z, myTargetAngleZ, t));
+		if (myLerpTimer < myLerpTarget)
+		{
+			printmsg(std::to_string(myLerpTimer));
+			float percent = myLerpTimer / myLerpTarget;
+			float t = percent * percent;
+			myTreeTop->SetWorldRot(Catbox::Lerp(myStartRot.x, myTargetAngleX, t), myStartRot.y, Catbox::Lerp(myStartRot.z, myTargetAngleZ, t));
+			myTreeTopMat->SetColor(Color(1, 1, 1, 1 - t));
+		}
+		else if (myLerpTimer - myLerpTarget > 1)
+		{
+			myDeadTime += deltaTime;
+			myTreeTrunkMat->SetColor(Color(1, 1, 1, 1 - myDeadTime));
+
+			if (myDeadTime > 1)
+			{
+				myGameObject->Destroy();
+			}
+		}
 	}
 }

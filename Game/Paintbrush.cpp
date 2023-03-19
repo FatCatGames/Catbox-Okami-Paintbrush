@@ -4,6 +4,7 @@
 #include "BrushVS.h"
 #include "Components\3D\ModelInstance.h"
 #include "Assets\Material.h"
+#include "ComponentTools\ThreadPool.h"
 
 void Paintbrush::Awake()
 {
@@ -26,6 +27,8 @@ void Paintbrush::Awake()
 
 void Paintbrush::Update()
 {
+	if (!Canvas::GetInstance()->GetCanPaint()) return;
+
 	if (Input::GetKeyPress(KeyCode::N1))
 	{
 		myColorMode = ColorMode::Black;

@@ -962,7 +962,7 @@
                             "BoneParentID": -1,
                             "Pos": [
                                 5.515549182891846,
-                                0.00000959998487815028,
+                                0.000009622336619941052,
                                 -3.624246597290039
                             ],
                             "Rot": [
@@ -1066,31 +1066,9 @@
                                             ],
                                             "UsedForNav": false,
                                             "Renderer": 1,
-                                            "Material Instance": false,
+                                            "Material Instance": true,
                                             "CastShadows": true,
                                             "InstanceCount": 0
-                                        },
-                                        {
-                                            "ComponentType": "Sphere Collider",
-                                            "Version": 0,
-                                            "Layer": 0,
-                                            "Radius": 2.25,
-                                            "Offset": [
-                                                0.41999998688697815,
-                                                0.0,
-                                                -0.49000000953674316
-                                            ]
-                                        },
-                                        {
-                                            "ComponentType": "Rigid Body",
-                                            "Use Gravity": false,
-                                            "Mass": 1.0,
-                                            "Lock Translation X": true,
-                                            "Lock Translation Y": true,
-                                            "Lock Translation Z": true,
-                                            "Lock Rotation X": true,
-                                            "Lock Rotation Y": true,
-                                            "Lock Rotation Z": true
                                         }
                                     ]
                                 }
@@ -1101,13 +1079,13 @@
                     {
                         "Name": "BigTree",
                         "Active": true,
-                        "Opened": true,
+                        "Opened": false,
                         "Transform": {
                             "Version": 2,
                             "BoneParentID": -1,
                             "Pos": [
                                 -6.453021049499512,
-                                0.000035313561966177076,
+                                0.00003533591370796785,
                                 -0.22579193115234375
                             ],
                             "Rot": [
@@ -1186,7 +1164,7 @@
                                         "BoneParentID": -1,
                                         "Pos": [
                                             0.0,
-                                            -3.076820576097816e-8,
+                                            0.0,
                                             0.0
                                         ],
                                         "Rot": [
@@ -1211,31 +1189,9 @@
                                             ],
                                             "UsedForNav": false,
                                             "Renderer": 1,
-                                            "Material Instance": false,
+                                            "Material Instance": true,
                                             "CastShadows": true,
                                             "InstanceCount": 0
-                                        },
-                                        {
-                                            "ComponentType": "Sphere Collider",
-                                            "Version": 0,
-                                            "Layer": 0,
-                                            "Radius": 2.25,
-                                            "Offset": [
-                                                0.41999998688697815,
-                                                0.0,
-                                                -0.49000000953674316
-                                            ]
-                                        },
-                                        {
-                                            "ComponentType": "Rigid Body",
-                                            "Use Gravity": false,
-                                            "Mass": 1.0,
-                                            "Lock Translation X": true,
-                                            "Lock Translation Y": true,
-                                            "Lock Translation Z": true,
-                                            "Lock Rotation X": true,
-                                            "Lock Rotation Y": true,
-                                            "Lock Rotation Z": true
                                         }
                                     ]
                                 }
@@ -1246,13 +1202,13 @@
                     {
                         "Name": "Tree",
                         "Active": true,
-                        "Opened": false,
+                        "Opened": true,
                         "Transform": {
                             "Version": 2,
                             "BoneParentID": -1,
                             "Pos": [
                                 4.2962141036987305,
-                                0.00007769333751639351,
+                                0.040217719972133636,
                                 4.3474225997924805
                             ],
                             "Rot": [
@@ -1300,7 +1256,7 @@
                                             ],
                                             "UsedForNav": false,
                                             "Renderer": 1,
-                                            "Material Instance": false,
+                                            "Material Instance": true,
                                             "CastShadows": true,
                                             "InstanceCount": 0
                                         },
@@ -1331,7 +1287,7 @@
                                         "BoneParentID": -1,
                                         "Pos": [
                                             0.0,
-                                            2.097476681228727e-8,
+                                            2.0976585801690817e-8,
                                             0.0
                                         ],
                                         "Rot": [
@@ -1356,176 +1312,9 @@
                                             ],
                                             "UsedForNav": false,
                                             "Renderer": 1,
-                                            "Material Instance": false,
+                                            "Material Instance": true,
                                             "CastShadows": true,
                                             "InstanceCount": 0
-                                        },
-                                        {
-                                            "ComponentType": "Rigid Body",
-                                            "Use Gravity": false,
-                                            "Mass": 1.0,
-                                            "Lock Translation X": true,
-                                            "Lock Translation Y": true,
-                                            "Lock Translation Z": true,
-                                            "Lock Rotation X": true,
-                                            "Lock Rotation Y": true,
-                                            "Lock Rotation Z": true
-                                        },
-                                        {
-                                            "ComponentType": "Sphere Collider",
-                                            "Version": 0,
-                                            "Layer": 0,
-                                            "Radius": 1.340000033378601,
-                                            "Offset": [
-                                                0.0,
-                                                0.0,
-                                                0.0
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        "Prefab": "Tree"
-                    },
-                    {
-                        "Name": "Tree",
-                        "Active": true,
-                        "Opened": false,
-                        "Transform": {
-                            "Version": 2,
-                            "BoneParentID": -1,
-                            "Pos": [
-                                -9.255765914916992,
-                                0.00002641387254698202,
-                                6.555840969085693
-                            ],
-                            "Rot": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ],
-                            "Size": [
-                                1.0,
-                                1.0,
-                                1.0
-                            ],
-                            "Children": [
-                                {
-                                    "Name": "Trunk",
-                                    "Active": true,
-                                    "Opened": true,
-                                    "Transform": {
-                                        "Version": 2,
-                                        "BoneParentID": -1,
-                                        "Pos": [
-                                            0.0,
-                                            0.0,
-                                            0.0
-                                        ],
-                                        "Rot": [
-                                            0.0,
-                                            0.0,
-                                            0.0
-                                        ],
-                                        "Size": [
-                                            1.0,
-                                            1.0,
-                                            1.0
-                                        ],
-                                        "Children": []
-                                    },
-                                    "Components": [
-                                        {
-                                            "ComponentType": "Model Instance",
-                                            "Version": 6,
-                                            "Model": "tree3_trunk",
-                                            "Materials": [
-                                                "Spring"
-                                            ],
-                                            "UsedForNav": false,
-                                            "Renderer": 1,
-                                            "Material Instance": false,
-                                            "CastShadows": true,
-                                            "InstanceCount": 0
-                                        },
-                                        {
-                                            "ComponentType": "Box Collider",
-                                            "Version": 1,
-                                            "Layer": 0,
-                                            "Trigger": false,
-                                            "Size": [
-                                                0.49000000953674316,
-                                                1.399999976158142,
-                                                0.8500000238418579
-                                            ],
-                                            "Offset": [
-                                                0.0,
-                                                0.0,
-                                                0.0
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "Name": "Top",
-                                    "Active": true,
-                                    "Opened": true,
-                                    "Transform": {
-                                        "Version": 2,
-                                        "BoneParentID": -1,
-                                        "Pos": [
-                                            0.0,
-                                            2.097476681228727e-8,
-                                            0.0
-                                        ],
-                                        "Rot": [
-                                            0.0,
-                                            0.0,
-                                            0.0
-                                        ],
-                                        "Size": [
-                                            1.0,
-                                            1.0,
-                                            1.0
-                                        ],
-                                        "Children": []
-                                    },
-                                    "Components": [
-                                        {
-                                            "ComponentType": "Model Instance",
-                                            "Version": 6,
-                                            "Model": "tree3_top",
-                                            "Materials": [
-                                                "Spring"
-                                            ],
-                                            "UsedForNav": false,
-                                            "Renderer": 1,
-                                            "Material Instance": false,
-                                            "CastShadows": true,
-                                            "InstanceCount": 0
-                                        },
-                                        {
-                                            "ComponentType": "Rigid Body",
-                                            "Use Gravity": false,
-                                            "Mass": 1.0,
-                                            "Lock Translation X": true,
-                                            "Lock Translation Y": true,
-                                            "Lock Translation Z": true,
-                                            "Lock Rotation X": true,
-                                            "Lock Rotation Y": true,
-                                            "Lock Rotation Z": true
-                                        },
-                                        {
-                                            "ComponentType": "Sphere Collider",
-                                            "Version": 0,
-                                            "Layer": 0,
-                                            "Radius": 1.340000033378601,
-                                            "Offset": [
-                                                0.0,
-                                                0.0,
-                                                0.0
-                                            ]
                                         }
                                     ]
                                 }
@@ -1542,7 +1331,7 @@
                             "BoneParentID": -1,
                             "Pos": [
                                 -3.860600709915161,
-                                0.000028521131753223017,
+                                0.00002854348349501379,
                                 -7.603662967681885
                             ],
                             "Rot": [
@@ -1590,7 +1379,7 @@
                                             ],
                                             "UsedForNav": false,
                                             "Renderer": 1,
-                                            "Material Instance": false,
+                                            "Material Instance": true,
                                             "CastShadows": true,
                                             "InstanceCount": 0
                                         },
@@ -1621,7 +1410,7 @@
                                         "BoneParentID": -1,
                                         "Pos": [
                                             0.0,
-                                            2.097476681228727e-8,
+                                            2.0976585801690817e-8,
                                             0.0
                                         ],
                                         "Rot": [
@@ -1646,31 +1435,9 @@
                                             ],
                                             "UsedForNav": false,
                                             "Renderer": 1,
-                                            "Material Instance": false,
+                                            "Material Instance": true,
                                             "CastShadows": true,
                                             "InstanceCount": 0
-                                        },
-                                        {
-                                            "ComponentType": "Rigid Body",
-                                            "Use Gravity": false,
-                                            "Mass": 1.0,
-                                            "Lock Translation X": true,
-                                            "Lock Translation Y": true,
-                                            "Lock Translation Z": true,
-                                            "Lock Rotation X": true,
-                                            "Lock Rotation Y": true,
-                                            "Lock Rotation Z": true
-                                        },
-                                        {
-                                            "ComponentType": "Sphere Collider",
-                                            "Version": 0,
-                                            "Layer": 0,
-                                            "Radius": 1.340000033378601,
-                                            "Offset": [
-                                                0.0,
-                                                0.0,
-                                                0.0
-                                            ]
                                         }
                                     ]
                                 }
@@ -1687,7 +1454,7 @@
                             "BoneParentID": -1,
                             "Pos": [
                                 -13.496013641357422,
-                                0.000010315514373360202,
+                                0.000010337866115150973,
                                 -1.9598393440246582
                             ],
                             "Rot": [
@@ -1711,7 +1478,7 @@
                                         "Pos": [
                                             0.0,
                                             0.0,
-                                            2.9802322387695313e-8
+                                            0.0
                                         ],
                                         "Rot": [
                                             0.0,
@@ -1791,31 +1558,9 @@
                                             ],
                                             "UsedForNav": false,
                                             "Renderer": 1,
-                                            "Material Instance": false,
+                                            "Material Instance": true,
                                             "CastShadows": true,
                                             "InstanceCount": 0
-                                        },
-                                        {
-                                            "ComponentType": "Sphere Collider",
-                                            "Version": 0,
-                                            "Layer": 0,
-                                            "Radius": 2.25,
-                                            "Offset": [
-                                                0.41999998688697815,
-                                                0.0,
-                                                -0.49000000953674316
-                                            ]
-                                        },
-                                        {
-                                            "ComponentType": "Rigid Body",
-                                            "Use Gravity": false,
-                                            "Mass": 1.0,
-                                            "Lock Translation X": true,
-                                            "Lock Translation Y": true,
-                                            "Lock Translation Z": true,
-                                            "Lock Rotation X": true,
-                                            "Lock Rotation Y": true,
-                                            "Lock Rotation Z": true
                                         }
                                     ]
                                 }
@@ -1826,13 +1571,13 @@
                     {
                         "Name": "Tree",
                         "Active": true,
-                        "Opened": true,
+                        "Opened": false,
                         "Transform": {
                             "Version": 2,
                             "BoneParentID": -1,
                             "Pos": [
                                 6.132321834564209,
-                                0.000030280532882898115,
+                                0.000030302884624688886,
                                 -10.71501350402832
                             ],
                             "Rot": [
@@ -1880,7 +1625,7 @@
                                             ],
                                             "UsedForNav": false,
                                             "Renderer": 1,
-                                            "Material Instance": false,
+                                            "Material Instance": true,
                                             "CastShadows": true,
                                             "InstanceCount": 0
                                         },
@@ -1911,7 +1656,7 @@
                                         "BoneParentID": -1,
                                         "Pos": [
                                             0.0,
-                                            2.097476681228727e-8,
+                                            2.0976585801690817e-8,
                                             0.0
                                         ],
                                         "Rot": [
@@ -1936,31 +1681,9 @@
                                             ],
                                             "UsedForNav": false,
                                             "Renderer": 1,
-                                            "Material Instance": false,
+                                            "Material Instance": true,
                                             "CastShadows": true,
                                             "InstanceCount": 0
-                                        },
-                                        {
-                                            "ComponentType": "Rigid Body",
-                                            "Use Gravity": false,
-                                            "Mass": 1.0,
-                                            "Lock Translation X": true,
-                                            "Lock Translation Y": true,
-                                            "Lock Translation Z": true,
-                                            "Lock Rotation X": true,
-                                            "Lock Rotation Y": true,
-                                            "Lock Rotation Z": true
-                                        },
-                                        {
-                                            "ComponentType": "Sphere Collider",
-                                            "Version": 0,
-                                            "Layer": 0,
-                                            "Radius": 1.340000033378601,
-                                            "Offset": [
-                                                0.0,
-                                                0.0,
-                                                0.0
-                                            ]
                                         }
                                     ]
                                 }
@@ -1971,13 +1694,13 @@
                     {
                         "Name": "Tree",
                         "Active": true,
-                        "Opened": true,
+                        "Opened": false,
                         "Transform": {
                             "Version": 2,
                             "BoneParentID": -1,
                             "Pos": [
                                 11.469894409179688,
-                                0.000028515658414107747,
+                                0.00002853801015589852,
                                 -13.57443904876709
                             ],
                             "Rot": [
@@ -2025,7 +1748,7 @@
                                             ],
                                             "UsedForNav": false,
                                             "Renderer": 1,
-                                            "Material Instance": false,
+                                            "Material Instance": true,
                                             "CastShadows": true,
                                             "InstanceCount": 0
                                         },
@@ -2056,7 +1779,7 @@
                                         "BoneParentID": -1,
                                         "Pos": [
                                             0.0,
-                                            2.097476681228727e-8,
+                                            2.0976585801690817e-8,
                                             0.0
                                         ],
                                         "Rot": [
@@ -2081,31 +1804,9 @@
                                             ],
                                             "UsedForNav": false,
                                             "Renderer": 1,
-                                            "Material Instance": false,
+                                            "Material Instance": true,
                                             "CastShadows": true,
                                             "InstanceCount": 0
-                                        },
-                                        {
-                                            "ComponentType": "Rigid Body",
-                                            "Use Gravity": false,
-                                            "Mass": 1.0,
-                                            "Lock Translation X": true,
-                                            "Lock Translation Y": true,
-                                            "Lock Translation Z": true,
-                                            "Lock Rotation X": true,
-                                            "Lock Rotation Y": true,
-                                            "Lock Rotation Z": true
-                                        },
-                                        {
-                                            "ComponentType": "Sphere Collider",
-                                            "Version": 0,
-                                            "Layer": 0,
-                                            "Radius": 1.340000033378601,
-                                            "Offset": [
-                                                0.0,
-                                                0.0,
-                                                0.0
-                                            ]
                                         }
                                     ]
                                 }
@@ -2122,7 +1823,7 @@
                             "BoneParentID": -1,
                             "Pos": [
                                 -10.236431121826172,
-                                0.000028527008907985874,
+                                0.000028549360649776645,
                                 -4.368004322052002
                             ],
                             "Rot": [
@@ -2170,7 +1871,7 @@
                                             ],
                                             "UsedForNav": false,
                                             "Renderer": 1,
-                                            "Material Instance": false,
+                                            "Material Instance": true,
                                             "CastShadows": true,
                                             "InstanceCount": 0
                                         },
@@ -2201,7 +1902,7 @@
                                         "BoneParentID": -1,
                                         "Pos": [
                                             0.0,
-                                            2.097476681228727e-8,
+                                            2.0976585801690817e-8,
                                             0.0
                                         ],
                                         "Rot": [
@@ -2226,31 +1927,9 @@
                                             ],
                                             "UsedForNav": false,
                                             "Renderer": 1,
-                                            "Material Instance": false,
+                                            "Material Instance": true,
                                             "CastShadows": true,
                                             "InstanceCount": 0
-                                        },
-                                        {
-                                            "ComponentType": "Rigid Body",
-                                            "Use Gravity": false,
-                                            "Mass": 1.0,
-                                            "Lock Translation X": true,
-                                            "Lock Translation Y": true,
-                                            "Lock Translation Z": true,
-                                            "Lock Rotation X": true,
-                                            "Lock Rotation Y": true,
-                                            "Lock Rotation Z": true
-                                        },
-                                        {
-                                            "ComponentType": "Sphere Collider",
-                                            "Version": 0,
-                                            "Layer": 0,
-                                            "Radius": 1.340000033378601,
-                                            "Offset": [
-                                                0.0,
-                                                0.0,
-                                                0.0
-                                            ]
                                         }
                                     ]
                                 }
@@ -2267,7 +1946,7 @@
                             "BoneParentID": -1,
                             "Pos": [
                                 9.041980743408203,
-                                0.06785120815038681,
+                                0.0678512305021286,
                                 0.48069047927856445
                             ],
                             "Rot": [
@@ -2371,31 +2050,9 @@
                                             ],
                                             "UsedForNav": false,
                                             "Renderer": 1,
-                                            "Material Instance": false,
+                                            "Material Instance": true,
                                             "CastShadows": true,
                                             "InstanceCount": 0
-                                        },
-                                        {
-                                            "ComponentType": "Sphere Collider",
-                                            "Version": 0,
-                                            "Layer": 0,
-                                            "Radius": 2.25,
-                                            "Offset": [
-                                                0.41999998688697815,
-                                                0.0,
-                                                -0.49000000953674316
-                                            ]
-                                        },
-                                        {
-                                            "ComponentType": "Rigid Body",
-                                            "Use Gravity": false,
-                                            "Mass": 1.0,
-                                            "Lock Translation X": true,
-                                            "Lock Translation Y": true,
-                                            "Lock Translation Z": true,
-                                            "Lock Rotation X": true,
-                                            "Lock Rotation Y": true,
-                                            "Lock Rotation Z": true
                                         }
                                     ]
                                 }
@@ -2406,13 +2063,13 @@
                     {
                         "Name": "BigTree",
                         "Active": true,
-                        "Opened": true,
+                        "Opened": false,
                         "Transform": {
                             "Version": 2,
                             "BoneParentID": -1,
                             "Pos": [
                                 10.972848892211914,
-                                0.0678131952881813,
+                                0.0678132176399231,
                                 -8.01736831665039
                             ],
                             "Rot": [
@@ -2516,31 +2173,9 @@
                                             ],
                                             "UsedForNav": false,
                                             "Renderer": 1,
-                                            "Material Instance": false,
+                                            "Material Instance": true,
                                             "CastShadows": true,
                                             "InstanceCount": 0
-                                        },
-                                        {
-                                            "ComponentType": "Sphere Collider",
-                                            "Version": 0,
-                                            "Layer": 0,
-                                            "Radius": 2.25,
-                                            "Offset": [
-                                                0.41999998688697815,
-                                                0.0,
-                                                -0.49000000953674316
-                                            ]
-                                        },
-                                        {
-                                            "ComponentType": "Rigid Body",
-                                            "Use Gravity": false,
-                                            "Mass": 1.0,
-                                            "Lock Translation X": true,
-                                            "Lock Translation Y": true,
-                                            "Lock Translation Z": true,
-                                            "Lock Rotation X": true,
-                                            "Lock Rotation Y": true,
-                                            "Lock Rotation Z": true
                                         }
                                     ]
                                 }
@@ -2557,7 +2192,7 @@
                             "BoneParentID": -1,
                             "Pos": [
                                 6.274455547332764,
-                                0.06777381896972656,
+                                0.06777384132146835,
                                 -16.824113845825195
                             ],
                             "Rot": [
@@ -2661,31 +2296,9 @@
                                             ],
                                             "UsedForNav": false,
                                             "Renderer": 1,
-                                            "Material Instance": false,
+                                            "Material Instance": true,
                                             "CastShadows": true,
                                             "InstanceCount": 0
-                                        },
-                                        {
-                                            "ComponentType": "Sphere Collider",
-                                            "Version": 0,
-                                            "Layer": 0,
-                                            "Radius": 2.25,
-                                            "Offset": [
-                                                0.41999998688697815,
-                                                0.0,
-                                                -0.49000000953674316
-                                            ]
-                                        },
-                                        {
-                                            "ComponentType": "Rigid Body",
-                                            "Use Gravity": false,
-                                            "Mass": 1.0,
-                                            "Lock Translation X": true,
-                                            "Lock Translation Y": true,
-                                            "Lock Translation Z": true,
-                                            "Lock Rotation X": true,
-                                            "Lock Rotation Y": true,
-                                            "Lock Rotation Z": true
                                         }
                                     ]
                                 }
@@ -2702,7 +2315,7 @@
                             "BoneParentID": -1,
                             "Pos": [
                                 -8.604558944702148,
-                                0.06777502596378326,
+                                0.06777504831552505,
                                 -15.085373878479004
                             ],
                             "Rot": [
@@ -2806,37 +2419,138 @@
                                             ],
                                             "UsedForNav": false,
                                             "Renderer": 1,
-                                            "Material Instance": false,
+                                            "Material Instance": true,
                                             "CastShadows": true,
                                             "InstanceCount": 0
-                                        },
-                                        {
-                                            "ComponentType": "Sphere Collider",
-                                            "Version": 0,
-                                            "Layer": 0,
-                                            "Radius": 2.25,
-                                            "Offset": [
-                                                0.41999998688697815,
-                                                0.0,
-                                                -0.49000000953674316
-                                            ]
-                                        },
-                                        {
-                                            "ComponentType": "Rigid Body",
-                                            "Use Gravity": false,
-                                            "Mass": 1.0,
-                                            "Lock Translation X": true,
-                                            "Lock Translation Y": true,
-                                            "Lock Translation Z": true,
-                                            "Lock Rotation X": true,
-                                            "Lock Rotation Y": true,
-                                            "Lock Rotation Z": true
                                         }
                                     ]
                                 }
                             ]
                         },
                         "Prefab": "BigTree"
+                    },
+                    {
+                        "Name": "Tree",
+                        "Active": true,
+                        "Opened": false,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                -9.255765914916992,
+                                0.00002643622428877279,
+                                6.555840969085693
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ],
+                            "Children": [
+                                {
+                                    "Name": "Trunk",
+                                    "Active": true,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Rot": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Size": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Model Instance",
+                                            "Version": 6,
+                                            "Model": "tree3_trunk",
+                                            "Materials": [
+                                                "Spring"
+                                            ],
+                                            "UsedForNav": false,
+                                            "Renderer": 1,
+                                            "Material Instance": true,
+                                            "CastShadows": true,
+                                            "InstanceCount": 0
+                                        },
+                                        {
+                                            "ComponentType": "Box Collider",
+                                            "Version": 1,
+                                            "Layer": 0,
+                                            "Trigger": false,
+                                            "Size": [
+                                                0.49000000953674316,
+                                                1.399999976158142,
+                                                0.8500000238418579
+                                            ],
+                                            "Offset": [
+                                                0.0,
+                                                0.0,
+                                                0.0
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Name": "Top",
+                                    "Active": true,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            0.0,
+                                            2.0976585801690817e-8,
+                                            0.0
+                                        ],
+                                        "Rot": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Size": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Model Instance",
+                                            "Version": 6,
+                                            "Model": "tree3_top",
+                                            "Materials": [
+                                                "Spring"
+                                            ],
+                                            "UsedForNav": false,
+                                            "Renderer": 1,
+                                            "Material Instance": true,
+                                            "CastShadows": true,
+                                            "InstanceCount": 0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "Prefab": "Tree"
                     }
                 ]
             },

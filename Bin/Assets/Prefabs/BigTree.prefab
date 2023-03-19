@@ -7,13 +7,13 @@
             "Version": 2,
             "BoneParentID": -1,
             "Pos": [
-                5.515549182891846,
-                0.00000959998487815028,
-                -3.624246597290039
+                -13.496013641357422,
+                0.000010337866115150972,
+                -1.9598393440246584
             ],
             "Rot": [
                 0.0,
-                0.0,
+                91.76100158691406,
                 0.0
             ],
             "Size": [
@@ -112,31 +112,9 @@
                             ],
                             "UsedForNav": false,
                             "Renderer": 1,
-                            "Material Instance": false,
+                            "Material Instance": true,
                             "CastShadows": true,
                             "InstanceCount": 0
-                        },
-                        {
-                            "ComponentType": "Sphere Collider",
-                            "Version": 0,
-                            "Layer": 0,
-                            "Radius": 2.25,
-                            "Offset": [
-                                0.41999998688697815,
-                                0.0,
-                                -0.4900000095367432
-                            ]
-                        },
-                        {
-                            "ComponentType": "Rigid Body",
-                            "Use Gravity": false,
-                            "Mass": 1.0,
-                            "Lock Translation X": true,
-                            "Lock Translation Y": true,
-                            "Lock Translation Z": true,
-                            "Lock Rotation X": true,
-                            "Lock Rotation Y": true,
-                            "Lock Rotation Z": true
                         }
                     ]
                 }

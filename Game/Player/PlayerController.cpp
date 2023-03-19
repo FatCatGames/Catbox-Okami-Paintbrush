@@ -8,6 +8,11 @@
 #include "Components\Animator.h"
 #include "Canvas.h"
 
+void PlayerController::Awake()
+{
+	GameManager::GetInstance()->SetPlayer(myTransform);
+}
+
 void PlayerController::OnObjectFinishedLoading()
 {
 	myAnimator = myGameObject->GetTransform()->GetChildren()[0]->GetGameObject()->GetComponent<Animator>();

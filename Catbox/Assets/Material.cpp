@@ -84,11 +84,13 @@ std::shared_ptr<Material> Material::MakeInstanceOfMaterial()
 	{
 		returnMaterial->myTextures[i] = myTextures[i];
 	}
-	//returnMaterial->myPixelShader = myPixelShader->MakeInstance();
+	returnMaterial->myPixelShader = myPixelShader;
 	returnMaterial->myVertexShader = myVertexShader;
+	returnMaterial->myGeometryShader = myGeometryShader;
 	returnMaterial->myData = myData;
 	returnMaterial->myName = myName;
 	returnMaterial->myIsInstance = true;
+	returnMaterial->myBlendState = myBlendState;
 	return returnMaterial;
 }
 

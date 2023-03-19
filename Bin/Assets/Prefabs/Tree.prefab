@@ -2,13 +2,13 @@
     "Data": {
         "Name": "Tree",
         "Active": true,
-        "Opened": true,
+        "Opened": false,
         "Transform": {
             "Version": 2,
             "BoneParentID": -1,
             "Pos": [
                 4.2962141036987305,
-                0.00007769333751639351,
+                0.040217697620391846,
                 4.3474225997924805
             ],
             "Rot": [
@@ -56,7 +56,7 @@
                             ],
                             "UsedForNav": false,
                             "Renderer": 1,
-                            "Material Instance": false,
+                            "Material Instance": true,
                             "CastShadows": true,
                             "InstanceCount": 0
                         },
@@ -87,7 +87,7 @@
                         "BoneParentID": -1,
                         "Pos": [
                             0.0,
-                            2.097476681228727e-8,
+                            2.0976585801690817e-8,
                             0.0
                         ],
                         "Rot": [
@@ -112,31 +112,9 @@
                             ],
                             "UsedForNav": false,
                             "Renderer": 1,
-                            "Material Instance": false,
+                            "Material Instance": true,
                             "CastShadows": true,
                             "InstanceCount": 0
-                        },
-                        {
-                            "ComponentType": "Rigid Body",
-                            "Use Gravity": false,
-                            "Mass": 1.0,
-                            "Lock Translation X": true,
-                            "Lock Translation Y": true,
-                            "Lock Translation Z": true,
-                            "Lock Rotation X": true,
-                            "Lock Rotation Y": true,
-                            "Lock Rotation Z": true
-                        },
-                        {
-                            "ComponentType": "Sphere Collider",
-                            "Version": 0,
-                            "Layer": 0,
-                            "Radius": 1.340000033378601,
-                            "Offset": [
-                                0.0,
-                                0.0,
-                                0.0
-                            ]
                         }
                     ]
                 }

@@ -7,7 +7,6 @@ class Canvas : public Component
 public:
 	static Canvas* GetInstance() { return Instance; }
 	Canvas();
-	~Canvas();
 	void Awake() override;
 	void Paint(int anXPos, int anYPos, int aRadius, float aRadiusModifier, const Color& aColor);
 	void Clear();
@@ -15,16 +14,17 @@ public:
 	Texture& GetScreenTex() { return myScreenTex; }
 	Texture& GetPaperTex() { return *myPaperTex; }
 	void Save();
+	void PerformAction();
 	void Generate();
 	void StartPainting();
-	void Render();
+	bool GetCanPaint() { return myCanPaint; }
 
 private:
 	static Canvas* Instance;
 	std::shared_ptr<PixelShader> myCanvasPS;
 
 	CanvasPS* myShader;
-	bool myIsPainting = false;
+	bool myCanPaint = false;
 	std::shared_ptr<Texture> myPaperTex;
 	Texture myPaintingTex;
 	Texture myPaintingDisplayTex;
@@ -32,5 +32,4 @@ private:
 	//Texture myStagingTex;
 	const int myWidth = 1920;
 	const int myHeight = 1080;
-	Listener myPostRenderListener;
 };

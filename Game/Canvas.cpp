@@ -9,6 +9,7 @@
 #include "GameScene.h"
 #include "PaintingScene.h"
 #include "../Catbox/Graphics/Rendering/GraphicsEngine.h"
+#include <mutex>
 
 Canvas* Canvas::Instance;
 Microsoft::WRL::ComPtr<ID3D11Texture2D> stagingDataTexture;
@@ -51,16 +52,9 @@ Canvas::Canvas()
 	DX11::Device->CreateTexture2D(&stagingDesc, nullptr, stagingDisplayTexture.GetAddressOf());
 
 	Clear();
-
-	myPostRenderListener.action = [this] {Render(); };
-	GraphicsEngine::GetInstance()->AddPostRenderListener(myPostRenderListener);
 	myPaperTex = AssetRegistry::GetInstance()->GetAsset<Texture>("PaperTex");
 }
 
-Canvas::~Canvas()
-{
-	GraphicsEngine::GetInstance()->GetRenderingDoneEvent().RemoveListener(myPostRenderListener);
-}
 
 void Canvas::Awake()
 {
@@ -142,15 +136,17 @@ Texture& Canvas::GetPaintingTex()
 
 void Canvas::Save()
 {
-	BrushSymbol symbol = GenData::GetSymbol(stagingDataTexture.Get(), myWidth, myHeight);
+	myCanPaint = false;
 
-	myIsPainting = false;
+	BrushSymbol symbol = GenData::GetSymbol(stagingDataTexture.Get(), myWidth, myHeight);
 
 	PaintingScene::GetInstance()->GetGameObject().SetActive(false);
 	GameScene::GetInstance()->GetGameObject().SetActive(true);
 	Engine::GetInstance()->SetGamePaused(false);
 
 	if (!symbol.name.empty()) GameScene::GetInstance()->PerformAction(symbol);
+
+	myCanPaint = true;
 }
 
 void Canvas::Generate()
@@ -160,7 +156,7 @@ void Canvas::Generate()
 
 void Canvas::StartPainting()
 {
-	myIsPainting = true;
+	myCanPaint = true;
 	GraphicsEngine::GetInstance()->RunFullScreenShader(
 		GraphicsEngine::GetInstance()->GetPreviousScreenTex()->GetShaderResourceView().GetAddressOf(),
 		myScreenTex.GetRenderTargetView().GetAddressOf(),
@@ -171,14 +167,3 @@ void Canvas::StartPainting()
 	Engine::GetInstance()->SetGamePaused(true);
 }
 
-void Canvas::Render()
-{
-	if (!myIsPainting) return;
-
-	//myPaperTex->SetAsResource(2);
-
-	/*GraphicsEngine::GetInstance()->RunFullScreenShader(
-		myScreenTex.GetShaderResourceView().GetAddressOf(),
-		GraphicsEngine::GetInstance()->GetMainCamera()->GetRenderTexture().GetRenderTargetView().GetAddressOf(),
-		myCanvasPS);*/
-}

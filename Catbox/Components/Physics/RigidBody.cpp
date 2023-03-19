@@ -6,6 +6,7 @@
 #include <iostream>
 #include "Collisions/BoxCollider.h"
 #include "Collisions/SphereCollider.h"
+#include "Collisions/ConvexCollider.h"
 #include "Physics/PhysicsEngine.h"
 #include "Physics/PhysXUtilities.h"
 
@@ -44,6 +45,12 @@ void RigidBody::Awake()
 		myDebugMode = myGameObject->GetComponent<SphereCollider>()->GetDebugMode();
 		myActor = static_cast<physx::PxRigidActor*>(Engine::GetInstance()->GetPhysicsEngine()->CreateDynamicActor(Shape::PxS_Circle, Vector3f(myGameObject->GetComponent<SphereCollider>()->GetRadius() * 2.0f, 0,0), aModel, aMaterialName, myMass, myDebugMode));
 		myLayer = myGameObject->GetComponent<SphereCollider>()->GetCollisionLayer();
+	}
+	else if (myGameObject->GetComponent<ConvexCollider>())
+	{
+		myDebugMode = myGameObject->GetComponent<ConvexCollider>()->GetDebugMode();
+		myActor = static_cast<physx::PxRigidActor*>(Engine::GetInstance()->GetPhysicsEngine()->CreateDynamicActor(Shape::PxS_Convex, Vector3f(0, 0, 0), aModel, aMaterialName, myMass, myDebugMode));
+		myLayer = myGameObject->GetComponent<ConvexCollider>()->GetCollisionLayer();
 	}
 	if (myMass <= 0 || !myGravity) 
 	{

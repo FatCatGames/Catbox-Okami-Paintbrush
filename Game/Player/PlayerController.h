@@ -7,6 +7,7 @@ class Animator;
 class PlayerController : public Component
 {
 public:
+	void Awake() override;
 	void OnObjectFinishedLoading() override;
 	void Update() override;
 	void OnCollisionStay(Collider* aCollider) override;
