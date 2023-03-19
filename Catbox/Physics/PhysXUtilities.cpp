@@ -9,7 +9,7 @@ HitReport PhysXUtilities::RayCast(const Vector3f& aOrigin, const Vector3f& aDire
 	physx::PxQueryFilterData aFilterData = physx::PxQueryFilterData();
 	aFilterData.data.word0 = layersToCheck;
 
-	if (aAliveTime > 0) 
+	if (aAliveTime > 0 && EDITORMODE) 
 	{
 		DebugDrawer::DrawLine(aOrigin, aOrigin + aDirection * aMaxDistance, aColor, aAliveTime);
 	}
@@ -107,4 +107,18 @@ std::vector<GameObject*> PhysXUtilities::OverlapMultiple(const Vector3f& aOrigin
 	}
 
 	return objectsHit;
+}
+
+Vector3f& PhysXUtilities::quaternion2Euler(physx::PxQuat& q)
+{
+	float r11 = 2 * (q.x * q.y + q.w * q.z);
+	float r12 = q.w * q.w + q.x * q.x - q.y * q.y - q.z * q.z;
+	float r21 = -2 * (q.x * q.z - q.w * q.y);
+	float r31 = 2 * (q.y * q.z + q.w * q.x);
+	float r32 = q.w * q.w - q.x * q.x - q.y * q.y + q.z * q.z;
+	Vector3f returnRotation;
+	returnRotation.x = Catbox::Rad2Deg(atan2(r31, r32));
+	returnRotation.y = Catbox::Rad2Deg(asin(r21));
+	returnRotation.z = Catbox::Rad2Deg(atan2(r11, r12));
+	return returnRotation;
 }

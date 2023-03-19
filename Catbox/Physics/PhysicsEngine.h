@@ -26,6 +26,11 @@ struct FilterGroup
 	};
 };
 
+class DefaultCCFCallback : public physx::PxControllerFilterCallback
+{
+	bool filter(const physx::PxController& a, const physx::PxController& b);
+};
+
 class DefaultSimulationCallback : public physx::PxSimulationEventCallback
 {
 public:
@@ -50,12 +55,12 @@ public:
 	void onObstacleHit(const physx::PxControllerObstacleHit& hit);
 };
 
-
 class PhysicsEngine
 {
 public:
 	friend class DefaultSimulationCallback;
 	friend class DefaultCharacterControllerCallback;
+	friend class DefaultCCFCallback;
 	void Init();
 	void Update();
 	void DrawLines();
@@ -71,6 +76,7 @@ public:
 	physx::PxMaterial* CreateMaterial(std::string aName, Vector3f aMaterial); 
 	physx::PxMaterial* GetMaterial(std::string aName);
 	physx::PxMaterial* EditMaterial(std::string aName, Vector3f aMaterial);
+	physx::PxControllerFilterCallback* GetCCFFilterCallback() { return myCCFCallback; };
 
 protected:
 	std::vector<std::function<void(Collider*)>> myCallbacks;
@@ -94,6 +100,7 @@ private:
 	physx::PxCooking* myCooker = NULL;
 	physx::PxSimulationEventCallback* mySimCallback = NULL;
 	physx::PxUserControllerHitReport* myCCTCallback = NULL;
+	physx::PxControllerFilterCallback* myCCFCallback = NULL;
 	physx::PxMaterial* myPxDefaultMaterial = NULL;
 	physx::PxParticleMaterial* myDefaultParticleMaterial = NULL;
 	physx::PxTolerancesScale myPxToleranceScale;

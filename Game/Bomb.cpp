@@ -50,7 +50,7 @@ void Bomb::Update()
 
 void Bomb::FixedUpdate()
 {
-	myRb->GetActor()->setAngularVelocity(myRb->GetActor()->getAngularVelocity().getNormalized(), 0);
+	//myRb->GetActor()->setAngularVelocity(myRb->GetActor()->getAngularVelocity().getNormalized(), 0);
 }
 
 void Bomb::OnCollisionStay(Collider* aCollider)

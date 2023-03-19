@@ -25,6 +25,11 @@ libdirs {
 	"Catbox"
 	}
 
+	externalincludedirs 
+	{ 
+		"opencv/build/include" 
+	}
+
 	includedirs {
 		"../Catbox/",
 		"../External/physX/",

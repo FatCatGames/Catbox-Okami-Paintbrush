@@ -21,6 +21,7 @@ public:
 	
 	static bool OverlapAny(const Vector3f& aOrigin, const float aRadius, int layersToCheck = 0);
 	static std::vector<GameObject*> OverlapMultiple(const Vector3f& aOrigin, const float aRadius, int layersToCheck = 0);
+	static Vector3f& quaternion2Euler(physx::PxQuat& aQuat);
 private:
 
 };

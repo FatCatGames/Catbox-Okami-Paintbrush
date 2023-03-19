@@ -12,6 +12,7 @@ void PhysicsEngine::Init()
 {
 	mySimCallback = new DefaultSimulationCallback();
 	myCCTCallback = new DefaultCharacterControllerCallback();
+	myCCFCallback = new DefaultCCFCallback();
 
 	myPxfoundation = PxCreateFoundation(PX_PHYSICS_VERSION, myPxDefaultAllocatorCallback, myPxDefaultErrorCallback);
 	assert(myPxfoundation != nullptr && "COULD NOT CREATE PHYSX FOUNDATION");
@@ -23,10 +24,10 @@ void PhysicsEngine::Init()
 	physx::PxCookingParams aParams = physx::PxCookingParams(myPxToleranceScale);
 	myCooker = PxCreateCooking(PX_PHYSICS_VERSION, *myPxfoundation, aParams);
 
-	physx::PxCudaContextManagerDesc cudaContextManager;
-	myCudaManager = PxCreateCudaContextManager(*myPxfoundation, cudaContextManager, PxGetProfilerCallback());
-	myDefaultParticleMaterial = myPxPhysics->createPBDMaterial(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
-	myPxDefaultMaterial = myPxPhysics->createMaterial(0.0f, 0.0f, 0.0f);
+	//physx::PxCudaContextManagerDesc cudaContextManager;
+	//myCudaManager = PxCreateCudaContextManager(*myPxfoundation, cudaContextManager, PxGetProfilerCallback());
+	//myDefaultParticleMaterial = myPxPhysics->createPBDMaterial(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
+	myPxDefaultMaterial = myPxPhysics->createMaterial(1.0f, 1.0f, 0.0f);
 	myPhysxMaterialMap.insert({ "Default", myPxDefaultMaterial });
 	InitScene();
 
@@ -38,7 +39,12 @@ void PhysicsEngine::Update()
 	{
 		if (myPxScene) 
 		{
-			myPxScene->simulate(1.0f / 60.0f);
+			float delta = 1.0f / 60.0f;
+			if (deltaTime > (1.0f / 60.0f))
+			{
+				delta = deltaTime;
+			}
+			myPxScene->simulate(delta);
 			if (myPxScene->checkResults(true))
 			{
 				SendCallbacks();
@@ -112,7 +118,14 @@ void PhysicsEngine::AddActor(physx::PxRigidActor* aActor, const int& aId, const 
 			physx::PxShape* shape = aShapeArray[i];
 			shape->setSimulationFilterData(filterData);
 			shape->setQueryFilterData(filterData);
-			shape->setFlag(physx::PxShapeFlag::eSCENE_QUERY_SHAPE, true);
+			if (shape->getFlags() & physx::PxShapeFlag::eTRIGGER_SHAPE)	//Bro imagine actually reading what stuff does before writing it??
+			{
+				shape->setFlag(physx::PxShapeFlag::eSCENE_QUERY_SHAPE, false);
+			}
+			else
+			{
+				shape->setFlag(physx::PxShapeFlag::eSCENE_QUERY_SHAPE, true);
+			}
 		}
 		delete aShapeArray;
 
@@ -214,7 +227,7 @@ physx::PxRigidActor* PhysicsEngine::CreateDynamicActor(Shape aShape, Vector3f aS
 	physx::PxTransform aLocalTransform = { 0,0,0 };
 	if (aModel)
 	{
-		aLocalTransform = { (aModel->GetPivot().x * aTransformSize.x) * 0.5f,(aModel->GetPivot().y * aTransformSize.y) * 0.5f,(aModel->GetPivot().z * aTransformSize.z) * 0.5f };
+		aLocalTransform = { (aModel->GetCenter().x * aTransformSize.x),(aModel->GetCenter().y * aTransformSize.y),(aModel->GetCenter().z * aTransformSize.z)};
 	}
 	physx::PxRigidActor* returnActor = myPxPhysics->createRigidDynamic(globalTransfrom);
 
@@ -280,7 +293,7 @@ physx::PxRigidStatic* PhysicsEngine::CreateStaticActor(Shape aShape, Vector3f aS
 	{
 		if (aIsTrigger)
 		{
-			actorShape = myPxPhysics->createShape(physx::PxSphereGeometry(std::max(std::max(aSize.x, aSize.y), aSize.z)), *myPhysxMaterialMap.find(aMaterialName)->second, physx::PxShapeFlag::eTRIGGER_SHAPE);
+			actorShape = myPxPhysics->createShape(physx::PxSphereGeometry(std::max(std::max(aSize.x, aSize.y), aSize.z)), *myPhysxMaterialMap.find(aMaterialName)->second, false, physx::PxShapeFlag::eTRIGGER_SHAPE);
 		}
 		else
 		{
@@ -317,23 +330,21 @@ physx::PxRigidStatic* PhysicsEngine::CreateStaticActor(Shape aShape, Vector3f aS
 			triangleMeshList.push_back(CookTriangleMesh(*aModel->GetModelPart(i), aScale));
 		}
 	}
-	if (!actorShape)
-	{
-		printerror("PxShape could not be created!");
-	}
 	physx::PxTransform globalTransfrom = { 0,0,0 };
 	physx::PxTransform aLocalTransform = { 0,0,0 };
 	Catbox::Quaternion tempQuat;
+
 	tempQuat = Catbox::ToQuaternion(aLocalRotation);
-	aLocalTransform.q.x = tempQuat.x;
-	aLocalTransform.q.y = tempQuat.y;
-	aLocalTransform.q.z = tempQuat.z;
-	aLocalTransform.q.w = tempQuat.w;
+	globalTransfrom.q.x = tempQuat.x;
+	globalTransfrom.q.y = tempQuat.y;
+	globalTransfrom.q.z = tempQuat.z;
+	globalTransfrom.q.w = tempQuat.w;
 
 	if (aModel && aShape != Shape::PxS_Mesh)
 	{
-		aLocalTransform.p = { (aModel->GetPivot().x) * 0.5f * aTransformSize.x,(aModel->GetPivot().y) * 0.5f * aTransformSize.y,(aModel->GetPivot().z) * 0.5f * aTransformSize.z };
+		aLocalTransform.p = { (aModel->GetCenter().x) * aTransformSize.x,(aModel->GetCenter().y) * aTransformSize.y,(aModel->GetCenter().z) * aTransformSize.z };
 	}
+
 
 	physx::PxRigidStatic* returnActor = myPxPhysics->createRigidStatic(globalTransfrom);
 
@@ -342,6 +353,7 @@ physx::PxRigidStatic* PhysicsEngine::CreateStaticActor(Shape aShape, Vector3f aS
 		for (int i = 0; i < aMesh.size(); i++)
 		{
 			actorShape = physx::PxRigidActorExt::createExclusiveShape(*returnActor, physx::PxConvexMeshGeometry(aMesh[i]), *myPhysxMaterialMap.find(aMaterialName)->second);
+			actorShape->setLocalPose(aLocalTransform);
 			returnActor->attachShape(*actorShape);
 			actorShape->setFlag(physx::PxShapeFlag::eVISUALIZATION, aDebugMode);
 		}
@@ -351,15 +363,15 @@ physx::PxRigidStatic* PhysicsEngine::CreateStaticActor(Shape aShape, Vector3f aS
 		for (int i = 0; i < triangleMeshList.size(); i++)
 		{
 			actorShape = physx::PxRigidActorExt::createExclusiveShape(*returnActor, physx::PxTriangleMeshGeometry(triangleMeshList[i]), *myPhysxMaterialMap.find(aMaterialName)->second);
-			actorShape->setLocalPose(aLocalTransform);
+
 			returnActor->attachShape(*actorShape);
 			actorShape->setFlag(physx::PxShapeFlag::eVISUALIZATION, aDebugMode);
 		}
 	}
 	else
 	{
-		actorShape->setFlag(physx::PxShapeFlag::eVISUALIZATION, aDebugMode);
 		actorShape->setLocalPose(aLocalTransform);
+		actorShape->setFlag(physx::PxShapeFlag::eVISUALIZATION, aDebugMode);
 		actorShape->setSimulationFilterData(filterData);
 		actorShape->setFlag(physx::PxShapeFlag::eSCENE_QUERY_SHAPE, true);
 		returnActor->attachShape(*actorShape);
@@ -368,6 +380,11 @@ physx::PxRigidStatic* PhysicsEngine::CreateStaticActor(Shape aShape, Vector3f aS
 	if (actorShape)
 	{
 		actorShape->release();
+	}
+
+	if (!actorShape)
+	{
+		printerror("PxShape could not be created!");
 	}
 
 	return returnActor;
@@ -733,7 +750,6 @@ void DefaultSimulationCallback::onTrigger(physx::PxTriggerPair* pairs, physx::Px
 				{
 					tempCollider = otherObject->GetComponent<MeshCollider>();
 				}
-
 				triggerObject->OnTriggerEnter(tempCollider);
 			}
 		}
@@ -772,6 +788,15 @@ void DefaultCharacterControllerCallback::onShapeHit(const physx::PxControllerSha
 			{
 				tempCollider = shape->GetComponent<MeshCollider>();
 			}
+			//if (!tempCollider->GetIsTrigger())
+			//{
+			//	shape->OnCollisionStay(controller->GetComponent<BoxCollider>());
+			//}
+			//else 
+			//{
+			//	shape->OnTriggerStay(controller->GetComponent<BoxCollider>());
+			//}
+			tempCollider->GetGameObject().OnCollisionStay(controller->GetComponent<BoxCollider>());
 			controller->OnCollisionStay(tempCollider);
 		}
 	}
@@ -779,9 +804,25 @@ void DefaultCharacterControllerCallback::onShapeHit(const physx::PxControllerSha
 
 void DefaultCharacterControllerCallback::onControllerHit(const physx::PxControllersHit& hit)
 {
-	printmsg("Controller hit");
+	//printmsg("Controller hit");
 }
 
 void DefaultCharacterControllerCallback::onObstacleHit(const physx::PxControllerObstacleHit& hit)
 {
+}
+
+bool DefaultCCFCallback::filter(const physx::PxController& a, const physx::PxController& b)
+{
+	//Fuck them Rats
+	/*if (Engine::GetInstance()->GetGameObjectFactory()->GetObjectById((int)a.getUserData())->GetComponent<BoxCollider>() &&
+		Engine::GetInstance()->GetGameObjectFactory()->GetObjectById((int)b.getUserData())->GetComponent<BoxCollider>())
+	{
+		if (Engine::GetInstance()->GetGameObjectFactory()->GetObjectById((int)a.getUserData())->GetComponent<BoxCollider>()->GetLayer() == 4 &&
+			Engine::GetInstance()->GetGameObjectFactory()->GetObjectById((int)b.getUserData())->GetComponent<BoxCollider>()->GetLayer() == 4)
+		{
+			return false;
+		}
+	}*/
+
+	return true;
 }

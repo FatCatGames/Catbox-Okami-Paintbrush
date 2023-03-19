@@ -58,8 +58,6 @@ void GenData::GenerateData()
 		11,                                     // size of a pixel neighborhood used to calculate threshold value
 		2);                                     // constant subtracted from the mean or weighted mean
 
-   //cv::imshow("imgThresh", imgThresh);         // show threshold image for reference
-
 	imgThreshCopy = imgThresh.clone();          // make a copy of the thresh image, this in necessary b/c findContours modifies the image
 
 	cv::findContours(imgThreshCopy,             // input image, make sure to use a copy since the function will modify this image in the course of finding contours
@@ -157,39 +155,6 @@ bool ReadImage(cv::Mat anImage, BrushSymbol& outSymbol)
 
 																// read in training classifications ///////////////////////////////////////////////////
 
-	cv::Mat matClassificationInts;      // we will read the classification numbers into this variable as though it is a vector
-
-	cv::FileStorage fsClassifications("Assets/Resources/classifications.xml", cv::FileStorage::READ);        // open the classifications file
-
-	if (fsClassifications.isOpened() == false) {                                                    // if the file was not opened successfully
-		printerror("error, unable to open training classifications file, exiting program");    // show error message
-		return false;                                                                                  // and exit program
-	}
-
-	fsClassifications["classifications"] >> matClassificationInts;      // read classifications section into Mat classifications variable
-	fsClassifications.release();                                        // close the classifications file
-
-																		// read in training images ////////////////////////////////////////////////////////////
-
-	cv::Mat matTrainingImagesAsFlattenedFloats;         // we will read multiple images into this single image variable as though it is a vector
-
-	cv::FileStorage fsTrainingImages("Assets/Resources/images.xml", cv::FileStorage::READ);          // open the training images file
-
-	if (fsTrainingImages.isOpened() == false) {                                                 // if the file was not opened successfully
-		printerror("error, unable to open training images file, exiting program");         // show error message
-		return false;                                                                              // and exit program
-	}
-
-	fsTrainingImages["images"] >> matTrainingImagesAsFlattenedFloats;           // read images section into Mat training images variable
-	fsTrainingImages.release();                                                 // close the traning images file
-																				// train //////////////////////////////////////////////////////////////////////////////
-
-	cv::Ptr<cv::ml::KNearest>  kNearest(cv::ml::KNearest::create());            // instantiate the KNN object
-
-																				// finally we get to the call to train, note that both parameters have to be of type Mat (a single Mat)
-																				// even though in reality they are multiple images / numbers
-	kNearest->train(matTrainingImagesAsFlattenedFloats, cv::ml::ROW_SAMPLE, matClassificationInts);
-
 	// test ///////////////////////////////////////////////////////////////////////////////
 
 	cv::Mat matTestingNumbers = anImage;            // read in the test numbers image
@@ -245,8 +210,46 @@ bool ReadImage(cv::Mat anImage, BrushSymbol& outSymbol)
 			validContoursWithData.push_back(allContoursWithData[i]);            // if so, append to valid contour list
 		}
 	}
+	if (validContoursWithData.empty()) return false;
+
 	// sort contours from left to right
 	std::sort(validContoursWithData.begin(), validContoursWithData.end(), ContourWithData::sortByBoundingRectXPosition);
+
+
+	cv::Mat matClassificationInts;      // we will read the classification numbers into this variable as though it is a vector
+
+	cv::FileStorage fsClassifications("Assets/Resources/classifications.xml", cv::FileStorage::READ);        // open the classifications file
+
+	if (fsClassifications.isOpened() == false) {                                                    // if the file was not opened successfully
+		printerror("error, unable to open training classifications file, exiting program");    // show error message
+		return false;                                                                                  // and exit program
+	}
+
+	fsClassifications["classifications"] >> matClassificationInts;      // read classifications section into Mat classifications variable
+	fsClassifications.release();                                        // close the classifications file
+
+																		// read in training images ////////////////////////////////////////////////////////////
+
+	cv::Mat matTrainingImagesAsFlattenedFloats;         // we will read multiple images into this single image variable as though it is a vector
+
+	cv::FileStorage fsTrainingImages("Assets/Resources/images.xml", cv::FileStorage::READ);          // open the training images file
+
+	if (fsTrainingImages.isOpened() == false) {                                                 // if the file was not opened successfully
+		printerror("error, unable to open training images file, exiting program");         // show error message
+		return false;                                                                              // and exit program
+	}
+
+	fsTrainingImages["images"] >> matTrainingImagesAsFlattenedFloats;           // read images section into Mat training images variable
+	fsTrainingImages.release();                                                 // close the traning images file
+																				// train //////////////////////////////////////////////////////////////////////////////
+
+	cv::Ptr<cv::ml::KNearest>  kNearest(cv::ml::KNearest::create());            // instantiate the KNN object
+
+																				// finally we get to the call to train, note that both parameters have to be of type Mat (a single Mat)
+																				// even though in reality they are multiple images / numbers
+	kNearest->train(matTrainingImagesAsFlattenedFloats, cv::ml::ROW_SAMPLE, matClassificationInts);
+
+	
 
 	std::string strFinalString;         // declare final string, this will have the final number sequence by the end of the program
 

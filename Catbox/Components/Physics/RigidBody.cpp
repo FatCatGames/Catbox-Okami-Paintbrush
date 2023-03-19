@@ -7,6 +7,7 @@
 #include "Collisions/BoxCollider.h"
 #include "Collisions/SphereCollider.h"
 #include "Physics/PhysicsEngine.h"
+#include "Physics/PhysXUtilities.h"
 
 RigidBody::~RigidBody()
 {
@@ -27,7 +28,7 @@ void RigidBody::Awake()
 	Model* aModel = nullptr;
 	std::string aMaterialName = "";
 	int myLayer = 0;
-	if (myGameObject->GetComponent<ModelInstance>())
+	if (myGameObject->GetComponent<ModelInstance>()) 
 	{
 		aModel = myGameObject->GetComponent<ModelInstance>()->GetModel().get();
 		aMaterialName = myGameObject->GetComponent<ModelInstance>()->GetMaterial(0)->GetName();
@@ -35,16 +36,16 @@ void RigidBody::Awake()
 	if (myGameObject->GetComponent<BoxCollider>())
 	{
 		myDebugMode = myGameObject->GetComponent<BoxCollider>()->GetDebugMode();
-		myActor = static_cast<physx::PxRigidActor*>(Engine::GetInstance()->GetPhysicsEngine()->CreateDynamicActor(Shape::PxS_Box, myGameObject->GetComponent<BoxCollider>()->GetSize(), aModel, aMaterialName, myMass, myDebugMode, { 1,1,1 }, myGameObject->GetComponent<BoxCollider>()->GetIsTrigger()));
+		myActor = static_cast<physx::PxRigidActor*>(Engine::GetInstance()->GetPhysicsEngine()->CreateDynamicActor(Shape::PxS_Box, myGameObject->GetComponent<BoxCollider>()->GetSize(), aModel, aMaterialName, myMass, myDebugMode, {1,1,1}, myGameObject->GetComponent<BoxCollider>()->GetIsTrigger()));
 		myLayer = myGameObject->GetComponent<BoxCollider>()->GetCollisionLayer();
 	}
 	else if (myGameObject->GetComponent<SphereCollider>())
 	{
 		myDebugMode = myGameObject->GetComponent<SphereCollider>()->GetDebugMode();
-		myActor = static_cast<physx::PxRigidActor*>(Engine::GetInstance()->GetPhysicsEngine()->CreateDynamicActor(Shape::PxS_Circle, Vector3f(myGameObject->GetComponent<SphereCollider>()->GetRadius() * 2.0f, 0, 0), aModel, aMaterialName, myMass, myDebugMode));
+		myActor = static_cast<physx::PxRigidActor*>(Engine::GetInstance()->GetPhysicsEngine()->CreateDynamicActor(Shape::PxS_Circle, Vector3f(myGameObject->GetComponent<SphereCollider>()->GetRadius() * 2.0f, 0,0), aModel, aMaterialName, myMass, myDebugMode));
 		myLayer = myGameObject->GetComponent<SphereCollider>()->GetCollisionLayer();
 	}
-	if (myMass <= 0 || !myGravity)
+	if (myMass <= 0 || !myGravity) 
 	{
 		myActor->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, true);
 	}
@@ -57,17 +58,8 @@ void RigidBody::Awake()
 	//{
 	//	myActor = static_cast<physx::PxRigidActor*>(Engine::GetInstance()->GetPhysicsEngine()->CreateActor(Shape::PxS_Convex, myTransform->worldScale(), aModel));
 	//}
-	if (myActor)
+	if (myActor) 
 	{
-		//Sets Lock Flags set in Editor, if it doesn't do it here then changes will only work during playmode.
-		physx::PxRigidDynamic* castedActor = static_cast<physx::PxRigidDynamic*>(myActor);
-		castedActor->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_LINEAR_X, myLockTranslations[0]);
-		castedActor->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_LINEAR_Y, myLockTranslations[1]);
-		castedActor->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_LINEAR_Z, myLockTranslations[2]);
-		castedActor->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_X, myLockRotations[0]);
-		castedActor->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_Y, myLockRotations[1]);
-		castedActor->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_Z, myLockRotations[2]);
-
 		physx::PxTransform aTransfrom = myActor->getGlobalPose();
 		aTransfrom.p.x = myTransform->worldPos().x;
 		aTransfrom.p.y = myTransform->worldPos().y;
@@ -79,6 +71,15 @@ void RigidBody::Awake()
 		aTransfrom.q.w = aRot.w;
 		myActor->setGlobalPose(aTransfrom);
 
+		//Sets Lock Flags set in Editor, if it doesn't do it here then changes will only work during playmode.
+		physx::PxRigidDynamic* castedActor = static_cast<physx::PxRigidDynamic*>(myActor);
+		castedActor->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_LINEAR_X, myLockTranslations[0]);
+		castedActor->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_LINEAR_Y, myLockTranslations[1]);
+		castedActor->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_LINEAR_Z, myLockTranslations[2]);
+		castedActor->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_X, myLockRotations[0]);
+		castedActor->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_Y, myLockRotations[1]);
+		castedActor->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_ANGULAR_Z, myLockRotations[2]);
+
 		Engine::GetInstance()->GetPhysicsEngine()->AddActor(myActor, myGameObject->GetObjectInstanceID(), myLayer);
 	}
 }
@@ -86,7 +87,7 @@ void RigidBody::Awake()
 void RigidBody::RenderInProperties(std::vector<Component*>& aComponentList)
 {
 	std::vector<RigidBody*>& aComponentVector = ComponentVectorCast<RigidBody>(aComponentList);
-	if (ImGui::Checkbox("Use Gravity", &myGravity))
+	if(ImGui::Checkbox("Use Gravity", &myGravity))
 	{
 		for (auto& component : aComponentVector)
 		{
@@ -226,6 +227,19 @@ void RigidBody::RenderInProperties(std::vector<Component*>& aComponentList)
 
 void RigidBody::Update()
 {
+
+	auto pose = myActor->getGlobalPose();
+	float x = myActor->getGlobalPose().p.x /*+ (myTransform->worldScale().x * 0.5f)*/;
+	float y = myActor->getGlobalPose().p.y /*- (myTransform->worldScale().y * 0.5f)*/;
+	float z = myActor->getGlobalPose().p.z /*- (myTransform->worldScale().z * 0.5f)*/;
+	Catbox::Quaternion aQuat;
+	aQuat.w = myActor->getGlobalPose().q.w;
+	aQuat.x = myActor->getGlobalPose().q.x;
+	aQuat.y = myActor->getGlobalPose().q.y;
+	aQuat.z = myActor->getGlobalPose().q.z;
+
+	myTransform->SetWorldRot(PhysXUtilities::quaternion2Euler(pose.q));
+	myTransform->SetWorldPos({ x , y , z });
 	//float x = myActor->getGlobalPose().p.x /*+ (myTransform->worldScale().x * 0.5f)*/;
 	//float y = myActor->getGlobalPose().p.y /*- (myTransform->worldScale().y * 0.5f)*/;
 	//float z = myActor->getGlobalPose().p.z /*- (myTransform->worldScale().z * 0.5f)*/;
@@ -241,23 +255,12 @@ void RigidBody::Update()
 
 void RigidBody::FixedUpdate()
 {
-	float x = myActor->getGlobalPose().p.x /*+ (myTransform->worldScale().x * 0.5f)*/;
-	float y = myActor->getGlobalPose().p.y /*- (myTransform->worldScale().y * 0.5f)*/;
-	float z = myActor->getGlobalPose().p.z /*- (myTransform->worldScale().z * 0.5f)*/;
-	Catbox::Quaternion aQuat;
-	aQuat.w = myActor->getGlobalPose().q.w;
-	aQuat.x = myActor->getGlobalPose().q.x;
-	aQuat.y = myActor->getGlobalPose().q.y;
-	aQuat.z = myActor->getGlobalPose().q.z;
-	Vector3f aVector = Catbox::ToEulerAngles(aQuat);
-	myTransform->SetWorldRot(aVector);
-	myTransform->SetWorldPos({ x , y , z });
 
-	if (myScheduledForce != Vector3f::zero())
-	{
-		AddForce(myScheduledForce, 1, myScheduledForceMode);
-		myScheduledForce = { 0, 0, 0 };
-	}
+	//if (myScheduledForce != Vector3f::zero())
+	//{
+	//	AddForce(myScheduledForce, 1, myScheduledForceMode);
+	//	myScheduledForce = { 0, 0, 0 };
+	//}
 }
 
 RigidBody::RigidBodyData& RigidBody::GetData()
@@ -269,7 +272,7 @@ Vector3f& RigidBody::GetVelocity()
 {
 	return myVelocity;
 }
-void RigidBody::SetActorPosition(const Vector3f& aPos)
+void RigidBody::SetActorPosition(const Vector3f& aPos) 
 {
 	physx::PxTransform atransfrom;
 	atransfrom.p.x = aPos.x;
@@ -351,17 +354,23 @@ void RigidBody::ChangeMass(float aMass)
 	static_cast<physx::PxRigidDynamic*>(myActor)->setMass(aMass);
 }
 
-void RigidBody::SetUseGravity(bool useGravity)
+void RigidBody::SetUseGravity(bool aUseGravity)
 {
-	ChangeGravityScale(useGravity);
+	myActor->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, !aUseGravity);
 }
+
+physx::PxRigidDynamic* RigidBody::GetActor()
+{
+	return static_cast<physx::PxRigidDynamic*>(myActor);
+}
+
 
 void RigidBody::SetTranslationAxisLock(bool x, bool y, bool z, bool shouldWakeUp)
 {
 	static_cast<physx::PxRigidDynamic*>(myActor)->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_LINEAR_X, x);
 	static_cast<physx::PxRigidDynamic*>(myActor)->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_LINEAR_Y, y);
 	static_cast<physx::PxRigidDynamic*>(myActor)->setRigidDynamicLockFlag(physx::PxRigidDynamicLockFlag::eLOCK_LINEAR_Z, z);
-
+	
 	myLockTranslations[0] = x;
 	myLockTranslations[1] = y;
 	myLockTranslations[2] = z;
@@ -435,8 +444,8 @@ void RigidBody::Save(rapidjson::Value& /*aComponentData*/)
 	wrapper.SaveValue<DataType::Bool, bool>("Lock Rotation Z", myLockRotations[2]);
 }
 void RigidBody::Load(rapidjson::Value& aComponentData)
-{
-	if (aComponentData.HasMember("Use Gravity"))
+{	
+	if (aComponentData.HasMember("Use Gravity")) 
 	{
 		myGravity = aComponentData["Use Gravity"].GetBool();
 		myMass = aComponentData["Mass"].GetFloat();
@@ -450,5 +459,5 @@ void RigidBody::Load(rapidjson::Value& aComponentData)
 		myLockRotations[0] = aComponentData["Lock Rotation X"].GetBool();
 		myLockRotations[1] = aComponentData["Lock Rotation Y"].GetBool();
 		myLockRotations[2] = aComponentData["Lock Rotation Z"].GetBool();
-	}
+	}		
 }

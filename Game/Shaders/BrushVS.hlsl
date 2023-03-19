@@ -20,17 +20,16 @@ VertexToPixel main(VertexInput input)
 	result.ProjectedPosition = vertexProjectionPosition;
 	result.WorldPosition = vertexWorldPosition;
 
-	float influence = 1 - input.VxColor.b;
+	float influence = input.VxColor.b;
 	//result.WorldPosition.xyz += 100;
 	vertexWorldPosition.xyz += paintDir * paintDir * influence * 100;
 
 	result.VxColor = input.VxColor;
 	result.AlbedoUV = input.AlbedoUV;
-
-
 	result.Tangent = mul(worldNormalRotation, input.Tangent);
 	result.Binormal = mul(worldNormalRotation, input.Binormal);
 	result.Normal = normalize(mul(worldNormalRotation, input.Normal)); 
+
 
 	return result;
 }

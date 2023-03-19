@@ -2,14 +2,13 @@
 #include "stdafx.h"
 #include "physX/PxRigidActor.h"
 #include "physX/PxForceMode.h"
-#include "physX\PxRigidDynamic.h"
 
 enum Shape;
 
-class RigidBody : public Component
+class RigidBody: public Component
 {
 public:
-	struct RigidBodyData
+	struct RigidBodyData 
 	{
 		float mass = 5;
 		float gravity = 9.81f;
@@ -46,12 +45,12 @@ public:
 	void ScheduleForce(const Vector3f aPosition, physx::PxForceMode::Enum aMode = physx::PxForceMode::eFORCE);
 	void ChangeGravityScale(bool aGravityScale);
 	void ChangeMass(float aMass);
-	void SetUseGravity(bool useGravity);
 	void SetTranslationAxisLock(bool x, bool y, bool z, bool shouldWakeUp = true);
 	void SetRotationAxisLock(bool x, bool y, bool z, bool shouldWakeUp = true);
 	bool GetTranslationAxisLock(Axis anAxis);
 	bool GetRotationAxisLock(Axis anAxis);
-	physx::PxRigidDynamic* GetActor() { return static_cast<physx::PxRigidDynamic*>(myActor); }
+	void SetUseGravity(bool aUseGravity);
+	physx::PxRigidDynamic* GetActor();
 
 private:
 	void Save(rapidjson::Value& aComponentData) override;

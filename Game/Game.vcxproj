@@ -57,18 +57,21 @@
     <IntDir>obj\Debug\</IntDir>
     <TargetName>Game</TargetName>
     <TargetExt>.lib</TargetExt>
+    <ExternalIncludePath>opencv\build\include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\Bin\</OutDir>
     <IntDir>obj\Release\</IntDir>
     <TargetName>Game</TargetName>
     <TargetExt>.lib</TargetExt>
+    <ExternalIncludePath>opencv\build\include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Game|x64'">
     <OutDir>..\Bin\</OutDir>
     <IntDir>obj\Game\</IntDir>
     <TargetName>Game</TargetName>
     <TargetExt>.lib</TargetExt>
+    <ExternalIncludePath>opencv\build\include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
