@@ -5,5 +5,5 @@ class GenData
 {
 public:
 	static void GenerateData();
-	static BrushSymbol GetSymbol(ID3D11Texture2D* aTexture, int width, int height);
+	static void GetSymbol(BrushSymbol& anOutSymbol, ID3D11Texture2D* aTexture, int width, int height, const std::function<void(bool aSucceeded)>& aCallback);
 };

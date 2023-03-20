@@ -14,7 +14,7 @@ public:
 	Texture& GetScreenTex() { return myScreenTex; }
 	Texture& GetPaperTex() { return *myPaperTex; }
 	void Save();
-	void PerformAction();
+	void ImageRecognitionCallback(bool aSucceeded);
 	void Generate();
 	void StartPainting();
 	bool GetCanPaint() { return myCanPaint; }
@@ -32,4 +32,5 @@ private:
 	//Texture myStagingTex;
 	const int myWidth = 1920;
 	const int myHeight = 1080;
+	BrushSymbol mySymbol;
 };

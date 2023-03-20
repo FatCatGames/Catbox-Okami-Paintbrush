@@ -15,6 +15,7 @@ Canvas* Canvas::Instance;
 Microsoft::WRL::ComPtr<ID3D11Texture2D> stagingDataTexture;
 Microsoft::WRL::ComPtr<ID3D11Texture2D> stagingDisplayTexture;
 Texture tempTex;
+std::mutex paintMutex;
 
 Canvas::Canvas()
 {
@@ -61,8 +62,10 @@ void Canvas::Awake()
 	myShader = dynamic_cast<CanvasPS*>(myGameObject->GetComponent<ModelInstance>()->GetMaterial(0)->GetPixelShader().get());
 }
 
+
 void PaintToTexture(int aWidth, int aHeight, int anXPos, int anYPos, int aRadius, float aRadiusModifier, const Color& aColor, ID3D11Texture2D* aStagingTex, ID3D11Resource* anOutputTex)
 {
+	const std::scoped_lock<std::mutex> lock(paintMutex);
 	//Paint onto the painting data texture
 
 	DX11::Context->CopyResource(aStagingTex, anOutputTex);
@@ -138,14 +141,21 @@ void Canvas::Save()
 {
 	myCanPaint = false;
 
-	BrushSymbol symbol = GenData::GetSymbol(stagingDataTexture.Get(), myWidth, myHeight);
+	GenData::GetSymbol(mySymbol, stagingDataTexture.Get(), myWidth, myHeight, [&](bool aSucceeded) {ImageRecognitionCallback(aSucceeded); });
+}
 
+void Canvas::ImageRecognitionCallback(bool aSucceeded)
+{
+
+	auto camPos = Engine::GetInstance()->GetActiveCamera()->GetTransform()->worldPos();
 	PaintingScene::GetInstance()->GetGameObject().SetActive(false);
 	GameScene::GetInstance()->GetGameObject().SetActive(true);
 	Engine::GetInstance()->SetGamePaused(false);
-
-	if (!symbol.name.empty()) GameScene::GetInstance()->PerformAction(symbol);
-
+	
+	if (aSucceeded && !mySymbol.name.empty())
+	{
+		GameScene::GetInstance()->PerformAction(mySymbol);
+	}
 	myCanPaint = true;
 }
 
@@ -156,6 +166,9 @@ void Canvas::Generate()
 
 void Canvas::StartPainting()
 {
+	Clear();
+
+
 	myCanPaint = true;
 	GraphicsEngine::GetInstance()->RunFullScreenShader(
 		GraphicsEngine::GetInstance()->GetPreviousScreenTex()->GetShaderResourceView().GetAddressOf(),

@@ -140,7 +140,6 @@ void Paintbrush::Update()
 	if (Input::GetKeyReleased(KeyCode::CTRL))
 	{
 		Canvas::GetInstance()->Save();
-		Canvas::GetInstance()->Clear();
 	}
 
 	if (Input::GetKeyReleased(KeyCode::G))

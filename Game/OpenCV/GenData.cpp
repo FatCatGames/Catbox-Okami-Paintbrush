@@ -7,9 +7,10 @@
 
 #include<iostream>
 #include<vector>
+#include "ComponentTools\ThreadPool.h"
 
 // global variables ///////////////////////////////////////////////////////////////////////////////
-const int MIN_CONTOUR_AREA = 1000;
+const int MIN_CONTOUR_AREA = 5000;
 
 const int RESIZED_IMAGE_WIDTH = 100;
 const int RESIZED_IMAGE_HEIGHT = 100;
@@ -146,10 +147,10 @@ public:
 
 };
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-bool ReadImage(cv::Mat anImage, BrushSymbol& outSymbol)
+void ReadImage(cv::Mat anImage, BrushSymbol& outSymbol, const std::function<void(bool success)>& aCallback)
 {
+	
 	std::vector<ContourWithData> allContoursWithData;           // declare empty vectors,
 	std::vector<ContourWithData> validContoursWithData;         // we will fill these shortly
 
@@ -161,7 +162,8 @@ bool ReadImage(cv::Mat anImage, BrushSymbol& outSymbol)
 
 	if (matTestingNumbers.empty()) {                                // if unable to open image
 		printerror("error: image not read from file");         // show error message on command line
-		return false;                                                  // and exit program
+		aCallback(false);                                                  
+		return;
 	}
 
 	cv::Mat matGrayscale;           //
@@ -210,7 +212,11 @@ bool ReadImage(cv::Mat anImage, BrushSymbol& outSymbol)
 			validContoursWithData.push_back(allContoursWithData[i]);            // if so, append to valid contour list
 		}
 	}
-	if (validContoursWithData.empty()) return false;
+	if (validContoursWithData.empty())
+	{
+		aCallback(false);
+		return;
+	}
 
 	// sort contours from left to right
 	std::sort(validContoursWithData.begin(), validContoursWithData.end(), ContourWithData::sortByBoundingRectXPosition);
@@ -222,7 +228,8 @@ bool ReadImage(cv::Mat anImage, BrushSymbol& outSymbol)
 
 	if (fsClassifications.isOpened() == false) {                                                    // if the file was not opened successfully
 		printerror("error, unable to open training classifications file, exiting program");    // show error message
-		return false;                                                                                  // and exit program
+		aCallback(false);
+		return;                                                                                // and exit program
 	}
 
 	fsClassifications["classifications"] >> matClassificationInts;      // read classifications section into Mat classifications variable
@@ -236,7 +243,8 @@ bool ReadImage(cv::Mat anImage, BrushSymbol& outSymbol)
 
 	if (fsTrainingImages.isOpened() == false) {                                                 // if the file was not opened successfully
 		printerror("error, unable to open training images file, exiting program");         // show error message
-		return false;                                                                              // and exit program
+		aCallback(false);
+		return;                                                                           // and exit program
 	}
 
 	fsTrainingImages["images"] >> matTrainingImagesAsFlattenedFloats;           // read images section into Mat training images variable
@@ -291,19 +299,22 @@ bool ReadImage(cv::Mat anImage, BrushSymbol& outSymbol)
 
 	 //cv::imshow("matTestingNumbers", matTestingNumbers);     // show input image with green boxes drawn around found digits
 	 //outSymbol = strFinalString;
-	return true;
+	aCallback(true);
 }
 
+cv::Mat mat;
+std::function<void(bool aSucceeded)> callback;
 
-
-BrushSymbol GenData::GetSymbol(ID3D11Texture2D* aTexture, int width, int height)
+void GenData::GetSymbol(BrushSymbol& anOutSymbol, ID3D11Texture2D* aTexture, int width, int height, const std::function<void(bool aSucceeded)>& aCallback)
 {
+
 	D3D11_MAPPED_SUBRESOURCE mapped_resource = {};
 	HRESULT result = DX11::Context->Map(aTexture, 0, D3D11_MAP_WRITE, 0, &mapped_resource);
-	cv::Mat mat(height, width, CV_8UC4, mapped_resource.pData, mapped_resource.RowPitch);
+	mat = cv::Mat(height, width, CV_8UC4, mapped_resource.pData, mapped_resource.RowPitch);
 	DX11::Context->Unmap(aTexture, 0);
 	std::string outString;
-	BrushSymbol symbol;
-	ReadImage(mat, symbol);
-	return symbol;
+
+	callback = aCallback;
+	Engine::GetInstance()->GetThreadPool()->QueueJob([&] { ReadImage(mat, anOutSymbol, callback); });
+	//ReadImage(mat, anOutSymbol, aCallback);
 }
