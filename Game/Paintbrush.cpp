@@ -18,11 +18,13 @@ void Paintbrush::Awake()
 
 	for (auto& child : myTransform->GetChildren())
 	{
-		if (child->GetGameObject()->GetName() == "BrushModel")
+		if (child->GetGameObject()->GetName() == "Brush")
 		{
 			myShader = dynamic_cast<BrushVS*>(child->GetGameObject()->GetComponent<ModelInstance>()->GetMaterial(0)->GetVertexShader().get());
+			myShader->UpdateShaderData(Vector3f::zero(), 0);
 		}
 	}
+
 }
 
 void Paintbrush::Update()
@@ -47,7 +49,16 @@ void Paintbrush::Update()
 
 	Vector3f newPos = Engine::GetInstance()->GetActiveCamera()->MouseToWorldPos(mousePos, 0);
 	Vector3f diff = myTransform->worldPos() - newPos;
-	myShader->UpdateShaderData(diff.GetNormalized(), diff.Length());
+	Vector3f newDir = diff.GetNormalized();
+	float length = diff.Length();
+	if (length > 0)
+	{
+		myLastLength = length;
+	}
+
+	myCurrentPaintDir = Catbox::Lerp(myCurrentPaintDir, newDir, Catbox::Clamp(length * myTurnSmoothingSpeed, 0.f, 1.f));
+	myShader->UpdateShaderData(myCurrentPaintDir, myLastLength);
+
 	myTransform->SetWorldPos(newPos);
 
 	if (Input::GetKeyPress(KeyCode::MOUSELEFT))

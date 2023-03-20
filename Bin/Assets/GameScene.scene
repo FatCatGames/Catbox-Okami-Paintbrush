@@ -3,7 +3,7 @@
         {
             "Name": "PaintingScene",
             "Active": false,
-            "Opened": false,
+            "Opened": true,
             "Transform": {
                 "Version": 2,
                 "BoneParentID": -1,
@@ -123,46 +123,6 @@
                                 1.0
                             ],
                             "Children": [
-                                {
-                                    "Name": "BrushModel",
-                                    "Active": false,
-                                    "Opened": true,
-                                    "Transform": {
-                                        "Version": 2,
-                                        "BoneParentID": -1,
-                                        "Pos": [
-                                            -4.76837158203125e-7,
-                                            0.15000000596046448,
-                                            0.15000000596046448
-                                        ],
-                                        "Rot": [
-                                            45.0,
-                                            0.0,
-                                            0.0
-                                        ],
-                                        "Size": [
-                                            0.03999999910593033,
-                                            0.30000001192092896,
-                                            0.03999999910593033
-                                        ],
-                                        "Children": []
-                                    },
-                                    "Components": [
-                                        {
-                                            "ComponentType": "Model Instance",
-                                            "Version": 6,
-                                            "Model": "Cube",
-                                            "Materials": [
-                                                "BrushMat"
-                                            ],
-                                            "UsedForNav": false,
-                                            "Renderer": 1,
-                                            "Material Instance": false,
-                                            "CastShadows": true,
-                                            "InstanceCount": 0
-                                        }
-                                    ]
-                                },
                                 {
                                     "Name": "PaintDot",
                                     "Active": false,
@@ -870,7 +830,7 @@
                         ]
                     },
                     {
-                        "Name": "Unnamed asset",
+                        "Name": "DirLight",
                         "Active": true,
                         "Opened": true,
                         "Transform": {
@@ -898,7 +858,7 @@
                                 "ComponentType": "Light",
                                 "Version": 2,
                                 "Type": 0,
-                                "Shadows": 1,
+                                "Shadows": 0,
                                 "Intensity": 26.799999237060547,
                                 "Range": 10.0,
                                 "Tex": "studio_cubemap",
@@ -912,7 +872,7 @@
                         ]
                     },
                     {
-                        "Name": "Unnamed asset",
+                        "Name": "DirLight",
                         "Active": true,
                         "Opened": true,
                         "Transform": {
@@ -940,7 +900,7 @@
                                 "ComponentType": "Light",
                                 "Version": 2,
                                 "Type": 0,
-                                "Shadows": 1,
+                                "Shadows": 0,
                                 "Intensity": 0.10000000149011612,
                                 "Range": 10.0,
                                 "Tex": "studio_cubemap",
@@ -2551,6 +2511,122 @@
                             ]
                         },
                         "Prefab": "Tree"
+                    },
+                    {
+                        "Name": "grass_mesh",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                3.770198106765747,
+                                0.0,
+                                3.988384246826172
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                0.8400000333786011,
+                                0.8400000333786011,
+                                0.8400000333786011
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "Grass",
+                                "Materials": [
+                                    "Spring"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": true,
+                                "InstanceCount": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "MediumRock",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                5.258594512939453,
+                                0.5146622657775879,
+                                -6.956825256347656
+                            ],
+                            "Rot": [
+                                179.99964904785156,
+                                76.63026428222656,
+                                179.99964904785156
+                            ],
+                            "Size": [
+                                100.0,
+                                100.0,
+                                100.0
+                            ],
+                            "Children": []
+                        },
+                        "Prefab": "MediumRock"
+                    },
+                    {
+                        "Name": "CrackedRock",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                -0.5034899711608887,
+                                0.5146622657775879,
+                                -2.674067735671997
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                100.0,
+                                100.0,
+                                100.0
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "brokenrock",
+                                "Materials": [
+                                    "Spring",
+                                    "Spring",
+                                    "Spring",
+                                    "Spring",
+                                    "Spring",
+                                    ""
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": true,
+                                "InstanceCount": 0
+                            },
+                            {
+                                "ComponentType": "Mesh Collider",
+                                "Version": 1,
+                                "Collider Model": "crackedrock"
+                            }
+                        ]
                     }
                 ]
             },
