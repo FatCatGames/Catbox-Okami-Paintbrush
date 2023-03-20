@@ -295,6 +295,11 @@ const float Engine::GetDeltaTime()
 	return myTimer.GetDeltaTime();
 }
 
+const float Engine::GetRealDeltaTime()
+{
+	return myTimer.GetRealDeltaTime();
+}
+
 const double Engine::GetTotalTime()
 {
 	return myTimer.GetTotalTime();

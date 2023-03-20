@@ -101,7 +101,7 @@ void GameScene::PerformAction(BrushSymbol& anAction)
 
 	if (!symbolName.empty())
 	{
-		PopupManager::CreatePopup("Symbol", 2, { 400,150 }, symbolName, { Engine::GetInstance()->GetWindowSize().x * 0.5f, 400 });
+		PopupManager::CreatePopup("Symbol", 1, { 400,150 }, symbolName, { Engine::GetInstance()->GetWindowSize().x * 0.5f, 400 });
 	}
 	else
 	{

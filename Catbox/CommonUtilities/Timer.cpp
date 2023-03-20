@@ -22,6 +22,11 @@ float Catbox::Timer::GetDeltaTime() const
 	return myTimeSinceLastFrame;
 }
 
+float Catbox::Timer::GetRealDeltaTime() const
+{
+	return myTimeSinceLastFrame;
+}
+
 double Catbox::Timer::GetTotalTime() const
 {
 	return  (std::chrono::high_resolution_clock::now() - myStartTime).count() / 10e8;

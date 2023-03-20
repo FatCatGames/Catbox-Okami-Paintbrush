@@ -6,12 +6,20 @@ cbuffer BrushData : register(b10)
 	float strength = 0;
 }
 
+
 VertexToPixel main(VertexInput input)
 {
 	VertexToPixel result;
 
 
+	float influence = 0.1f * pow(input.VxColor.r, 1);
 	float4 vertexWorldPosition = mul(OB_ToWorld, input.Position);
+	//float length = clamp(influence * strength * 10, 0, myMaxLength);
+	//float length = clamp(influence, 0, 0.1f);
+	vertexWorldPosition.xz += paintDir.xz * influence;
+	vertexWorldPosition.y += 0.045f * influence * input.VxColor.r;
+	//vertexWorldPosition.xyz += paintDir * influence * strength * 10;
+
 	const float4 vertexViewPosition = mul(FB_ToView, vertexWorldPosition);
 	const float4 vertexProjectionPosition = mul(FB_ToProjection, vertexViewPosition);
 
@@ -19,10 +27,6 @@ VertexToPixel main(VertexInput input)
 
 	result.ProjectedPosition = vertexProjectionPosition;
 	result.WorldPosition = vertexWorldPosition;
-
-	float influence = input.VxColor.b;
-	//result.WorldPosition.xyz += 100;
-	vertexWorldPosition.xyz += paintDir * paintDir * influence * 100;
 
 	result.VxColor = input.VxColor;
 	result.AlbedoUV = input.AlbedoUV;

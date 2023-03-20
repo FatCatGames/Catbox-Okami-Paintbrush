@@ -44,7 +44,7 @@ void ForwardRenderer::Render(const std::vector<ModelInstance*>& aModelList, cons
 	auto dsv = Engine::GetInstance()->GetGraphicsEngine()->GetMainCamera()->GetDepthStencil().GetDepthStencilView().Get();
 	DX11::Context->OMSetRenderTargets(4, buffers, dsv);
 
-	std::vector<ModelInstance*> orderedList = (aModelList);
+	std::vector<ModelInstance*> orderedList = OrderBackToFront(aModelList);
 
 	RenderModels(orderedList);
 	RenderParticles(aParticleSystemList);
