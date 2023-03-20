@@ -69,6 +69,7 @@ public:
 	float GetWindowRatio() { return myWindowSize.x / (float)myWindowSize.y; }
 
 	const float GetDeltaTime();
+	const float GetRealDeltaTime();
 	const double GetTotalTime();
 	void Update();
 

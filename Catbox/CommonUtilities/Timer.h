@@ -11,6 +11,7 @@ namespace Catbox
 		Timer& operator=(const Timer& aTimer) = delete;
 		void Update();
 		float GetDeltaTime() const;
+		float GetRealDeltaTime() const;
 		double GetTotalTime() const;
 		inline bool IsPaused() { return myIsPaused; }
 		inline void SetPaused(bool aIsPaused) { myIsPaused = aIsPaused; }

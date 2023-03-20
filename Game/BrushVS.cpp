@@ -41,7 +41,6 @@ BrushVS::BrushVS()
 
 void BrushVS::SetResource()
 {
-	printmsg(("Length: " + std::to_string(myPaintData.strength)).c_str());
 	myPaintDataBuffer.SetData(&myPaintData);
 	DX11::Context->VSSetConstantBuffers(10, 1, myPaintDataBuffer.GetAddress());
 }

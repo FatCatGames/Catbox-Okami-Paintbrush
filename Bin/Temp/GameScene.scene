@@ -191,7 +191,7 @@
                                         {
                                             "ComponentType": "Model Instance",
                                             "Version": 6,
-                                            "Model": "Brush",
+                                            "Model": "BrushVXcolorFromMaya",
                                             "Materials": [
                                                 "BrushMat"
                                             ],
@@ -2577,6 +2577,56 @@
                             "Children": []
                         },
                         "Prefab": "MediumRock"
+                    },
+                    {
+                        "Name": "CrackedRock",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                -0.5034899711608887,
+                                0.5146622657775879,
+                                -2.674067735671997
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                100.0,
+                                100.0,
+                                100.0
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "brokenrock",
+                                "Materials": [
+                                    "Spring",
+                                    "Spring",
+                                    "Spring",
+                                    "Spring",
+                                    "Spring",
+                                    ""
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": true,
+                                "InstanceCount": 0
+                            },
+                            {
+                                "ComponentType": "Mesh Collider",
+                                "Version": 1,
+                                "Collider Model": "brokenrock"
+                            }
+                        ]
                     }
                 ]
             },

@@ -19,7 +19,7 @@ private:
 	//Paint
 	ColorGradient myGradient;
 	Vector3f myLastPaintPos;
-	Vector3f myCurrentPaintDir;
+	Vector3f myCurrentPaintDir = Vector3f::zero();
 	float myLastLength = 0;
 	float myTurnSmoothingSpeed = 5;
 
@@ -36,4 +36,7 @@ private:
 	float myMinSize = 2;
 	int myMaxMouseDelta = 100;
 	BrushVS* myShader;
+
+	const float myYPosLerpTime = 0.2f;
+	float myLerpTimer = 1;
 };

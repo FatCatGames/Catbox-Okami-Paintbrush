@@ -51,91 +51,108 @@ void Paintbrush::Update()
 	Vector3f diff = myTransform->worldPos() - newPos;
 	Vector3f newDir = diff.GetNormalized();
 	float length = diff.Length();
-	if (length > 0)
-	{
-		myLastLength = length;
-	}
 
-	myCurrentPaintDir = Catbox::Lerp(myCurrentPaintDir, newDir, Catbox::Clamp(length * myTurnSmoothingSpeed, 0.f, 1.f));
-	myShader->UpdateShaderData(myCurrentPaintDir, myLastLength);
-
-	myTransform->SetWorldPos(newPos);
 
 	if (Input::GetKeyPress(KeyCode::MOUSELEFT))
 	{
 		myRemainingPaint = 1000;
+		myLerpTimer = 0;
+	}
+	else if (Input::GetKeyReleased(KeyCode::MOUSELEFT))
+	{
+		myLerpTimer = 0;
 	}
 
 	bool isPainting = Input::GetKeyHeld(KeyCode::MOUSELEFT);
 	bool isErasing = Input::GetKeyHeld(KeyCode::MOUSERIGHT);
 
-	if ((isPainting || isErasing) && myRemainingPaint > 0)
+	if (myLerpTimer < myYPosLerpTime)
 	{
-		auto mouseDelta = Input::GetMouseDelta();
+		myLerpTimer += Engine::GetInstance()->GetRealDeltaTime();
+	}
 
-		int length = mouseDelta.Length();
-		if (length > myMaxMouseDelta)
+	float percent = myLerpTimer / myYPosLerpTime;
+	//newPos.y = Catbox::Lerp(-0.045f, 0.f, (isPainting || isErasing) ? (1 - percent) : percent);
+
+	myShader->UpdateShaderData(myCurrentPaintDir, percent);
+	if ((isPainting || isErasing))
+	{
+		myCurrentPaintDir = Catbox::Lerp(myCurrentPaintDir, newDir, Catbox::Clamp(length * myTurnSmoothingSpeed, 0.f, 1.f));
+
+		if (myRemainingPaint > 0)
 		{
-			length = myMaxMouseDelta;
-		}
+			auto mouseDelta = Input::GetMouseDelta();
 
-		float speedBonus = Catbox::Clamp(length / mySensitivity, 0.f, 1.5f);
-		float speedMultiplier = speedBonus * mySpeedScale;
-		float remainingPaintMultiplier = 1;
-		auto previousMousePos = Input::GetPreviousMousePosition();
-		auto previousScreenPos = Engine::GetInstance()->ViewportToScreenPos(previousMousePos.x, previousMousePos.y);
-		Vector2i convertedPreviousPos;
-		convertedPreviousPos.x = (previousScreenPos.x / static_cast<float>(DX11::GetResolution().x)) * 1920;
-		convertedPreviousPos.y = (previousScreenPos.y / static_cast<float>(DX11::GetResolution().y)) * 1080;
-
-		Vector2i convertedCurrentPos;
-		convertedCurrentPos.x = (screenPos.x / static_cast<float>(DX11::GetResolution().x)) * 1920;
-		convertedCurrentPos.y = (screenPos.y / static_cast<float>(DX11::GetResolution().y)) * 1080;
-
-
-		Vector2i convertedMouseDelta = convertedCurrentPos - convertedPreviousPos;
-		//print("X: " + std::to_string(convertedCurrentPos.x) + ", Y: " + std::to_string(convertedCurrentPos.y));
-
-		for (float i = 0; i <= length;)
-		{
-			Color col;
-
-			if (!isErasing)
+			int length = mouseDelta.Length();
+			if (length > myMaxMouseDelta)
 			{
-				myPaintTimer += myGradientSpeed;
-
-				if (myPaintTimer > 1)
-				{
-					float diff = myPaintTimer - std::floor(myPaintTimer);
-					myPaintTimer = diff;
-				}
-
-				myRemainingPaint -= myRadius * speedMultiplier * remainingPaintMultiplier * myPaintDecreaseSpeed;
-				if (myRemainingPaint < 15)
-				{
-					remainingPaintMultiplier = myRemainingPaint / 15.f;
-				}
-
-				if (myColorMode == ColorMode::Black) col = Color::Black();
-				else if (myColorMode == ColorMode::Red) col = Color::Red();
-				else if (myColorMode == ColorMode::Rainbow) col = myGradient.Evaluate(myPaintTimer);
+				length = myMaxMouseDelta;
 			}
 
-			float percent = 0;
-			if (length != 0)
+			float speedBonus = Catbox::Clamp(length / mySensitivity, 0.f, 1.5f);
+			float speedMultiplier = speedBonus * mySpeedScale;
+			float remainingPaintMultiplier = 1;
+			auto previousMousePos = Input::GetPreviousMousePosition();
+			auto previousScreenPos = Engine::GetInstance()->ViewportToScreenPos(previousMousePos.x, previousMousePos.y);
+			Vector2i convertedPreviousPos;
+			convertedPreviousPos.x = (previousScreenPos.x / static_cast<float>(DX11::GetResolution().x)) * 1920;
+			convertedPreviousPos.y = (previousScreenPos.y / static_cast<float>(DX11::GetResolution().y)) * 1080;
+
+			Vector2i convertedCurrentPos;
+			convertedCurrentPos.x = (screenPos.x / static_cast<float>(DX11::GetResolution().x)) * 1920;
+			convertedCurrentPos.y = (screenPos.y / static_cast<float>(DX11::GetResolution().y)) * 1080;
+
+
+			Vector2i convertedMouseDelta = convertedCurrentPos - convertedPreviousPos;
+
+			for (float i = 0; i <= length;)
 			{
-				percent = i / static_cast<float>(length);
+				Color col;
+
+				if (!isErasing)
+				{
+					myPaintTimer += myGradientSpeed;
+
+					if (myPaintTimer > 1)
+					{
+						float diff = myPaintTimer - std::floor(myPaintTimer);
+						myPaintTimer = diff;
+					}
+
+					myRemainingPaint -= myRadius * speedMultiplier * remainingPaintMultiplier * myPaintDecreaseSpeed;
+					if (myRemainingPaint < 15)
+					{
+						remainingPaintMultiplier = myRemainingPaint / 15.f;
+					}
+
+					if (myColorMode == ColorMode::Black) col = Color::Black();
+					else if (myColorMode == ColorMode::Red) col = Color::Red();
+					else if (myColorMode == ColorMode::Rainbow) col = myGradient.Evaluate(myPaintTimer);
+				}
+
+				float percent = 0;
+				if (length != 0)
+				{
+					percent = i / static_cast<float>(length);
+				}
+
+				int newX = std::round(convertedPreviousPos.x + convertedMouseDelta.x * percent);
+				int newY = std::round(convertedPreviousPos.y + convertedMouseDelta.y * percent);
+
+				float multiplier = speedMultiplier * remainingPaintMultiplier;
+				//size = Catbox::Clamp(myRadius * multiplier, myMinSize, myMaxSize);
+				Canvas::GetInstance()->Paint(newX, newY, myRadius, multiplier, col);
+				i += myRadius;
 			}
-
-			int newX = std::round(convertedPreviousPos.x + convertedMouseDelta.x * percent);
-			int newY = std::round(convertedPreviousPos.y + convertedMouseDelta.y * percent);
-
-			float multiplier = speedMultiplier * remainingPaintMultiplier;
-			//size = Catbox::Clamp(myRadius * multiplier, myMinSize, myMaxSize);
-			Canvas::GetInstance()->Paint(newX, newY, myRadius, multiplier, col);
-			i += myRadius;
 		}
 	}
+	else
+	{
+		myCurrentPaintDir = Catbox::Lerp(myCurrentPaintDir, Vector3f::zero(), Catbox::Clamp(length * myTurnSmoothingSpeed, 0.f, 1.f));
+		myShader->UpdateShaderData(myCurrentPaintDir, 1 - percent);
+	}
+
+	myTransform->SetWorldPos(newPos);
 
 	//if (Input::GetKeyReleased(KeyCode::S))
 	//{
