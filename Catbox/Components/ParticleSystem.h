@@ -5,7 +5,7 @@ class ParticleSystem : public Component
 {
 public:
 	
-	~ParticleSystem() = default;
+	~ParticleSystem();
 	void Update() override;
 	void RunInEditor() override;
 	void RenderInProperties(std::vector<Component*>& aComponentList);

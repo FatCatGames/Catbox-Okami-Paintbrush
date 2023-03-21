@@ -2,6 +2,7 @@
 #include "../Components/Physics/Collisions/CollisionData.h"
 #include "ComponentHandler.h"
 
+unsigned int Component::globalComponentCount = 0;
 
 void Component::RenderInProperties(std::vector<Component*>& /*aComponentList*/)
 {

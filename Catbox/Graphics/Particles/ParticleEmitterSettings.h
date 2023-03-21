@@ -31,7 +31,7 @@ public:
 
 	void LoadFromPath(const char* aPath) override;
 
-	enum class EmissionShape 
+	enum class EmissionShape
 	{
 		Cone,
 		Sphere,
@@ -56,7 +56,7 @@ private:
 	//DX11 rendering stuff
 	Microsoft::WRL::ComPtr<ID3D11Buffer> myVertexBuffer;
 	UINT myStride;
-	UINT myOffset;
+	UINT myDXOffset;
 	std::shared_ptr<VertexShader> myVertexShader;
 	std::shared_ptr<GeometryShader> myGeometryShader;
 	std::shared_ptr<PixelShader> myPixelShader;
@@ -69,6 +69,7 @@ private:
 	float myDuration = 5;
 	float myStartDelay = 0;
 	ParticleProperty<float> myLifetime;
+	ParticleProperty<float> mySpawnDelay;
 	ParticleProperty<float> myTimeBetweenEmissions;
 	ParticleProperty<int> myParticlesPerEmission;
 	ParticleProperty<float> mySize;
@@ -79,8 +80,11 @@ private:
 	bool myUseGravity = false;
 	float myGravityModifier = 1;
 
-	//Shape
-	EmissionShape myShape = EmissionShape::Cone;
+	struct ShapeData
+	{
+		EmissionShape shape = EmissionShape::Cone;
+		Vector3f offset;
+	} myShapeData;
 
 	//Over lifetime
 	ColorGradient myColorOverLifetime;
@@ -105,14 +109,15 @@ private:
 
 	//Rendering
 
-	enum Type
+	enum class RenderType
 	{
 		Default,
 		Flipbook,
-		AtlasWalk
+		AtlasWalk,
+		Material
 	};
 
-	Type myType = Type::Default;
+	RenderType myType = RenderType::Default;
 	BlendState myBlendState = BlendState::BS_AlphaBlend;
 	std::shared_ptr<Texture> myTexture;
 	std::shared_ptr<Material> myMaterial;

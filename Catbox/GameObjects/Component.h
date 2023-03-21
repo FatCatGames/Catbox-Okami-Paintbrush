@@ -36,9 +36,9 @@ protected:
 	virtual void OnObjectFinishedLoading() {};
 
 	virtual void OnCollisionEnter(Collider* aCollider) { aCollider; };
-	virtual void OnTriggerEnter(Collider* aCollider) { aCollider; };
 	virtual void OnCollisionStay(Collider* aCollider) { aCollider; };
 	virtual void OnCollisionExit(Collider* aCollider) { aCollider; };
+	virtual void OnTriggerEnter(Collider* aCollider) { aCollider; };
 	virtual void OnOverlapBegin(Collider* aCollider) { aCollider; };
 	virtual void OnOverlap(Collider* aCollider) { aCollider; };
 	virtual void OnOverlapEnd(Collider* aCollider) { aCollider; };
@@ -48,6 +48,9 @@ protected:
 	bool myIsEnabled = true;
 	bool myHasStarted = false;
 	bool myShouldCull = false;
+	bool myShouldUpdateWhilePaused = false;
+	static unsigned int globalComponentCount;
+	unsigned int myComponentId;
 
 private:
 	void SetGameObject(GameObject* aGameObject);

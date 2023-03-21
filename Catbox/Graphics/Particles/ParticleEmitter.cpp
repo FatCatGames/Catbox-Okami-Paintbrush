@@ -60,7 +60,7 @@ void ParticleEmitter::SpawnParticles()
 			if (++myParticleIndex >= myParticles.size()) myParticleIndex = 0;
 		}
 
-		CreateInitialShape(newParticles, mySharedData->myShape);
+		CreateInitialShape(newParticles, mySharedData->myShapeData);
 	}
 }
 
@@ -83,6 +83,11 @@ void ParticleEmitter::Update()
 	{
 		if (myParticles[i].remainingLifetime <= 0) continue;
 		ParticleData& p = myParticles[i];
+		if (p.spawnTimer > 0)
+		{
+			p.spawnTimer -= deltaTime;
+			continue;
+		}
 		p.remainingLifetime -= deltaTime;
 		myParticleBufferData[myParticlesToRender].lifetime = p.startLifetime - p.remainingLifetime;
 
@@ -158,28 +163,28 @@ void ParticleEmitter::Update()
 	}
 }
 
-void ParticleEmitter::CreateInitialShape(std::vector<ParticleEmitter::ParticleData*>& someParticles, ParticleEmitterSettings::EmissionShape aShape)
+void ParticleEmitter::CreateInitialShape(std::vector<ParticleEmitter::ParticleData*>& someParticles, ParticleEmitterSettings::ShapeData& aShapeData)
 {
-	Vector4f spawnPos = { 0,0,0,1 };
+	Vector4f spawnPos = { aShapeData.offset.x, aShapeData.offset.y, aShapeData.offset.z, 1};
 	if (mySharedData->myUseWorldSpace)
 	{
 		Vector3f parentPos = myParent->worldPos();
-		spawnPos = { parentPos.x, parentPos.y, parentPos.z, 1 };
+		spawnPos += { parentPos.x, parentPos.y, parentPos.z, 0 };
 	}
 
 	for (int i = 0; i < someParticles.size(); i++)
 	{
 		someParticles[i]->position = spawnPos;
 
-		if (aShape == ParticleEmitterSettings::EmissionShape::Cone)
+		if (aShapeData.shape == ParticleEmitterSettings::EmissionShape::Cone)
 		{
 			someParticles[i]->velocity = { Catbox::GetRandom(-0.5f, 0.5f), Catbox::GetRandom(1.f, 1.5f), Catbox::GetRandom(-0.5f, 0.5f), 0 };
 		}
-		else if (aShape == ParticleEmitterSettings::EmissionShape::Sphere)
+		else if (aShapeData.shape == ParticleEmitterSettings::EmissionShape::Sphere)
 		{
 			someParticles[i]->velocity = { Catbox::GetRandom(-1.f, 1.f), Catbox::GetRandom(-1.f, 1.f), Catbox::GetRandom(-1.f, 1.f), 0 };
 		}
-		else if (aShape == ParticleEmitterSettings::EmissionShape::Edge)
+		else if (aShapeData.shape == ParticleEmitterSettings::EmissionShape::Edge)
 		{
 			someParticles[i]->velocity = { 0.f, 1.f, 0.f, 0 };
 			//someParticles[i]->position += { i / static_cast<float>(someParticles.size()), 0, 0, 1 };
@@ -192,7 +197,7 @@ void ParticleEmitter::ResetParticle(ParticleData& aParticle)
 	float percent = 1.f - (myInstanceData.timePassed / mySharedData->myDuration);
 	aParticle.velocity = { 0,0,0,0 };
 	aParticle.currentRotation.z = aParticle.startRotation.z = mySharedData->myRotation.GetValue(percent);
-
+	aParticle.spawnTimer = mySharedData->mySpawnDelay.GetValue(percent);
 	aParticle.startColor = mySharedData->myStartColor;
 
 	aParticle.currentSize = aParticle.startSize = mySharedData->mySize.GetValue(percent);
@@ -243,7 +248,6 @@ void ParticleEmitter::SetAsResource(Catbox::CBuffer<Material::MaterialBufferData
 
 	HRESULT result;
 
-
 	D3D11_MAPPED_SUBRESOURCE bufferData;
 	ZeroMemory(&bufferData, sizeof(D3D11_MAPPED_SUBRESOURCE));
 	result = DX11::Context->Map(mySharedData->myVertexBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &bufferData);
@@ -254,32 +258,41 @@ void ParticleEmitter::SetAsResource(Catbox::CBuffer<Material::MaterialBufferData
 
 	DX11::Context->IASetPrimitiveTopology(static_cast<D3D_PRIMITIVE_TOPOLOGY>(mySharedData->myPrimitiveTopology));
 	DX11::Context->IASetInputLayout(mySharedData->myVertexShader->inputLayout.Get());
-	DX11::Context->IASetVertexBuffers(0, 1, mySharedData->myVertexBuffer.GetAddressOf(), &mySharedData->myStride, &mySharedData->myOffset);
+	DX11::Context->IASetVertexBuffers(0, 1, mySharedData->myVertexBuffer.GetAddressOf(), &mySharedData->myStride, &mySharedData->myDXOffset);
 
-	DX11::Context->VSSetShader(mySharedData->myVertexShader->vertexShader, nullptr, 0);
-	DX11::Context->GSSetShader(mySharedData->myGeometryShader->geometryShader, nullptr, 0);
 
-	if (mySharedData->myType == ParticleEmitterSettings::Type::Default)
-	{
-		mySharedData->myDefaultMaterial->SetAsResource(aMaterialBuffer);
-		DX11::Context->PSSetShader(mySharedData->myMaterial->GetPixelShader()->pixelShader, nullptr, 0);
-	}
-	else if (mySharedData->myType == ParticleEmitterSettings::Type::Flipbook)
-	{
-		DX11::Context->PSSetShader(mySharedData->myFlipbookShader->pixelShader, nullptr, 0);
-		mySharedData->myFlipbookShader->SetData();
-		mySharedData->myFlipbookShader->SetResource();
-	}
-	else if (mySharedData->myType == ParticleEmitterSettings::Type::AtlasWalk)
-	{
-		DX11::Context->PSSetShader(mySharedData->myAtlasWalkShader->pixelShader, nullptr, 0);
-		mySharedData->myAtlasWalkShader->SetData();
-		mySharedData->myAtlasWalkShader->SetResource();
-	}
 
-	if (mySharedData->myTexture)
+	if (mySharedData->myType == ParticleEmitterSettings::RenderType::Material)
 	{
-		mySharedData->myTexture->SetAsResource(0);
+		mySharedData->myMaterial->SetAsResource(aMaterialBuffer);
+	}
+	else 
+	{
+		DX11::Context->VSSetShader(mySharedData->myVertexShader->vertexShader, nullptr, 0);
+		DX11::Context->GSSetShader(mySharedData->myGeometryShader->geometryShader, nullptr, 0);
+		if (mySharedData->myType == ParticleEmitterSettings::RenderType::Default)
+		{
+			mySharedData->myDefaultMaterial->SetAsResource(aMaterialBuffer);
+			DX11::Context->PSSetShader(mySharedData->myMaterial->GetPixelShader()->pixelShader, nullptr, 0);
+		}
+		else if (mySharedData->myType == ParticleEmitterSettings::RenderType::Flipbook)
+		{
+			DX11::Context->PSSetShader(mySharedData->myFlipbookShader->pixelShader, nullptr, 0);
+			mySharedData->myFlipbookShader->SetData();
+			mySharedData->myFlipbookShader->SetResource();
+		}
+		else if (mySharedData->myType == ParticleEmitterSettings::RenderType::AtlasWalk)
+		{
+			DX11::Context->PSSetShader(mySharedData->myAtlasWalkShader->pixelShader, nullptr, 0);
+			mySharedData->myAtlasWalkShader->SetData();
+			mySharedData->myAtlasWalkShader->SetResource();
+		}
+
+
+		if (mySharedData->myTexture)
+		{
+			mySharedData->myTexture->SetAsResource(0);
+		}
 	}
 }
 
@@ -305,6 +318,7 @@ void ParticleEmitter::UpdateMaxParticles()
 	mySharedData->mySubresourceData.pSysMem = &myParticles[0];
 	HRESULT result = DX11::Device->CreateBuffer(&mySharedData->myVertexBufferDesc, &mySharedData->mySubresourceData, mySharedData->myVertexBuffer.GetAddressOf());
 }
+
 
 void ParticleEmitter::SetSharedData(std::shared_ptr<ParticleEmitterSettings> someSharedData, bool reloadParticles)
 {

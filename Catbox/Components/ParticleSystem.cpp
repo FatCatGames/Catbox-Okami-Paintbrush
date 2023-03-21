@@ -3,6 +3,11 @@
 #include "UtilityFunctions.hpp"
 
 
+ParticleSystem::~ParticleSystem()
+{
+	Engine::GetInstance()->GetGraphicsEngine()->RemoveFromRenderQueue(this);
+}
+
 void ParticleSystem::Update()
 {
 	for (auto& emitter : myEmitters)
@@ -39,7 +44,7 @@ std::vector<ParticleEmitter>& ParticleSystem::GetEmitters()
 
 void ParticleSystem::AddEmitter(std::shared_ptr<ParticleEmitterSettings> aSettings)
 {
-	if (!aSettings) 
+	if (!aSettings)
 	{
 		printerror("Tried to add emitter that does not exist!");
 		return;
@@ -98,30 +103,49 @@ void ParticleSystem::Replay()
 
 void ParticleSystem::RenderInProperties(std::vector<Component*>& aComponentList)
 {
+	ImGui::Spacing();
+	if (ImGui::Button(("Add Emitter##" + std::to_string(myComponentId)).c_str()))
+	{
+		ImGui::OpenPopup(("Add emitter##" + std::to_string(myComponentId)).c_str());
+	}
+
+	ImGui::SameLine();
+	if (ImGui::Button(("Replay##System" + std::to_string(myComponentId)).c_str()))
+	{
+		for (size_t i = 0; i < myEmitters.size(); i++)
+		{
+			myEmitters[i].Replay();
+		}
+	}
+
+	ImGui::Spacing();
+	ImGui::Separator();
+	ImGui::Spacing();
+
 	for (size_t i = 0; i < myEmitters.size(); i++)
 	{
 		if (i != 0) ImGui::Separator();
-		ImGui::Unindent(20);
+		ImGui::Unindent(10);
 		ImGui::SetNextItemWidth(200);
 		if (ImGui::CollapsingHeader((myEmitters[i].GetSharedData()->GetName() + "##" + std::to_string(i)).c_str()))
 		{
-			ImGui::Indent(20);
+			ImGui::Indent(10);
 			myEmitters[i].RenderInProperties();
 
-			if (ImGui::Button("Remove", { 70, 30 }))
+			if (ImGui::Button(("Remove##" + std::to_string(myComponentId) + std::to_string(i)).c_str(), { 70, 30 }))
 			{
 				myEmitters.erase(myEmitters.begin() + i);
 				--i;
 				continue;
 			}
 		}
-		else ImGui::Indent(20);
+		else ImGui::Indent(10);
 		ImGui::Spacing();
 	}
 
-	if (ImGui::BeginPopupContextItem("Add emitter"))
+	if (ImGui::BeginPopupContextItem(("Add emitter##" + std::to_string(myComponentId)).c_str()))
 	{
-		if (ImGui::Selectable("Create New"))
+		if (ImGui::Selectable(("Create New##" + std::to_string(myComponentId)).c_str()))
 		{
 			std::string filePath = Catbox::SaveFile("Particle Emitter (*.pe)\0*.pe\0");
 			if (!filePath.empty())
@@ -131,21 +155,16 @@ void ParticleSystem::RenderInProperties(std::vector<Component*>& aComponentList)
 				myEmitters.back().SetSharedData(sharedData);
 			}
 		}
-		if (ImGui::Selectable("Load Existing"))
+
+		bool edit;
+		auto pe = AssetRegistry::GetInstance()->AssetDropdownMenu<ParticleEmitterSettings>(nullptr, "Emitter", edit);
+		if (edit)
 		{
-			std::string filePath = Catbox::OpenFile("Particle Emitter (*.pe)\0*.pe\0");
-			if (!filePath.empty())
-			{
-				string emitterName = Catbox::GetNameFromPath(filePath);
-				AddEmitter(AssetRegistry::GetInstance()->GetAsset<ParticleEmitterSettings>(emitterName));
-			}
+			AddEmitter(pe);
+			ImGui::CloseCurrentPopup();
 		}
 		ImGui::EndPopup();
 	}
 
-	ImGui::Spacing();
-	if (ImGui::Button("Add Emitter"))
-	{
-		ImGui::OpenPopup("Add emitter");
-	}
+
 }

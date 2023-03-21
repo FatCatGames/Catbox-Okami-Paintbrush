@@ -58,6 +58,8 @@ inline ParticleProperty<T>::ParticleProperty()
 {
 	myEvaluationType = EvaluationType::Default;
 	myDefaultValue = 1;
+	myRange.min = 0;
+	myRange.max = 1;
 }
 
 template<typename T>

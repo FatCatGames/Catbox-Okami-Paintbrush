@@ -18,6 +18,7 @@ public:
 		float startSpeed = 1;
 		float currentSpeed = 0;
 		float endSpeed = 0;
+		float spawnTimer = 0;
 		float startLifetime = 1;
 		float remainingLifetime = 1;
 		float startSize = 1;
@@ -50,7 +51,7 @@ public:
 	void UpdateMaxParticles();
 
 private:
-	void CreateInitialShape(std::vector<ParticleData*>& someParticles, ParticleEmitterSettings::EmissionShape aShape);
+	void CreateInitialShape(std::vector<ParticleData*>& someParticles, ParticleEmitterSettings::ShapeData& aShapeData);
 	void UpdateParticleSystem();
 	void ResetParticle(ParticleData& aParticle);
 	void SpawnParticles();
