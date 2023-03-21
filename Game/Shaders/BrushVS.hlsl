@@ -2,7 +2,7 @@
 
 cbuffer BrushData : register(b10)
 {
-	float3 paintDir;
+	float3 paintDir = (0,0,0);
 	float strength = 0;
 }
 

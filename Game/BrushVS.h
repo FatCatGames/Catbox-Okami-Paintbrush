@@ -10,8 +10,8 @@ public:
 	void UpdateShaderData(const Vector3f& aPaintDir, float aMouseDelta);
 	struct PaintData
 	{
-		Vector3f paintDir;
-		float strength;
+		Vector3f paintDir = Vector3f::zero();
+		float strength = 0;
 	} myPaintData;
 
 private:

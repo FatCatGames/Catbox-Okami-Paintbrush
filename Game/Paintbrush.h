@@ -38,5 +38,5 @@ private:
 	BrushVS* myShader;
 
 	const float myYPosLerpTime = 0.2f;
-	float myLerpTimer = 1;
+	float myLerpTimer = 0.2f;
 };

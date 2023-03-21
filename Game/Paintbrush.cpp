@@ -53,8 +53,10 @@ void Paintbrush::Update()
 	float length = diff.Length();
 
 
+	bool isPainting = Input::GetKeyHeld(KeyCode::MOUSELEFT);
 	if (Input::GetKeyPress(KeyCode::MOUSELEFT))
 	{
+		isPainting = true;
 		myRemainingPaint = 1000;
 		myLerpTimer = 0;
 	}
@@ -63,7 +65,6 @@ void Paintbrush::Update()
 		myLerpTimer = 0;
 	}
 
-	bool isPainting = Input::GetKeyHeld(KeyCode::MOUSELEFT);
 	bool isErasing = Input::GetKeyHeld(KeyCode::MOUSERIGHT);
 
 	if (myLerpTimer < myYPosLerpTime)
@@ -73,8 +74,8 @@ void Paintbrush::Update()
 
 	float percent = myLerpTimer / myYPosLerpTime;
 	//newPos.y = Catbox::Lerp(-0.045f, 0.f, (isPainting || isErasing) ? (1 - percent) : percent);
-
 	myShader->UpdateShaderData(myCurrentPaintDir, percent);
+
 	if ((isPainting || isErasing))
 	{
 		myCurrentPaintDir = Catbox::Lerp(myCurrentPaintDir, newDir, Catbox::Clamp(length * myTurnSmoothingSpeed, 0.f, 1.f));

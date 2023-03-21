@@ -191,7 +191,7 @@
                                         {
                                             "ComponentType": "Model Instance",
                                             "Version": 6,
-                                            "Model": "BrushVXcolorFromMaya",
+                                            "Model": "Brush",
                                             "Materials": [
                                                 "BrushMat"
                                             ],
