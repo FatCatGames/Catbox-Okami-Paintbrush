@@ -1,0 +1,156 @@
+{
+    "Version": 10,
+    "Emission Data": {
+        "WorldSpace": true,
+        "Looping": true,
+        "Max particles": 100,
+        "Duration": 1.0,
+        "Delay": 0.0,
+        "Size": {
+            "min": 0.029999999329447746,
+            "max": 0.11999999731779099,
+            "evaluationType": "random"
+        },
+        "Speed": {
+            "default": 1.0,
+            "evaluationType": "default"
+        },
+        "Lifetime": {
+            "default": 1.0,
+            "evaluationType": "default"
+        },
+        "Rotation": {
+            "default": 1.0,
+            "evaluationType": "default"
+        },
+        "Time between emissions": {
+            "default": 1.0,
+            "evaluationType": "default"
+        },
+        "Particles per emission": {
+            "default": 5,
+            "evaluationType": "default"
+        },
+        "Spawn delay": {
+            "default": 0.0,
+            "evaluationType": "default"
+        },
+        "Start color": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 1.0
+        },
+        "Use gravity": true,
+        "Gravity modifier": 1.0
+    },
+    "Shape Data": {
+        "Shape": 0,
+        "OffsetX": 0.0,
+        "OffsetY": 0.0,
+        "OffsetZ": 0.0
+    },
+    "Over lifetime": {
+        "Size": {
+            "Curve": [
+                {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                {
+                    "x": 1.0,
+                    "y": 0.0
+                }
+            ],
+            "enabled": true
+        },
+        "Speed": {
+            "Curve": [
+                {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                {
+                    "x": 1.0,
+                    "y": 0.0
+                }
+            ],
+            "enabled": false
+        },
+        "Rotation": {
+            "Curve": [
+                {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                {
+                    "x": 1.0,
+                    "y": 1.0
+                }
+            ],
+            "enabled": false
+        },
+        "Color": {
+            "enabled": false,
+            "Gradient": [
+                {
+                    "Color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0,
+                        "a": 1.0
+                    },
+                    "pos": 0
+                },
+                {
+                    "Color": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "pos": 100
+                }
+            ]
+        },
+        "Velocity": {
+            "enabled": false,
+            "X": [
+                {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                {
+                    "x": 1.0,
+                    "y": 0.0
+                }
+            ],
+            "Y": [
+                {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                {
+                    "x": 1.0,
+                    "y": 0.0
+                }
+            ],
+            "Z": [
+                {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                {
+                    "x": 1.0,
+                    "y": 0.0
+                }
+            ],
+            "Strength": 10.0
+        }
+    },
+    "Graphics": {
+        "Blend state": 1,
+        "Type": 0,
+        "Texture": "Circle-Solid"
+    }
+}

@@ -202,6 +202,39 @@
                                             "InstanceCount": 0
                                         }
                                     ]
+                                },
+                                {
+                                    "Name": "PaintEmitter",
+                                    "Active": false,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Rot": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Size": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Particle System",
+                                            "Emitters": [
+                                                "PaintEmitter"
+                                            ]
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -2624,7 +2657,7 @@
                             {
                                 "ComponentType": "Mesh Collider",
                                 "Version": 1,
-                                "Collider Model": "crackedrock"
+                                "Collider Model": "brokenrock"
                             }
                         ]
                     }
