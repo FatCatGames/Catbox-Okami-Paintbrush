@@ -414,7 +414,7 @@
                             },
                             {
                                 "ComponentType": "Character Controller",
-                                "Movement Speed": 3.0,
+                                "Movement Speed": 7.0,
                                 "Step Height": 0.0,
                                 "Gravity": 9.8100004196167,
                                 "Contact Offset": 1.0,
@@ -496,8 +496,8 @@
                                     "Profile": "PostProcess"
                                 },
                                 "OffsetX": 0.0,
-                                "OffsetY": 2.0,
-                                "OffsetZ": 3.0
+                                "OffsetY": 1.0,
+                                "OffsetZ": 4.0
                             },
                             {
                                 "ComponentType": "Camera Shake",
