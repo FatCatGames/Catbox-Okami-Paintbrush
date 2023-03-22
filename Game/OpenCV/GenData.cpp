@@ -15,8 +15,10 @@ const int MIN_CONTOUR_AREA = 5000;
 const int RESIZED_IMAGE_WIDTH = 100;
 const int RESIZED_IMAGE_HEIGHT = 100;
 
+using namespace cv;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void GenData::GenerateData()
+void GenData::GenerateDatakNN()
 {
 	cv::Mat imgTrainingSymbols;
 	cv::Mat imgGrayscale;
@@ -35,7 +37,7 @@ void GenData::GenerateData()
 
 	std::vector<int> intValidSymbols = { 'o', '-', 'b', 'c' };
 
-	imgTrainingSymbols = cv::imread("Assets/Resources/training_symbols3.png");
+	imgTrainingSymbols = cv::imread("Assets/Resources/training_symbols_small.png");
 
 	if (imgTrainingSymbols.empty())
 	{
@@ -101,7 +103,7 @@ void GenData::GenerateData()
 
 	printmsg("training complete");
 
-	// save classifications to file ///////////////////////////////////////////////////////
+	//save classifications to file ///////////////////////////////////////////////////////
 
 	cv::FileStorage fsClassifications("Assets/Resources/classifications.xml", cv::FileStorage::WRITE);           // open the classifications file
 
@@ -125,6 +127,68 @@ void GenData::GenerateData()
 	fsTrainingImages << "images" << matTrainingImagesAsFlattenedFloats;         // write training images into images section of images file
 	fsTrainingImages.release();                                                 // close the training images file
 }
+
+void GenData::GenerateDataSVN()
+{
+	cv::Mat training_data;
+	training_data = cv::imread("Assets/Resources/training_symbols_small.png");
+
+	Mat labels(4, 2, CV_8UC1);
+
+	// Assign some sample label data as characters
+	labels.at<char>(0, 0) = 'C';
+	labels.at<char>(0, 1) = 'C';
+
+	labels.at<char>(1, 0) = 'B';
+	labels.at<char>(1, 1) = 'B';
+
+	labels.at<char>(2, 0) = 'O';
+	labels.at<char>(2, 1) = 'O';
+
+	labels.at<char>(3, 0) = '-';
+	labels.at<char>(3, 1) = '-';
+
+	// Create an SVM object
+	Ptr<ml::SVM> svm = ml::SVM::create();
+
+	// Set the SVM parameters
+	svm->setType(ml::SVM::C_SVC);
+	svm->setKernel(ml::SVM::LINEAR);
+	svm->setTermCriteria(TermCriteria(TermCriteria::MAX_ITER, 100, 1e-6));
+
+	// Train the SVM model
+	svm->train(training_data, ml::ROW_SAMPLE, labels);
+
+	// Save the SVM model to an xml file
+	svm->save("svm_model.xml");
+}
+
+//void GenData::GenerateDataSVN()
+//{
+//	// Load the training data
+//	Mat training_data;
+//
+//	// Load the training data and labels here...
+//	training_data = cv::imread("Assets/Resources/training_symbols3.png");
+//
+//
+//
+//
+//	// Create an SVM object
+//	Ptr<ml::SVM> svm = ml::SVM::create();
+//
+//	// Set the SVM parameters
+//	svm->setType(ml::SVM::C_SVC);
+//	svm->setKernel(ml::SVM::LINEAR);
+//	svm->setTermCriteria(TermCriteria(TermCriteria::MAX_ITER, 100, 1e-6));
+//
+//	// Train the SVM model
+//	svm->train(training_data, ml::ROW_SAMPLE, labels);
+//
+//	// Save the SVM model to an xml file
+//	svm->save("svm_model.xml");
+//}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 class ContourWithData {

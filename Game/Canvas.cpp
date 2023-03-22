@@ -161,7 +161,7 @@ void Canvas::ImageRecognitionCallback(bool aSucceeded)
 
 void Canvas::Generate()
 {
-	GenData::GenerateData();
+	GenData::GenerateDataSVN();
 }
 
 void Canvas::StartPainting()
