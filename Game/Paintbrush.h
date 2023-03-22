@@ -21,7 +21,7 @@ private:
 	Vector3f myLastPaintPos;
 	Vector3f myCurrentPaintDir = Vector3f::zero();
 	float myLastLength = 0;
-	float myTurnSmoothingSpeed = 5;
+	float myTurnSmoothingSpeed = 7;
 
 	float myPaintTimer = 0;
 	float myRemainingPaint = 0;
