@@ -12,6 +12,8 @@ public:
 	void Render();
 	std::vector<ParticleEmitter>& GetEmitters();
 	void Play();
+	void ResetTimeUntilEmissions();
+	void Pause();
 	void Replay();
 	void AddEmitter(std::shared_ptr<ParticleEmitterSettings> aSettings);
 

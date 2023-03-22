@@ -23,7 +23,7 @@ private:
 	AudioMonoComponent* myAudioMonoComponent = nullptr;
 	PlayerCamera* myCamera = nullptr;
 	Vector3f myVelocity = { 0,0,0 };
-	float myMoveSpeed = 3;
+	float myMoveSpeed = 7;
 
 	const float myCameraYOffset = 1.5f;
 	const float myCameraSensitivity = 3;

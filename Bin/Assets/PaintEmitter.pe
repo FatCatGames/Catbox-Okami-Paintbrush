@@ -2,7 +2,7 @@
     "Version": 10,
     "Emission Data": {
         "WorldSpace": true,
-        "Looping": true,
+        "Looping": false,
         "Max particles": 100,
         "Duration": 1.0,
         "Delay": 0.0,

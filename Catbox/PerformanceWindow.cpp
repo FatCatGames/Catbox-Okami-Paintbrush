@@ -24,7 +24,7 @@ void PerformanceWindow::Render()
 void PerformanceWindow::UpdateFPS()
 {
 	myFPSCounter++;
-	myTimer += Engine::GetInstance()->GetDeltaTime();
+	myTimer += Engine::GetInstance()->GetRealDeltaTime();
 	if (myTimer > 1.0f) 
 	{
 		myTimer = 0;

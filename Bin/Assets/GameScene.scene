@@ -205,7 +205,7 @@
                                 },
                                 {
                                     "Name": "PaintEmitter",
-                                    "Active": false,
+                                    "Active": true,
                                     "Opened": true,
                                     "Transform": {
                                         "Version": 2,

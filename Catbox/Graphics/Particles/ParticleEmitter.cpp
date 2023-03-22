@@ -68,8 +68,9 @@ void ParticleEmitter::Update()
 {
 	if (!mySharedData) return;
 	myParticlesToRender = 0;
-	myInstanceData.timeUntilEmission -= deltaTime;
-	myInstanceData.timePassed += deltaTime;
+	float t = Engine::GetInstance()->GetRealDeltaTime();
+	myInstanceData.timeUntilEmission -= t;
+	myInstanceData.timePassed += t;
 
 	//Updating particles
 	Vector4f offset = { 0,0,0,0 };
@@ -85,10 +86,10 @@ void ParticleEmitter::Update()
 		ParticleData& p = myParticles[i];
 		if (p.spawnTimer > 0)
 		{
-			p.spawnTimer -= deltaTime;
+			p.spawnTimer -= t;
 			continue;
 		}
-		p.remainingLifetime -= deltaTime;
+		p.remainingLifetime -= t;
 		myParticleBufferData[myParticlesToRender].lifetime = p.startLifetime - p.remainingLifetime;
 
 		const float percent = 1 - (p.remainingLifetime / p.startLifetime);
@@ -102,7 +103,7 @@ void ParticleEmitter::Update()
 		{
 			if (p.velocity.y > mySharedData->myGravityModifier * -9.81f)
 			{
-				p.velocity.y -= mySharedData->myGravityModifier * 9.81f * deltaTime;
+				p.velocity.y -= mySharedData->myGravityModifier * 9.81f * t;
 			}
 		}
 
@@ -113,7 +114,7 @@ void ParticleEmitter::Update()
 			dir.y += mySharedData->myVelocityOverLifetimeY.Evaluate(percent) * mySharedData->myVelocityOverTimeInfluence;
 			dir.z += mySharedData->myVelocityOverLifetimeZ.Evaluate(percent) * mySharedData->myVelocityOverTimeInfluence;
 		}
-		p.position += dir * p.currentSpeed * deltaTime;
+		p.position += dir * p.currentSpeed * t;
 
 		if (mySharedData->myRotationOverLifetimeEnabled)
 		{
@@ -148,7 +149,7 @@ void ParticleEmitter::Update()
 	//Spawning new particles
 
 	if (myIsPaused) return;
-	myDelayTimer -= deltaTime;
+	myDelayTimer -= t;
 	if (myDelayTimer > 0) return;
 	if (myInstanceData.timeUntilEmission <= 0)
 	{
@@ -224,6 +225,13 @@ void ParticleEmitter::UpdateParticleSystem()
 		ResetParticle(p);
 		p.remainingLifetime = 0;
 	}
+}
+
+void ParticleEmitter::ResetTimeUntilEmission()
+{
+	myInstanceData.timeUntilEmission = 0;
+	myDelayTimer = mySharedData->myStartDelay;
+	myIsPaused = false;
 }
 
 void ParticleEmitter::Replay()
@@ -318,6 +326,8 @@ void ParticleEmitter::UpdateMaxParticles()
 	mySharedData->mySubresourceData.pSysMem = &myParticles[0];
 	HRESULT result = DX11::Device->CreateBuffer(&mySharedData->myVertexBufferDesc, &mySharedData->mySubresourceData, mySharedData->myVertexBuffer.GetAddressOf());
 }
+
+
 
 
 void ParticleEmitter::SetSharedData(std::shared_ptr<ParticleEmitterSettings> someSharedData, bool reloadParticles)

@@ -49,6 +49,8 @@ public:
 	void SetAsResource(Catbox::CBuffer<Material::MaterialBufferData>& aMaterialBuffer);
 	void Render();
 	void UpdateMaxParticles();
+	void SetPaused(bool aIsPaused) { myIsPaused = aIsPaused; }
+	void ResetTimeUntilEmission();
 
 private:
 	void CreateInitialShape(std::vector<ParticleData*>& someParticles, ParticleEmitterSettings::ShapeData& aShapeData);

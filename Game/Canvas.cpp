@@ -119,16 +119,34 @@ void PaintToTexture(int aWidth, int aHeight, int anXPos, int anYPos, int aRadius
 	}
 }
 
+void Canvas::Update()
+{
+	float realDeltaTime = Engine::GetInstance()->GetRealDeltaTime();
+	for (size_t i = 0; i < myPaintStack.size();)
+	{
+		auto& p = myPaintStack[i];
+		p.timer -= realDeltaTime;
+		if (p.timer <= 0)
+		{
+			PaintToTexture(myWidth, myHeight, p.x, p.y, p.radius, p.radiusModifier, Color::Black(), stagingDisplayTexture.Get(), myPaintingDisplayTex.GetTex().Get());
+			myPaintStack.erase(myPaintStack.begin() + i);
+		}
+		else ++i;
+	}
+}
 
 void Canvas::Paint(int anXPos, int anYPos, int aRadius, float aRadiusModifier, const Color& aColor)
 {
 	PaintToTexture(myWidth, myHeight, anXPos, anYPos, aRadius, 1, aColor, stagingDataTexture.Get(), myPaintingTex.GetTex().Get());
-	PaintToTexture(myWidth, myHeight, anXPos, anYPos, aRadius, aRadiusModifier, aColor, stagingDisplayTexture.Get(), myPaintingDisplayTex.GetTex().Get());
+	myPaintStack.push_back(PaintDot(anXPos, anYPos, aRadius, aRadiusModifier));
+
+	//PaintToTexture(myWidth, myHeight, anXPos, anYPos, aRadius, aRadiusModifier, aColor, stagingDisplayTexture.Get(), myPaintingDisplayTex.GetTex().Get());
 }
 
 void Canvas::Clear()
 {
-	Paint(myWidth / 2, myHeight / 2, myWidth, 1, Color::White());
+	PaintToTexture(myWidth, myHeight, myWidth / 2, myHeight / 2, myWidth, 1, Color::White(), stagingDataTexture.Get(), myPaintingTex.GetTex().Get());
+	PaintToTexture(myWidth, myHeight, myWidth / 2, myHeight / 2, myWidth, 1, Color::White(), stagingDisplayTexture.Get(), myPaintingDisplayTex.GetTex().Get());
 }
 
 Texture& Canvas::GetPaintingTex()
@@ -161,7 +179,7 @@ void Canvas::ImageRecognitionCallback(bool aSucceeded)
 
 void Canvas::Generate()
 {
-	GenData::GenerateDataSVN();
+	GenData::GenerateDatakNN();
 }
 
 void Canvas::StartPainting()

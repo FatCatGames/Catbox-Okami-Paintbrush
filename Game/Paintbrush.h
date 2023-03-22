@@ -16,6 +16,8 @@ private:
 		Rainbow
 	} myColorMode;
 
+	ParticleSystem* myPS;
+
 	//Paint
 	ColorGradient myGradient;
 	Vector3f myLastPaintPos;

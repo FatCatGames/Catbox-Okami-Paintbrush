@@ -5,6 +5,7 @@
 #include "Components\3D\ModelInstance.h"
 #include "Assets\Material.h"
 #include "ComponentTools\ThreadPool.h"
+#include "Components\ParticleSystem.h"
 
 void Paintbrush::Awake()
 {
@@ -22,6 +23,11 @@ void Paintbrush::Awake()
 		{
 			myShader = dynamic_cast<BrushVS*>(child->GetGameObject()->GetComponent<ModelInstance>()->GetMaterial(0)->GetVertexShader().get());
 			myShader->UpdateShaderData(Vector3f::zero(), 0);
+		}
+		else if (child->GetGameObject()->GetName() == "PaintEmitter")
+		{
+			myPS = child->GetGameObject()->GetComponent<ParticleSystem>();
+			myPS->Pause();
 		}
 	}
 
@@ -56,12 +62,14 @@ void Paintbrush::Update()
 	bool isPainting = Input::GetKeyHeld(KeyCode::MOUSELEFT);
 	if (Input::GetKeyPress(KeyCode::MOUSELEFT))
 	{
+		myPS->ResetTimeUntilEmissions();
 		isPainting = true;
 		myRemainingPaint = 1000;
 		myLerpTimer = 0;
 	}
 	else if (Input::GetKeyReleased(KeyCode::MOUSELEFT))
 	{
+		myPS->ResetTimeUntilEmissions();
 		myLerpTimer = 0;
 	}
 
@@ -140,10 +148,10 @@ void Paintbrush::Update()
 				int newX = std::round(convertedPreviousPos.x + convertedMouseDelta.x * percent);
 				int newY = std::round(convertedPreviousPos.y + convertedMouseDelta.y * percent);
 
-				float multiplier = speedMultiplier * remainingPaintMultiplier;
+				float multiplier = speedMultiplier * remainingPaintMultiplier * Catbox::GetRandom(0.8f, 1.2f);
 				//size = Catbox::Clamp(myRadius * multiplier, myMinSize, myMaxSize);
 				Canvas::GetInstance()->Paint(newX, newY, myRadius, multiplier, col);
-				i += myRadius;
+				i += myRadius * 0.7f;
 			}
 		}
 	}
@@ -160,10 +168,10 @@ void Paintbrush::Update()
 	//	Canvas::GetInstance()->Save();
 	//}
 
-	//if (Input::GetKeyReleased(KeyCode::C))
-	//{
-	//	Canvas::GetInstance()->Clear();
-	//}
+	if (Input::GetKeyReleased(KeyCode::C))
+	{
+		Canvas::GetInstance()->Clear();
+	}
 
 
 	if (Input::GetKeyReleased(KeyCode::CTRL))

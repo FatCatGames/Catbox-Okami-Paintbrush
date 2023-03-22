@@ -93,6 +93,22 @@ void ParticleSystem::Play()
 	Replay();
 }
 
+void ParticleSystem::ResetTimeUntilEmissions()
+{
+	for (auto& emitter : myEmitters)
+	{
+		emitter.ResetTimeUntilEmission();
+	}
+}
+
+void ParticleSystem::Pause()
+{
+	for (auto& emitter : myEmitters)
+	{
+		emitter.SetPaused(true);
+	}
+}
+
 void ParticleSystem::Replay()
 {
 	for (auto& emitter : myEmitters)
