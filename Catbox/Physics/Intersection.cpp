@@ -75,7 +75,7 @@ bool Intersection::IsCollidedWith(Collider& aCol1, Collider& aCol2, Vector3f& an
 		case Collider::ColliderType::Box: return IntersectionAABBAABB(box, static_cast<BoxCollider&>(aCol2));
 		case Collider::ColliderType::Sphere:
 		{
-			auto sphereCol = static_cast<SphereCollider&>(aCol2);
+			auto& sphereCol = static_cast<SphereCollider&>(aCol2);
 			Catbox::Sphere sphere(sphereCol.GetPosition(), sphereCol.GetRadius());
 			return IntersectionAABBSphere(box, sphere, anOutIntersectionPoint);
 
@@ -91,7 +91,7 @@ bool Intersection::IsCollidedWith(Collider& aCol1, Collider& aCol2, Vector3f& an
 		{
 		case Collider::ColliderType::Sphere:
 		{
-			auto sphereCol2 = static_cast<SphereCollider&>(aCol2);
+			auto& sphereCol2 = static_cast<SphereCollider&>(aCol2);
 			Catbox::Sphere sphere2(sphereCol2.GetPosition(), sphereCol2.GetRadius());
 			return IntersectionSphereSphere(sphere, sphere2, anOutIntersectionPoint);
 

@@ -29,11 +29,11 @@ void SphereCollider::Awake()
 	{
 		if (myGameObject->GetComponent<ModelInstance>()) 
 		{
-			myStatic = Engine::GetInstance()->GetPhysicsEngine()->CreateStaticActor(Shape::PxS_Circle, Vector3f(GetRadius() * 2.0f, 0, 0), myGameObject->GetComponent<ModelInstance>()->GetModel().get(), myGameObject->GetComponent<ModelInstance>()->GetMaterial(0)->GetName(), myDebugMode, myTransform->worldScale());
+			myStatic = Engine::GetInstance()->GetPhysicsEngine()->CreateStaticActor(Shape::PxS_Circle, Vector3f(GetRadius() * 2.0f, 0, 0), myGameObject->GetComponent<ModelInstance>()->GetModel().get(), myGameObject->GetComponent<ModelInstance>()->GetMaterial(0)->GetName(), myDebugMode, myTransform->worldScale(), myTransform->worldRot(), myIsTrigger);
 		}
 		else 
 		{
-			myStatic = Engine::GetInstance()->GetPhysicsEngine()->CreateStaticActor(Shape::PxS_Circle, Vector3f(GetRadius() * 2.0f, 0, 0), nullptr, "Default", myDebugMode, myTransform->worldScale());
+			myStatic = Engine::GetInstance()->GetPhysicsEngine()->CreateStaticActor(Shape::PxS_Circle, Vector3f(GetRadius() * 2.0f, 0, 0), nullptr, "Default", myDebugMode, myTransform->worldScale(), myTransform->worldRot(), myIsTrigger);
 		}
 		if (myStatic)
 		{
@@ -81,6 +81,14 @@ void SphereCollider::RenderInProperties(std::vector<Component*>& aComponentList)
 		}
 	}
 
+	if (ImGui::Checkbox("Is Trigger", &myIsTrigger))
+	{
+		for (auto& collider : colliders)
+		{
+			collider->myIsTrigger = myIsTrigger;
+		}
+	}
+	
 	std::vector<const char*> layerNames;
 	auto& collisionLayers = Engine::GetInstance()->GetCollisionManager()->GetCollisionLayers();
 	for (auto& layerName : collisionLayers)
@@ -124,9 +132,24 @@ void SphereCollider::RunInEditor()
 
 void SphereCollider::Update()
 {
+	if (!myHasLoadedPos && myHasSavedPos)
+	{
+		myRb->SetActorPosition(mySpawnPos);
+		myHasLoadedPos = true;
+	}
+
 	if (myGameObject->IsSelected(0))
 	{
 		DebugDraw();
+	}
+}
+
+void SphereCollider::OnTransformChanged()
+{
+	if (!myHasSavedPos || !PLAYMODE)
+	{
+		mySpawnPos = myTransform->worldPos();
+		myHasSavedPos = true;
 	}
 }
 
@@ -145,13 +168,15 @@ void SphereCollider::DebugDraw()
 
 void SphereCollider::Save(rapidjson::Value& /*aComponentData*/)
 {
-	int version = 0;
+	int version = 1;
 	auto& wrapper = *RapidJsonWrapper::GetInstance();
 	auto& alloc = wrapper.GetDocument().GetAllocator();
 	wrapper.SaveValue<DataType::Int>("Version", version);
 
 	wrapper.SaveValue<DataType::Int>("Layer", myLayer);
 	wrapper.SaveValue<DataType::Float>("Radius", myRadius);
+	wrapper.SaveValue<DataType::Bool>("Trigger", myIsTrigger);
+
 
 	auto offsetArray = wrapper.CreateArray();
 	offsetArray.SetArray();
@@ -165,6 +190,12 @@ void SphereCollider::Load(rapidjson::Value& aComponentData)
 {
 	if (aComponentData.HasMember("Version")) 
 	{
+		int version = aComponentData["Version"].GetInt();
+		if (version >= 1)
+		{
+			myIsTrigger = aComponentData["Trigger"].GetBool();
+		}
+
 		//int version = aComponentData["Version"].GetInt();
 		if (!myHasStarted)
 		{

@@ -55,7 +55,7 @@ void Bomb::FixedUpdate()
 
 void Bomb::OnCollisionStay(Collider* aCollider)
 {
-	if (aCollider->GetCollisionLayer() == 1)
+	if (aCollider->GetCollisionLayer() == static_cast<int>(CollisionLayer::Player))
 	{
 		myPushForce = (myTransform->worldPos() - aCollider->GetTransform()->worldPos()).GetNormalized();
 	}

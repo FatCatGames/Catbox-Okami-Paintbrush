@@ -53,6 +53,7 @@
     <ClInclude Include="Project.h" />
     <ClInclude Include="SelfDestroy.h" />
     <ClInclude Include="Tree.h" />
+    <ClInclude Include="BreakableRock.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bomb.cpp" />
@@ -86,6 +87,7 @@
     <ClCompile Include="Project.cpp" />
     <ClCompile Include="SelfDestroy.cpp" />
     <ClCompile Include="Tree.cpp" />
+    <ClCompile Include="BreakableRock.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\BrushVS.hlsl">

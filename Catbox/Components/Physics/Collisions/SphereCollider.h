@@ -16,6 +16,7 @@ public:
 	const Vector3f GetPosition() const;
 	void DebugDraw() override;
 	void Update() override;
+	void OnTransformChanged() override;
 
 private:
 	void RenderInProperties(std::vector<Component*>& aComponentList) override;
@@ -25,4 +26,8 @@ private:
 	float myRadius;
 	Vector3f myOffset;
 	physx::PxRigidStatic* myStatic = nullptr;
+
+	Vector3f mySpawnPos;
+	bool myHasSavedPos = false;
+	bool myHasLoadedPos = false;
 };

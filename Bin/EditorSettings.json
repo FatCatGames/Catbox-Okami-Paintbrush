@@ -36,16 +36,17 @@
     },
     "Debug Drawer Toggle": false,
     "Open Windows": [
-        6,
+        15,
+        12,
         10,
         5,
         2,
-        8,
-        1,
-        3,
-        4,
         7,
-        0
+        8,
+        3,
+        0,
+        4,
+        1
     ],
     "IP": "10.250.224.168",
     "Username": "fatcat",

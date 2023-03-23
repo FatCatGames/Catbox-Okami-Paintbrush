@@ -9,7 +9,7 @@
             "Pos": [
                 0.0,
                 0.8709328174591064,
-                0.0
+                4.400000095367432
             ],
             "Rot": [
                 0.0,
@@ -30,6 +30,29 @@
                     "RisingSmokeFlipbook",
                     "BombExplosionGlitter"
                 ]
+            },
+            {
+                "ComponentType": "Sphere Collider",
+                "Version": 1,
+                "Layer": 4,
+                "Radius": 3.0,
+                "Trigger": true,
+                "Offset": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            },
+            {
+                "ComponentType": "Rigid Body",
+                "Use Gravity": false,
+                "Mass": 1.0,
+                "Lock Translation X": true,
+                "Lock Translation Y": true,
+                "Lock Translation Z": true,
+                "Lock Rotation X": true,
+                "Lock Rotation Y": true,
+                "Lock Rotation Z": true
             }
         ]
     }

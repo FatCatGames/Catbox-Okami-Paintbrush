@@ -7,10 +7,20 @@
 #include "..\Catbox\ComponentTools\UIEventHandler.h"
 #include "Components\Animator.h"
 #include "Canvas.h"
+#include "Components\ParticleSystem.h"
 
 void PlayerController::Awake()
 {
 	GameManager::GetInstance()->SetPlayer(myTransform);
+	for (auto child : myTransform->GetChildren())
+	{
+		if (child->GetGameObject()->GetName() == "SparkleTrail")
+		{
+			mySparkleTrail = child->GetGameObject()->GetComponent<ParticleSystem>();
+			mySparkleTrail->Pause();
+			break;
+		}
+	}
 }
 
 void PlayerController::OnObjectFinishedLoading()
@@ -56,12 +66,6 @@ void PlayerController::RunKeyboardInput()
 		bool back = Input::GetKeyHeld(KeyCode::S);
 		bool givingInput = left || right || forward || back;
 
-		/*if (givingInput)
-		{
-		}
-
-		rotInDegrees += (left * -90) + (right * 90) + (back * 180);*/
-
 
 		if (Input::GetKeyHeld(KeyCode::W))
 		{
@@ -90,6 +94,13 @@ void PlayerController::RunKeyboardInput()
 
 		if (givingInput)
 		{
+			myInputTimer += deltaTime;
+
+			if (myInputTimer > 1) 
+			{
+				mySparkleTrail->Play();
+			}
+
 			toTarget.y = 0;
 			toTarget.Normalize();
 			myCharacterController->Move(toTarget);
@@ -97,6 +108,11 @@ void PlayerController::RunKeyboardInput()
 		}
 		else
 		{
+			if (myInputTimer > 0)
+			{
+				mySparkleTrail->Pause();
+			}
+			myInputTimer = 0;
 			myCharacterController->Move({ 0,0,0 });
 		}
 	}

@@ -27,48 +27,48 @@ void CollisionManager::ClearColliders()
 
 void CollisionManager::UpdateCollisions()
 {
-	Vector3f out; //not used
+	//Vector3f out; //not used
 
-	for (size_t lay1 = 0; lay1 < myCollisionMatrix.size(); lay1++)
-	{
-		for (size_t lay2 = 0; lay2 < myCollisionMatrix[lay1].size(); lay2++)
-		{
-			if (!myCollisionMatrix[lay1][lay2]) continue; //these layers do not collide
-			for (size_t i = 0; i < myColliders[lay1].size(); i++)
-			{
+	//for (size_t lay1 = 0; lay1 < myCollisionMatrix.size(); lay1++)
+	//{
+	//	for (size_t lay2 = 0; lay2 < myCollisionMatrix[lay1].size(); lay2++)
+	//	{
+	//		if (!myCollisionMatrix[lay1][lay2]) continue; //these layers do not collide
+	//		for (size_t i = 0; i < myColliders[lay1].size(); i++)
+	//		{
 
-				Collider* col = myColliders[lay1][i];
-				if (!col->GetGameObject().IsActive() || !col->IsEnabled()) continue;
+	//			Collider* col = myColliders[lay1][i];
+	//			if (!col->GetGameObject().IsActive() || !col->IsEnabled()) continue;
 
-				//test this collider against all other colliders
-				for (size_t j = 0; j < myColliders[lay2 + lay1].size(); j++)
-				{
-					if (lay2 == 0 && j < i)
-					{
-						j = i;
-						continue;
-					}
-					Collider* col2 = myColliders[lay1 + lay2][j];
-					if (!col2->GetGameObject().IsActive() || !col2->IsEnabled()) continue;
-					if (col == col2) continue;
+	//			//test this collider against all other colliders
+	//			for (size_t j = 0; j < myColliders[lay2 + lay1].size(); j++)
+	//			{
+	//				if (lay2 == 0 && j < i)
+	//				{
+	//					j = i;
+	//					continue;
+	//				}
+	//				Collider* col2 = myColliders[lay1 + lay2][j];
+	//				if (!col2->GetGameObject().IsActive() || !col2->IsEnabled()) continue;
+	//				if (col == col2) continue;
 
 
-					if (Intersection::IsCollidedWith(*col, *col2, out))
-					{
-						col->RegisterCollision(col2);
-						col2->RegisterCollision(col);
-						//HandleCollision(col, col2);
-						//HandleCollision(col2, col);
-					}
-					else
-					{
-						col->UnregisterCollision(col2);
-						col2->UnregisterCollision(col);
-					}
-				}
-			}
-		}
-	}
+	//				if (Intersection::IsCollidedWith(*col, *col2, out))
+	//				{
+	//					col->RegisterCollision(col2);
+	//					col2->RegisterCollision(col);
+	//					//HandleCollision(col, col2);
+	//					//HandleCollision(col2, col);
+	//				}
+	//				else
+	//				{
+	//					col->UnregisterCollision(col2);
+	//					col2->UnregisterCollision(col);
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
 }
 
 

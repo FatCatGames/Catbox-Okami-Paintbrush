@@ -26,6 +26,7 @@
 #include "Bomb.h"
 #include "Tree.h"
 #include "SelfDestroy.h"
+#include "BreakableRock.h"
 
 //Not too fond of settings not loading correctly
 #include "ProjectSettings.h"
@@ -46,6 +47,7 @@ void Project::Setup()
 	ComponentHandler::RegisterComponent<Bomb>();
 	ComponentHandler::RegisterComponent<Tree>();
 	ComponentHandler::RegisterComponent<SelfDestroy>();
+	ComponentHandler::RegisterComponent<BreakableRock>();
 
 #pragma endregion
 
@@ -60,6 +62,7 @@ void Project::Setup()
 	Engine::GetInstance()->GetCollisionManager()->AddLayer("Player");
 	Engine::GetInstance()->GetCollisionManager()->AddLayer("Interactable");
 	Engine::GetInstance()->GetCollisionManager()->AddLayer("Tree");
+	Engine::GetInstance()->GetCollisionManager()->AddLayer("Bomb");
 	ProjectSettings::LoadProjectSettings();
 
 

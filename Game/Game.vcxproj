@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Bomb.h" />
+    <ClInclude Include="BreakableRock.h" />
     <ClInclude Include="BrushActions.h" />
     <ClInclude Include="BrushSymbol.h" />
     <ClInclude Include="BrushVS.h" />
@@ -165,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="BreakableRock.cpp" />
     <ClCompile Include="BrushActions.cpp" />
     <ClCompile Include="BrushVS.cpp" />
     <ClCompile Include="Canvas.cpp" />

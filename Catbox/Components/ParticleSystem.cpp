@@ -90,7 +90,10 @@ void ParticleSystem::OnObjectFinishedLoading()
 
 void ParticleSystem::Play()
 {
-	Replay();
+	for (auto& emitter : myEmitters)
+	{
+		emitter.SetPaused(false);
+	}
 }
 
 void ParticleSystem::ResetTimeUntilEmissions()

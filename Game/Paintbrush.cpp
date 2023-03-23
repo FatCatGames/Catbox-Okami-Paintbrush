@@ -69,7 +69,7 @@ void Paintbrush::Update()
 	}
 	else if (Input::GetKeyReleased(KeyCode::MOUSELEFT))
 	{
-		myPS->ResetTimeUntilEmissions();
+		//myPS->ResetTimeUntilEmissions();
 		myLerpTimer = 0;
 	}
 

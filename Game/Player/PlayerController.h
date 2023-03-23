@@ -2,6 +2,7 @@
 #include "Audio\AudioMonoComponent.h"
 #include "Components\Physics\CharacterController.h"
 
+class ParticleSystem;
 class PlayerCamera;
 class Animator;
 class PlayerController : public Component
@@ -24,6 +25,8 @@ private:
 	PlayerCamera* myCamera = nullptr;
 	Vector3f myVelocity = { 0,0,0 };
 	float myMoveSpeed = 7;
+	bool myIsGivingInput = false;
+	float myInputTimer = 0;
 
 	const float myCameraYOffset = 1.5f;
 	const float myCameraSensitivity = 3;
@@ -43,4 +46,5 @@ private:
 	bool myIsJumping = false;
 	bool myHasSetup = false;
 	bool myIsPainting = false;
+	ParticleSystem* mySparkleTrail;
 };
