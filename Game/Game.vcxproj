@@ -147,6 +147,7 @@
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="CanvasPS.h" />
     <ClInclude Include="DayNightCycle.h" />
+    <ClInclude Include="FlowerTrail.h" />
     <ClInclude Include="Game.pch.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="LookAtCamera.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="CanvasPS.cpp" />
     <ClCompile Include="DayNightCycle.cpp" />
+    <ClCompile Include="FlowerTrail.cpp" />
     <ClCompile Include="Game.pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

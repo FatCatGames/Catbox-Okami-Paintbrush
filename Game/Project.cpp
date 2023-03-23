@@ -27,6 +27,7 @@
 #include "Tree.h"
 #include "SelfDestroy.h"
 #include "BreakableRock.h"
+#include "FlowerTrail.h"
 
 //Not too fond of settings not loading correctly
 #include "ProjectSettings.h"
@@ -48,6 +49,7 @@ void Project::Setup()
 	ComponentHandler::RegisterComponent<Tree>();
 	ComponentHandler::RegisterComponent<SelfDestroy>();
 	ComponentHandler::RegisterComponent<BreakableRock>();
+	ComponentHandler::RegisterComponent<FlowerTrail>();
 
 #pragma endregion
 

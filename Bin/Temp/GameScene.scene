@@ -3,7 +3,7 @@
         {
             "Name": "PaintingScene",
             "Active": false,
-            "Opened": false,
+            "Opened": true,
             "Transform": {
                 "Version": 2,
                 "BoneParentID": -1,
