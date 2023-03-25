@@ -1,12 +1,13 @@
 #include "Game.pch.h"
 #include "GenData.h"
-#include<opencv2/core/core.hpp>
-#include<opencv2/highgui/highgui.hpp>
-#include<opencv2/imgproc/imgproc.hpp>
-#include<opencv2/ml/ml.hpp>
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2\imgcodecs.hpp>
+#include <opencv2/ml.hpp>
 
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 #include "ComponentTools\ThreadPool.h"
 
 // global variables ///////////////////////////////////////////////////////////////////////////////
@@ -16,153 +17,224 @@ const int RESIZED_IMAGE_WIDTH = 100;
 const int RESIZED_IMAGE_HEIGHT = 100;
 
 using namespace cv;
+using namespace cv::ml;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void GenData::GenerateDatakNN()
-{
-	cv::Mat imgTrainingSymbols;
-	cv::Mat imgGrayscale;
-	cv::Mat imgBlurred;
-	cv::Mat imgThresh;
-	cv::Mat imgThreshCopy;
+//void GenData::GenerateDatakNN()
+//{
+//	cv::Mat imgTrainingSymbols;
+//	cv::Mat imgGrayscale;
+//	cv::Mat imgBlurred;
+//	cv::Mat imgThresh;
+//	cv::Mat imgThreshCopy;
+//
+//	std::vector<std::vector<cv::Point> > ptContours;
+//	std::vector<cv::Vec4i> v4iHierarchy;
+//
+//	cv::Mat matClassificationInts;      // these are our training classifications, note we will have to perform some conversions before writing to file later
+//
+//	// these are our training images, due to the data types that the KNN object KNearest requires, we have to declare a single Mat,
+//	// then append to it as though it's a vector, also we will have to perform some conversions before writing to file later
+//	cv::Mat matTrainingImagesAsFlattenedFloats;
+//
+//	std::vector<int> intValidSymbols = { 'o', '-', 'b', 'c' };
+//
+//	imgTrainingSymbols = cv::imread("Assets/Resources/training_symbols_small.png");
+//
+//	if (imgTrainingSymbols.empty())
+//	{
+//		printerror("error: image not read from file");
+//		return;
+//	}
+//
+//	cv::cvtColor(imgTrainingSymbols, imgGrayscale, cv::COLOR_BGR2GRAY); // convert to grayscale
+//
+//	cv::GaussianBlur(imgGrayscale,
+//		imgBlurred,
+//		cv::Size(5, 5),                         // smoothing window width and height in pixels
+//		0);                                     // sigma value, determines how much the image will be blurred, zero makes function choose the sigma value
+//
+//												// filter image from grayscale to black and white
+//	cv::adaptiveThreshold(imgBlurred,           // input image
+//		imgThresh,                              // output image
+//		255,                                    // make pixels that pass the threshold full white
+//		cv::ADAPTIVE_THRESH_GAUSSIAN_C,         // use gaussian rather than mean, seems to give better results
+//		cv::THRESH_BINARY_INV,                  // invert so foreground will be white, background will be black
+//		11,                                     // size of a pixel neighborhood used to calculate threshold value
+//		2);                                     // constant subtracted from the mean or weighted mean
+//
+//	imgThreshCopy = imgThresh.clone();          // make a copy of the thresh image, this in necessary b/c findContours modifies the image
+//
+//	cv::findContours(imgThreshCopy,             // input image, make sure to use a copy since the function will modify this image in the course of finding contours
+//		ptContours,                             // output contours
+//		v4iHierarchy,                           // output hierarchy
+//		cv::RETR_EXTERNAL,                      // retrieve the outermost contours only
+//		cv::CHAIN_APPROX_SIMPLE);               // compress horizontal, vertical, and diagonal segments and leave only their end points
+//
+//	for (int i = 0; i < ptContours.size(); i++) {                           // for each contour
+//		if (cv::contourArea(ptContours[i]) > MIN_CONTOUR_AREA) {                // if contour is big enough to consider
+//			cv::Rect boundingRect = cv::boundingRect(ptContours[i]);                // get the bounding rect
+//
+//			cv::rectangle(imgTrainingSymbols, boundingRect, cv::Scalar(0, 0, 255), 2);      // draw red rectangle around each contour as we ask user for input
+//
+//			cv::Mat matROI = imgThresh(boundingRect);           // get ROI image of bounding rect
+//
+//			cv::Mat matROIResized;
+//			cv::resize(matROI, matROIResized, cv::Size(RESIZED_IMAGE_WIDTH, RESIZED_IMAGE_HEIGHT));     // resize image, this will be more consistent for recognition and storage
+//
+//			cv::imshow("matROI", matROI);                               // show ROI image for reference
+//			cv::imshow("matROIResized", matROIResized);                 // show resized ROI image for reference
+//			//cv::imshow("imgTrainingNumbers", imgTrainingSymbols);       // show training numbers image, this will now have red rectangles drawn on it
+//
+//			int intChar = cv::waitKey(0);
+//
+//			if (std::find(intValidSymbols.begin(), intValidSymbols.end(), intChar) != intValidSymbols.end()) {     // else if the char is in the list of chars we are looking for . . .
+//
+//				matClassificationInts.push_back(intChar);       // append classification char to integer list of chars
+//
+//				cv::Mat matImageFloat;                          // now add the training image (some conversion is necessary first) . . .
+//				matROIResized.convertTo(matImageFloat, CV_32FC1);       // convert Mat to float
+//
+//				cv::Mat matImageFlattenedFloat = matImageFloat.reshape(1, 1);       // flatten
+//
+//				matTrainingImagesAsFlattenedFloats.push_back(matImageFlattenedFloat);       // add to Mat as though it was a vector, this is necessary due to the
+//																							// data types that KNearest.train accepts
+//			}
+//		}
+//	}
+//
+//	printmsg("training complete");
+//
+//	//save classifications to file ///////////////////////////////////////////////////////
+//
+//	cv::FileStorage fsClassifications("Assets/Resources/classifications.xml", cv::FileStorage::WRITE);           // open the classifications file
+//
+//	if (fsClassifications.isOpened() == false) {                                                        // if the file was not opened successfully
+//		printerror("error, unable to open training classifications file, exiting program");        // show error message
+//		return;                                                                                      // and exit program
+//	}
+//
+//	fsClassifications << "classifications" << matClassificationInts;        // write classifications into classifications section of classifications file
+//	fsClassifications.release();                                            // close the classifications file
+//
+//	// save training images to file ///////////////////////////////////////////////////////
+//
+//	cv::FileStorage fsTrainingImages("Assets/Resources/images.xml", cv::FileStorage::WRITE);         // open the training images file
+//
+//	if (fsTrainingImages.isOpened() == false) {                                                 // if the file was not opened successfully
+//		printerror("error, unable to open training images file, exiting program");         // show error message
+//		return;                                                                              // and exit program
+//	}
+//
+//	fsTrainingImages << "images" << matTrainingImagesAsFlattenedFloats;         // write training images into images section of images file
+//	fsTrainingImages.release();                                                 // close the training images file
+//}
+//
+//void GenData::GenerateDataSVN()
+//{
+//	cv::Mat training_data;
+//	training_data = cv::imread("Assets/Resources/training_symbols_small.png");
+//
+//	Mat labels(4, 2, CV_8UC1);
+//
+//	// Assign some sample label data as characters
+//	labels.at<char>(0, 0) = 'C';
+//	labels.at<char>(0, 1) = 'C';
+//
+//	labels.at<char>(1, 0) = 'B';
+//	labels.at<char>(1, 1) = 'B';
+//
+//	labels.at<char>(2, 0) = 'O';
+//	labels.at<char>(2, 1) = 'O';
+//
+//	labels.at<char>(3, 0) = '-';
+//	labels.at<char>(3, 1) = '-';
+//
+//	// Create an SVM object
+//	Ptr<ml::SVM> svm = ml::SVM::create();
+//
+//	// Set the SVM parameters
+//	svm->setType(ml::SVM::C_SVC);
+//	svm->setKernel(ml::SVM::LINEAR);
+//	svm->setTermCriteria(TermCriteria(TermCriteria::MAX_ITER, 100, 1e-6));
+//
+//	// Train the SVM model
+//	svm->train(training_data, ml::ROW_SAMPLE, labels);
+//
+//	// Save the SVM model to an xml file
+//	svm->save("svm_model.xml");
+//}
 
-	std::vector<std::vector<cv::Point> > ptContours;
-	std::vector<cv::Vec4i> v4iHierarchy;
-
-	cv::Mat matClassificationInts;      // these are our training classifications, note we will have to perform some conversions before writing to file later
-
-	// these are our training images, due to the data types that the KNN object KNearest requires, we have to declare a single Mat,
-	// then append to it as though it's a vector, also we will have to perform some conversions before writing to file later
-	cv::Mat matTrainingImagesAsFlattenedFloats;
-
-	std::vector<int> intValidSymbols = { 'o', '-', 'b', 'c' };
-
-	imgTrainingSymbols = cv::imread("Assets/Resources/training_symbols_small.png");
-
-	if (imgTrainingSymbols.empty())
-	{
-		printerror("error: image not read from file");
-		return;
-	}
-
-	cv::cvtColor(imgTrainingSymbols, imgGrayscale, cv::COLOR_BGR2GRAY); // convert to grayscale
-
-	cv::GaussianBlur(imgGrayscale,
-		imgBlurred,
-		cv::Size(5, 5),                         // smoothing window width and height in pixels
-		0);                                     // sigma value, determines how much the image will be blurred, zero makes function choose the sigma value
-
-												// filter image from grayscale to black and white
-	cv::adaptiveThreshold(imgBlurred,           // input image
-		imgThresh,                              // output image
-		255,                                    // make pixels that pass the threshold full white
-		cv::ADAPTIVE_THRESH_GAUSSIAN_C,         // use gaussian rather than mean, seems to give better results
-		cv::THRESH_BINARY_INV,                  // invert so foreground will be white, background will be black
-		11,                                     // size of a pixel neighborhood used to calculate threshold value
-		2);                                     // constant subtracted from the mean or weighted mean
-
-	imgThreshCopy = imgThresh.clone();          // make a copy of the thresh image, this in necessary b/c findContours modifies the image
-
-	cv::findContours(imgThreshCopy,             // input image, make sure to use a copy since the function will modify this image in the course of finding contours
-		ptContours,                             // output contours
-		v4iHierarchy,                           // output hierarchy
-		cv::RETR_EXTERNAL,                      // retrieve the outermost contours only
-		cv::CHAIN_APPROX_SIMPLE);               // compress horizontal, vertical, and diagonal segments and leave only their end points
-
-	for (int i = 0; i < ptContours.size(); i++) {                           // for each contour
-		if (cv::contourArea(ptContours[i]) > MIN_CONTOUR_AREA) {                // if contour is big enough to consider
-			cv::Rect boundingRect = cv::boundingRect(ptContours[i]);                // get the bounding rect
-
-			cv::rectangle(imgTrainingSymbols, boundingRect, cv::Scalar(0, 0, 255), 2);      // draw red rectangle around each contour as we ask user for input
-
-			cv::Mat matROI = imgThresh(boundingRect);           // get ROI image of bounding rect
-
-			cv::Mat matROIResized;
-			cv::resize(matROI, matROIResized, cv::Size(RESIZED_IMAGE_WIDTH, RESIZED_IMAGE_HEIGHT));     // resize image, this will be more consistent for recognition and storage
-
-			cv::imshow("matROI", matROI);                               // show ROI image for reference
-			cv::imshow("matROIResized", matROIResized);                 // show resized ROI image for reference
-			//cv::imshow("imgTrainingNumbers", imgTrainingSymbols);       // show training numbers image, this will now have red rectangles drawn on it
-
-			int intChar = cv::waitKey(0);
-
-			if (std::find(intValidSymbols.begin(), intValidSymbols.end(), intChar) != intValidSymbols.end()) {     // else if the char is in the list of chars we are looking for . . .
-
-				matClassificationInts.push_back(intChar);       // append classification char to integer list of chars
-
-				cv::Mat matImageFloat;                          // now add the training image (some conversion is necessary first) . . .
-				matROIResized.convertTo(matImageFloat, CV_32FC1);       // convert Mat to float
-
-				cv::Mat matImageFlattenedFloat = matImageFloat.reshape(1, 1);       // flatten
-
-				matTrainingImagesAsFlattenedFloats.push_back(matImageFlattenedFloat);       // add to Mat as though it was a vector, this is necessary due to the
-																							// data types that KNearest.train accepts
-			}
-		}
-	}
-
-	printmsg("training complete");
-
-	//save classifications to file ///////////////////////////////////////////////////////
-
-	cv::FileStorage fsClassifications("Assets/Resources/classifications.xml", cv::FileStorage::WRITE);           // open the classifications file
-
-	if (fsClassifications.isOpened() == false) {                                                        // if the file was not opened successfully
-		printerror("error, unable to open training classifications file, exiting program");        // show error message
-		return;                                                                                      // and exit program
-	}
-
-	fsClassifications << "classifications" << matClassificationInts;        // write classifications into classifications section of classifications file
-	fsClassifications.release();                                            // close the classifications file
-
-	// save training images to file ///////////////////////////////////////////////////////
-
-	cv::FileStorage fsTrainingImages("Assets/Resources/images.xml", cv::FileStorage::WRITE);         // open the training images file
-
-	if (fsTrainingImages.isOpened() == false) {                                                 // if the file was not opened successfully
-		printerror("error, unable to open training images file, exiting program");         // show error message
-		return;                                                                              // and exit program
-	}
-
-	fsTrainingImages << "images" << matTrainingImagesAsFlattenedFloats;         // write training images into images section of images file
-	fsTrainingImages.release();                                                 // close the training images file
-}
 
 void GenData::GenerateDataSVN()
 {
-	cv::Mat training_data;
-	training_data = cv::imread("Assets/Resources/training_symbols_small.png");
+	// Data for visual representation
+	int width = 512, height = 512;
+	Mat image = Mat::zeros(height, width, CV_8UC3);
 
-	Mat labels(4, 2, CV_8UC1);
+	// Set up training data
+	int labels[4] = { 'c', 'o', 'b', '-' };
+	Mat labelsMat(4, 1, CV_32SC1, labels); //Look into why this does not work with CV_8UC3 later
 
-	// Assign some sample label data as characters
-	labels.at<char>(0, 0) = 'C';
-	labels.at<char>(0, 1) = 'C';
+	float trainingData[4][2] = { {501, 10}, {255, 10}, {501, 255}, {10, 501} };
+	Mat trainingDataMat(4, 2, CV_32FC1, trainingData);
 
-	labels.at<char>(1, 0) = 'B';
-	labels.at<char>(1, 1) = 'B';
-
-	labels.at<char>(2, 0) = 'O';
-	labels.at<char>(2, 1) = 'O';
-
-	labels.at<char>(3, 0) = '-';
-	labels.at<char>(3, 1) = '-';
-
-	// Create an SVM object
-	Ptr<ml::SVM> svm = ml::SVM::create();
-
-	// Set the SVM parameters
+	// Set up SVM's parameters
+	Ptr<SVM> svm = ml::SVM::create();
 	svm->setType(ml::SVM::C_SVC);
 	svm->setKernel(ml::SVM::LINEAR);
 	svm->setTermCriteria(TermCriteria(TermCriteria::MAX_ITER, 100, 1e-6));
 
-	// Train the SVM model
-	svm->train(training_data, ml::ROW_SAMPLE, labels);
 
-	// Save the SVM model to an xml file
-	svm->save("svm_model.xml");
+	// Train the SVM
+	svm->train(trainingDataMat, ROW_SAMPLE, labelsMat);
+
+	Vec3b green(0, 255, 0), blue(255, 0, 0), yellow(0,255,255), white(255,255,255), red(0,0,255);
+	// Show the decision regions given by the SVM
+	for (int i = 0; i < image.rows; ++i)
+		for (int j = 0; j < image.cols; ++j)
+		{
+			Mat sampleMat = (Mat_<float>(1, 2) << j, i);
+			char response = svm->predict(sampleMat);
+
+			if (response == 'c')
+				image.at<Vec3b>(i, j) = blue;
+			else if (response == 'o')
+				image.at<Vec3b>(i, j) = yellow;
+			else if (response == '-')
+				image.at<Vec3b>(i, j) = white;
+			else if (response == 'b')
+				image.at<Vec3b>(i, j) = red;
+		}
+
+	// Show the training data
+	int thickness = -1;
+	int lineType = 8;
+	circle(image, Point(501, 10), 5, Scalar(0, 0, 0), thickness, lineType);
+	circle(image, Point(255, 10), 5, Scalar(255, 255, 255), thickness, lineType);
+	circle(image, Point(501, 255), 5, Scalar(255, 255, 255), thickness, lineType);
+	circle(image, Point(10, 501), 5, Scalar(255, 255, 255), thickness, lineType);
+
+	// Show support vectors
+	thickness = 2;
+	lineType = 8;
+	Mat sv = svm->getSupportVectors();
+
+	for (int i = 0; i < sv.rows; ++i)
+	{
+		const float* v = sv.ptr<float>(i);
+		circle(image, Point((int)v[0], (int)v[1]), 6, Scalar(128, 128, 128), thickness, lineType);
+	}
+
+	imwrite("result.png", image);        // save the image
+
+	imshow("SVM Simple Example", image); // show it to the user
+	waitKey(0);
 }
 
+
+//
 //void GenData::GenerateDataSVN()
 //{
 //	// Load the training data
@@ -170,9 +242,6 @@ void GenData::GenerateDataSVN()
 //
 //	// Load the training data and labels here...
 //	training_data = cv::imread("Assets/Resources/training_symbols3.png");
-//
-//
-//
 //
 //	// Create an SVM object
 //	Ptr<ml::SVM> svm = ml::SVM::create();
@@ -214,7 +283,7 @@ public:
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void ReadImage(cv::Mat anImage, BrushSymbol& outSymbol, const std::function<void(bool success)>& aCallback)
 {
-	
+
 	std::vector<ContourWithData> allContoursWithData;           // declare empty vectors,
 	std::vector<ContourWithData> validContoursWithData;         // we will fill these shortly
 
@@ -226,7 +295,7 @@ void ReadImage(cv::Mat anImage, BrushSymbol& outSymbol, const std::function<void
 
 	if (matTestingNumbers.empty()) {                                // if unable to open image
 		printerror("error: image not read from file");         // show error message on command line
-		aCallback(false);                                                  
+		aCallback(false);
 		return;
 	}
 
@@ -321,7 +390,7 @@ void ReadImage(cv::Mat anImage, BrushSymbol& outSymbol, const std::function<void
 																				// even though in reality they are multiple images / numbers
 	kNearest->train(matTrainingImagesAsFlattenedFloats, cv::ml::ROW_SAMPLE, matClassificationInts);
 
-	
+
 
 	std::string strFinalString;         // declare final string, this will have the final number sequence by the end of the program
 

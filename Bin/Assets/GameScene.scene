@@ -308,7 +308,7 @@
                                     "Grass"
                                 ],
                                 "UsedForNav": false,
-                                "Renderer": 0,
+                                "Renderer": 1,
                                 "Material Instance": false,
                                 "CastShadows": true,
                                 "InstanceCount": 0
