@@ -183,7 +183,7 @@ void Canvas::Generate()
 
 void Canvas::StartPainting()
 {
-	//Clear();
+	Clear();
 
 
 	myCanPaint = true;

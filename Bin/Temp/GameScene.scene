@@ -742,7 +742,7 @@
                     {
                         "Name": "BigTree",
                         "Active": true,
-                        "Opened": false,
+                        "Opened": true,
                         "Transform": {
                             "Version": 2,
                             "BoneParentID": -1,
@@ -1357,7 +1357,7 @@
                     {
                         "Name": "Tree",
                         "Active": true,
-                        "Opened": false,
+                        "Opened": true,
                         "Transform": {
                             "Version": 2,
                             "BoneParentID": -1,
@@ -1972,7 +1972,7 @@
                     {
                         "Name": "BigTree",
                         "Active": true,
-                        "Opened": false,
+                        "Opened": true,
                         "Transform": {
                             "Version": 2,
                             "BoneParentID": -1,
