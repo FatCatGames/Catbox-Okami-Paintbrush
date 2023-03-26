@@ -3,7 +3,7 @@
 #include "CanvasPS.h"
 #include "Components\3D\ModelInstance.h"
 #include "Assets\Material.h"
-#include "OpenCV\GenData.h"
+#include "OpenCV\ImgRecognition.h"
 #include "PopupManager.h"
 #include "Graphics\Rendering\Buffers\Buffers.h"
 #include "GameScene.h"
@@ -159,12 +159,11 @@ void Canvas::Save()
 {
 	myCanPaint = false;
 
-	GenData::GetSymbol(mySymbol, stagingDataTexture.Get(), myWidth, myHeight, [&](bool aSucceeded) {ImageRecognitionCallback(aSucceeded); });
+	ImgRecognition::GetSymbolSVM(mySymbol, stagingDataTexture.Get(), myWidth, myHeight, [&](bool aSucceeded) {ImageRecognitionCallback(aSucceeded); });
 }
 
 void Canvas::ImageRecognitionCallback(bool aSucceeded)
 {
-
 	auto camPos = Engine::GetInstance()->GetActiveCamera()->GetTransform()->worldPos();
 	PaintingScene::GetInstance()->GetGameObject().SetActive(false);
 	GameScene::GetInstance()->GetGameObject().SetActive(true);
@@ -179,12 +178,12 @@ void Canvas::ImageRecognitionCallback(bool aSucceeded)
 
 void Canvas::Generate()
 {
-	GenData::GenerateDataSVM();
+	ImgRecognition::GenerateDataSVM();
 }
 
 void Canvas::StartPainting()
 {
-	Clear();
+	//Clear();
 
 
 	myCanPaint = true;

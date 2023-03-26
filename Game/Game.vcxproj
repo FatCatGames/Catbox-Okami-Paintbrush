@@ -156,7 +156,7 @@
     <ClInclude Include="NetworkComponent.h" />
     <ClInclude Include="NetworkGameManager.h" />
     <ClInclude Include="Networking\NetworkGameCommands.h" />
-    <ClInclude Include="OpenCV\GenData.h" />
+    <ClInclude Include="OpenCV\ImgRecognition.h" />
     <ClInclude Include="Paintbrush.h" />
     <ClInclude Include="PaintingScene.h" />
     <ClInclude Include="Player\PlayerCamera.h" />
@@ -183,7 +183,8 @@
     <ClCompile Include="Managers\NetMessageHandler.cpp" />
     <ClCompile Include="NetworkComponent.cpp" />
     <ClCompile Include="NetworkGameManager.cpp" />
-    <ClCompile Include="OpenCV\GenData.cpp" />
+    <ClCompile Include="OpenCV\SVMImgRecognition.cpp" />
+    <ClCompile Include="OpenCV\kNNImgRecognition.cpp" />
     <ClCompile Include="Paintbrush.cpp" />
     <ClCompile Include="PaintingScene.cpp" />
     <ClCompile Include="Player\PlayerCamera.cpp" />

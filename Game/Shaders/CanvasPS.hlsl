@@ -25,7 +25,7 @@ PixelOutput main(VertexToPixel input)
 	result.Color.rgb = col;
 	result.Color.a = 1;
 
-	//result.Color.rgb = painting;
+	result.Color.rgb = painting;
 
 
 	result.id = OB_id;

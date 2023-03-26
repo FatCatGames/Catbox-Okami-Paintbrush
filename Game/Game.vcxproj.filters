@@ -19,12 +19,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bomb.h" />
+    <ClInclude Include="BreakableRock.h" />
     <ClInclude Include="BrushActions.h" />
     <ClInclude Include="BrushSymbol.h" />
     <ClInclude Include="BrushVS.h" />
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="CanvasPS.h" />
     <ClInclude Include="DayNightCycle.h" />
+    <ClInclude Include="FlowerTrail.h" />
     <ClInclude Include="Game.pch.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="LookAtCamera.h" />
@@ -39,7 +41,7 @@
     <ClInclude Include="Networking\NetworkGameCommands.h">
       <Filter>Networking</Filter>
     </ClInclude>
-    <ClInclude Include="OpenCV\GenData.h">
+    <ClInclude Include="OpenCV\ImgRecognition.h">
       <Filter>OpenCV</Filter>
     </ClInclude>
     <ClInclude Include="Paintbrush.h" />
@@ -53,16 +55,16 @@
     <ClInclude Include="Project.h" />
     <ClInclude Include="SelfDestroy.h" />
     <ClInclude Include="Tree.h" />
-    <ClInclude Include="BreakableRock.h" />
-    <ClInclude Include="FlowerTrail.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="BreakableRock.cpp" />
     <ClCompile Include="BrushActions.cpp" />
     <ClCompile Include="BrushVS.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="CanvasPS.cpp" />
     <ClCompile Include="DayNightCycle.cpp" />
+    <ClCompile Include="FlowerTrail.cpp" />
     <ClCompile Include="Game.pch.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="LookAtCamera.cpp" />
@@ -74,7 +76,10 @@
     </ClCompile>
     <ClCompile Include="NetworkComponent.cpp" />
     <ClCompile Include="NetworkGameManager.cpp" />
-    <ClCompile Include="OpenCV\GenData.cpp">
+    <ClCompile Include="OpenCV\SVMImgRecognition.cpp">
+      <Filter>OpenCV</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenCV\kNNImgRecognition.cpp">
       <Filter>OpenCV</Filter>
     </ClCompile>
     <ClCompile Include="Paintbrush.cpp" />
@@ -88,8 +93,6 @@
     <ClCompile Include="Project.cpp" />
     <ClCompile Include="SelfDestroy.cpp" />
     <ClCompile Include="Tree.cpp" />
-    <ClCompile Include="BreakableRock.cpp" />
-    <ClCompile Include="FlowerTrail.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\BrushVS.hlsl">
