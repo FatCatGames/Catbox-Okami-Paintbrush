@@ -234,7 +234,6 @@ void RigidBody::RenderInProperties(std::vector<Component*>& aComponentList)
 
 void RigidBody::Update()
 {
-
 	auto pose = myActor->getGlobalPose();
 	float x = myActor->getGlobalPose().p.x /*+ (myTransform->worldScale().x * 0.5f)*/;
 	float y = myActor->getGlobalPose().p.y /*- (myTransform->worldScale().y * 0.5f)*/;

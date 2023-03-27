@@ -235,6 +235,39 @@
                                             ]
                                         }
                                     ]
+                                },
+                                {
+                                    "Name": "PaintSpirals",
+                                    "Active": true,
+                                    "Opened": true,
+                                    "Transform": {
+                                        "Version": 2,
+                                        "BoneParentID": -1,
+                                        "Pos": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Rot": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "Size": [
+                                            1.0,
+                                            1.0,
+                                            1.0
+                                        ],
+                                        "Children": []
+                                    },
+                                    "Components": [
+                                        {
+                                            "ComponentType": "Particle System",
+                                            "Emitters": [
+                                                "PaintSpirals"
+                                            ]
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -742,7 +775,7 @@
                     {
                         "Name": "BigTree",
                         "Active": true,
-                        "Opened": true,
+                        "Opened": false,
                         "Transform": {
                             "Version": 2,
                             "BoneParentID": -1,
@@ -1357,7 +1390,7 @@
                     {
                         "Name": "Tree",
                         "Active": true,
-                        "Opened": true,
+                        "Opened": false,
                         "Transform": {
                             "Version": 2,
                             "BoneParentID": -1,
@@ -1972,7 +2005,7 @@
                     {
                         "Name": "BigTree",
                         "Active": true,
-                        "Opened": true,
+                        "Opened": false,
                         "Transform": {
                             "Version": 2,
                             "BoneParentID": -1,
@@ -2218,7 +2251,7 @@
                     {
                         "Name": "Tree",
                         "Active": true,
-                        "Opened": false,
+                        "Opened": true,
                         "Transform": {
                             "Version": 2,
                             "BoneParentID": -1,
@@ -2627,7 +2660,7 @@
                     {
                         "Name": "Grass",
                         "Active": true,
-                        "Opened": false,
+                        "Opened": true,
                         "Transform": {
                             "Version": 2,
                             "BoneParentID": -1,
@@ -3504,166 +3537,66 @@
                                         "Children": []
                                     },
                                     "Prefab": "Grass"
-                                },
-                                {
-                                    "Name": "grass_mesh",
-                                    "Active": true,
-                                    "Opened": true,
-                                    "Transform": {
-                                        "Version": 2,
-                                        "BoneParentID": -1,
-                                        "Pos": [
-                                            -4.5151753425598145,
-                                            0.0,
-                                            -1.8866900205612183
-                                        ],
-                                        "Rot": [
-                                            0.0,
-                                            -117.0,
-                                            0.0
-                                        ],
-                                        "Size": [
-                                            0.7500002384185791,
-                                            0.7500002384185791,
-                                            0.7500002384185791
-                                        ],
-                                        "Children": []
-                                    },
-                                    "Prefab": "Grass"
-                                },
-                                {
-                                    "Name": "grass_mesh",
-                                    "Active": true,
-                                    "Opened": true,
-                                    "Transform": {
-                                        "Version": 2,
-                                        "BoneParentID": -1,
-                                        "Pos": [
-                                            -169.6756591796875,
-                                            0.0,
-                                            95.66956329345703
-                                        ],
-                                        "Rot": [
-                                            0.0,
-                                            -117.0,
-                                            0.0
-                                        ],
-                                        "Size": [
-                                            0.7500002384185791,
-                                            0.7500002384185791,
-                                            0.7500002384185791
-                                        ],
-                                        "Children": []
-                                    },
-                                    "Prefab": "Grass"
-                                },
-                                {
-                                    "Name": "grass_mesh",
-                                    "Active": true,
-                                    "Opened": true,
-                                    "Transform": {
-                                        "Version": 2,
-                                        "BoneParentID": -1,
-                                        "Pos": [
-                                            -128.4895477294922,
-                                            0.0,
-                                            83.07139587402344
-                                        ],
-                                        "Rot": [
-                                            0.0,
-                                            -117.0,
-                                            0.0
-                                        ],
-                                        "Size": [
-                                            0.7500002384185791,
-                                            0.7500002384185791,
-                                            0.7500002384185791
-                                        ],
-                                        "Children": []
-                                    },
-                                    "Prefab": "Grass"
-                                },
-                                {
-                                    "Name": "grass_mesh",
-                                    "Active": true,
-                                    "Opened": true,
-                                    "Transform": {
-                                        "Version": 2,
-                                        "BoneParentID": -1,
-                                        "Pos": [
-                                            146.4354705810547,
-                                            0.0,
-                                            -66.20111083984375
-                                        ],
-                                        "Rot": [
-                                            0.0,
-                                            -117.0,
-                                            0.0
-                                        ],
-                                        "Size": [
-                                            0.7500002384185791,
-                                            0.7500002384185791,
-                                            0.7500002384185791
-                                        ],
-                                        "Children": []
-                                    },
-                                    "Prefab": "Grass"
-                                },
-                                {
-                                    "Name": "grass_mesh",
-                                    "Active": true,
-                                    "Opened": true,
-                                    "Transform": {
-                                        "Version": 2,
-                                        "BoneParentID": -1,
-                                        "Pos": [
-                                            -132.87606811523438,
-                                            0.0,
-                                            76.69428253173828
-                                        ],
-                                        "Rot": [
-                                            0.0,
-                                            -117.0,
-                                            0.0
-                                        ],
-                                        "Size": [
-                                            0.7500002384185791,
-                                            0.7500002384185791,
-                                            0.7500002384185791
-                                        ],
-                                        "Children": []
-                                    },
-                                    "Prefab": "Grass"
-                                },
-                                {
-                                    "Name": "grass_mesh",
-                                    "Active": true,
-                                    "Opened": true,
-                                    "Transform": {
-                                        "Version": 2,
-                                        "BoneParentID": -1,
-                                        "Pos": [
-                                            -143.88343811035156,
-                                            0.0,
-                                            82.31513214111328
-                                        ],
-                                        "Rot": [
-                                            0.0,
-                                            -117.0,
-                                            0.0
-                                        ],
-                                        "Size": [
-                                            0.7500002384185791,
-                                            0.7500002384185791,
-                                            0.7500002384185791
-                                        ],
-                                        "Children": []
-                                    },
-                                    "Prefab": "Grass"
                                 }
                             ]
                         },
                         "Components": []
+                    },
+                    {
+                        "Name": "Water",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                -0.45774149894714355,
+                                0.043929338455200195,
+                                10.956613540649414
+                            ],
+                            "Rot": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Size": [
+                                8.34999942779541,
+                                1.0,
+                                8.34999942779541
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "Plane",
+                                "Materials": [
+                                    "Blue"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": false,
+                                "InstanceCount": 0
+                            },
+                            {
+                                "ComponentType": "Box Collider",
+                                "Version": 1,
+                                "Layer": 0,
+                                "Trigger": false,
+                                "Size": [
+                                    1.0,
+                                    0.009999999776482582,
+                                    1.0
+                                ],
+                                "Offset": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
                     }
                 ]
             },

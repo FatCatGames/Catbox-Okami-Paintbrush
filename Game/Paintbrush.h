@@ -17,6 +17,7 @@ private:
 	} myColorMode;
 
 	ParticleSystem* myPS;
+	ParticleSystem* mySpirals;
 
 	//Paint
 	ColorGradient myGradient;

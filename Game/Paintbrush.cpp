@@ -6,6 +6,7 @@
 #include "Assets\Material.h"
 #include "ComponentTools\ThreadPool.h"
 #include "Components\ParticleSystem.h"
+#include "Components\Physics\Collisions\CollisionManager.h"
 
 void Paintbrush::Awake()
 {
@@ -29,9 +30,16 @@ void Paintbrush::Awake()
 			myPS = child->GetGameObject()->GetComponent<ParticleSystem>();
 			myPS->Pause();
 		}
+		else if (child->GetGameObject()->GetName() == "PaintSpirals")
+		{
+			mySpirals = child->GetGameObject()->GetComponent<ParticleSystem>();
+			mySpirals->Pause();
+		}
 	}
 
 }
+
+BrushTarget myTarget = BrushTarget::Default;
 
 void Paintbrush::Update()
 {
@@ -50,14 +58,26 @@ void Paintbrush::Update()
 		myColorMode = ColorMode::Rainbow;
 	}
 
+	auto cam = Engine::GetInstance()->GetActiveCamera();
+
 	auto mousePos = Input::GetMousePosition();
 	auto screenPos = Engine::GetInstance()->ViewportToScreenPos(mousePos.x, mousePos.y);
 
-	Vector3f newPos = Engine::GetInstance()->GetActiveCamera()->MouseToWorldPos(mousePos, 0);
+	Vector3f newPos = cam->MouseToWorldPos(mousePos, 0);
 	Vector3f diff = myTransform->worldPos() - newPos;
 	Vector3f newDir = diff.GetNormalized();
 	float length = diff.Length();
 
+	GameObject* hoveredObject = Canvas::GetInstance()->GetHoveredObject(screenPos.x, screenPos.y);
+	
+	if (myTarget == BrushTarget::Water || (hoveredObject && hoveredObject->GetName() == "Water"))
+	{
+		mySpirals->Play();
+	}
+	else
+	{
+		mySpirals->Pause();
+	}
 
 	bool isPainting = Input::GetKeyHeld(KeyCode::MOUSELEFT);
 	if (Input::GetKeyPress(KeyCode::MOUSELEFT))
@@ -66,11 +86,17 @@ void Paintbrush::Update()
 		isPainting = true;
 		myRemainingPaint = 1000;
 		myLerpTimer = 0;
+		if (hoveredObject)
+		{
+			if (hoveredObject->GetName() == "Water") myTarget = BrushTarget::Water;
+			else myTarget = BrushTarget::Default;
+		}
+		else myTarget = BrushTarget::Sky;
 	}
 	else if (Input::GetKeyReleased(KeyCode::MOUSELEFT))
 	{
-		//myPS->ResetTimeUntilEmissions();
 		myLerpTimer = 0;
+		mySpirals->Pause();
 	}
 
 	bool isErasing = Input::GetKeyHeld(KeyCode::MOUSERIGHT);
@@ -81,7 +107,6 @@ void Paintbrush::Update()
 	}
 
 	float percent = myLerpTimer / myYPosLerpTime;
-	//newPos.y = Catbox::Lerp(-0.045f, 0.f, (isPainting || isErasing) ? (1 - percent) : percent);
 	myShader->UpdateShaderData(myCurrentPaintDir, percent);
 
 	if ((isPainting || isErasing))
@@ -176,7 +201,8 @@ void Paintbrush::Update()
 
 	if (Input::GetKeyReleased(KeyCode::CTRL))
 	{
-		Canvas::GetInstance()->Save();
+		Canvas::GetInstance()->Save(myTarget);
+		myTarget = BrushTarget::Default;
 	}
 
 	if (Input::GetKeyReleased(KeyCode::G))

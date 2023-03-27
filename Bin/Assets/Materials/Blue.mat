@@ -1,0 +1,33 @@
+{
+    "Version": 6,
+    "Emissive": 1.0,
+    "Color": {
+        "r": 0.4264705777168274,
+        "g": 0.7807093858718872,
+        "b": 1.0,
+        "a": 1.0
+    },
+    "Albedo": "Square-Default",
+    "PBR": "",
+    "Normal": "",
+    "PixelShader": {
+        "Name": "UnlitPS"
+    },
+    "VertexShader": {
+        "Name": "DefaultVS"
+    },
+    "GeometryShader": {
+        "Name": ""
+    },
+    "TilingMultiplier": 1,
+    "IsTiling": false,
+    "c1": 0.0,
+    "c2": 0.0,
+    "c3": 0.0,
+    "c4": 0.0,
+    "c5": 0.0,
+    "c6": 0.0,
+    "c7": 0.0,
+    "BlendState": 0,
+    "RasterizerState": 0
+}

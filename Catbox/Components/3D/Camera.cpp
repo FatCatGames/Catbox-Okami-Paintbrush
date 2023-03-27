@@ -455,7 +455,7 @@ Vector3f Camera::MouseToWorldPos(Vector2i aMousePos, float anYPos)
 	float multiplierNear = (anYPos - CameraPos.y) / RayDirectionNear.y;
 
 	Catbox::Vector3<float> ClickPosNear = CameraPos + (RayDirectionNear * multiplierNear);
-	ClickPosNear.y = 0;
+	ClickPosNear.y = anYPos;
 
 	return ClickPosNear;
 }

@@ -32,37 +32,6 @@ void Tree::Slash(const Vector3f& anIntersectionPos, const Vector3f& anIntersecti
 
 void Tree::Update()
 {
-	if (Input::GetKeyPress(KeyCode::R))
-	{
-		Vector3f dir = GameManager::GetInstance()->GetPlayer()->worldPos() - myTransform->worldPos();
-		dir.y = 0;
-		dir.Normalize();
-		myIsLerping = true;
-		myLerpTimer = 0;
-
-
-		for (auto& child : myTransform->GetChildren())
-		{
-			if (child->GetGameObject()->GetName() == "Top")
-			{
-				myTreeTop = child;
-
-				myTargetAngleZ = Catbox::Rad2Deg(atan2(dir.x, dir.z));
-				if (myTargetAngleZ < -90) myTargetAngleZ = -180 - myTargetAngleZ;
-				else if (myTargetAngleZ > 90) myTargetAngleZ = 180 - myTargetAngleZ;
-
-				myTargetAngleX = -Catbox::Rad2Deg(atan2(dir.z, dir.x));
-				if (myTargetAngleX < -90) myTargetAngleX = -180 - myTargetAngleX;
-				else if (myTargetAngleX > 90) myTargetAngleX = 180 - myTargetAngleX;
-
-				printmsg("Angle X: " + std::to_string(myTargetAngleX) + ", Angle Z: " + std::to_string(myTargetAngleZ));
-
-				myTreeTopMat = child->GetGameObject()->GetComponent<ModelInstance>()->GetMaterial(0).get();
-			}
-			else myTreeTrunkMat = child->GetGameObject()->GetComponent<ModelInstance>()->GetMaterial(0).get();
-		}
-	}
-
 	if (myIsLerping)
 	{
 		myLerpTimer += deltaTime;

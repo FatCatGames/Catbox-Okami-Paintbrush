@@ -21,42 +21,49 @@ void GameScene::PerformAction(BrushSymbol& anAction)
 {
 	std::string symbolName = "";
 
-	//SUN
+	auto cam = Engine::GetInstance()->GetActiveCamera();
+	Vector2i center = Vector2i((anAction.minX + anAction.maxX) / 2, (anAction.minY + anAction.maxY) / 2);
+
+	Vector4f rayOrigin = cam->MouseToWorld(center, 1);
+	Vector4f rayOrigin2 = cam->MouseToWorld(center, 0);
+	Vector4f rayDir4 = (rayOrigin - rayOrigin2).GetNormalized();
+	Vector3f rayDir = Vector3f(rayDir4.x, rayDir4.y, rayDir4.z);
+
+	Ray ray;
+	ray.InitWithOriginAndDirection(cam->GetTransform()->worldPos(), rayDir);
+	Vector3f intersectionOut;
+	Collider* colliderHit = Engine::GetInstance()->GetCollisionManager()->RayIntersect(ray, 8, { 0 }, intersectionOut, true);
+
+
+	//SUN, LILYPAD
 	if (anAction.name == "o")
 	{
-		symbolName = "Sun";
-		myDayNightCycle.SetTime(true);
+		if (anAction.target == BrushTarget::Sky)
+		{
+			symbolName = "Sun";
+			myDayNightCycle.SetTime(true);
+		}
+		else if (anAction.target == BrushTarget::Water && colliderHit)
+		{
+			symbolName = "Water Lily";
+			auto lily = InstantiatePrefab("LilyPad");
+			Vector3f lilyOrigin = cam->MouseToWorldPos(center, colliderHit->GetTransform()->worldPos().y);
+			lily->GetTransform()->SetWorldPos(lilyOrigin);
+		}
 	}
 	//MOON
 	else if (anAction.name == "c")
 	{
-		symbolName = "Moon";
-		myDayNightCycle.SetTime(false);
+		if (anAction.target == BrushTarget::Sky)
+		{
+			symbolName = "Moon";
+			myDayNightCycle.SetTime(false);
+		}
 	}
 	//BOMB
 	else if (anAction.name == "b")
 	{
 		symbolName = "Bomb";
-
-		Ray ray;
-		auto cam = Engine::GetInstance()->GetActiveCamera();
-
-		Vector2i center = Vector2i((anAction.minX + anAction.maxX) / 2, (anAction.minY + anAction.maxY) / 2);
-
-		Vector4f rayEnd2 = cam->MouseToWorld(center, 1);
-		Vector4f rayOrigin2 = cam->MouseToWorld(center, 0);
-		Vector4f rayDir4 = (rayEnd2 - rayOrigin2).GetNormalized();
-		Vector3f rayDir = Vector3f(rayDir4.x, rayDir4.y, rayDir4.z);
-
-
-		ray.InitWithOriginAndDirection(cam->GetTransform()->worldPos(), rayDir);
-		Vector3f intersectionOut;
-		Collider* colliderHit = Engine::GetInstance()->GetCollisionManager()->RayIntersect(ray, 5, { 0 }, intersectionOut, true);
-		if (colliderHit)
-		{
-			printmsg(colliderHit->GetGameObject().GetName());
-		}
-
 		auto bomb = InstantiatePrefab("Bomb");
 		bomb->GetTransform()->SetWorldPos(Vector3f::up() + (cam->GetTransform()->worldPos() + rayDir * 5.f));
 	}
@@ -65,9 +72,7 @@ void GameScene::PerformAction(BrushSymbol& anAction)
 	{
 		symbolName = "Slash";
 
-		const int yCenter = (anAction.maxY + anAction.minY) / 2.f;
 		Ray ray;
-		auto cam = Engine::GetInstance()->GetActiveCamera();
 
 		const unsigned int treeLayer = Engine::GetInstance()->GetCollisionManager()->GetLayerByName("Tree");
 
@@ -75,8 +80,8 @@ void GameScene::PerformAction(BrushSymbol& anAction)
 
 		for (size_t x = anAction.minX; x < anAction.maxX; x += 10)
 		{
-			Vector4f rayEnd2 = cam->MouseToWorld(Vector2i(x, yCenter), 1);
-			Vector4f rayOrigin2 = cam->MouseToWorld(Vector2i(x, yCenter), 0);
+			Vector4f rayEnd2 = cam->MouseToWorld(Vector2i(x, center.y), 1);
+			Vector4f rayOrigin2 = cam->MouseToWorld(Vector2i(x, center.y), 0);
 			Vector4f rayDir4 = (rayEnd2 - rayOrigin2).GetNormalized();
 			Vector3f rayDir = Vector3f(rayDir4.x, rayDir4.y, rayDir4.z);
 
@@ -87,7 +92,7 @@ void GameScene::PerformAction(BrushSymbol& anAction)
 			if (colliderHit)
 			{
 				auto& gObj = colliderHit->GetGameObject();
-				if (hitObjects.find(gObj.GetObjectInstanceID()) == hitObjects.end()) 
+				if (hitObjects.find(gObj.GetObjectInstanceID()) == hitObjects.end())
 				{
 					hitObjects.insert({ gObj.GetObjectInstanceID(), &gObj });
 					colliderHit->GetGameObject().GetComponent<Tree>()->Slash(intersectionOut, rayDir);

@@ -14,6 +14,8 @@
 Canvas* Canvas::Instance;
 Microsoft::WRL::ComPtr<ID3D11Texture2D> stagingDataTexture;
 Microsoft::WRL::ComPtr<ID3D11Texture2D> stagingDisplayTexture;
+ComPtr<ID3D11Texture2D> capturedIDTexture;
+ComPtr<ID3D11Texture2D> capturedIDStagingTexture;
 Texture tempTex;
 std::mutex paintMutex;
 
@@ -51,6 +53,28 @@ Canvas::Canvas()
 	stagingDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 	DX11::Device->CreateTexture2D(&stagingDesc, nullptr, stagingDataTexture.GetAddressOf());
 	DX11::Device->CreateTexture2D(&stagingDesc, nullptr, stagingDisplayTexture.GetAddressOf());
+
+	D3D11_TEXTURE2D_DESC idStagingTexDesc = {};
+	idStagingTexDesc.Width = 1;
+	idStagingTexDesc.Height = 1;
+	idStagingTexDesc.ArraySize = 1;
+	idStagingTexDesc.Format = DXGI_FORMAT_R32_UINT;
+	idStagingTexDesc.SampleDesc.Count = 1;
+	idStagingTexDesc.Usage = D3D11_USAGE_STAGING;
+	idStagingTexDesc.BindFlags = 0;
+	idStagingTexDesc.CPUAccessFlags = D3D11_CPU_ACCESS_READ;
+	idStagingTexDesc.MiscFlags = 0;
+	result = DX11::Device->CreateTexture2D(&idStagingTexDesc, NULL, capturedIDStagingTexture.GetAddressOf());
+
+	D3D11_TEXTURE2D_DESC idTexDesc = {};
+	idTexDesc.Width = myWidth;
+	idTexDesc.Height = myHeight;
+	idTexDesc.ArraySize = 1;
+	idTexDesc.Format = DXGI_FORMAT_R32_UINT;
+	idTexDesc.SampleDesc.Count = 1;
+	idTexDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+	DX11::Device->CreateTexture2D(&idTexDesc, nullptr, capturedIDTexture.GetAddressOf());
+
 
 	Clear();
 	myPaperTex = AssetRegistry::GetInstance()->GetAsset<Texture>("PaperTex");
@@ -155,10 +179,10 @@ Texture& Canvas::GetPaintingTex()
 	return myPaintingDisplayTex;
 }
 
-void Canvas::Save()
+void Canvas::Save(BrushTarget aTarget)
 {
 	myCanPaint = false;
-
+	mySymbol.target = aTarget;
 	ImgRecognition::GetSymbolSVM(mySymbol, stagingDataTexture.Get(), myWidth, myHeight, [&](bool aSucceeded) {ImageRecognitionCallback(aSucceeded); });
 }
 
@@ -181,10 +205,12 @@ void Canvas::Generate()
 	ImgRecognition::GenerateDataSVM();
 }
 
+
 void Canvas::StartPainting()
 {
 	Clear();
 
+	DX11::Context->CopyResource(capturedIDTexture.Get(), DX11::selectBufferTexture.Get());
 
 	myCanPaint = true;
 	GraphicsEngine::GetInstance()->RunFullScreenShader(
@@ -192,8 +218,25 @@ void Canvas::StartPainting()
 		myScreenTex.GetRenderTargetView().GetAddressOf(),
 		GraphicsEngine::GetInstance()->myCopyPS);
 
+
 	GameScene::GetInstance()->GetGameObject().SetActive(false);
 	PaintingScene::GetInstance()->GetGameObject().SetActive(true);
 	Engine::GetInstance()->SetGamePaused(true);
 }
 
+
+GameObject* Canvas::GetHoveredObject(UINT x, UINT y)
+{
+	if (x >= myWidth) return 0;
+	if (y >= myHeight) return 0;
+
+	D3D11_BOX b = { x, y, 0, x + 1, y + 1, 1 };
+	DX11::Context->CopySubresourceRegion(capturedIDStagingTexture.Get(), 0, 0, 0, 0, capturedIDTexture.Get(), 0, &b);
+
+	D3D11_MAPPED_SUBRESOURCE mapped;
+	DX11::Context->Map(capturedIDStagingTexture.Get(), 0, D3D11_MAP_READ, 0, &mapped);
+	UINT16* p = (UINT16*)mapped.pData;
+	DX11::Context->Unmap(capturedIDStagingTexture.Get(), 0);
+	if (p == NULL) return nullptr;
+	return Engine::GetInstance()->GetGameObject(*p);
+}

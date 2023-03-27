@@ -204,7 +204,6 @@ UINT DX11::GetScreenObjectId(UINT x, UINT y)
 	UINT16* p = (UINT16*)mapped.pData;
 	Context->Unmap(stagingTexture.Get(), 0);
 	if (p == NULL) return 0;
-	//printmsg("%i", p);
 	return *p;
 }
 

@@ -31,11 +31,12 @@ public:
 	Texture& GetPaintingTex();
 	Texture& GetScreenTex() { return myScreenTex; }
 	Texture& GetPaperTex() { return *myPaperTex; }
-	void Save();
+	void Save(BrushTarget aTarget);
 	void ImageRecognitionCallback(bool aSucceeded);
 	void Generate();
 	void StartPainting();
 	bool GetCanPaint() { return myCanPaint; }
+	GameObject* GetHoveredObject(UINT x, UINT y);
 
 private:
 	static Canvas* Instance;
