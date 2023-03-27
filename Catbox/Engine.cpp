@@ -231,6 +231,7 @@ Vector2i Engine::ViewportToScreenPos(Vector2i aScreenPos)
 	return ViewportToScreenPos(aScreenPos.x, aScreenPos.y);
 }
 
+
 Vector2i Engine::ScreenToViewportPos(Vector2i aScreenPos)
 {
 	if (aScreenPos.x < 0) aScreenPos.x = 0;
@@ -238,57 +239,29 @@ Vector2i Engine::ScreenToViewportPos(Vector2i aScreenPos)
 
 	if (EDITORMODE)
 	{
+		const int width = DX11::GetResolution().x;
+		const int height = DX11::GetResolution().y;
+
 		std::vector<SceneWindow*> sceneWindows = Editor::GetInstance()->GetWindowHandler().GetAllWindowsOfType<SceneWindow>(WindowType::Scene);
 		if (sceneWindows.size() == 0) return { aScreenPos.x, aScreenPos.y };
 		SceneWindow* viewPort = sceneWindows[0];
 
 		Vector2f viewPortPos = viewPort->GetPosition();
-		if (viewPortPos.x < 0)
-		{
-			viewPortPos.x += DX11::GetResolution().x;
-		}
-		else if (viewPortPos.x > DX11::GetResolution().x)
-		{
-			viewPortPos.x -= DX11::GetResolution().x;
-		}
+		Vector2f viewPortSize = viewPort->GetSize();
+		
+		float posRelativeToScreenX = aScreenPos.x / static_cast<float>(width);
+		float posRelativeToScreenY = aScreenPos.y / static_cast<float>(height);
 
-		aScreenPos.x -= viewPortPos.x;
-		aScreenPos.y -= viewPortPos.y;
+		Vector2f viewportPosF;
+		viewportPosF.x = viewPortPos.x;
+		viewportPosF.y = viewPortPos.y;
 
-		const int width = DX11::GetResolution().x;
-		const int height = DX11::GetResolution().y;
-
-		// undo viewport-to-screen scaling
-		aScreenPos.x = static_cast<int>(aScreenPos.x * viewPort->GetSize().x / static_cast<float>(width));
-		aScreenPos.y = static_cast<int>(aScreenPos.y * viewPort->GetSize().y / static_cast<float>(height));
-
-		// add viewport position
-		aScreenPos.x += static_cast<int>(viewPortPos.x);
-		aScreenPos.y += static_cast<int>(viewPortPos.y);
-
-		// adjust for negative or out-of-bounds viewport position
-		if (viewPortPos.x < 0) {
-			aScreenPos.x -= width;
-		}
-		else if (viewPortPos.x > width) {
-			aScreenPos.x += width;
-		}
-
-		if (viewPortPos.y < 0) {
-			aScreenPos.y -= height;
-		}
-		else if (viewPortPos.y > height) {
-			aScreenPos.y += height;
-		}
-
-		// adjust for hardcoded values
-		aScreenPos.x -= static_cast<int>(width * 0.005f);
-		aScreenPos.y -= static_cast<int>(height * 0.046f);
+		viewportPosF += Vector2f(posRelativeToScreenX * viewPortSize.x, posRelativeToScreenY * viewPortSize.y);
+		return Vector2i(round(viewportPosF.x), round(viewportPosF.y));
 	}
 
 	return { aScreenPos.x, aScreenPos.y };
 }
-
 
 const float Engine::GetDeltaTime()
 {

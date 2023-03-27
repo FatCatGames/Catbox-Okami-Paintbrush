@@ -150,6 +150,7 @@
     <ClInclude Include="FlowerTrail.h" />
     <ClInclude Include="Game.pch.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="LerpSize.h" />
     <ClInclude Include="LookAtCamera.h" />
     <ClInclude Include="Managers\GameManager.h" />
     <ClInclude Include="Managers\NetMessageHandler.h" />
@@ -178,6 +179,7 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="LerpSize.cpp" />
     <ClCompile Include="LookAtCamera.cpp" />
     <ClCompile Include="Managers\GameManager.cpp" />
     <ClCompile Include="Managers\NetMessageHandler.cpp" />

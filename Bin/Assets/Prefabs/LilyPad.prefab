@@ -64,6 +64,14 @@
                 }
             ]
         },
-        "Components": []
+        "Components": [
+            {
+                "ComponentType": "Flower Trail"
+            },
+            {
+                "ComponentType": "Lerp Size",
+                "Lifetime": 6.0
+            }
+        ]
     }
 }

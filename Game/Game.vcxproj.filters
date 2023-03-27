@@ -29,6 +29,7 @@
     <ClInclude Include="FlowerTrail.h" />
     <ClInclude Include="Game.pch.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="LerpSize.h" />
     <ClInclude Include="LookAtCamera.h" />
     <ClInclude Include="Managers\GameManager.h">
       <Filter>Managers</Filter>
@@ -67,6 +68,7 @@
     <ClCompile Include="FlowerTrail.cpp" />
     <ClCompile Include="Game.pch.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="LerpSize.cpp" />
     <ClCompile Include="LookAtCamera.cpp" />
     <ClCompile Include="Managers\GameManager.cpp">
       <Filter>Managers</Filter>

@@ -23,9 +23,10 @@ void GameScene::PerformAction(BrushSymbol& anAction)
 
 	auto cam = Engine::GetInstance()->GetActiveCamera();
 	Vector2i center = Vector2i((anAction.minX + anAction.maxX) / 2, (anAction.minY + anAction.maxY) / 2);
+	Vector2i symbolCenterScreen = Engine::GetInstance()->ScreenToViewportPos(center);
 
-	Vector4f rayOrigin = cam->MouseToWorld(center, 1);
-	Vector4f rayOrigin2 = cam->MouseToWorld(center, 0);
+	Vector4f rayOrigin = cam->MouseToWorld(symbolCenterScreen, 1);
+	Vector4f rayOrigin2 = cam->MouseToWorld(symbolCenterScreen, 0);
 	Vector4f rayDir4 = (rayOrigin - rayOrigin2).GetNormalized();
 	Vector3f rayDir = Vector3f(rayDir4.x, rayDir4.y, rayDir4.z);
 
@@ -47,7 +48,7 @@ void GameScene::PerformAction(BrushSymbol& anAction)
 		{
 			symbolName = "Water Lily";
 			auto lily = InstantiatePrefab("LilyPad");
-			Vector3f lilyOrigin = cam->MouseToWorldPos(center, colliderHit->GetTransform()->worldPos().y);
+			Vector3f lilyOrigin = cam->MouseToWorldPos(symbolCenterScreen, colliderHit->GetTransform()->worldPos().y);
 			lily->GetTransform()->SetWorldPos(lilyOrigin);
 		}
 	}
