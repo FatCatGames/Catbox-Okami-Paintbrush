@@ -2,16 +2,16 @@
     "Version": 6,
     "Emissive": 1.0,
     "Color": {
-        "r": 0.28078141808509827,
-        "g": 0.6029411554336548,
-        "b": 0.4229107201099396,
+        "r": 0.2588667869567871,
+        "g": 0.6519607901573181,
+        "b": 0.4900985062122345,
         "a": 1.0
     },
     "Albedo": "Square-Default",
     "PBR": "",
     "Normal": "",
     "PixelShader": {
-        "Name": "UnlitPS"
+        "Name": "DefaultPS"
     },
     "VertexShader": {
         "Name": "DefaultVS"

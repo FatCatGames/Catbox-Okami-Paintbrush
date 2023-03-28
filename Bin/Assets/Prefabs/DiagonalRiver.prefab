@@ -1,0 +1,69 @@
+{
+    "Data": {
+        "Name": "DiagonalRiver",
+        "Active": true,
+        "Opened": true,
+        "Transform": {
+            "Version": 2,
+            "BoneParentID": -1,
+            "Pos": [
+                1.9388374090194704,
+                -0.000008106231689453125,
+                -10.341745376586914
+            ],
+            "Rot": [
+                -179.9999542236328,
+                9.05995750427246,
+                179.99937438964844
+            ],
+            "Size": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "Children": [
+                {
+                    "Name": "riversideStraight_mesh",
+                    "Active": true,
+                    "Opened": true,
+                    "Transform": {
+                        "Version": 2,
+                        "BoneParentID": -1,
+                        "Pos": [
+                            0.000014930963516235352,
+                            -0.1643562763929367,
+                            0.0001316070556640625
+                        ],
+                        "Rot": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Size": [
+                            0.20000000298023224,
+                            0.20000000298023224,
+                            0.20000000298023224
+                        ],
+                        "Children": []
+                    },
+                    "Components": [
+                        {
+                            "ComponentType": "Model Instance",
+                            "Version": 6,
+                            "Model": "riversideExpand_mesh",
+                            "Materials": [
+                                "Spring"
+                            ],
+                            "UsedForNav": false,
+                            "Renderer": 1,
+                            "Material Instance": false,
+                            "CastShadows": true,
+                            "InstanceCount": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        "Components": []
+    }
+}

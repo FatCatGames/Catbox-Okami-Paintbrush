@@ -1,0 +1,69 @@
+{
+    "Data": {
+        "Name": "StraightRiver",
+        "Active": true,
+        "Opened": true,
+        "Transform": {
+            "Version": 2,
+            "BoneParentID": -1,
+            "Pos": [
+                -5.638973236083984,
+                0.00005596128903562203,
+                -14.606250762939451
+            ],
+            "Rot": [
+                -179.99949645996094,
+                87.47794342041016,
+                179.99986267089844
+            ],
+            "Size": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "Children": [
+                {
+                    "Name": "riversideStraight_mesh",
+                    "Active": true,
+                    "Opened": true,
+                    "Transform": {
+                        "Version": 2,
+                        "BoneParentID": -1,
+                        "Pos": [
+                            0.0,
+                            0.0,
+                            -0.0000057220458984375
+                        ],
+                        "Rot": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Size": [
+                            0.20000000298023224,
+                            0.20000000298023224,
+                            0.20000000298023224
+                        ],
+                        "Children": []
+                    },
+                    "Components": [
+                        {
+                            "ComponentType": "Model Instance",
+                            "Version": 6,
+                            "Model": "riversideStraight_mesh",
+                            "Materials": [
+                                "Spring"
+                            ],
+                            "UsedForNav": false,
+                            "Renderer": 1,
+                            "Material Instance": false,
+                            "CastShadows": true,
+                            "InstanceCount": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        "Components": []
+    }
+}

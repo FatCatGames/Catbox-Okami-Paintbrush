@@ -37,7 +37,6 @@ void Tree::Update()
 		myLerpTimer += deltaTime;
 		if (myLerpTimer < myLerpTarget)
 		{
-			printmsg(std::to_string(myLerpTimer));
 			float percent = myLerpTimer / myLerpTarget;
 			float t = percent * percent;
 			myTreeTop->SetWorldRot(Catbox::Lerp(myStartRot.x, myTargetAngleX, t), myStartRot.y, Catbox::Lerp(myStartRot.z, myTargetAngleZ, t));

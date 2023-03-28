@@ -53,6 +53,10 @@
                 "Lock Rotation X": true,
                 "Lock Rotation Y": true,
                 "Lock Rotation Z": true
+            },
+            {
+                "ComponentType": "Self Destroy",
+                "Time": 2.0
             }
         ]
     }

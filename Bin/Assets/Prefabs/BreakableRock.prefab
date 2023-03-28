@@ -7,13 +7,13 @@
             "Version": 2,
             "BoneParentID": -1,
             "Pos": [
-                -0.5034899711608887,
+                2.5727643966674805,
                 0.5146622657775879,
-                -2.674067735671997
+                -6.17259407043457
             ],
             "Rot": [
                 0.0,
-                0.0,
+                -48.58933639526367,
                 0.0
             ],
             "Size": [
@@ -33,7 +33,7 @@
                 ],
                 "UsedForNav": false,
                 "Renderer": 1,
-                "Material Instance": false,
+                "Material Instance": true,
                 "CastShadows": true,
                 "InstanceCount": 0
             },

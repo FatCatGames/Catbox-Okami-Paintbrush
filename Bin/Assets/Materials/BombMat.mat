@@ -30,7 +30,7 @@
     "c7": 0.0,
     "BlendState": 0,
     "RasterizerState": 0,
-    "Dynamic Friction": 0.0,
-    "Static Friction": 0.0,
-    "Restitution": 1.0
+    "Dynamic Friction": 0.10000000149011612,
+    "Static Friction": 0.10000000149011612,
+    "Restitution": 0.5
 }
