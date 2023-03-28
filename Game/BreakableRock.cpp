@@ -4,24 +4,11 @@
 #include "Components\3D\ModelInstance.h"
 #include "Assets\Model.h"
 
-void BreakableRock::OnTriggerEnter(Collider* aCollider)
+void BreakableRock::Break()
 {
-	if (aCollider->GetCollisionLayer() == static_cast<int>(CollisionLayer::Bomb))
-	{
-		myModel = myGameObject->GetComponent<ModelInstance>();
-		myModel->SetModel(AssetRegistry::GetInstance()->GetAsset<Model>("brokenrock"));
-		myIsLerping = true;
-	}
-}
-
-void BreakableRock::OnOverlapBegin(Collider* aCollider)
-{
-	if (aCollider->GetCollisionLayer() == static_cast<int>(CollisionLayer::Bomb))
-	{
-		myModel = myGameObject->GetComponent<ModelInstance>();
-		myModel->SetModel(AssetRegistry::GetInstance()->GetAsset<Model>("brokenrock"));
-		myIsLerping = true;
-	}
+	myModel = myGameObject->GetComponent<ModelInstance>();
+	myModel->SetModel(AssetRegistry::GetInstance()->GetAsset<Model>("brokenrock"));
+	myIsLerping = true;
 }
 
 

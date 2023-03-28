@@ -189,6 +189,7 @@ physx::PxRigidActor* PhysicsEngine::CreateDynamicActor(Shape aShape, Vector3f aS
 	}
 	else if (aShape == Shape::PxS_Circle)
 	{
+		aDebugMode = true;
 		if (aIsTrigger)
 		{
 			actorShape = myPxPhysics->createShape(physx::PxSphereGeometry(std::max(std::max(aSize.x, aSize.y), aSize.z)), *myPhysxMaterialMap.find(aMaterialName)->second, physx::PxShapeFlag::eTRIGGER_SHAPE);
@@ -750,7 +751,7 @@ void DefaultSimulationCallback::onTrigger(physx::PxTriggerPair* pairs, physx::Px
 				{
 					tempCollider = otherObject->GetComponent<MeshCollider>();
 				}
-				triggerObject->OnTriggerEnter(tempCollider);
+				otherObject->OnTriggerEnter(tempCollider);
 			}
 		}
 	}

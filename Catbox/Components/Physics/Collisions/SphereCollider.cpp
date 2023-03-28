@@ -132,7 +132,7 @@ void SphereCollider::RunInEditor()
 
 void SphereCollider::Update()
 {
-	if (!myHasLoadedPos && myHasSavedPos)
+	if (!myHasLoadedPos && myHasSavedPos && myRb)
 	{
 		myRb->SetActorPosition(mySpawnPos);
 		myHasLoadedPos = true;

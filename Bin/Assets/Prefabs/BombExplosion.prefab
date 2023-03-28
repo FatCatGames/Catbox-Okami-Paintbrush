@@ -32,6 +32,10 @@
                 ]
             },
             {
+                "ComponentType": "Self Destroy",
+                "Time": 2.0
+            },
+            {
                 "ComponentType": "Sphere Collider",
                 "Version": 1,
                 "Layer": 4,
@@ -53,10 +57,6 @@
                 "Lock Rotation X": true,
                 "Lock Rotation Y": true,
                 "Lock Rotation Z": true
-            },
-            {
-                "ComponentType": "Self Destroy",
-                "Time": 2.0
             }
         ]
     }

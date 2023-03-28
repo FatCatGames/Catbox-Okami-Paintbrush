@@ -3,6 +3,8 @@
 #include "Components\Physics\RigidBody.h"
 #include "Components\CameraShake.h"
 #include "Components\Physics\Collisions\Collider.h"
+#include <Physics\PhysXUtilities.h>
+#include "BreakableRock.h"
 
 void Bomb::Awake()
 {
@@ -44,6 +46,18 @@ void Bomb::Update()
 		Engine::GetInstance()->GetActiveCamera()->GetGameObject().GetComponent<CameraShake>()->Start();
 		auto explosion = InstantiatePrefab("BombExplosion");
 		explosion->GetTransform()->SetWorldPos(myTransform->worldPos());
+
+		std::vector<GameObject*> objectsInRadius;
+		objectsInRadius = PhysXUtilities::OverlapMultiple(myTransform->worldPos(), 3, 0 << static_cast<int>(CollisionLayer::Interact));
+		for (auto& obj : objectsInRadius)
+		{
+			BreakableRock* rock = obj->GetComponent<BreakableRock>();
+			if (rock)
+			{
+				rock->Break();
+			}
+		}
+
 		myGameObject->Destroy();
 	}
 }

@@ -2370,32 +2370,6 @@
                             "Version": 2,
                             "BoneParentID": -1,
                             "Pos": [
-                                6.543687343597412,
-                                0.5146622657775879,
-                                7.802770137786865
-                            ],
-                            "Rot": [
-                                179.99960327148438,
-                                -57.39537048339844,
-                                -179.99960327148438
-                            ],
-                            "Size": [
-                                100.0,
-                                100.0,
-                                100.0
-                            ],
-                            "Children": []
-                        },
-                        "Prefab": "BreakableRock"
-                    },
-                    {
-                        "Name": "CrackedRock",
-                        "Active": true,
-                        "Opened": true,
-                        "Transform": {
-                            "Version": 2,
-                            "BoneParentID": -1,
-                            "Pos": [
                                 -4.320113658905029,
                                 0.7490832805633545,
                                 -6.289540767669678
@@ -3847,9 +3821,9 @@
                             "Version": 2,
                             "BoneParentID": -1,
                             "Pos": [
-                                -0.0924951434135437,
-                                0.6985622644424438,
-                                -7.086972236633301
+                                -0.18657560646533966,
+                                0.6985597014427185,
+                                -6.592041015625
                             ],
                             "Rot": [
                                 0.00031341571593657136,
@@ -3863,7 +3837,36 @@
                             ],
                             "Children": []
                         },
-                        "Prefab": "BreakableRock"
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "crackedrock",
+                                "Materials": [
+                                    "Spring"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": true,
+                                "CastShadows": true,
+                                "InstanceCount": 0
+                            },
+                            {
+                                "ComponentType": "Breakable Rock"
+                            },
+                            {
+                                "ComponentType": "Sphere Collider",
+                                "Version": 1,
+                                "Layer": 2,
+                                "Radius": 1.1399999856948853,
+                                "Trigger": false,
+                                "Offset": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        ]
                     },
                     {
                         "Name": "CrackedRock",
@@ -4483,19 +4486,19 @@
                             "Version": 2,
                             "BoneParentID": -1,
                             "Pos": [
-                                -1.3684282302856445,
-                                -1.2419548034667969,
-                                -5.504645347595215
+                                -0.9102275967597961,
+                                -1.2419689893722534,
+                                -6.5623087882995605
                             ],
                             "Rot": [
-                                -179.9999237060547,
-                                -2.993677854537964,
-                                179.99948120117188
+                                -179.99937438964844,
+                                -6.253847122192383,
+                                179.99937438964844
                             ],
                             "Size": [
                                 0.7399998307228088,
                                 0.813701331615448,
-                                0.7399998307228088
+                                1.0119770765304565
                             ],
                             "Children": []
                         },
@@ -4528,9 +4531,9 @@
                             "Version": 2,
                             "BoneParentID": -1,
                             "Pos": [
-                                -0.9299362897872925,
-                                -0.667277455329895,
-                                -2.5835213661193848
+                                -0.9417003393173218,
+                                -0.6672771573066711,
+                                -2.3213977813720703
                             ],
                             "Rot": [
                                 -179.9999237060547,
@@ -4573,9 +4576,9 @@
                             "Version": 2,
                             "BoneParentID": -1,
                             "Pos": [
-                                -0.8526223301887512,
+                                -0.8608959317207336,
                                 -0.5123428702354431,
-                                -0.09704544395208359
+                                -0.1512109935283661
                             ],
                             "Rot": [
                                 -179.9999237060547,
@@ -5256,6 +5259,193 @@
                                 }
                             }
                         ]
+                    },
+                    {
+                        "Name": "CrackedRock",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                6.6342573165893555,
+                                0.514672577381134,
+                                5.036089897155762
+                            ],
+                            "Rot": [
+                                0.0005792419542558491,
+                                -44.93398666381836,
+                                -0.00027958437567576766
+                            ],
+                            "Size": [
+                                100.0,
+                                100.0,
+                                100.0
+                            ],
+                            "Children": []
+                        },
+                        "Prefab": "BreakableRock"
+                    },
+                    {
+                        "Name": "Cliff_Slab",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                10.816036224365234,
+                                -0.22353015840053558,
+                                6.255072593688965
+                            ],
+                            "Rot": [
+                                -179.9999237060547,
+                                -12.308463096618652,
+                                179.99948120117188
+                            ],
+                            "Size": [
+                                0.5610799193382263,
+                                0.5610799193382263,
+                                0.5610799193382263
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "Cliffset_2_Mesh",
+                                "Materials": [
+                                    "Spring"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": true,
+                                "InstanceCount": 0
+                            },
+                            {
+                                "ComponentType": "Mesh Collider",
+                                "Version": 1,
+                                "Collider Model": "Cliffset_2_Mesh"
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Cliff_Slab",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                11.438874244689941,
+                                -0.22353138029575348,
+                                9.182780265808105
+                            ],
+                            "Rot": [
+                                -179.9999237060547,
+                                -64.1945571899414,
+                                179.99948120117188
+                            ],
+                            "Size": [
+                                0.7195850610733032,
+                                0.7195850014686584,
+                                0.7195850610733032
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "Cliffset_2_Mesh",
+                                "Materials": [
+                                    "Spring"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": true,
+                                "InstanceCount": 0
+                            },
+                            {
+                                "ComponentType": "Mesh Collider",
+                                "Version": 1,
+                                "Collider Model": "Cliffset_2_Mesh"
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Cliff_Slab",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                15.08604621887207,
+                                -0.9986941814422607,
+                                2.858435869216919
+                            ],
+                            "Rot": [
+                                -179.9999237060547,
+                                41.539554595947266,
+                                -179.9998779296875
+                            ],
+                            "Size": [
+                                0.4514899253845215,
+                                0.52757728099823,
+                                0.4514899253845215
+                            ],
+                            "Children": []
+                        },
+                        "Components": [
+                            {
+                                "ComponentType": "Model Instance",
+                                "Version": 6,
+                                "Model": "Cliff_Wall_1",
+                                "Materials": [
+                                    "Spring"
+                                ],
+                                "UsedForNav": false,
+                                "Renderer": 1,
+                                "Material Instance": false,
+                                "CastShadows": true,
+                                "InstanceCount": 0
+                            },
+                            {
+                                "ComponentType": "Mesh Collider",
+                                "Version": 1,
+                                "Collider Model": "Cliff_Wall_1"
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "CrackedRock",
+                        "Active": true,
+                        "Opened": true,
+                        "Transform": {
+                            "Version": 2,
+                            "BoneParentID": -1,
+                            "Pos": [
+                                6.543687343597412,
+                                0.5146622657775879,
+                                7.802770137786865
+                            ],
+                            "Rot": [
+                                179.99960327148438,
+                                -57.39537048339844,
+                                -179.99960327148438
+                            ],
+                            "Size": [
+                                100.0,
+                                100.0,
+                                100.0
+                            ],
+                            "Children": []
+                        },
+                        "Prefab": "BreakableRock"
                     }
                 ]
             },

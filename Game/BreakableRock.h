@@ -4,9 +4,8 @@ class ModelInstance;
 class BreakableRock : public Component
 {
 public:
-	void OnTriggerEnter(Collider* aCollider) override;
-	void OnOverlapBegin(Collider* aCollider) override;
 	void Update() override;
+	void Break();
 
 private:
 

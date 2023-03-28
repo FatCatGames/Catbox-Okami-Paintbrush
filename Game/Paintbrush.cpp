@@ -188,18 +188,7 @@ void Paintbrush::Update()
 
 	myTransform->SetWorldPos(newPos);
 
-	/*if (Input::GetKeyReleased(KeyCode::S))
-	{
-		Canvas::GetInstance()->Save();
-	}
-
-	if (Input::GetKeyReleased(KeyCode::C))
-	{
-		Canvas::GetInstance()->Clear();
-	}*/
-
-
-	if (Input::GetKeyReleased(KeyCode::CTRL))
+	if (Input::GetKeyReleased(KeyCode::S))
 	{
 		Canvas::GetInstance()->Save(myTarget);
 		myTarget = BrushTarget::Default;
@@ -209,4 +198,17 @@ void Paintbrush::Update()
 	{
 		Canvas::GetInstance()->Generate();
 	}
+
+	if (Input::GetKeyReleased(KeyCode::C))
+	{
+		Canvas::GetInstance()->Clear();
+	}
+
+	if (Input::GetKeyReleased(KeyCode::CTRL))
+	{
+		Canvas::GetInstance()->Save(myTarget);
+		myTarget = BrushTarget::Default;
+	}
+
+	
 }
