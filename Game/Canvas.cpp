@@ -146,6 +146,7 @@ void PaintToTexture(int aWidth, int aHeight, int anXPos, int anYPos, int aRadius
 void Canvas::Update()
 {
 	float realDeltaTime = Engine::GetInstance()->GetRealDeltaTime();
+	myTimeSincePaintMode += realDeltaTime;
 	for (size_t i = 0; i < myPaintStack.size();)
 	{
 		auto& p = myPaintStack[i];
@@ -208,6 +209,7 @@ void Canvas::Generate()
 
 void Canvas::StartPainting()
 {
+	myTimeSincePaintMode = 0;
 	Clear();
 
 	DX11::Context->CopyResource(capturedIDTexture.Get(), DX11::selectBufferTexture.Get());

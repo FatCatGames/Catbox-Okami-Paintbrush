@@ -37,20 +37,23 @@ public:
 	void StartPainting();
 	bool GetCanPaint() { return myCanPaint; }
 	GameObject* GetHoveredObject(UINT x, UINT y);
+	float GetTimeSincePaintStart() { return myTimeSincePaintMode; }
 
 private:
 	static Canvas* Instance;
 	std::shared_ptr<PixelShader> myCanvasPS;
 
 	CanvasPS* myShader;
-	bool myCanPaint = false;
-	std::shared_ptr<Texture> myPaperTex;
-	std::vector<PaintDot> myPaintStack;
+	BrushSymbol mySymbol;
 	Texture myPaintingTex;
 	Texture myPaintingDisplayTex;
 	Texture myScreenTex;
-	//Texture myStagingTex;
+
 	const int myWidth = 1920;
 	const int myHeight = 1080;
-	BrushSymbol mySymbol;
+	float myTimeSincePaintMode;
+	bool myCanPaint = false;
+
+	std::shared_ptr<Texture> myPaperTex;
+	std::vector<PaintDot> myPaintStack;
 };

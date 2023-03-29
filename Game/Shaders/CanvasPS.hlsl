@@ -5,12 +5,18 @@ Texture2D paintingTexture: register(t0);
 Texture2D screenTexture: register(t1);
 Texture2D paperTexture: register(t2);
 
+cbuffer PaintingBuffer : register(b10)
+{
+	float paperTexPercent = 1;
+	float3 padding;
+}
+
 PixelOutput main(VertexToPixel input)
 {
 	PixelOutput result;
 
 	float3 screenCol = screenTexture.Sample(defaultSampler, input.AlbedoUV).rgb;
-	float screenAvg = (screenCol.r + screenCol.g + screenCol.b) / 3.0f;
+	float screenAvg = 1.1f * ((screenCol.r + screenCol.g + screenCol.b) / 3.0f);
 
 	float3 paperCol = paperTexture.Sample(defaultSampler, input.AlbedoUV * 0.5).rgb;
 	float paperAvg = (paperCol.r + paperCol.g + paperCol.b) / 3.0f;
@@ -22,7 +28,7 @@ PixelOutput main(VertexToPixel input)
 	float painting = paintingTexture.Sample(defaultSampler, input.AlbedoUV).r;
 	col = col * paperAvg * painting;
 
-	result.Color.rgb = col;
+	result.Color.rgb = lerp(screenCol, col, paperTexPercent);
 	result.Color.a = 1;
 
 	//result.Color.rgb = painting;
