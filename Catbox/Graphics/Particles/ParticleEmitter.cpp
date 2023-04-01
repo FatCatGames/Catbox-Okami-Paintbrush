@@ -7,6 +7,7 @@
 #include "Assets/Shader.h"
 #include "Assets/Material.h"
 #include "Shaders\FlipbookShader.h"
+#include "CommonUtilities\NoiseFunctions.h"
 
 void ParticleEmitter::RenderInProperties()
 {
@@ -69,6 +70,7 @@ void ParticleEmitter::Update()
 	if (!mySharedData) return;
 	myParticlesToRender = 0;
 	float t = Engine::GetInstance()->GetRealDeltaTime();
+	float time = Engine::GetInstance()->GetTotalTime();
 	myInstanceData.timeUntilEmission -= t;
 	myInstanceData.timePassed += t;
 
@@ -114,7 +116,16 @@ void ParticleEmitter::Update()
 			dir.y += mySharedData->myVelocityOverLifetimeY.Evaluate(percent) * mySharedData->myVelocityOverTimeInfluence;
 			dir.z += mySharedData->myVelocityOverLifetimeZ.Evaluate(percent) * mySharedData->myVelocityOverTimeInfluence;
 		}
+
+		float strength = 0.01f;
+		float frequency = 2;
 		p.position += dir * p.currentSpeed * t;
+		float noiseX = strength * Catbox::SimplexNoise::noise(time * frequency);
+		float noiseY = strength * Catbox::SimplexNoise::noise(1000 + time * frequency);
+		float noiseZ = strength * Catbox::SimplexNoise::noise(2000 + time * frequency);
+		p.position.x += noiseX;
+		p.position.y += noiseY;
+		p.position.z += noiseZ;
 
 		if (mySharedData->myRotationOverLifetimeEnabled)
 		{
