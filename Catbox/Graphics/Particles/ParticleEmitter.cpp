@@ -162,11 +162,18 @@ void ParticleEmitter::Update()
 			myIsPaused = true;
 		}
 	}
+
+
+	if (mySharedData->myShapeData.shape == ParticleEmitterSettings::EmissionShape::Cube)
+	{
+		Vector3f worldPos = myParent->worldPos();
+		DebugDrawer::DrawCube(worldPos + mySharedData->myShapeData.offset, mySharedData->myShapeData.size, Vector3f::zero(), Color::Green());
+	}
 }
 
 void ParticleEmitter::CreateInitialShape(std::vector<ParticleEmitter::ParticleData*>& someParticles, ParticleEmitterSettings::ShapeData& aShapeData)
 {
-	Vector4f spawnPos = { aShapeData.offset.x, aShapeData.offset.y, aShapeData.offset.z, 1};
+	Vector4f spawnPos = { aShapeData.offset.x, aShapeData.offset.y, aShapeData.offset.z, 1 };
 	if (mySharedData->myUseWorldSpace)
 	{
 		Vector3f parentPos = myParent->worldPos();
@@ -189,6 +196,13 @@ void ParticleEmitter::CreateInitialShape(std::vector<ParticleEmitter::ParticleDa
 		{
 			someParticles[i]->velocity = { 0.f, 1.f, 0.f, 0 };
 			//someParticles[i]->position += { i / static_cast<float>(someParticles.size()), 0, 0, 1 };
+		}
+		else if (aShapeData.shape == ParticleEmitterSettings::EmissionShape::Cube)
+		{
+			float x = Catbox::GetRandom(-aShapeData.size.x * 0.5f, aShapeData.size.x * 0.5f);
+			float y = Catbox::GetRandom(-aShapeData.size.y * 0.5f, aShapeData.size.y * 0.5f);
+			float z = Catbox::GetRandom(-aShapeData.size.z * 0.5f, aShapeData.size.z * 0.5f);
+			someParticles[i]->position += Vector4f(x,y,z, 0);
 		}
 	}
 }
@@ -274,7 +288,7 @@ void ParticleEmitter::SetAsResource(Catbox::CBuffer<Material::MaterialBufferData
 	{
 		mySharedData->myMaterial->SetAsResource(aMaterialBuffer);
 	}
-	else 
+	else
 	{
 		DX11::Context->VSSetShader(mySharedData->myVertexShader->vertexShader, nullptr, 0);
 		DX11::Context->GSSetShader(mySharedData->myGeometryShader->geometryShader, nullptr, 0);

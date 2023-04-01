@@ -130,7 +130,7 @@ void ParticleEmitterSettings::RenderInProperties()
 
 void ParticleEmitterSettings::SaveAsset(const char* /*aPath*/)
 {
-	myVersion = 10;
+	myVersion = 11;
 	rapidjson::Document output;
 	output.SetObject();
 	auto& alloc = output.GetAllocator();
@@ -193,6 +193,13 @@ void ParticleEmitterSettings::SaveAsset(const char* /*aPath*/)
 	sd.AddMember("OffsetY", value, alloc);
 	value.SetFloat(myShapeData.offset.z);
 	sd.AddMember("OffsetZ", value, alloc);
+
+	value.SetFloat(myShapeData.size.x);
+	sd.AddMember("SizeX", value, alloc);
+	value.SetFloat(myShapeData.size.y);
+	sd.AddMember("SizeY", value, alloc);
+	value.SetFloat(myShapeData.size.z);
+	sd.AddMember("SizeZ", value, alloc);
 
 #pragma endregion
 
@@ -333,6 +340,12 @@ void ParticleEmitterSettings::LoadFromPath(const char* /*aPath*/)
 		myShapeData.offset.x = sd["OffsetX"].GetFloat();
 		myShapeData.offset.y = sd["OffsetY"].GetFloat();
 		myShapeData.offset.z = sd["OffsetZ"].GetFloat();
+		if (myVersion >= 11)
+		{
+			myShapeData.size.x = sd["SizeX"].GetFloat();
+			myShapeData.size.y = sd["SizeY"].GetFloat();
+			myShapeData.size.z = sd["SizeZ"].GetFloat();
+		}
 	}
 
 #pragma endregion
@@ -473,14 +486,15 @@ void ParticleEmitterSettings::RenderShapeSettings()
 	if (ImGui::CollapsingHeader(("Shape##Header" + myRuntimeId).c_str()))
 	{
 		int shapeIndex = (int)myShapeData.shape;
-		const char* shapes[] = { "Cone", "Sphere", "Edge" };
+		const char* shapes[] = { "Cone", "Sphere", "Edge", "Cube"};
 		ImGui::PushItemWidth(130);
 		if (ImGui::Combo(("Shape##" + myRuntimeId).c_str(), &shapeIndex, shapes, IM_ARRAYSIZE(shapes)))
 		{
 			myShapeData.shape = (EmissionShape)shapeIndex;
 			myHasUnsavedChanges = true;
 		}
-		myHasUnsavedChanges |= Catbox::DragFloat3("Offset", &myShapeData.offset, 0.05f);
+		myHasUnsavedChanges |= Catbox::DragFloat3(("Offset##Shape" + myRuntimeId).c_str(), &myShapeData.offset, 0.05f);
+		myHasUnsavedChanges |= Catbox::DragFloat3(("Size##Shape" + myRuntimeId).c_str(), & myShapeData.size, 0.05f);
 	}
 
 }

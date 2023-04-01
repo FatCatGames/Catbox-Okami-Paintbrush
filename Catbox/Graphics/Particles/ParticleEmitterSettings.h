@@ -35,7 +35,8 @@ public:
 	{
 		Cone,
 		Sphere,
-		Edge
+		Edge,
+		Cube
 	};
 
 private:
@@ -84,6 +85,7 @@ private:
 	{
 		EmissionShape shape = EmissionShape::Cone;
 		Vector3f offset;
+		Vector3f size;
 	} myShapeData;
 
 	//Over lifetime
