@@ -4,6 +4,7 @@
 #include "Physics\PhysicsEngine.h"
 #include "Components\3D\ModelInstance.h"
 #include "Assets\Material.h"
+#include "Components\ParticleSystem.h"
 
 void Tree::Slash(const Vector3f& anIntersectionPos, const Vector3f& anIntersectionDir)
 {
@@ -26,7 +27,14 @@ void Tree::Slash(const Vector3f& anIntersectionPos, const Vector3f& anIntersecti
 
 			myTreeTopMat = child->GetGameObject()->GetComponent<ModelInstance>()->GetMaterial(0).get();
 		}
-		else myTreeTrunkMat = child->GetGameObject()->GetComponent<ModelInstance>()->GetMaterial(0).get();
+		else if(child->GetGameObject()->GetName() == "Trunk")
+		{
+			myTreeTrunkMat = child->GetGameObject()->GetComponent<ModelInstance>()->GetMaterial(0).get();
+		}
+		else if (child->GetGameObject()->GetName() == "Sakura")
+		{
+			child->GetGameObject()->GetComponent<ParticleSystem>()->Pause();
+		}
 	}
 }
 

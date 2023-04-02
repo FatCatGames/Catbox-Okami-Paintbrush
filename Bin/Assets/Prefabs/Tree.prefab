@@ -2,13 +2,13 @@
     "Data": {
         "Name": "Tree",
         "Active": true,
-        "Opened": false,
+        "Opened": true,
         "Transform": {
             "Version": 2,
             "BoneParentID": -1,
             "Pos": [
                 4.2962141036987305,
-                0.040217697620391846,
+                0.04021771997213363,
                 4.3474225997924805
             ],
             "Rot": [
@@ -115,6 +115,39 @@
                             "Material Instance": true,
                             "CastShadows": true,
                             "InstanceCount": 0
+                        }
+                    ]
+                },
+                {
+                    "Name": "Sakura",
+                    "Active": true,
+                    "Opened": true,
+                    "Transform": {
+                        "Version": 2,
+                        "BoneParentID": -1,
+                        "Pos": [
+                            0.19585132598876953,
+                            4.394540309906006,
+                            -0.04577445983886719
+                        ],
+                        "Rot": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "Size": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "Children": []
+                    },
+                    "Components": [
+                        {
+                            "ComponentType": "Particle System",
+                            "Emitters": [
+                                "SakuraEmitter2"
+                            ]
                         }
                     ]
                 }

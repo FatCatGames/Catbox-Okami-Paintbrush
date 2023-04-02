@@ -191,7 +191,7 @@ void ParticleEmitter::Update()
 	if (mySharedData->myShapeData.shape == ParticleEmitterSettings::EmissionShape::Cube)
 	{
 		Vector3f worldPos = myParent->worldPos();
-		DebugDrawer::DrawCube(worldPos + mySharedData->myShapeData.offset, mySharedData->myShapeData.size, Vector3f::zero(), Color::Green());
+		//DebugDrawer::DrawCube(worldPos + mySharedData->myShapeData.offset, mySharedData->myShapeData.size, Vector3f::zero(), Color::Green());
 	}
 }
 

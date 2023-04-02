@@ -7,9 +7,9 @@
             "Version": 2,
             "BoneParentID": -1,
             "Pos": [
-                -6.453021049499512,
-                0.00003533591370796785,
-                -0.22579193115234375
+                -7.992514610290527,
+                0.00003535165888024494,
+                0.3768550157546997
             ],
             "Rot": [
                 0.0,
@@ -100,7 +100,107 @@
                             1.0,
                             1.0
                         ],
-                        "Children": []
+                        "Children": [
+                            {
+                                "Name": "Sakura",
+                                "Active": true,
+                                "Opened": true,
+                                "Transform": {
+                                    "Version": 2,
+                                    "BoneParentID": -1,
+                                    "Pos": [
+                                        -4.356079578399658,
+                                        3.765982151031494,
+                                        0.8566867113113403
+                                    ],
+                                    "Rot": [
+                                        0.0,
+                                        65790.0,
+                                        0.0
+                                    ],
+                                    "Size": [
+                                        1.0,
+                                        1.0,
+                                        1.0
+                                    ],
+                                    "Children": []
+                                },
+                                "Components": [
+                                    {
+                                        "ComponentType": "Particle System",
+                                        "Emitters": [
+                                            "SakuraEmitter"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "Name": "Sakura",
+                                "Active": true,
+                                "Opened": true,
+                                "Transform": {
+                                    "Version": 2,
+                                    "BoneParentID": -1,
+                                    "Pos": [
+                                        0.2322549819946289,
+                                        3.765982151031494,
+                                        -2.1697633266448975
+                                    ],
+                                    "Rot": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Size": [
+                                        1.0,
+                                        1.0,
+                                        1.0
+                                    ],
+                                    "Children": []
+                                },
+                                "Components": [
+                                    {
+                                        "ComponentType": "Particle System",
+                                        "Emitters": [
+                                            "SakuraEmitter"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "Name": "Sakura",
+                                "Active": true,
+                                "Opened": true,
+                                "Transform": {
+                                    "Version": 2,
+                                    "BoneParentID": -1,
+                                    "Pos": [
+                                        -3.4131484031677246,
+                                        6.7453131675720215,
+                                        -0.7472100257873535
+                                    ],
+                                    "Rot": [
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "Size": [
+                                        1.0,
+                                        1.0,
+                                        1.0
+                                    ],
+                                    "Children": []
+                                },
+                                "Components": [
+                                    {
+                                        "ComponentType": "Particle System",
+                                        "Emitters": [
+                                            "SakuraEmitter"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
                     },
                     "Components": [
                         {

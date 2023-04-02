@@ -20,12 +20,13 @@
             "evaluationType": "default"
         },
         "Rotation": {
-            "default": 1.0,
-            "evaluationType": "default"
+            "min": 0.0,
+            "max": 360.0,
+            "evaluationType": "random"
         },
         "Time between emissions": {
-            "min": 0.5,
-            "max": 1.5,
+            "min": 1.0,
+            "max": 2.0,
             "evaluationType": "random"
         },
         "Particles per emission": {
@@ -38,12 +39,12 @@
         },
         "Start color": {
             "r": 1.0,
-            "g": 0.09313726425170898,
-            "b": 0.43987882137298584,
+            "g": 1.0,
+            "b": 1.0,
             "a": 1.0
         },
         "Use gravity": true,
-        "Gravity modifier": 0.5
+        "Gravity modifier": 0.4000000059604645
     },
     "Shape Data": {
         "Shape": 3,
@@ -163,6 +164,6 @@
     "Graphics": {
         "Blend state": 1,
         "Type": 0,
-        "Texture": "Square-Default"
+        "Texture": "sakura"
     }
 }
