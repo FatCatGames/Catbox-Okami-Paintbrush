@@ -117,15 +117,28 @@ void ParticleEmitter::Update()
 			dir.z += mySharedData->myVelocityOverLifetimeZ.Evaluate(percent) * mySharedData->myVelocityOverTimeInfluence;
 		}
 
-		float strength = 0.01f;
-		float frequency = 2;
 		p.position += dir * p.currentSpeed * t;
-		float noiseX = strength * Catbox::SimplexNoise::noise(time * frequency);
-		float noiseY = strength * Catbox::SimplexNoise::noise(1000 + time * frequency);
-		float noiseZ = strength * Catbox::SimplexNoise::noise(2000 + time * frequency);
-		p.position.x += noiseX;
-		p.position.y += noiseY;
-		p.position.z += noiseZ;
+
+		if (mySharedData->myNoiseSettings.enabled)
+		{
+			const float strength = mySharedData->myNoiseSettings.strength;
+			const float frequency = mySharedData->myNoiseSettings.frequency;
+			if (mySharedData->myNoiseSettings.enableX)
+			{
+				float noiseX = 0.01f * strength * Catbox::SimplexNoise::noise(p.noiseOffset + time * frequency);
+				p.position.x += noiseX;
+			}
+			if (mySharedData->myNoiseSettings.enableY)
+			{
+				float noiseY = 0.01f * strength * Catbox::SimplexNoise::noise(p.noiseOffset + 1000 + time * frequency);
+				p.position.y += noiseY;
+			}
+			if (mySharedData->myNoiseSettings.enableZ)
+			{
+				float noiseZ = 0.01f * strength * Catbox::SimplexNoise::noise(p.noiseOffset + 2000 + time * frequency);
+				p.position.z += noiseZ;
+			}
+		}
 
 		if (mySharedData->myRotationOverLifetimeEnabled)
 		{
@@ -213,7 +226,7 @@ void ParticleEmitter::CreateInitialShape(std::vector<ParticleEmitter::ParticleDa
 			float x = Catbox::GetRandom(-aShapeData.size.x * 0.5f, aShapeData.size.x * 0.5f);
 			float y = Catbox::GetRandom(-aShapeData.size.y * 0.5f, aShapeData.size.y * 0.5f);
 			float z = Catbox::GetRandom(-aShapeData.size.z * 0.5f, aShapeData.size.z * 0.5f);
-			someParticles[i]->position += Vector4f(x,y,z, 0);
+			someParticles[i]->position += Vector4f(x, y, z, 0);
 		}
 	}
 }
@@ -241,6 +254,7 @@ void ParticleEmitter::ResetParticle(ParticleData& aParticle)
 	aParticle.endSpeed = mySharedData->myEndSpeed;
 	aParticle.startLifetime = mySharedData->myLifetime.GetValue(percent);
 	aParticle.remainingLifetime = aParticle.startLifetime;
+	aParticle.noiseOffset = Catbox::GetRandom(0.f, 256.f);
 }
 
 void ParticleEmitter::UpdateParticleSystem()

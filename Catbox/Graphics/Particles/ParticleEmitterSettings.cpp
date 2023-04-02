@@ -124,13 +124,14 @@ void ParticleEmitterSettings::RenderInProperties()
 	RenderEmissionSettings();
 	RenderShapeSettings();
 	RenderOverLifetimeSettings();
+	RenderNoiseSettings();
 	RenderGraphicsSettings();
 }
 
 
 void ParticleEmitterSettings::SaveAsset(const char* /*aPath*/)
 {
-	myVersion = 11;
+	myVersion = 13;
 	rapidjson::Document output;
 	output.SetObject();
 	auto& alloc = output.GetAllocator();
@@ -251,6 +252,27 @@ void ParticleEmitterSettings::SaveAsset(const char* /*aPath*/)
 
 #pragma endregion
 
+#pragma region Noise
+
+	rapidjson::Value noiseData;
+	noiseData.SetObject();
+	output.AddMember("Noise Data", noiseData, alloc);
+	rapidjson::GenericObject<false, rapidjson::Value> nd = output["Noise Data"].GetObj();
+	value.SetBool(myNoiseSettings.enabled);
+	nd.AddMember("Enabled", value, alloc);
+	value.SetBool(myNoiseSettings.enableX);
+	nd.AddMember("X", value, alloc);
+	value.SetBool(myNoiseSettings.enableY);
+	nd.AddMember("Y", value, alloc); 
+	value.SetBool(myNoiseSettings.enableZ);
+	nd.AddMember("Z", value, alloc);
+	value.SetFloat(myNoiseSettings.strength);
+	nd.AddMember("Strength", value, alloc);
+	value.SetFloat(myNoiseSettings.frequency);
+	nd.AddMember("Freq", value, alloc);
+
+#pragma endregion
+
 #pragma region Graphics
 	rapidjson::Value graphics;
 	graphics.SetObject();
@@ -345,6 +367,25 @@ void ParticleEmitterSettings::LoadFromPath(const char* /*aPath*/)
 			myShapeData.size.x = sd["SizeX"].GetFloat();
 			myShapeData.size.y = sd["SizeY"].GetFloat();
 			myShapeData.size.z = sd["SizeZ"].GetFloat();
+		}
+	}
+
+#pragma endregion
+
+#pragma region Noise
+
+	if (myVersion >= 12)
+	{
+		rapidjson::GenericObject<false, rapidjson::Value> nd = document["Noise Data"].GetObj();
+		myNoiseSettings.enabled = nd["Enabled"].GetBool();
+		myNoiseSettings.strength = nd["Strength"].GetFloat();
+		myNoiseSettings.frequency = nd["Freq"].GetFloat();
+
+		if (myVersion >= 12)
+		{
+			myNoiseSettings.enableX = nd["X"].GetBool();
+			myNoiseSettings.enableY = nd["Y"].GetBool();
+			myNoiseSettings.enableZ = nd["Z"].GetBool();
 		}
 	}
 
@@ -611,6 +652,24 @@ void ParticleEmitterSettings::RenderOverLifetimeSettings()
 		}
 		if (!enabled) ImGui::PopStyleColor();
 #pragma endregion
+	}
+}
+
+void ParticleEmitterSettings::RenderNoiseSettings()
+{
+	if (ImGui::CollapsingHeader(("Noise##" + myRuntimeId).c_str()))
+	{
+		ImGui::Spacing();
+		Catbox::Checkbox(("Enabled##Noise" + myRuntimeId).c_str(), &myNoiseSettings.enabled);
+
+		Catbox::Checkbox(("X##Noise" + myRuntimeId).c_str(), &myNoiseSettings.enableX);
+		ImGui::SameLine();
+		Catbox::Checkbox(("y##Noise" + myRuntimeId).c_str(), &myNoiseSettings.enableY);
+		ImGui::SameLine();
+		Catbox::Checkbox(("Z##Noise" + myRuntimeId).c_str(), &myNoiseSettings.enableZ);
+
+		Catbox::DragFloat(("Strength##" + myRuntimeId).c_str(), &myNoiseSettings.strength);
+		Catbox::DragFloat(("Frequency##" + myRuntimeId).c_str(), &myNoiseSettings.frequency);
 	}
 }
 

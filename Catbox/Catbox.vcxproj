@@ -185,6 +185,7 @@
     <ClInclude Include="CommonUtilities\LinkedList.hpp" />
     <ClInclude Include="CommonUtilities\Matrix3x3.hpp" />
     <ClInclude Include="CommonUtilities\Matrix4x4.hpp" />
+    <ClInclude Include="CommonUtilities\NoiseFunctions.h" />
     <ClInclude Include="CommonUtilities\ObjParser.h" />
     <ClInclude Include="CommonUtilities\Plane.hpp" />
     <ClInclude Include="CommonUtilities\PlaneVolume.hpp" />
@@ -406,6 +407,7 @@
     <ClCompile Include="CommonUtilities\GUID.cpp" />
     <ClCompile Include="CommonUtilities\ImguiWrapper.cpp" />
     <ClCompile Include="CommonUtilities\InputHandler.cpp" />
+    <ClCompile Include="CommonUtilities\NoiseFunctions.cpp" />
     <ClCompile Include="CommonUtilities\RapidJsonWrapper.cpp" />
     <ClCompile Include="CommonUtilities\Timer.cpp" />
     <ClCompile Include="CommonUtilities\XboxControllerInput.cpp" />

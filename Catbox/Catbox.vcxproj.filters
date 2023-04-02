@@ -288,6 +288,9 @@
     <ClInclude Include="CommonUtilities\Matrix4x4.hpp">
       <Filter>CommonUtilities</Filter>
     </ClInclude>
+    <ClInclude Include="CommonUtilities\NoiseFunctions.h">
+      <Filter>CommonUtilities</Filter>
+    </ClInclude>
     <ClInclude Include="CommonUtilities\ObjParser.h">
       <Filter>CommonUtilities</Filter>
     </ClInclude>
@@ -915,6 +918,9 @@
       <Filter>CommonUtilities</Filter>
     </ClCompile>
     <ClCompile Include="CommonUtilities\InputHandler.cpp">
+      <Filter>CommonUtilities</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonUtilities\NoiseFunctions.cpp">
       <Filter>CommonUtilities</Filter>
     </ClCompile>
     <ClCompile Include="CommonUtilities\RapidJsonWrapper.cpp">

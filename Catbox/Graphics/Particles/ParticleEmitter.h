@@ -23,6 +23,7 @@ public:
 		float remainingLifetime = 1;
 		float startSize = 1;
 		float currentSize = 1;
+		float noiseOffset = 0;
 		int index;
 	};
 

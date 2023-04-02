@@ -46,6 +46,7 @@ private:
 	void RenderEmissionSettings();
 	void RenderShapeSettings();
 	void RenderOverLifetimeSettings();
+	void RenderNoiseSettings();
 	void RenderGraphicsSettings();
 
 	void RenderDataPropertyOptions(ParticleProperty<float>* aProperty, const float& aMin = 0, const float& aMax = 100);
@@ -87,6 +88,14 @@ private:
 		Vector3f offset;
 		Vector3f size;
 	} myShapeData;
+
+	struct NoiseSettings
+	{
+		bool enabled = false;
+		bool enableX, enableY, enableZ = true;
+		float strength = 0.1f;
+		float frequency = 1.f;
+	} myNoiseSettings;
 
 	//Over lifetime
 	ColorGradient myColorOverLifetime;

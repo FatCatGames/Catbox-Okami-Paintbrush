@@ -1,5 +1,5 @@
 {
-    "Version": 11,
+    "Version": 13,
     "Emission Data": {
         "WorldSpace": true,
         "Looping": true,
@@ -151,6 +151,14 @@
             ],
             "Strength": 10.0
         }
+    },
+    "Noise Data": {
+        "Enabled": true,
+        "X": true,
+        "Y": true,
+        "Z": true,
+        "Strength": 1.0,
+        "Freq": 1.0
     },
     "Graphics": {
         "Blend state": 1,
