@@ -28,10 +28,10 @@ void Scene::Update()
 
 void Scene::FixedUpdate()
 {
-	for (int i = 0; i < myRootObjects.size();)
+	/*for (int i = 0; i < myRootObjects.size();)
 	{
 		myRootObjects[i++]->FixedUpdate();
-	}
+	}*/
 }
 
 void Scene::ImportScene()

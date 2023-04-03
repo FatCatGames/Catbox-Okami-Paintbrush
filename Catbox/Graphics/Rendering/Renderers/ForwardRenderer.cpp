@@ -125,7 +125,7 @@ void ForwardRenderer::RenderModels(const std::vector<ModelInstance*>& aModelList
 	{
 		auto model = modelInstance->GetModel();
 		if (!model) continue;
-		std::vector<std::shared_ptr<MeshData>> modelParts = modelInstance->GetModel()->GetModelParts();
+		std::vector<std::shared_ptr<MeshData>>& modelParts = modelInstance->GetModel()->GetModelParts();
 		int index = -1;
 		const std::vector<Model::InstanceData>& renderedInstances = model->GetRenderedInstances();
 
@@ -208,7 +208,7 @@ void ForwardRenderer::RenderModels(const std::vector<ModelInstance*>& aModelList
 			}
 
 			DX11::Context->DrawIndexed(meshData->myNumberOfIndices, 0, 0);
-			myDrawCalls++;
+			++myDrawCalls;
 
 			if (!renderedInstances.empty())
 			{

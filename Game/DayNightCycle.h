@@ -9,7 +9,7 @@ public:
 private:
 	float myLerpTimer = 2;
 	float myLerpTarget = 2;
-	bool myIsDay = true;
+	bool myIsDay = false;
 	Color myDaytimeColor;
 	Color myNighttimeColor;
 	Color myCurrentColor;

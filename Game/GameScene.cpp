@@ -33,7 +33,7 @@ void GameScene::PerformAction(BrushSymbol& anAction)
 	Ray ray;
 	ray.InitWithOriginAndDirection(cam->GetTransform()->worldPos(), rayDir);
 	Vector3f intersectionOut;
-	Collider* colliderHit = Engine::GetInstance()->GetCollisionManager()->RayIntersect(ray, 10, { 0 }, intersectionOut, true);
+	Collider* colliderHit = Engine::GetInstance()->GetCollisionManager()->RayIntersect(ray, 20, { 0 }, intersectionOut, true);
 
 
 	//SUN, LILYPAD

@@ -529,7 +529,7 @@ void GameObject::LoadObjectData(rapidjson::Value& anObject)
 	}
 	myHasFinishedLoading = true;
 
-	if (PLAYMODE) 
+	if (PLAYMODE)
 	{
 		for (auto component : myComponents)
 		{
@@ -562,17 +562,11 @@ void GameObject::Update()
 	{
 		if (PLAYMODE)
 		{
-			if (Engine::GetInstance()->GetMainCamera())
-			{
-				shouldBeCulled = !Engine::GetInstance()->GetMainCamera()->IsInsideFrustum(&myTransform);
-			}
+			shouldBeCulled = !Engine::GetInstance()->GetMainCamera()->IsInsideFrustum(&myTransform);
 		}
 		else
 		{
-			if (Editor::GetInstance()->GetEditorCamera().GetCamera())
-			{
-				shouldBeCulled = !Editor::GetInstance()->GetEditorCamera().GetCamera()->IsInsideFrustum(&myTransform);
-			}
+			shouldBeCulled = !Editor::GetInstance()->GetEditorCamera().GetCamera()->IsInsideFrustum(&myTransform);
 		}
 	}
 	else
