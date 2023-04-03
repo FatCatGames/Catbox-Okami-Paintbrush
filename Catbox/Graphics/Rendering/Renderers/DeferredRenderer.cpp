@@ -207,7 +207,7 @@ void DeferredRenderer::GenerateGBuffer(std::vector<ModelInstance*>& aModelList)
 
 			if (Engine::GetInstance()->GetActiveCamera()) 
 			{
-				DX11::Context->PSSetShaderResources(11, 1, Engine::GetInstance()->GetActiveCamera()->GetDepthStencil().GetShaderResourceView().GetAddressOf());
+				DX11::Context->PSSetShaderResources(11, 1, GraphicsEngine::GetInstance()->GetMainCamera()->GetDepthStencil().GetShaderResourceView().GetAddressOf());
 			}
 
 

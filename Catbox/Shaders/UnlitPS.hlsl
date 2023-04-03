@@ -11,5 +11,6 @@ PixelOutput main(VertexToPixel input)
 
 	result.Color.rgba = albedo * MB_Color;
 	result.id = OB_id;
+	result.LightResult = 0;
     return result;
 }

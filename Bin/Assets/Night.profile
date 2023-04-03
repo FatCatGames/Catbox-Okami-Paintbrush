@@ -3,23 +3,23 @@
     "Color Adjustments": {
         "Enabled": true,
         "Tint": {
-            "r": 0.7303921580314636,
-            "g": 0.7462514638900757,
+            "r": 0.29901963472366333,
+            "g": 0.3402543067932129,
             "b": 1.0,
             "a": 1.0
         },
-        "Brightness": 0.8500000238418579,
-        "Contrast": 0.6000000238418579,
+        "Brightness": 0.8199999928474426,
+        "Contrast": 0.800000011920929,
         "Saturation": 1.0
     },
     "Bloom": {
-        "Enabled": false,
-        "Strength": 1.0,
-        "Cutoff": 0.5,
+        "Enabled": true,
+        "Strength": 2.8399999141693115,
+        "Cutoff": 0.75,
         "Blur": 1.0
     },
     "Vignette": {
-        "Enabled": false,
+        "Enabled": true,
         "Strength": -1.0,
         "Ratio": 1.0,
         "Radius": 1.0,
@@ -36,13 +36,13 @@
     "Fog": {
         "Enabled": false,
         "Color": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0,
+            "r": 0.4565071165561676,
+            "g": 0.4662928283214569,
+            "b": 0.7892156839370728,
             "a": 1.0
         },
-        "Cutoff": 0.20000000298023224,
-        "Density": 1.0,
+        "Cutoff": 0.7200000286102295,
+        "Density": 3.690000057220459,
         "YColor": {
             "r": 1.0,
             "g": 1.0,

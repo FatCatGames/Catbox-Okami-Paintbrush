@@ -1,0 +1,167 @@
+{
+    "Version": 13,
+    "Emission Data": {
+        "WorldSpace": true,
+        "Looping": true,
+        "Max particles": 500,
+        "Duration": 5.0,
+        "Delay": 0.0,
+        "Size": {
+            "min": 2.0,
+            "max": 4.0,
+            "evaluationType": "random"
+        },
+        "Speed": {
+            "default": 1.0,
+            "evaluationType": "default"
+        },
+        "Lifetime": {
+            "default": 5.0,
+            "evaluationType": "default"
+        },
+        "Rotation": {
+            "default": 1.0,
+            "evaluationType": "default"
+        },
+        "Time between emissions": {
+            "default": 0.10000000149011612,
+            "evaluationType": "default"
+        },
+        "Particles per emission": {
+            "default": 2,
+            "evaluationType": "default"
+        },
+        "Spawn delay": {
+            "default": 0.0,
+            "evaluationType": "default"
+        },
+        "Start color": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+        },
+        "Use gravity": true,
+        "Gravity modifier": 1.0
+    },
+    "Shape Data": {
+        "Shape": 3,
+        "OffsetX": 0.0,
+        "OffsetY": 0.0,
+        "OffsetZ": 0.0,
+        "SizeX": 13.350000381469727,
+        "SizeY": 0.44999998807907104,
+        "SizeZ": 1.75
+    },
+    "Over lifetime": {
+        "Size": {
+            "Curve": [
+                {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                {
+                    "x": 1.0,
+                    "y": 0.0
+                }
+            ],
+            "enabled": false
+        },
+        "Speed": {
+            "Curve": [
+                {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                {
+                    "x": 1.0,
+                    "y": 0.0
+                }
+            ],
+            "enabled": false
+        },
+        "Rotation": {
+            "Curve": [
+                {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                {
+                    "x": 1.0,
+                    "y": 1.0
+                }
+            ],
+            "enabled": false
+        },
+        "Color": {
+            "enabled": false,
+            "Gradient": [
+                {
+                    "Color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0,
+                        "a": 1.0
+                    },
+                    "pos": 0
+                },
+                {
+                    "Color": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "pos": 100
+                }
+            ]
+        },
+        "Velocity": {
+            "enabled": false,
+            "X": [
+                {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                {
+                    "x": 1.0,
+                    "y": 0.0
+                }
+            ],
+            "Y": [
+                {
+                    "x": 0.0,
+                    "y": -0.10000000149011612
+                },
+                {
+                    "x": 1.0,
+                    "y": -0.2800000011920929
+                }
+            ],
+            "Z": [
+                {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                {
+                    "x": 1.0,
+                    "y": 0.0
+                }
+            ],
+            "Strength": 10.0
+        }
+    },
+    "Noise Data": {
+        "Enabled": false,
+        "X": false,
+        "Y": false,
+        "Z": true,
+        "Strength": 0.10000000149011612,
+        "Freq": 1.0
+    },
+    "Graphics": {
+        "Blend state": 2,
+        "Type": 0,
+        "Texture": "ParticleStar"
+    }
+}

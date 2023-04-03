@@ -1,0 +1,179 @@
+{
+    "Version": 13,
+    "Emission Data": {
+        "WorldSpace": true,
+        "Looping": true,
+        "Max particles": 100,
+        "Duration": 5.0,
+        "Delay": 0.0,
+        "Size": {
+            "default": 1.0,
+            "evaluationType": "default"
+        },
+        "Speed": {
+            "default": 1.0,
+            "evaluationType": "default"
+        },
+        "Lifetime": {
+            "default": 8.0,
+            "evaluationType": "default"
+        },
+        "Rotation": {
+            "default": 1.0,
+            "evaluationType": "default"
+        },
+        "Time between emissions": {
+            "default": 1.0,
+            "evaluationType": "default"
+        },
+        "Particles per emission": {
+            "default": 1,
+            "evaluationType": "default"
+        },
+        "Spawn delay": {
+            "default": 0.0,
+            "evaluationType": "default"
+        },
+        "Start color": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+        },
+        "Use gravity": false,
+        "Gravity modifier": 1.0
+    },
+    "Shape Data": {
+        "Shape": 3,
+        "OffsetX": 0.0,
+        "OffsetY": 0.0,
+        "OffsetZ": 0.0,
+        "SizeX": 3.0,
+        "SizeY": 1.0,
+        "SizeZ": 3.0
+    },
+    "Over lifetime": {
+        "Size": {
+            "Curve": [
+                {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                {
+                    "x": 0.5,
+                    "y": 1.0
+                },
+                {
+                    "x": 1.0,
+                    "y": 0.0
+                }
+            ],
+            "enabled": true
+        },
+        "Speed": {
+            "Curve": [
+                {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                {
+                    "x": 1.0,
+                    "y": 0.0
+                }
+            ],
+            "enabled": false
+        },
+        "Rotation": {
+            "Curve": [
+                {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                {
+                    "x": 1.0,
+                    "y": 1.0
+                }
+            ],
+            "enabled": false
+        },
+        "Color": {
+            "enabled": true,
+            "Gradient": [
+                {
+                    "Color": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "pos": 0
+                },
+                {
+                    "Color": {
+                        "r": 1.0,
+                        "g": 0.9363245964050293,
+                        "b": 0.6847290992736816,
+                        "a": 1.0
+                    },
+                    "pos": 45
+                },
+                {
+                    "Color": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "pos": 100
+                }
+            ]
+        },
+        "Velocity": {
+            "enabled": false,
+            "X": [
+                {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                {
+                    "x": 1.0,
+                    "y": 0.0
+                }
+            ],
+            "Y": [
+                {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                {
+                    "x": 1.0,
+                    "y": 0.0
+                }
+            ],
+            "Z": [
+                {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                {
+                    "x": 1.0,
+                    "y": 0.0
+                }
+            ],
+            "Strength": 10.0
+        }
+    },
+    "Noise Data": {
+        "Enabled": true,
+        "X": true,
+        "Y": true,
+        "Z": true,
+        "Strength": 1.0,
+        "Freq": 0.5
+    },
+    "Graphics": {
+        "Blend state": 2,
+        "Type": 0,
+        "Texture": "Particle-Default"
+    }
+}

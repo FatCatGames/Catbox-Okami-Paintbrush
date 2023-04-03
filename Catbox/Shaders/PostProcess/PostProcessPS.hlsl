@@ -2,6 +2,7 @@
 #include "../Struct/PostProcessingShaderStructs.hlsli"
 
 Texture2D screenTexture : register(t0);
+Texture2D lightMap : register(t2);
 
 cbuffer PostProcessingColorAdjustmentData : register(b10)
 {
@@ -18,13 +19,14 @@ PostProcessPixelOutput main(PostProcessVertexToPixel input)
 	const float4 pixel = screenTexture.Sample(defaultSampler, input.UV);
 	if (pixel.a < 0.05f) discard;
 	float4 newColor = pixel;
+	const float light = (pixel.r + pixel.g + pixel.b) / 3.f;
 
 	//contrast
 	newColor.rgb = (newColor.rgb - 0.5) * (PP_Contrast) + 0.5;
 
 
 	newColor += (PP_Brightness - 1);
-	newColor *= PP_Tint;
+	newColor = lerp(newColor * PP_Tint, newColor, light);
 
 	//saturation
 	const float3 lumCoeff = float3(0.2125, 0.7154, 0.0721);
