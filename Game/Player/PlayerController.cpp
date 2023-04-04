@@ -51,6 +51,8 @@ void PlayerController::Update()
 		myHasSetup = true;
 	}
 
+	myActionTimer += deltaTime;
+	myAnimator->SetFloat("ActionTimer", myActionTimer);
 	RunKeyboardInput();
 }
 
@@ -141,6 +143,11 @@ void PlayerController::HandleCameraMouseMovement()
 	myCamera->RotateAroundObject(-mouseDelta.x * myCameraSensitivity, -mouseDelta.y * myCameraSensitivity);
 }
 
+void PlayerController::ResetActionTimer()
+{
+	myActionTimer = 0;
+}
+
 void PlayerController::HandleJump()
 {
 	if (Input::GetKeyPress(KeyCode::SPACE) && myIsGrounded)
@@ -149,7 +156,7 @@ void PlayerController::HandleJump()
 		myIsGrounded = false;
 		myIsJumping = true;
 		myCharacterController->AddForce({ 0, 1, 0 }, myJumpStrength);
-		//myAnimator->SetBool("Grounded", false);
+		myAnimator->SetBool("Grounded", false);
 		//myAnimator->SetBool("HasJumped", true);
 
 		if (myAudioMonoComponent) { myAudioMonoComponent->PlaySoundEffect(2); }
@@ -184,7 +191,7 @@ void PlayerController::OnCollisionStay(Collider* aCollider)
 
 	if (direction == CollisionDirection::PxCF_Down)
 	{
-		//myAnimator->SetBool("Grounded", true);
+		myAnimator->SetBool("Grounded", true);
 
 		myIsGrounded = true;
 		myCharacterController->SetGravity(myDefaultGravity);

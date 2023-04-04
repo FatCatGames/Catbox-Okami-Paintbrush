@@ -98,10 +98,10 @@
             "Gradient": [
                 {
                     "Color": {
-                        "r": 0.0,
-                        "g": 0.0,
-                        "b": 0.0,
-                        "a": 1.0
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0,
+                        "a": 0.0
                     },
                     "pos": 0
                 },
@@ -110,7 +110,7 @@
                         "r": 1.0,
                         "g": 1.0,
                         "b": 1.0,
-                        "a": 1.0
+                        "a": 0.4156862795352936
                     },
                     "pos": 18
                 }
@@ -160,12 +160,12 @@
         "Freq": 1.0
     },
     "Graphics": {
-        "Blend state": 2,
+        "Blend state": 1,
         "Type": 1,
         "Columns": 8,
         "Rows": 8,
         "Framerate": 32,
         "Loop": true,
-        "Texture": "BackPackJumpFlipbook_C"
+        "Texture": "BackPackJumpFlipbookGrayscale_C"
     }
 }

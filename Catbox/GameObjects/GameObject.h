@@ -101,6 +101,7 @@ protected:
 	std::string mySearchComponent = "";
 	float myAliveTime;
 	bool myHasFinishedLoading = false;
+	bool myShouldCull = true;
 
 	bool myShouldRenderOutline = false; //Lasse hijack
 	Color myOutlineColor = { 1,1,1,1 };

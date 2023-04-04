@@ -17,6 +17,7 @@ public:
 	void HandlePainting();
 	void HandleJump();
 	void HandleCameraMouseMovement();
+	void ResetActionTimer();
 
 private:
 	Animator* myAnimator = nullptr;
@@ -27,6 +28,7 @@ private:
 	float myMoveSpeed = 7;
 	bool myIsGivingInput = false;
 	float myInputTimer = 0;
+	float myActionTimer = 0;
 
 	const float myCameraYOffset = 1.5f;
 	const float myCameraSensitivity = 3;

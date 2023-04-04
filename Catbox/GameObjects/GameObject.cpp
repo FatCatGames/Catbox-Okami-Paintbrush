@@ -188,6 +188,8 @@ void GameObject::RenderInProperties(std::vector<Asset*>& anAssetList)
 			object->SetActive(active);
 		}
 	}
+	
+
 	ImGui::SameLine();
 
 	char nameInput[64] = "-";
@@ -205,6 +207,14 @@ void GameObject::RenderInProperties(std::vector<Asset*>& anAssetList)
 		for (GameObject* object : objectList)
 		{
 			object->myName = nameInput;
+		}
+	}
+
+	if (Catbox::Checkbox("Cull", &myShouldCull))
+	{
+		for (GameObject* object : objectList)
+		{
+			object->myShouldCull = myShouldCull;
 		}
 	}
 
@@ -418,6 +428,7 @@ std::string GameObject::SaveObjectData()
 	wrapper.SaveString("Name", myName.c_str());
 	wrapper.SaveValue<DataType::Bool>("Active", myIsActive);
 	wrapper.SaveValue<DataType::Bool>("Opened", myIsOpenedInHierarchy);
+	wrapper.SaveValue<DataType::Bool>("Cull", myShouldCull);
 	myTransform.Save();
 
 	if (myPrefab || myPrefabMissing)
@@ -487,6 +498,7 @@ void GameObject::LoadObjectData(rapidjson::Value& anObject)
 
 	if (anObject.HasMember("Active")) myIsActive = anObject["Active"].GetBool();
 	if (anObject.HasMember("Opened")) myIsOpenedInHierarchy = anObject["Opened"].GetBool();
+	if (anObject.HasMember("Cull")) myShouldCull = anObject["Cull"].GetBool();
 
 	if (anObject.HasMember("Prefab")) //Object has a link to a prefab
 	{
@@ -558,24 +570,28 @@ void GameObject::Update()
 
 	if (!myIsActive) return;
 
-	if (EDITORMODE)
+	if (myShouldCull) 
 	{
-		if (PLAYMODE)
+		if (EDITORMODE)
 		{
-			shouldBeCulled = !Engine::GetInstance()->GetMainCamera()->IsInsideFrustum(&myTransform);
+			if (PLAYMODE)
+			{
+				shouldBeCulled = !Engine::GetInstance()->GetMainCamera()->IsInsideFrustum(&myTransform);
+			}
+			else
+			{
+				shouldBeCulled = !Editor::GetInstance()->GetEditorCamera().GetCamera()->IsInsideFrustum(&myTransform);
+			}
 		}
 		else
 		{
-			shouldBeCulled = !Editor::GetInstance()->GetEditorCamera().GetCamera()->IsInsideFrustum(&myTransform);
+			if (Engine::GetInstance()->GetMainCamera())
+			{
+				shouldBeCulled = !Engine::GetInstance()->GetMainCamera()->IsInsideFrustum(&myTransform);
+			}
 		}
 	}
-	else
-	{
-		if (Engine::GetInstance()->GetMainCamera())
-		{
-			shouldBeCulled = !Engine::GetInstance()->GetMainCamera()->IsInsideFrustum(&myTransform);
-		}
-	}
+
 	for (size_t i = 0; i < myComponents.size(); i++)
 	{
 		if (myComponents[i]->myIsEnabled)

@@ -4,6 +4,7 @@
 #include "Components/Physics/Collisions/CollisionManager.h"
 #include "Components/Physics/Collisions/Collider.h"
 #include "Tree.h"
+#include "Player\PlayerController.h"
 
 GameScene* GameScene::Instance;
 
@@ -79,6 +80,7 @@ void GameScene::PerformAction(BrushSymbol& anAction)
 
 		std::unordered_map<int, GameObject*> hitObjects;
 
+		bool success = false;
 		for (size_t x = anAction.minX; x < anAction.maxX; x += 10)
 		{
 			Vector4f rayEnd2 = cam->MouseToWorld(Vector2i(x, center.y), 1);
@@ -92,6 +94,7 @@ void GameScene::PerformAction(BrushSymbol& anAction)
 			Collider* colliderHit = Engine::GetInstance()->GetCollisionManager()->RayIntersect(ray, 10, { treeLayer }, intersectionOut, true);
 			if (colliderHit)
 			{
+				success = true;
 				auto& gObj = colliderHit->GetGameObject();
 				if (hitObjects.find(gObj.GetObjectInstanceID()) == hitObjects.end())
 				{
@@ -101,6 +104,12 @@ void GameScene::PerformAction(BrushSymbol& anAction)
 					auto slash = InstantiatePrefab("Slash");
 					slash->GetTransform()->SetWorldPos(colliderHit->GetTransform()->worldPos() + Vector3f::up() * 1.5f - rayDir * 0.5f);
 				}
+
+			}
+
+			if (success) 
+			{
+				GameManager::GetInstance()->GetPlayer()->GetGameObject()->GetComponent<PlayerController>()->ResetActionTimer();
 			}
 		}
 	}
