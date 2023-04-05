@@ -14122,7 +14122,7 @@
                         "Name": "CrackedRock",
                         "Active": true,
                         "Opened": true,
-                        "Cull": true,
+                        "Cull": false,
                         "Transform": {
                             "Version": 2,
                             "BoneParentID": -1,
@@ -14178,7 +14178,7 @@
                         "Name": "CrackedRock",
                         "Active": true,
                         "Opened": true,
-                        "Cull": true,
+                        "Cull": false,
                         "Transform": {
                             "Version": 2,
                             "BoneParentID": -1,

@@ -52,6 +52,7 @@ void PlayerController::Update()
 	}
 
 	myActionTimer += deltaTime;
+	myAnimator->SetBool("HasJumped", false);
 	myAnimator->SetFloat("ActionTimer", myActionTimer);
 	RunKeyboardInput();
 }
@@ -157,7 +158,7 @@ void PlayerController::HandleJump()
 		myIsJumping = true;
 		myCharacterController->AddForce({ 0, 1, 0 }, myJumpStrength);
 		myAnimator->SetBool("Grounded", false);
-		//myAnimator->SetBool("HasJumped", true);
+		myAnimator->SetBool("HasJumped", true);
 
 		if (myAudioMonoComponent) { myAudioMonoComponent->PlaySoundEffect(2); }
 	}

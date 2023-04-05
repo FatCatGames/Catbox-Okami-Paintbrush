@@ -32,7 +32,7 @@ void Bomb::Update()
 
 	if (myPushForce.LengthSqr() > 0.1f)
 	{
-		myRb->AddForce(myPushForce, 10);
+		myRb->AddForce(myPushForce, 2, physx::PxForceMode::eIMPULSE);
 		myPushForce = Vector3f::zero();
 		mySpeed = 5;
 	}
