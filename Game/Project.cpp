@@ -76,7 +76,7 @@ void Project::Setup()
 		AssetLoader::LoadAsset("Assets/Scenes/SplashScreen.scene");
 		AssetLoader::LoadAllAssets();
 
-		auto& worldInstancing = AssetRegistry::GetInstance()->GetAsset<Scene>("MainMenu_lvl");
+		auto& worldInstancing = AssetRegistry::GetInstance()->GetAsset<Scene>("GameScene");
 		Engine::GetInstance()->GetSceneManager()->LoadScene(worldInstancing);
 	}
 }
